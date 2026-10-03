@@ -1,0 +1,42 @@
+// Subdominios que ninguna tienda puede usar (sección 6.5 del CLAUDE.md).
+const RESERVADOS = new Set([
+  'admin',
+  'www',
+  'api',
+  'app',
+  'panel',
+  'mail',
+  'static',
+  'assets',
+  'cdn',
+  'staging',
+  'dev',
+  'test',
+  'demo',
+  'beta',
+  'status',
+  'docs',
+  'blog',
+  'soporte',
+  'ayuda',
+  'help',
+  'support',
+  'mostry',
+  'pagos',
+  'login',
+  'cuenta',
+  'registro',
+  'webmail',
+  'smtp',
+  'imap',
+  'pop',
+  'ftp',
+  'ns1',
+  'ns2',
+  'root',
+  'localhost',
+]);
+
+export function esSubdominioReservado(subdominio: string): boolean {
+  return RESERVADOS.has(subdominio);
+}

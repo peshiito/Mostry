@@ -1,0 +1,84 @@
+# Servicios de desarrollo local. Backend y frontend corren en el host.
+name: mostry
+
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NOMBRE}
+      MYSQL_USER: ${DB_USUARIO}
+      MYSQL_PASSWORD: ${DB_CLAVE}
+      DB_NOMBRE_TEST: ${DB_NOMBRE_TEST}
+      TZ: UTC
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci", "--default-time-zone=+00:00"]
+    ports:
+      - "127.0.0.1:${MYSQL_PUERTO_HOST:-3317}:3306"
+    volumes:
+      - mysql_datos:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "127.0.0.1:${PHPMYADMIN_PUERTO_HOST:-8081}:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # S3 local (emula Cloudflare R2). Consola: http://localhost:9001/rustfs/console/
+  rustfs:
+    image: rustfs/rustfs:1.0.1
+    restart: unless-stopped
+    environment:
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY}
+      RUSTFS_SECRET_KEY: ${S3_SECRET_KEY}
+      RUSTFS_CONSOLE_ENABLE: "true"
+    ports:
+      - "127.0.0.1:${RUSTFS_PUERTO_API:-9000}:9000"
+      - "127.0.0.1:${RUSTFS_PUERTO_CONSOLA:-9001}:9001"
+    volumes:
+      - rustfs_datos:/data
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://127.0.0.1:9000/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # Crea los buckets y sus permisos; corre una vez y termina.
+  rustfs-init:
+    image: amazon/aws-cli:latest
+    depends_on:
+      rustfs:
+        condition: service_healthy
+    environment:
+      AWS_ACCESS_KEY_ID: ${S3_ACCESS_KEY}
+      AWS_SECRET_ACCESS_KEY: ${S3_SECRET_KEY}
+      AWS_DEFAULT_REGION: ${S3_REGION}
+      S3_BUCKET_PUBLICO: ${S3_BUCKET_PUBLICO}
+      S3_BUCKET_PRIVADO: ${S3_BUCKET_PRIVADO}
+      S3_BUCKET_BACKUPS: ${S3_BUCKET_BACKUPS}
+    volumes:
+      - ./docker/rustfs/crear-buckets.sh:/crear-buckets.sh:ro
+    entrypoint: ["sh", "/crear-buckets.sh"]
+
+
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${MAILPIT_PUERTO_SMTP:-1025}:1025"
+      - "127.0.0.1:${MAILPIT_PUERTO_WEB:-8025}:8025"
+
+volumes:
+  mysql_datos:
+  rustfs_datos:
