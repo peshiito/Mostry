@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 import { db } from '../shared/db/db.js';
-import { idInsertado } from '../db/seed/insertar.js';
+import { idInsertado } from '../shared/db/idInsertado.js';
 
 // Datos mínimos válidos para tests de base de datos.
 export async function crearTienda(slug: string): Promise<number> {

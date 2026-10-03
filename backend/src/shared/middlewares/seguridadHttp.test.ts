@@ -1,9 +1,10 @@
+import { crearMailerFalso } from '../../test/mailerFalso.js';
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 import { crearApp } from '../../app.js';
 import { ORIGEN_AJENO, ORIGEN_TIENDA } from '../../test/origenes.js';
 
-const app = crearApp({ pingDb: async () => {} });
+const app = crearApp({ pingDb: async () => {}, mailer: crearMailerFalso().mailer });
 
 describe('CORS', () => {
   it('habilita credenciales para orígenes de Mostry', async () => {

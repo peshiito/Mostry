@@ -16,12 +16,16 @@ export type TiendasTabla = Timestamps & {
   estado: Auto<EstadoTienda>;
   pruebaHasta: Date | null;
   planHasta: Date | null;
+  suspendidaManual: Auto<boolean>;
+  motivoSuspension: string | null;
   pausada: Auto<boolean>;
   plazoComprobanteHoras: Auto<number>;
   plazoSenaHoras: Auto<number>;
   anticipacionEncargoHoras: Auto<number>;
   senaPorcentaje: Auto<number>;
   costoEnvio: Auto<number>;
+  aceptaEnvio: Auto<boolean>;
+  aceptaRetiro: Auto<boolean>;
   zonaEnvio: string | null;
   ultimoNumeroPedido: Auto<number>;
 };

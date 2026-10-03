@@ -1,5 +1,8 @@
 import type { Auto, Creado, Timestamps } from './comunes.js';
 
+export type TipoSesion = 'panel' | 'admin';
+export type EstadoSesion = 'falta_totp' | 'falta_configurar_totp' | 'completa';
+
 export type UsuariosTabla = Timestamps & {
   id: Auto<number>;
   email: string;
@@ -9,6 +12,7 @@ export type UsuariosTabla = Timestamps & {
   emailVerificadoEn: Date | null;
   totpSecretoCifrado: string | null;
   totpActivadoEn: Date | null;
+  totpUltimoPaso: number | null;
   activo: Auto<boolean>;
 };
 
@@ -32,7 +36,8 @@ export type CodigosRecuperacionTabla = Creado & {
 export type SesionesTabla = Creado & {
   id: Auto<number>;
   usuarioId: number;
-  tipo: 'panel' | 'admin';
+  tipo: TipoSesion;
+  estado: Auto<EstadoSesion>;
   hashToken: string;
   expiraEn: Date;
   ip: string | null;

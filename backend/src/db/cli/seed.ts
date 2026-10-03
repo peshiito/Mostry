@@ -3,11 +3,13 @@ import { db } from '../../shared/db/db.js';
 import { logger } from '../../shared/logger.js';
 import { donaRosa } from '../seed/datos/donaRosa.js';
 import { heladeria } from '../seed/datos/heladeria.js';
-import { CLAVE_PENDIENTE, insertarTienda } from '../seed/insertarTienda.js';
+import { claveDelSeed } from '../seed/claveDelSeed.js';
+import { insertarTienda } from '../seed/insertarTienda.js';
 
 // Carga datos de prueba. Idempotente: saltea lo que ya existe.
 async function sembrar(): Promise<void> {
   if (config.NODE_ENV === 'production') throw new Error('El seed no corre en producción');
+  const hashClave = await claveDelSeed();
 
   const admin = await db
     .selectFrom('usuarios')
@@ -18,7 +20,7 @@ async function sembrar(): Promise<void> {
     const datos = { email: 'admin@mostry.test', nombre: 'Admin Mostry', esAdmin: true };
     await db
       .insertInto('usuarios')
-      .values({ ...datos, hashClave: CLAVE_PENDIENTE, emailVerificadoEn: new Date() })
+      .values({ ...datos, hashClave, emailVerificadoEn: new Date() })
       .execute();
     logger.info('✔ admin@mostry.test');
   }
@@ -34,7 +36,7 @@ async function sembrar(): Promise<void> {
       logger.info(`· ${slug} ya existía`);
       continue;
     }
-    const id = await insertarTienda(db, datos);
+    const id = await insertarTienda(db, datos, hashClave);
     logger.info(`✔ ${slug} (id ${id})`);
   }
 }

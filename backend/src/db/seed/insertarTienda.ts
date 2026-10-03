@@ -4,9 +4,6 @@ import { idInsertado, type Tx } from './insertar.js';
 import { insertarAgenda } from './insertarAgenda.js';
 import type { DatosSeed } from './tipos.js';
 
-// Hasta el módulo de auth nadie puede loguearse con esta clave (no es un hash válido).
-export const CLAVE_PENDIENTE = '!pendiente-modulo-auth';
-
 async function insertarCatalogo(tx: Tx, tiendaId: number, datos: DatosSeed) {
   for (const [orden, cat] of datos.categorias.entries()) {
     const categoriaId = idInsertado(
@@ -21,14 +18,18 @@ async function insertarCatalogo(tx: Tx, tiendaId: number, datos: DatosSeed) {
 }
 
 // Crea dueño, tienda, membresía, catálogo, horarios, feriado y promoción.
-export async function insertarTienda(db: Kysely<Database>, datos: DatosSeed) {
+export async function insertarTienda(
+  db: Kysely<Database>,
+  datos: DatosSeed,
+  hashClave: string,
+) {
   return db.transaction().execute(async (tx) => {
     const usuarioId = idInsertado(
       await tx
         .insertInto('usuarios')
         .values({
           ...datos.duenio,
-          hashClave: CLAVE_PENDIENTE,
+          hashClave,
           emailVerificadoEn: new Date(),
         })
         .executeTakeFirstOrThrow(),

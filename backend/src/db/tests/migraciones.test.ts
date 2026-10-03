@@ -21,15 +21,15 @@ describe('migraciones', () => {
 
     const subida = await migrador.migrateToLatest();
     expect(subida.error).toBeUndefined();
-    expect(subida.results).toHaveLength(23);
+    expect(subida.results).toHaveLength(26);
     expect(await contarTablas()).toBe(23);
   });
 
   it('cada migración se puede bajar y volver a subir de a una', async () => {
     const migrador = crearMigrador(db);
-    for (let i = 0; i < 23; i++)
+    for (let i = 0; i < 26; i++)
       expect((await migrador.migrateDown()).error).toBeUndefined();
-    for (let i = 0; i < 23; i++)
+    for (let i = 0; i < 26; i++)
       expect((await migrador.migrateUp()).error).toBeUndefined();
     expect(await contarTablas()).toBe(23);
   });

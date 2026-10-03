@@ -1,3 +1,4 @@
+import { crearMailerFalso } from '../../test/mailerFalso.js';
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 import { crearApp } from '../../app.js';
@@ -5,7 +6,9 @@ import { pingDb } from '../../shared/db/db.js';
 
 describe('GET /health', () => {
   it('responde 200 cuando la base responde', async () => {
-    const res = await request(crearApp({ pingDb: async () => {} })).get('/health');
+    const res = await request(
+      crearApp({ pingDb: async () => {}, mailer: crearMailerFalso().mailer }),
+    ).get('/health');
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ estado: 'ok', db: 'ok' });
   });
@@ -14,13 +17,17 @@ describe('GET /health', () => {
     const caida = async () => {
       throw new Error('ECONNREFUSED');
     };
-    const res = await request(crearApp({ pingDb: caida })).get('/health');
+    const res = await request(
+      crearApp({ pingDb: caida, mailer: crearMailerFalso().mailer }),
+    ).get('/health');
     expect(res.status).toBe(503);
     expect(res.body).toEqual({ estado: 'degradado', db: 'caida' });
   });
 
   it('se conecta a la base de tests real (requiere docker compose up)', async () => {
-    const res = await request(crearApp({ pingDb })).get('/health');
+    const res = await request(
+      crearApp({ pingDb, mailer: crearMailerFalso().mailer }),
+    ).get('/health');
     expect(res.status).toBe(200);
   });
 });

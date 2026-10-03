@@ -1,9 +1,10 @@
 import { crearApp } from './app.js';
 import { config } from './config/env.js';
 import { db, pingDb } from './shared/db/db.js';
+import { crearMailerSmtp } from './shared/email/mailer.js';
 import { logger } from './shared/logger.js';
 
-const app = crearApp({ pingDb });
+const app = crearApp({ pingDb, mailer: crearMailerSmtp() });
 
 const servidor = app.listen(config.PUERTO, () => {
   logger.info(`API escuchando en http://localhost:${config.PUERTO}`);
