@@ -1,0 +1,40 @@
+.fila {
+  display: flex;
+  gap: var(--e-2);
+  overflow-x: auto;
+  padding: 2px var(--e-4);
+  margin: 0 calc(var(--e-4) * -1);
+  scrollbar-width: none;
+}
+.chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--toque);
+  padding: 0 var(--e-4);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio-redondo);
+  background: var(--papel);
+  font-weight: 500;
+  cursor: pointer;
+}
+.chip[aria-pressed='true'] {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: var(--sobre-verde);
+}
+.cuenta {
+  min-width: 22px;
+  padding: 0 6px;
+  border-radius: var(--radio-redondo);
+  background: var(--lona-oscura);
+  color: var(--carbon);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-align: center;
+}
+.chip[aria-pressed='true'] .cuenta {
+  background: var(--sobre-verde);
+  color: var(--verde);
+}

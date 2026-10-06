@@ -1,0 +1,4 @@
+.bloque {
+  display: grid;
+  gap: var(--e-3);
+}

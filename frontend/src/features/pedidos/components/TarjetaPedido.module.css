@@ -1,0 +1,38 @@
+.tarjeta {
+  display: grid;
+  gap: var(--e-2);
+  padding: var(--e-4);
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+  color: var(--carbon);
+  text-decoration: none;
+}
+.tarjeta:hover {
+  border-color: var(--verde);
+}
+.cabeza {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--e-2);
+}
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.resumen {
+  font-size: var(--t-sm);
+}
+.pie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}

@@ -1,0 +1,42 @@
+.grupo {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--e-2);
+}
+.leyenda {
+  padding: 0;
+  margin-bottom: var(--e-2);
+  font-size: var(--t-sm);
+  font-weight: 600;
+}
+.casillas {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--e-2);
+}
+.casilla {
+  width: 100%;
+  height: 56px;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  text-align: center;
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-2xl);
+  font-weight: 600;
+}
+.casilla:focus {
+  outline: none;
+  border-color: var(--verde);
+  box-shadow: var(--foco);
+}
+.error {
+  border-color: var(--ladrillo);
+}
+.mensaje {
+  color: var(--ladrillo);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}

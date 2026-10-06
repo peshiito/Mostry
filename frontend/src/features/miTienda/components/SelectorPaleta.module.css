@@ -1,0 +1,52 @@
+.grupo {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: var(--e-3);
+}
+.leyenda {
+  padding: 0;
+  margin-bottom: var(--e-2);
+  font-weight: 600;
+}
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--e-2);
+}
+.opcion {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: var(--e-2);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+.opcion:has(:checked) {
+  border: 2px solid var(--carbon);
+}
+.opcion input {
+  position: absolute;
+  opacity: 0;
+}
+.opcion:has(:focus-visible) {
+  box-shadow: var(--foco);
+}
+.muestra {
+  display: flex;
+  width: 48px;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.muestra span {
+  flex: 1;
+}
+.nota {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

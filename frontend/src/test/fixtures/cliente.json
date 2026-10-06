@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "nombre": "Don Carlos",
+  "telefono": "5491144558821",
+  "activo": true,
+  "saldo": 1060000,
+  "movimientos": [
+    {
+      "id": 2,
+      "tipo": "pago",
+      "monto": 500000,
+      "detalle": "Pago",
+      "fecha": "2026-10-05T14:04:46.000Z"
+    },
+    {
+      "id": 1,
+      "tipo": "deuda",
+      "monto": 1560000,
+      "detalle": "2 docenas",
+      "fecha": "2026-10-05T14:04:46.000Z"
+    }
+  ]
+}

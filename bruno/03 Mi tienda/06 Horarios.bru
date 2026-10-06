@@ -1,0 +1,16 @@
+meta {
+  name: Horarios
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{api}}/panel/horarios
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

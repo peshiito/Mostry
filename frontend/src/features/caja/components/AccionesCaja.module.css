@@ -1,0 +1,8 @@
+.acciones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--e-2);
+}
+.acciones > * {
+  padding: 0 var(--e-2);
+}

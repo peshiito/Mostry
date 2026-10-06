@@ -5,11 +5,11 @@ import { crearApp } from '../../../app.js';
 import { crearCuentaCompleta, login } from '../../../test/flujoAuth.js';
 import { limpiarBase } from '../../../test/limpiarBase.js';
 import { crearMailerFalso } from '../../../test/mailerFalso.js';
-import { codigoTotp, ORIGEN_SITIO, origenTienda } from '../../../test/sesionHttp.js';
+import { ORIGEN_SITIO, origenTienda } from '../../../test/sesionHttp.js';
 
 const NUEVA = 'otra-clave-bien-larga';
 
-describe('recuperar contraseña (email + segundo factor)', () => {
+describe('recuperar contraseña (código por email)', () => {
   let app: Express;
   let correo: ReturnType<typeof crearMailerFalso>;
   let cuenta: Awaited<ReturnType<typeof crearCuentaCompleta>>;
@@ -27,15 +27,13 @@ describe('recuperar contraseña (email + segundo factor)', () => {
     cuenta = await crearCuentaCompleta(app, correo, 'dona-rosa');
   });
 
-  it('con código de email + TOTP cambia la clave y cierra todas las sesiones', async () => {
+  it('con el código del email cambia la clave y cierra todas las sesiones', async () => {
     const codigo = await pedirCodigo();
-    const datos = {
+    await post('/auth/recuperar/confirmar', {
       email: cuenta.email,
       codigo,
-      codigoTotp: codigoTotp(cuenta.secreto),
       claveNueva: NUEVA,
-    };
-    await post('/auth/recuperar/confirmar', datos).expect(200);
+    }).expect(200);
 
     const yo = request(app).get('/auth/yo').set('Origin', origenTienda('dona-rosa'));
     await yo.set('Cookie', cuenta.cookie).expect(401);
@@ -44,24 +42,20 @@ describe('recuperar contraseña (email + segundo factor)', () => {
     expect(correo.enviados.at(-1)?.asunto).toBe('Cambiaste tu contraseña de Mostry');
   });
 
-  it('solo con el código del email no alcanza', async () => {
-    const codigo = await pedirCodigo();
-    await post('/auth/recuperar/confirmar', {
-      email: cuenta.email,
-      codigo,
-      claveNueva: NUEVA,
-    }).expect(400);
+  it('con un código equivocado no cambia nada', async () => {
+    await pedirCodigo();
+    const datos = { email: cuenta.email, codigo: '000000', claveNueva: NUEVA };
+    await post('/auth/recuperar/confirmar', datos).expect(400);
     await login(app, 'dona-rosa', cuenta.email).expect(200);
   });
 
-  it('con TOTP pero sin el código del email tampoco', async () => {
-    await pedirCodigo();
-    const datos = {
-      email: cuenta.email,
-      codigo: '000000',
-      codigoTotp: codigoTotp(cuenta.secreto),
-      claveNueva: NUEVA,
-    };
-    await post('/auth/recuperar/confirmar', datos).expect(400);
+  it('el código sirve una sola vez', async () => {
+    const codigo = await pedirCodigo();
+    const datos = { email: cuenta.email, codigo, claveNueva: NUEVA };
+    await post('/auth/recuperar/confirmar', datos).expect(200);
+    await post('/auth/recuperar/confirmar', {
+      ...datos,
+      claveNueva: 'tercera-clave-larga',
+    }).expect(400);
   });
 });

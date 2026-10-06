@@ -1,0 +1,59 @@
+.linea {
+  display: grid;
+}
+.paso {
+  position: relative;
+  display: flex;
+  gap: var(--e-3);
+  min-height: 52px;
+}
+.paso:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 26px;
+  bottom: -2px;
+  left: 12px;
+  width: 2px;
+  background: var(--linea);
+}
+.hecho::before {
+  background: var(--verde) !important;
+}
+.punto {
+  z-index: 1;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--linea-fuerte);
+  border-radius: 50%;
+  background: var(--papel);
+}
+.hecho .punto {
+  border-color: var(--verde);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.actual .punto {
+  border-color: var(--mostaza);
+  background: var(--mostaza);
+}
+.texto {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  height: 26px;
+  font-weight: 600;
+}
+.falta .texto {
+  color: var(--texto-3);
+  font-weight: 500;
+}
+.ahora {
+  padding: 0 6px;
+  border-radius: var(--radio-chico);
+  background: var(--mostaza-claro);
+  color: var(--mostaza-texto);
+  font-size: var(--t-xs);
+}

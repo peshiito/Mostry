@@ -1,0 +1,31 @@
+{
+  "numero": 1,
+  "estado": "pendiente_pago",
+  "tipo": "inmediato",
+  "entrega": "retiro",
+  "direccion": null,
+  "fechaEncargo": null,
+  "items": [
+    {
+      "nombre": "Medialuna de manteca",
+      "precioUnitario": 35000,
+      "cantidad": 2,
+      "subtotal": 70000
+    }
+  ],
+  "subtotal": 70000,
+  "costoEnvio": 0,
+  "total": 70000,
+  "sena": 0,
+  "venceComprobanteEn": "2026-10-05T15:52:23.000Z",
+  "creadoEn": "2026-10-05T13:52:22.000Z",
+  "tienda": {
+    "nombre": "Facturería Doña Rosa",
+    "whatsapp": "5491123456789"
+  },
+  "pago": {
+    "alias": "dona.rosa.facturas",
+    "titular": "Rosa Elena Gómez",
+    "monto": 70000
+  }
+}

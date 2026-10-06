@@ -1,0 +1,18 @@
+.lista {
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.subtotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+.seguir {
+  justify-self: center;
+  min-height: var(--toque);
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Categorías
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{api}}/panel/categorias
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

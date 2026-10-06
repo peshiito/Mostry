@@ -1,0 +1,27 @@
+.fila {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-2) var(--e-4) var(--e-2) var(--e-2);
+  border-bottom: var(--borde);
+}
+.fila:last-child {
+  border-bottom: 0;
+}
+.orden {
+  display: flex;
+}
+.orden svg {
+  transform: rotate(90deg);
+}
+.textos {
+  flex: 1;
+  display: grid;
+}
+.nombre {
+  font-weight: 600;
+}
+.cuenta {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

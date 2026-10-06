@@ -1,6 +1,7 @@
 import type { Response } from 'express';
 
 export type CampoInvalido = { campo: string; mensaje: string };
+type Extra = { campos?: CampoInvalido[]; detalle?: Record<string, unknown> };
 
 // Formato único de error para toda la API.
 export function responderError(
@@ -8,7 +9,7 @@ export function responderError(
   status: number,
   codigo: string,
   mensaje: string,
-  campos?: CampoInvalido[],
+  extra: Extra = {},
 ): void {
-  res.status(status).json({ error: { codigo, mensaje, ...(campos && { campos }) } });
+  res.status(status).json({ error: { codigo, mensaje, ...extra } });
 }

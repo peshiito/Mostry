@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cobros y envíos | La Espiga - Mostry</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#0e5a4a",
+            "outline": "#6f7975",
+            "surface-container": "#f1ede6",
+            "background": "#fdf9f2",
+            "tertiary-container": "#694a00",
+            "secondary-container": "#fd7958",
+            "secondary": "#a7391e",
+            "on-error": "#ffffff",
+            "on-secondary-fixed-variant": "#862208",
+            "primary": "#004134",
+            "on-background": "#1c1c18",
+            "on-secondary": "#ffffff",
+            "surface-variant": "#e6e2db",
+            "on-primary-fixed-variant": "#005141",
+            "surface": "#fdf9f2",
+            "primary-fixed": "#acf0db",
+            "surface-container-low": "#f7f3ec",
+            "surface-container-high": "#ebe8e1",
+            "tertiary-fixed-dim": "#fabc41",
+            "tertiary": "#4c3400",
+            "on-surface": "#1c1c18",
+            "on-primary": "#ffffff",
+            "inverse-on-surface": "#f4f0e9",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#31302c",
+            "on-tertiary-container": "#f5b73c",
+            "on-tertiary": "#ffffff",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "outline-variant": "#bfc9c4",
+            "on-primary-fixed": "#002019",
+            "surface-bright": "#fdf9f2",
+            "surface-container-highest": "#e6e2db",
+            "surface-tint": "#246959",
+            "secondary-fixed-dim": "#ffb4a2",
+            "on-tertiary-fixed": "#271900",
+            "on-surface-variant": "#3f4945",
+            "tertiary-fixed": "#ffdea8",
+            "primary-fixed-dim": "#90d4bf",
+            "secondary-fixed": "#ffdad2",
+            "surface-dim": "#dddad3",
+            "on-secondary-container": "#6e1500",
+            "on-primary-container": "#8ccfbb",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-secondary-fixed": "#3c0700",
+            "error-container": "#ffdad6",
+            "inverse-primary": "#90d4bf"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "gutter": "1rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "body-md": ["Work Sans", "sans-serif"],
+            "label-md": ["Work Sans", "sans-serif"],
+            "label-sm": ["Work Sans", "sans-serif"],
+            "headline-lg": ["Rubik", "sans-serif"],
+            "headline-md": ["Rubik", "sans-serif"],
+            "body-lg": ["Work Sans", "sans-serif"],
+            "headline-sm": ["Rubik", "sans-serif"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased flex justify-center min-h-screen">
+<!-- Mobile Container Context -->
+<div class="w-full max-w-md bg-surface-container-low flex flex-col min-h-screen relative shadow-none">
+<!-- TopAppBar (Anchored from Shared Components JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-space-md h-14 bg-primary-container text-on-primary">
+<div class="flex items-center gap-2">
+<button aria-label="Volver a Mi tienda" class="text-on-primary flex items-center justify-center p-1 rounded hover:bg-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="storefront">storefront</span>
+<span class="text-headline-sm font-headline-sm text-on-primary font-bold tracking-tight">La Espiga</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-primary text-primary-fixed text-label-sm font-label-sm px-2 py-0.5 rounded-full border border-primary-fixed/20 hidden xs:inline-block">
+          Comercio
+        </span>
+<button aria-label="Notificaciones" class="relative text-on-primary flex items-center justify-center p-1 rounded hover:bg-primary transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-secondary-container rounded-full ring-2 ring-primary-container"></span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-4 pt-20 pb-36 w-full flex flex-col gap-5">
+<!-- Screen Header with Hierarchy -->
+<section class="space-y-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-md text-label-md">
+<span>Mi tienda</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Cobros y envíos</span>
+</div>
+<h1 class="text-headline-md font-headline-md text-on-surface text-primary">
+          Cobros y envíos
+        </h1>
+<p class="text-body-md font-body-md text-on-surface-variant">
+          Configurá tus datos de cobro por transferencia, entregas y tiempos para tus clientes.
+        </p>
+</section>
+<!-- Section 1: Cobro por transferencia -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-4 space-y-4">
+<!-- Header -->
+<div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">account_balance_wallet</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface text-[17px] leading-tight">
+              Cuenta para transferencias
+            </h2>
+</div>
+<span class="inline-flex items-center gap-1 bg-surface-container px-2 py-0.5 rounded text-label-sm font-label-sm text-primary font-bold">
+<span class="material-symbols-outlined text-[13px] text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+            Activa
+          </span>
+</div>
+<!-- Campos de Datos Bancarios -->
+<div class="space-y-3">
+<!-- Campo Alias -->
+<div class="space-y-1">
+<label class="block text-label-md font-label-md text-on-surface-variant">
+              Alias de la cuenta (CBU / CVU)
+            </label>
+<div class="flex items-center justify-between bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">tag</span>
+<span class="font-mono font-semibold text-on-surface text-body-md tracking-wide truncate">laespiga.mp</span>
+</div>
+<div class="flex items-center gap-1.5 shrink-0 ml-2">
+<span class="inline-flex items-center gap-1 bg-primary-fixed/40 text-on-primary-fixed font-label-sm text-label-sm px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px] text-primary">lock</span>
+                  Protegido
+                </span>
+<button aria-label="Copiar alias" class="text-on-surface-variant hover:text-primary p-1" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Campo Titular -->
+<div class="space-y-1">
+<label class="block text-label-md font-label-md text-on-surface-variant">
+              Titular registrado
+            </label>
+<div class="flex items-center justify-between bg-surface-container-low border border-outline-variant rounded-lg px-3 py-2.5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">badge</span>
+<span class="text-on-surface font-medium text-body-md">Rosa Fernández</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+</div>
+</div>
+</div>
+<!-- Nota de Seguridad Institucional y 2FA -->
+<div class="bg-surface-container-high/60 border border-outline-variant/70 rounded-lg p-3 flex flex-col gap-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[19px] shrink-0 mt-0.5">security</span>
+<div class="space-y-0.5">
+<p class="text-label-md font-label-md text-on-surface font-semibold">
+                Seguridad de fondos de la tienda
+              </p>
+<p class="text-label-sm font-label-sm text-on-surface-variant leading-snug">
+                Cambiarlo pide el código de tu app de autenticación (2FA) para proteger la caja de cobros.
+              </p>
+</div>
+</div>
+<div class="pt-1 flex justify-end">
+<button class="text-secondary font-label-md text-label-md font-semibold hover:underline inline-flex items-center gap-1" type="button">
+<span>Modificar datos bancarios</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Section 2: Formas de Entrega -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-4 space-y-4">
+<div class="flex items-center gap-2 pb-3 border-b border-surface-container-high">
+<span class="material-symbols-outlined text-primary text-[22px]">local_shipping</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface text-[17px] leading-tight">
+            Métodos de entrega
+          </h2>
+</div>
+<!-- Opción 1: Retiro en el local -->
+<div class="p-3 bg-surface-container-low border border-outline-variant rounded-lg space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">store</span>
+<span class="text-body-md font-semibold text-on-surface">Retiro en el local</span>
+</div>
+<!-- Native accessible switch style -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-surface-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant text-[13px] leading-relaxed pl-7">
+            Los clientes retiran por el mostrador en <span class="font-medium text-on-surface">Av. San Martín 1234</span> sin costo.
+          </p>
+</div>
+<!-- Opción 2: Envío a domicilio -->
+<div class="p-3 bg-surface-container-low border border-outline-variant rounded-lg space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">moped</span>
+<span class="text-body-md font-semibold text-on-surface">Envío a domicilio</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-surface-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Subcampos anidados de envío -->
+<div class="pt-2 border-t border-outline-variant/60 space-y-3 pl-1">
+<!-- Costo de envío -->
+<div class="space-y-1">
+<div class="flex justify-between items-baseline">
+<label class="text-label-md font-label-md text-on-surface-variant" for="input-costo">
+                  Costo de envío
+                </label>
+<span class="text-label-sm font-label-sm text-outline">Tarifa plana por pedido</span>
+</div>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-semibold text-on-surface-variant text-body-md">$</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-7 pr-3 py-2 text-body-md font-semibold text-on-surface focus:border-primary focus:ring-1 focus:ring-primary" id="input-costo" type="text" value="1.500"/>
+</div>
+</div>
+<!-- Zona de cobertura -->
+<div class="space-y-1">
+<label class="text-label-md font-label-md text-on-surface-variant" for="input-zona">
+                Zona de cobertura
+              </label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 text-body-md font-normal text-on-surface focus:border-primary focus:ring-1 focus:ring-primary" id="input-zona" type="text" value="Hasta 20 cuadras"/>
+<p class="text-label-sm font-label-sm text-on-surface-variant pt-0.5">
+                Avisale a tus clientes el radio que cubre el repartidor.
+              </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Plazos Operativos y Señas -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-4 space-y-4">
+<div class="flex items-center gap-2 pb-3 border-b border-surface-container-high">
+<span class="material-symbols-outlined text-primary text-[22px]">schedule</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface text-[17px] leading-tight">
+            Plazos y reservas
+          </h2>
+</div>
+<div class="space-y-3">
+<!-- Item 1: Tiempo para comprobante -->
+<div class="p-3 border border-outline-variant rounded-lg bg-surface-container-low space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-md font-label-md text-on-surface font-semibold">
+                Tiempo para enviar comprobante
+              </label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg px-2.5 py-1">
+<span class="font-bold text-primary font-mono text-body-md">2 h</span>
+<span class="material-symbols-outlined text-[16px] text-outline ml-1">expand_more</span>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+              Pasado este plazo sin comprobante, el pedido vuelve al mostrador.
+            </p>
+</div>
+<!-- Item 2: Anticipación para encargos -->
+<div class="p-3 border border-outline-variant rounded-lg bg-surface-container-low space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-md font-label-md text-on-surface font-semibold">
+                Anticipación para encargos
+              </label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg px-2.5 py-1">
+<span class="font-bold text-primary font-mono text-body-md">48 h</span>
+<span class="material-symbols-outlined text-[16px] text-outline ml-1">expand_more</span>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+              Tiempo mínimo para que la cuadra prepare tortas o pedidos especiales.
+            </p>
+</div>
+<!-- Item 3: Seña requerida -->
+<div class="p-3 border border-outline-variant rounded-lg bg-surface-container-low space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-md font-label-md text-on-surface font-semibold">
+                Seña requerida para encargos
+              </label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg px-2.5 py-1">
+<span class="font-bold text-secondary font-mono text-body-md">30 %</span>
+<span class="material-symbols-outlined text-[16px] text-outline ml-1">expand_more</span>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+              Porcentaje del total que el cliente debe transferir para confirmar la comanda.
+            </p>
+</div>
+<!-- Item 4: Plazo para transferir la seña -->
+<div class="p-3 border border-outline-variant rounded-lg bg-surface-container-low space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="text-label-md font-label-md text-on-surface font-semibold">
+                Plazo para transferir la seña
+              </label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg px-2.5 py-1">
+<span class="font-bold text-primary font-mono text-body-md">24 h</span>
+<span class="material-symbols-outlined text-[16px] text-outline ml-1">expand_more</span>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+              Tiempo límite antes de liberar la fecha de entrega en el calendario.
+            </p>
+</div>
+</div>
+</section>
+<!-- Botón Principal de Acción -->
+<section class="pt-2 pb-2">
+<button class="w-full bg-secondary-container hover:opacity-95 text-on-secondary font-headline-sm font-semibold py-3.5 px-4 rounded-lg flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Guardar cambios</span>
+</button>
+<p class="text-center text-label-sm font-label-sm text-outline mt-2">
+          Los cambios se sincronizan en el catálogo web inmediatamente.
+        </p>
+</section>
+</main>
+<!-- BottomNavBar (Derived verbatim from Shared Components JSON) -->
+<!-- Destination count: 5 | Labels: Inicio, Pedidos, Caja, Productos, Más -->
+<!-- Active: 'Más' as this screen resides under business configuration / management -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-space-xs py-space-xs h-16 bg-surface-container-lowest dark:bg-surface-container-high border-t border-outline-variant">
+<!-- Tab 1: Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm hover:text-primary transition-colors active:scale-95 duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="home">home</span>
+<span class="mt-0.5">Inicio</span>
+</a>
+<!-- Tab 2: Pedidos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm hover:text-primary transition-colors active:scale-95 duration-150 py-1 flex-1 relative" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]" data-icon="receipt_long">receipt_long</span>
+<span class="absolute -top-1 -right-2 bg-secondary-container text-on-secondary text-[10px] font-bold px-1.5 py-0.2 rounded-full leading-tight">
+            3
+          </span>
+</div>
+<span class="mt-0.5">Pedidos</span>
+</a>
+<!-- Tab 3: Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm hover:text-primary transition-colors active:scale-95 duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="mt-0.5">Caja</span>
+</a>
+<!-- Tab 4: Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm hover:text-primary transition-colors active:scale-95 duration-150 py-1 flex-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="inventory_2">inventory_2</span>
+<span class="mt-0.5">Productos</span>
+</a>
+<!-- Tab 5: Más (Active Navigation) -->
+<a class="flex flex-col items-center justify-center text-secondary font-label-sm font-bold active:scale-95 duration-150 py-1 flex-1" href="#">
+<div class="relative flex flex-col items-center">
+<span class="material-symbols-outlined text-[22px]" data-icon="menu" data-weight="fill" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="mt-0.5">Más</span>
+<!-- Subtle active indicator line -->
+<span class="w-1.5 h-1.5 bg-secondary rounded-full mt-0.5"></span>
+</div>
+</a>
+</nav>
+</div>
+</body></html>

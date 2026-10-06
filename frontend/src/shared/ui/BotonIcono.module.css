@@ -1,0 +1,50 @@
+.boton {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--toque);
+  height: var(--toque);
+  border: 1px solid transparent;
+  border-radius: var(--radio);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.neutro:hover {
+  background: var(--tinte-boton);
+}
+.borde {
+  border-color: var(--linea-fuerte);
+  background: var(--papel);
+  color: var(--carbon);
+}
+.sobreVerde {
+  color: var(--sobre-verde);
+}
+.sobreVerde:hover {
+  background: var(--tinte-sobre-verde);
+}
+.insignia {
+  animation: latido 360ms var(--ease-out);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--radio-redondo);
+  background: var(--coral);
+  color: var(--sobre-coral);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  line-height: 20px;
+}
+.verdeLleno {
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+@keyframes latido {
+  40% {
+    transform: scale(1.35);
+  }
+}

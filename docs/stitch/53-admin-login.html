@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Mostry · Administración Interna</title>
+  <!-- Google Fonts: Rubik & Work Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'canvas-bg': '#F7F3EC',
+            'canvas-surface': '#FDFBF7',
+            'brand-green': '#0E5A4A',
+            'brand-green-dark': '#093B31',
+            'brand-green-light': '#147460',
+            'brand-coral': '#FF7A59',
+            'brand-coral-hover': '#E86646',
+            'border-base': '#DCD5C9',
+            'border-subtle': '#E8E2D5',
+            'text-dark': '#1F2923',
+            'text-muted': '#5D6B63',
+            'text-light': '#84938A',
+            /* Estados específicos solicitados */
+            'status-prueba-bg': '#FEF3C7',
+            'status-prueba-text': '#854D0E',
+            'status-prueba-border': '#FDE68A',
+            'status-activa-bg': '#E6F4EA',
+            'status-activa-text': '#0E5A4A',
+            'status-activa-border': '#B7E1CD',
+            'status-gracia-bg': '#FFEDE8',
+            'status-gracia-text': '#C84D2B',
+            'status-gracia-border': '#FFD0C4',
+            'status-suspendida-bg': '#FCE8E6',
+            'status-suspendida-text': '#B3261E',
+            'status-suspendida-border': '#F9B9B5',
+          },
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            sans: ['Work Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #F7F3EC;
+      color: #1F2923;
+      font-family: 'Work Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-rubik {
+      font-family: 'Rubik', sans-serif;
+    }
+    .tab-active {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border-width: 1px;
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    th {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between w-[1280px] mx-auto bg-canvas-bg text-text-dark">
+
+  <div class="flex flex-1 min-h-[920px]">
+    <!-- BARRA LATERAL VERDE #0E5A4A -->
+    <aside class="w-[230px] bg-brand-green flex flex-col justify-between border-r border-brand-green-dark select-none flex-shrink-0">
+      <div>
+        <!-- Logo Mostry en blanco con etiqueta Admin -->
+        <div class="p-5 border-b border-white/10">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="5" width="4.5" height="14" rx="1.5" fill="#FFFFFF"/>
+                <rect x="9.5" y="2" width="4.5" height="17" rx="1.5" fill="#FFFFFF"/>
+                <rect x="17" y="7" width="4.5" height="12" rx="1.5" fill="#FFFFFF"/>
+              </svg>
+              <span class="font-rubik text-xl font-bold tracking-tight text-white">mostry</span>
+            </div>
+            <span class="px-2 py-0.5 bg-white/15 text-white text-[11px] font-semibold tracking-wider uppercase rounded border border-white/20">Admin</span>
+          </div>
+          <p class="text-white/60 text-xs mt-1.5 font-normal">Panel de Control Interno</p>
+        </div>
+
+        <!-- Menú de Navegación: Ítems Tiendas y Métricas -->
+        <nav class="p-3 space-y-1">
+          <a href="#" class="tab-active flex items-center justify-between px-3 py-2.5 rounded text-sm text-white hover:bg-white/10 transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-lg">storefront</span>
+              <span class="font-medium">Tiendas</span>
+            </div>
+            <span class="bg-white/20 text-white text-xs px-2 py-0.5 rounded font-mono font-medium">84</span>
+          </a>
+
+          <a href="#metricas" class="flex items-center justify-between px-3 py-2.5 rounded text-sm text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-lg">analytics</span>
+              <span class="font-medium">Métricas</span>
+            </div>
+            <span class="text-xs text-white/40">2026</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Footer lateral admin -->
+      <div class="p-4 border-t border-white/10 text-xs text-white/70">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+          <span class="font-mono text-[11px] text-white/90">sistema: operativo</span>
+        </div>
+        <div class="text-[11px] text-white/60">
+          <p>Operador: <span class="text-white/90 font-medium">Soporte Mostry</span></p>
+          <p class="text-[10px] text-white/40 mt-1">Servidor Buenos Aires · AR</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL: HERRAMIENTA DENSA Y PRECISA -->
+    <main class="flex-1 flex flex-col bg-canvas-bg min-w-0">
+      
+      <!-- Barra superior / Header de trabajo -->
+      <header class="h-14 border-b border-border-base bg-canvas-surface px-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <h1 class="font-rubik text-lg font-bold text-text-dark tracking-tight">Comercios Adheridos</h1>
+          <span class="text-xs text-text-muted">· Red nacional Mostry</span>
+          <span class="px-2 py-0.5 bg-canvas-bg border border-border-base rounded text-xs text-text-muted font-mono">Año 2026</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <!-- Búsqueda rápida -->
+          <div class="relative w-72">
+            <span class="material-symbols-outlined absolute left-2.5 top-2 text-text-light text-base pointer-events-none">search</span>
+            <input type="text" placeholder="Buscar por comercio, dueño o CUIT..." class="w-full pl-8 pr-3 py-1.5 text-xs bg-canvas-bg border border-border-base rounded focus:outline-none focus:border-brand-green text-text-dark font-sans" value="">
+          </div>
+
+          <div class="h-5 w-px bg-border-base"></div>
+
+          <!-- Operador -->
+          <div class="flex items-center gap-2 text-xs text-text-muted">
+            <span class="material-symbols-outlined text-base">admin_panel_settings</span>
+            <span>admin@mostry.com.ar</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Contenido denso -->
+      <div class="p-6 space-y-5 flex-1">
+        
+        <!-- Tarjetas de métricas rápidas (4 estados clave de Mostry) -->
+        <div class="grid grid-cols-4 gap-3.5">
+          <div class="p-3.5 bg-canvas-surface border border-border-base rounded flex items-center justify-between">
+            <div>
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-text-muted">En Prueba</div>
+              <div class="font-rubik text-2xl font-bold text-status-prueba-text mt-0.5">14</div>
+              <div class="text-[11px] text-text-light mt-0.5">3 por vencer esta semana</div>
+            </div>
+            <span class="chip bg-status-prueba-bg text-status-prueba-text border-status-prueba-border">Prueba</span>
+          </div>
+
+          <div class="p-3.5 bg-canvas-surface border border-border-base rounded flex items-center justify-between">
+            <div>
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-text-muted">Tiendas Activas</div>
+              <div class="font-rubik text-2xl font-bold text-status-activa-text mt-0.5">58</div>
+              <div class="text-[11px] text-text-light mt-0.5">Abono al día ($ 10.000/mes)</div>
+            </div>
+            <span class="chip bg-status-activa-bg text-status-activa-text border-status-activa-border">Activa</span>
+          </div>
+
+          <div class="p-3.5 bg-canvas-surface border border-border-base rounded flex items-center justify-between">
+            <div>
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-text-muted">En Período de Gracia</div>
+              <div class="font-rubik text-2xl font-bold text-status-gracia-text mt-0.5">7</div>
+              <div class="text-[11px] text-text-light mt-0.5">48 hs para regularizar</div>
+            </div>
+            <span class="chip bg-status-gracia-bg text-status-gracia-text border-status-gracia-border">Gracia</span>
+          </div>
+
+          <div class="p-3.5 bg-canvas-surface border border-border-base rounded flex items-center justify-between">
+            <div>
+              <div class="text-[11px] uppercase tracking-wider font-semibold text-text-muted">Suspendidas</div>
+              <div class="font-rubik text-2xl font-bold text-status-suspendida-text mt-0.5">5</div>
+              <div class="text-[11px] text-text-light mt-0.5">Solo lectura de libreta</div>
+            </div>
+            <span class="chip bg-status-suspendida-bg text-status-suspendida-text border-status-suspendida-border">Suspendida</span>
+          </div>
+        </div>
+
+        <!-- Filtros y controles densos de tabla -->
+        <div class="flex items-center justify-between pt-1">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-text-muted mr-1">Filtrar estado:</span>
+            <button class="px-2.5 py-1 text-xs font-medium rounded border border-brand-green bg-brand-green text-white">Todos (84)</button>
+            <button class="px-2.5 py-1 text-xs font-medium rounded border border-border-base bg-canvas-surface text-text-dark hover:bg-border-subtle">Activas (58)</button>
+            <button class="px-2.5 py-1 text-xs font-medium rounded border border-border-base bg-canvas-surface text-text-dark hover:bg-border-subtle">Prueba (14)</button>
+            <button class="px-2.5 py-1 text-xs font-medium rounded border border-border-base bg-canvas-surface text-text-dark hover:bg-border-subtle">Gracia (7)</button>
+            <button class="px-2.5 py-1 text-xs font-medium rounded border border-border-base bg-canvas-surface text-text-dark hover:bg-border-subtle">Suspendidas (5)</button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-text-muted font-mono">Mostrando 1-8 de 84 comercios</span>
+            <button class="px-2.5 py-1 text-xs font-medium rounded border border-border-base bg-canvas-surface text-text-dark hover:bg-border-subtle flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">file_download</span>
+              <span>Exportar CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabla técnica y precisa -->
+        <div class="bg-canvas-surface border border-border-base rounded overflow-hidden">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="bg-canvas-bg border-b border-border-base text-text-muted">
+                <th class="py-2.5 px-3">Comercio / Rubro</th>
+                <th class="py-2.5 px-3">Enlace Mostry</th>
+                <th class="py-2.5 px-3">Titular / WhatsApp</th>
+                <th class="py-2.5 px-3">Estado</th>
+                <th class="py-2.5 px-3">Vencimiento</th>
+                <th class="py-2.5 px-3 text-right">Ventas Mes</th>
+                <th class="py-2.5 px-3 text-right">Abono</th>
+                <th class="py-2.5 px-3 text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-subtle text-text-dark">
+              
+              <!-- 1. La Espiga (Activa) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Panadería La Espiga</div>
+                  <div class="text-[11px] text-text-light">Panadería y confitería · CABA</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-brand-green font-medium">
+                  laespiga.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Doña Rosa Fernández</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 4455-8821</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-activa-bg text-status-activa-text border-status-activa-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Activa
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px]">17/10/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium">$ 1.240.000</td>
+                <td class="py-2.5 px-3 text-right font-mono text-text-muted">$ 10.000</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button title="Ver ficha técnica" class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button title="Ajustar suscripción" class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 2. Almacén Don Carlos (Prueba) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Almacén San Cayetano</div>
+                  <div class="text-[11px] text-text-light">Almacén de barrio · Morón</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-brand-green font-medium">
+                  sancayetano.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Carlos Benítez</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 3892-1102</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-prueba-bg text-status-prueba-text border-status-prueba-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-status-prueba-text"></span> Prueba
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px]">19/04/2026 (3 d)</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium">$ 430.500</td>
+                <td class="py-2.5 px-3 text-right font-mono text-status-prueba-text font-medium">Bonificado</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 3. Verdulería Los Primos (Gracia) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Verdulería Los Primos</div>
+                  <div class="text-[11px] text-text-light">Frutas y verduras · Lanús</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-brand-green font-medium">
+                  losprimos.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Héctor Morales</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 5012-7744</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-gracia-bg text-status-gracia-text border-status-gracia-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-status-gracia-text"></span> Gracia
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-status-gracia-text font-semibold">12/04/2026 (-2 d)</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium">$ 890.200</td>
+                <td class="py-2.5 px-3 text-right font-mono text-status-gracia-text font-medium">$ 10.000 impago</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 4. Fiambrería 25 de Mayo (Suspendida) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Fiambrería 25 de Mayo</div>
+                  <div class="text-[11px] text-text-light">Embutidos y quesos · Quilmes</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-text-muted line-through">
+                  fiambreria25.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Esteban Rossi</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 6321-0099</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-suspendida-bg text-status-suspendida-text border-status-suspendida-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-status-suspendida-text"></span> Suspendida
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-text-light">30/03/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium text-text-muted">$ 0 (pausada)</td>
+                <td class="py-2.5 px-3 text-right font-mono text-status-suspendida-text font-medium">Deuda $ 10.000</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 5. Carnicería El Trébol (Activa) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Carnicería El Trébol</div>
+                  <div class="text-[11px] text-text-light">Carnes y achuras · Caseros</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-brand-green font-medium">
+                  eltrebol.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Jorge Ferreyra</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 2291-5511</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-activa-bg text-status-activa-text border-status-activa-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Activa
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px]">28/10/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium">$ 2.150.000</td>
+                <td class="py-2.5 px-3 text-right font-mono text-text-muted">$ 10.000</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 6. Panadería Del Sol (Prueba) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Panadería Del Sol</div>
+                  <div class="text-[11px] text-text-light">Panificados · San Isidro</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-brand-green font-medium">
+                  panaderiadelsol.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Mariana Paz</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 7712-4433</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-prueba-bg text-status-prueba-text border-status-prueba-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-status-prueba-text"></span> Prueba
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px]">22/04/2026 (6 d)</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium">$ 210.000</td>
+                <td class="py-2.5 px-3 text-right font-mono text-status-prueba-text font-medium">Bonificado</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 7. Pastelería Dulce Rincón (Activa) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Dulce Rincón</div>
+                  <div class="text-[11px] text-text-light">Tortas por encargo · Tigre</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-brand-green font-medium">
+                  dulcerincon.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Marta Ruiz</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 4112-9900</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-activa-bg text-status-activa-text border-status-activa-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span> Activa
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px]">05/11/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium">$ 740.000</td>
+                <td class="py-2.5 px-3 text-right font-mono text-text-muted">$ 10.000</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 8. Dietética La Semilla (Suspendida) -->
+              <tr class="hover:bg-canvas-bg/60 transition-colors">
+                <td class="py-2.5 px-3">
+                  <div class="font-medium text-text-dark font-rubik text-[13px]">Dietética La Semilla</div>
+                  <div class="text-[11px] text-text-light">Semillas y harinas · Banfield</div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-text-muted line-through">
+                  lasemilla.mostry.com.ar
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="font-medium">Roberto Gómez</div>
+                  <div class="text-[11px] text-text-light font-mono">+54 9 11 8834-1290</div>
+                </td>
+                <td class="py-2.5 px-3">
+                  <span class="chip bg-status-suspendida-bg text-status-suspendida-text border-status-suspendida-border">
+                    <span class="w-1.5 h-1.5 rounded-full bg-status-suspendida-text"></span> Suspendida
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-[11px] text-text-light">25/03/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-medium text-text-muted">$ 0 (pausada)</td>
+                <td class="py-2.5 px-3 text-right font-mono text-status-suspendida-text font-medium">Deuda $ 10.000</td>
+                <td class="py-2.5 px-3 text-center">
+                  <div class="flex items-center justify-center gap-1">
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">visibility</span></button>
+                    <button class="p-1 hover:bg-border-subtle rounded text-text-muted"><span class="material-symbols-outlined text-sm">tune</span></button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <!-- Paginador técnico -->
+          <div class="bg-canvas-bg px-4 py-2 border-t border-border-base flex items-center justify-between text-xs text-text-muted">
+            <span>Página 1 de 11 · 84 comercios registrados en Argentina</span>
+            <div class="flex items-center gap-1 font-mono">
+              <button class="px-2 py-0.5 border border-border-base rounded bg-canvas-surface text-text-light cursor-not-allowed">Anterior</button>
+              <button class="px-2 py-0.5 border border-brand-green bg-brand-green text-white font-bold rounded">1</button>
+              <button class="px-2 py-0.5 border border-border-base bg-canvas-surface rounded hover:bg-border-subtle">2</button>
+              <button class="px-2 py-0.5 border border-border-base bg-canvas-surface rounded hover:bg-border-subtle">3</button>
+              <button class="px-2 py-0.5 border border-border-base rounded bg-canvas-surface hover:bg-border-subtle">Siguiente</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN DE MÉTRICAS COMPACTAS -->
+        <div id="metricas" class="pt-2">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-rubik text-sm font-bold text-text-dark tracking-tight uppercase">Métricas de Facturación de Mostry · 2026</h2>
+            <span class="text-xs text-text-muted font-mono">Recaudación recurrente de la plataforma</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="p-4 bg-canvas-surface border border-border-base rounded">
+              <div class="text-xs text-text-muted font-medium">Facturación mensual fija</div>
+              <div class="font-rubik text-2xl font-bold text-brand-green mt-1">$ 580.000 <span class="text-xs font-normal text-text-muted">/mes</span></div>
+              <p class="text-[11px] text-text-light mt-1">58 tiendas activas × $ 10.000 abono fijado</p>
+            </div>
+
+            <div class="p-4 bg-canvas-surface border border-border-base rounded">
+              <div class="text-xs text-text-muted font-medium">Potencial de conversión</div>
+              <div class="font-rubik text-2xl font-bold text-status-prueba-text mt-1">$ 140.000 <span class="text-xs font-normal text-text-muted">/mes</span></div>
+              <p class="text-[11px] text-text-light mt-1">14 comercios en los 10 días de prueba gratuita</p>
+            </div>
+
+            <div class="p-4 bg-canvas-surface border border-border-base rounded">
+              <div class="text-xs text-text-muted font-medium">Cobranzas a gestionar</div>
+              <div class="font-rubik text-2xl font-bold text-status-gracia-text mt-1">$ 70.000</div>
+              <p class="text-[11px] text-text-light mt-1">7 tiendas en gracia con aviso de WhatsApp enviado</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pie de página técnico Mostry -->
+      <footer class="h-10 border-t border-border-base bg-canvas-surface px-6 flex items-center justify-between text-[11px] text-text-muted font-mono">
+        <div>Mostry · Administración interna y soporte de red comercial</div>
+        <div>Año 2026 · Hecho para comercios de barrio argentinos</div>
+      </footer>
+    </main>
+  </div>
+
+</body>
+</html>

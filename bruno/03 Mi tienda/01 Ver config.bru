@@ -1,0 +1,16 @@
+meta {
+  name: Ver config
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{api}}/panel/tienda/config
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

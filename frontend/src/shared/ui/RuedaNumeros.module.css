@@ -1,0 +1,55 @@
+/* 5 opciones a la vista (220 px); la del medio es la elegida. */
+.rueda {
+  position: relative;
+  flex: 1;
+  height: 220px;
+}
+/* Banda que marca la opción elegida. */
+.rueda::before {
+  content: '';
+  position: absolute;
+  inset: 88px 0 auto;
+  height: 44px;
+  border-radius: var(--radio);
+  background: var(--verde-claro);
+  pointer-events: none;
+}
+.lista {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  padding-block: 88px;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+  /* Las opciones de los bordes se desvanecen, como una rueda de verdad. */
+  mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent);
+}
+.lista::-webkit-scrollbar {
+  display: none;
+}
+.opcion {
+  display: block;
+  width: 100%;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--texto-3);
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+  font-variant-numeric: tabular-nums;
+  scroll-snap-align: center;
+  cursor: pointer;
+  transition:
+    color var(--dur-corta) ease,
+    transform var(--dur-corta) var(--ease-out);
+}
+.opcion[data-elegida='true'] {
+  color: var(--carbon);
+  font-weight: 700;
+  transform: scale(1.08);
+}
+.lista:focus-visible {
+  border-radius: var(--radio);
+  box-shadow: var(--foco);
+}

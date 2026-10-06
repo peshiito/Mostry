@@ -1,0 +1,38 @@
+.dato {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.textos {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+.etiqueta {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.valor {
+  overflow-wrap: anywhere;
+  font-size: var(--t-lg);
+  font-weight: 600;
+}
+.mono {
+  font-family: var(--fuente-mono);
+}
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--toque);
+  padding: 0 var(--e-3);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--lona);
+  font-weight: 600;
+  cursor: pointer;
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Editar stock
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{api}}/panel/productos/1
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "stock": 100,
+    "stockAnterior": 120
+  }
+}
+
+docs {
+  stockAnterior = el stock que viste al abrir: si cambió, 409 stock_cambio.
+}

@@ -1,0 +1,63 @@
+{
+  "id": 1,
+  "fecha": "2026-10-05",
+  "montoApertura": 1000000,
+  "abiertaEn": "2026-10-05T14:04:46.000Z",
+  "cerradaEn": null,
+  "montoContado": null,
+  "diferencia": null,
+  "movimientos": [
+    {
+      "id": 1,
+      "cajaId": 1,
+      "tipo": "ingreso",
+      "medio": "efectivo",
+      "monto": 450000,
+      "concepto": "Venta de mostrador",
+      "origen": "manual",
+      "origenId": null,
+      "fecha": "2026-10-05T14:04:46.000Z"
+    },
+    {
+      "id": 2,
+      "cajaId": 1,
+      "tipo": "egreso",
+      "medio": "efectivo",
+      "monto": 320000,
+      "concepto": "Gasto a Molino Cañuelas: Harina 25 kg",
+      "origen": "gasto",
+      "origenId": 1,
+      "fecha": "2026-10-05T14:04:46.000Z"
+    },
+    {
+      "id": 3,
+      "cajaId": 1,
+      "tipo": "ingreso",
+      "medio": "efectivo",
+      "monto": 500000,
+      "concepto": "Pago de fiado: Don Carlos",
+      "origen": "fiado",
+      "origenId": 2,
+      "fecha": "2026-10-05T14:04:46.000Z"
+    },
+    {
+      "id": 4,
+      "cajaId": 1,
+      "tipo": "ingreso",
+      "medio": "transferencia",
+      "monto": 35000,
+      "concepto": "Pago del pedido #8",
+      "origen": "pedido",
+      "origenId": 8,
+      "fecha": "2026-10-05T14:04:59.000Z"
+    }
+  ],
+  "totales": {
+    "ingresos": 985000,
+    "egresos": 320000,
+    "depositos": 0,
+    "ingresosEfectivo": 950000,
+    "ingresosTransferencia": 35000
+  },
+  "esperado": 1630000
+}

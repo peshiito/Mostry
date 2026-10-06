@@ -1,0 +1,10 @@
+.tarjeta {
+  display: grid;
+  gap: var(--e-3);
+}
+.titulo {
+  font-size: var(--t-xl);
+}
+.texto {
+  color: var(--texto-2);
+}

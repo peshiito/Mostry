@@ -8,7 +8,8 @@ import { config } from './config/env.js';
 import { rutasAdmin } from './modules/admin/admin.routes.js';
 import { rutasAuth } from './modules/auth/auth.routes.js';
 import { rutasHealth } from './modules/health/health.routes.js';
-import { rutasTienda } from './modules/tiendas/tiendas.routes.js';
+import { rutasPanel } from './modules/panel.routes.js';
+import { rutasPublico } from './modules/publico/publico.routes.js';
 import type { Mailer } from './shared/email/mailer.js';
 import { logger } from './shared/logger.js';
 import { manejarErrores } from './shared/middlewares/manejarErrores.js';
@@ -40,8 +41,9 @@ export function crearApp(deps: Dependencias): Express {
 
   app.use('/health', rutasHealth(deps.pingDb));
   app.use('/auth', rutasAuth(deps.mailer));
-  app.use('/tienda', rutasTienda(deps.mailer));
+  app.use('/panel', rutasPanel(deps.mailer));
   app.use('/admin', rutasAdmin());
+  app.use('/publico', rutasPublico());
 
   app.use(rutaNoEncontrada);
   app.use(manejarErrores);

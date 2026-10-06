@@ -1,0 +1,22 @@
+.fechas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--e-3);
+}
+.previa {
+  display: grid;
+  gap: 2px;
+  padding: var(--e-3);
+  border: 1px dashed var(--mostaza-punteado);
+  border-radius: var(--radio);
+  background: var(--mostaza-claro);
+}
+.sello {
+  width: fit-content;
+  padding: 0 6px;
+  background: var(--mostaza);
+  color: var(--sobre-mostaza);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+}

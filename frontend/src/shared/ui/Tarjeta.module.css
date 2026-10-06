@@ -1,0 +1,24 @@
+.tarjeta {
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.relleno {
+  padding: var(--e-4);
+}
+.mostaza {
+  border-color: var(--mostaza-borde);
+  background: var(--mostaza-claro);
+}
+.ladrillo {
+  border-color: var(--ladrillo-borde);
+  background: var(--ladrillo-claro);
+}
+.verde {
+  border-color: var(--verde);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.lona {
+  background: var(--lona-oscura);
+}

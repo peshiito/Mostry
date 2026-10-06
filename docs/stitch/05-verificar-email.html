@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry · Verificación de email</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#0E5A4A',
+              greenDark: '#0A4337',
+              coral: '#FF7A59',
+              coralDark: '#E86646',
+              canvas: '#F7F3EC',
+              card: '#FFFFFF',
+              border: '#E3DDD3',
+              borderDark: '#D4CDC2',
+              text: '#1C2622',
+              muted: '#68736E'
+            }
+          },
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            work: ['Work Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background-color: #F7F3EC;
+      color: #1C2622;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-heading {
+      font-family: 'Rubik', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 bg-[#fdf9f2] text-[#1C2622] selection:bg-[#0E5A4A] selection:text-white">
+<!-- Mobile Container (390px max-width) -->
+<main class="w-full max-w-[390px] mx-auto flex flex-col flex-1 justify-between py-2">
+<!-- Top Navigation / Back button -->
+<header class="w-full flex items-center justify-between pt-1 pb-4">
+<button aria-label="Volver" class="w-10 h-10 flex items-center justify-center rounded-lg border border-[#E3DDD3] bg-white text-[#1C2622] hover:bg-[#F0ECE4] active:scale-95 transition-all" type="button">
+<svg class="w-5 h-5 text-[#1C2622]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Brand Logo / Wordmark -->
+<div class="flex items-center gap-1.5 pr-2">
+<svg class="w-5 h-5 text-[#0E5A4A]" fill="currentColor" viewbox="0 0 24 24">
+<rect height="10" rx="1.75" width="3.5" x="3" y="10"></rect>
+<rect height="16" rx="1.75" width="3.5" x="10.25" y="4"></rect>
+<rect height="13" rx="1.75" width="3.5" x="17.5" y="7"></rect>
+</svg>
+<span class="font-rubik font-bold text-lg text-[#0E5A4A] tracking-tight">mostry</span>
+</div>
+<div class="w-10"></div> <!-- Spacer to keep header balanced -->
+</header>
+<!-- Main Card -->
+<section class="w-full bg-white border border-[#E3DDD3] rounded-2xl p-6 flex flex-col items-center text-center my-auto">
+<!-- Outline Envelope Icon -->
+<div class="w-14 h-14 rounded-xl border border-[#E3DDD3] bg-[#F7F3EC] flex items-center justify-center mb-5 text-[#0E5A4A]">
+<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Title & Copy -->
+<h1 class="font-rubik text-2xl font-bold text-[#1C2622] tracking-tight mb-2">
+        Revisá tu email
+      </h1>
+<p class="text-sm leading-relaxed text-[#68736E] max-w-[290px] mb-6">
+        Te mandamos un código de 6 dígitos a <span class="font-semibold text-[#1C2622]">rosa@gmail.com</span>. Vence en 10 minutos.
+      </p>
+<!-- Label -->
+<span class="text-xs font-semibold uppercase tracking-wider text-[#68736E] mb-3">
+        Código de verificación
+      </span>
+<!-- 6 Big Digit Input Boxes -->
+<div class="grid grid-cols-6 gap-2 w-full max-w-[320px] mb-6">
+<!-- Digit 1 -->
+<div class="h-13 aspect-square border-2 border-[#0E5A4A] bg-[#F7F3EC]/50 rounded-xl flex items-center justify-center font-rubik text-2xl font-bold text-[#0E5A4A]">
+          4
+        </div>
+<!-- Digit 2 -->
+<div class="h-13 aspect-square border-2 border-[#0E5A4A] bg-[#F7F3EC]/50 rounded-xl flex items-center justify-center font-rubik text-2xl font-bold text-[#0E5A4A]">
+          8
+        </div>
+<!-- Digit 3 -->
+<div class="h-13 aspect-square border-2 border-[#0E5A4A] bg-[#F7F3EC]/50 rounded-xl flex items-center justify-center font-rubik text-2xl font-bold text-[#0E5A4A]">
+          1
+        </div>
+<!-- Digit 4 (Active caret) -->
+<div class="h-13 aspect-square border border-[#D4CDC2] bg-white rounded-xl flex items-center justify-center text-[#1C2622]">
+<span class="w-0.5 h-6 bg-[#0E5A4A] animate-pulse"></span>
+</div>
+<!-- Digit 5 -->
+<div class="h-13 aspect-square border border-[#E3DDD3] bg-white rounded-xl flex items-center justify-center font-rubik text-2xl text-[#68736E]">
+          ·
+        </div>
+<!-- Digit 6 -->
+<div class="h-13 aspect-square border border-[#E3DDD3] bg-white rounded-xl flex items-center justify-center font-rubik text-2xl text-[#68736E]">
+          ·
+        </div>
+</div>
+<!-- Action Button (Coral #FF7A59) -->
+<button class="w-full bg-[#FF7A59] hover:bg-[#E86646] active:scale-[0.99] text-white font-rubik font-semibold text-base py-3.5 px-4 rounded-xl border border-[#FF7A59] transition-all flex items-center justify-center mb-5" type="button">
+        Verificar
+      </button>
+<!-- Secondary Links -->
+<div class="flex flex-col items-center gap-3 w-full">
+<p class="text-xs text-[#68736E]">
+          ¿No te llegó? 
+          <button class="text-[#0E5A4A] font-semibold hover:underline cursor-pointer ml-0.5" type="button">
+            Reenviar código (en 0:45)
+          </button>
+</p>
+<button class="text-xs font-semibold text-[#0E5A4A] hover:underline cursor-pointer" type="button">
+          Cambiar email
+        </button>
+</div>
+</section>
+<!-- Footer Note -->
+<footer class="w-full text-center py-4 border-t border-[#E3DDD3]/60 mt-auto">
+<p class="text-xs text-[#68736E]">
+        Mostry · 2026 · Hecho para comercios de barrio
+      </p>
+</footer>
+</main>
+</body>
+</html>

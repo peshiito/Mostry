@@ -1,0 +1,17 @@
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+}
+.verde {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.ladrillo {
+  background: var(--ladrillo-claro);
+  color: var(--ladrillo);
+}

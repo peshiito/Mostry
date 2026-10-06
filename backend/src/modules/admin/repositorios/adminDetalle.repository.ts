@@ -10,7 +10,6 @@ export const adminDetalleRepo = {
         'usuarios.email',
         'usuarios.nombre',
         'usuarios.emailVerificadoEn',
-        'usuarios.totpActivadoEn',
         'miembrosTienda.rol',
       ])
       .where('miembrosTienda.tiendaId', '=', tiendaId)

@@ -1,0 +1,15 @@
+meta {
+  name: Disponibilidad de encargos
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{api}}/publico/encargos/disponibilidad?fecha=2026-12-01
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Clientes de la libreta
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{api}}/panel/libreta/clientes
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

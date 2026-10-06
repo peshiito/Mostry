@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry - Finanzas y Caja · La Espiga</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#90d4bf",
+            "on-surface-variant": "#3f4945",
+            "on-error-container": "#93000a",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed": "#271900",
+            "primary": "#004134",
+            "tertiary-fixed": "#ffdea8",
+            "surface-container": "#f1ede6",
+            "error": "#ba1a1a",
+            "surface-dim": "#dddad3",
+            "surface-bright": "#fdf9f2",
+            "background": "#fdf9f2",
+            "on-primary": "#ffffff",
+            "surface-tint": "#246959",
+            "on-surface": "#1c1c18",
+            "tertiary-fixed-dim": "#fabc41",
+            "outline-variant": "#bfc9c4",
+            "outline": "#6f7975",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "primary-container": "#0e5a4a",
+            "on-background": "#1c1c18",
+            "secondary": "#a7391e",
+            "on-secondary-container": "#6e1500",
+            "inverse-surface": "#31302c",
+            "on-tertiary-container": "#f5b73c",
+            "surface-container-low": "#f7f3ec",
+            "on-secondary-fixed": "#3c0700",
+            "surface": "#fdf9f2",
+            "secondary-fixed": "#ffdad2",
+            "surface-container-high": "#ebe8e1",
+            "tertiary-container": "#694a00",
+            "secondary-fixed-dim": "#ffb4a2",
+            "secondary-container": "#fd7958",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e6e2db",
+            "on-primary-container": "#8ccfbb",
+            "primary-fixed": "#acf0db",
+            "inverse-primary": "#90d4bf",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed-variant": "#862208",
+            "on-secondary": "#ffffff",
+            "tertiary": "#4c3400",
+            "surface-variant": "#e6e2db",
+            "inverse-on-surface": "#f4f0e9",
+            "on-primary-fixed-variant": "#005141",
+            "on-primary-fixed": "#002019"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Rubik"],
+            "label-sm": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "body-lg": ["Work Sans"],
+            "body-md": ["Work Sans"],
+            "label-md": ["Work Sans"],
+            "headline-md": ["Rubik"]
+          },
+          "fontSize": {
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .ticket-dashed-line {
+      background-image: linear-gradient(to right, #bfc9c4 50%, rgba(255,255,255,0) 0%);
+      background-position: bottom;
+      background-size: 8px 1px;
+      background-repeat: repeat-x;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-screen pb-24">
+<!-- TopAppBar Fixed Component -->
+<header class="fixed top-0 left-0 w-full z-50 bg-primary flex justify-between items-center px-margin h-14 max-w-screen-md mx-auto right-0 shadow-sm">
+<div class="flex items-center space-x-2">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary">La Espiga</span>
+<span class="font-label-sm text-[9px] text-on-primary bg-primary-container px-1.5 py-0.5 rounded uppercase">Panadería</span>
+</div>
+<p class="font-label-sm text-on-primary-container text-[10px] leading-tight">Caja abierta · Turno tarde</p>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<button aria-label="Notificaciones" class="relative p-1.5 rounded-lg text-on-primary hover:bg-primary-container transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="max-w-screen-md mx-auto pt-16 px-margin">
+<!-- Screen Title & Subtitle -->
+<div class="pt-3 pb-2">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Resumen y ganancias</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Balance del negocio · La Espiga Panadería</p>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-lg px-2.5 py-1 text-right">
+<span class="font-label-sm text-[10px] text-outline block">EJERCICIO</span>
+<span class="font-headline-sm text-sm font-bold text-on-surface">Octubre 2026</span>
+</div>
+</div>
+</div>
+<!-- Segmented Time Period Selector -->
+<div class="mt-2 mb-4 bg-surface-container border border-outline-variant p-1 rounded-lg grid grid-cols-4 gap-1">
+<button class="py-1.5 text-center font-label-md text-label-md rounded text-on-surface-variant hover:bg-surface-bright transition-colors" type="button">
+        Hoy
+      </button>
+<button class="py-1.5 text-center font-label-md text-label-md rounded text-on-surface-variant hover:bg-surface-bright transition-colors" type="button">
+        Semana
+      </button>
+<button class="py-1.5 text-center font-label-md text-label-md rounded bg-primary-container text-on-primary font-bold shadow-xs" type="button">
+        Mes
+      </button>
+<button class="py-1.5 text-center font-label-md text-label-md rounded text-on-surface-variant hover:bg-surface-bright transition-colors" type="button">
+        Fechas
+      </button>
+</div>
+<!-- Ticket Principal de Ganancia Real -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-4 relative mb-4">
+<!-- Watermark / Label header -->
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-primary text-base" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm text-outline tracking-wider">BOLETA DE RESULTADOS · N° 10-2026</span>
+</div>
+<span class="font-label-sm text-[10px] bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">1 al 14 de Octubre</span>
+</div>
+<!-- Main Highlight Amount -->
+<div class="py-4 text-center">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-0.5">Ganancia real de octubre</span>
+<div class="font-headline-lg text-[34px] leading-tight font-bold text-primary-container tracking-tight">
+          $ 412.000
+        </div>
+<div class="inline-flex items-center space-x-1 bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant mt-1.5">
+<span class="material-symbols-outlined text-primary-container text-sm" data-icon="check_circle">check_circle</span>
+<span class="font-label-sm text-label-sm text-primary-container">Margen neto operativo: 33,2%</span>
+</div>
+</div>
+<!-- Dashed divider line typical of store ticket -->
+<div class="ticket-dashed-line h-px w-full my-1"></div>
+<!-- Financial Breakdown Rows -->
+<div class="py-2 space-y-2 text-sm">
+<div class="flex items-center justify-between py-1">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-body-md text-body-md text-on-surface">Ingresos brutos por ventas</span>
+</div>
+<span class="font-headline-sm text-sm font-bold text-primary">$ 1.240.000</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-body-md text-body-md text-on-surface-variant">Devoluciones y mermas</span>
+</div>
+<span class="font-headline-sm text-sm font-medium text-secondary">−$ 18.000</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md text-on-surface-variant">Gastos operativos e insumos</span>
+</div>
+<span class="font-headline-sm text-sm font-medium text-secondary">−$ 810.000</span>
+</div>
+</div>
+<!-- Computation formula strip -->
+<div class="mt-3 pt-2.5 border-t border-outline-variant bg-surface-container-low rounded p-2.5">
+<div class="font-label-sm text-[10px] text-outline mb-1 uppercase tracking-wider">Cálculo de balance en mostrador</div>
+<div class="font-label-sm text-xs text-on-surface-variant flex flex-wrap items-center justify-between font-mono">
+<span class="text-primary font-bold">$ 1.240.000</span>
+<span>−</span>
+<span class="text-secondary">$ 18.000</span>
+<span>−</span>
+<span class="text-secondary">$ 810.000</span>
+<span>=</span>
+<span class="text-primary-container font-bold bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant">$ 412.000 limpio</span>
+</div>
+</div>
+</section>
+<!-- Daily Revenue Bar Chart (October 6 - 14) -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-4 mb-4">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Ventas diarias</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Picos de mostrador del 6 al 14 de Octubre</p>
+</div>
+<div class="flex items-center space-x-1.5 text-xs text-outline">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm">Finde / Pico</span>
+</div>
+</div>
+<!-- Bars Chart Container -->
+<div class="pt-4 pb-1">
+<div class="h-36 w-full flex items-end justify-between gap-1 border-b border-outline-variant pb-1">
+<!-- Lun 6: $ 58.200 (40%) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] text-outline mb-1">58k</span>
+<div class="w-full max-w-[24px] bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[40%]"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-1.5">Lun 6</span>
+</div>
+<!-- Mar 7: $ 64.000 (44%) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] text-outline mb-1">64k</span>
+<div class="w-full max-w-[24px] bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[44%]"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-1.5">Mar 7</span>
+</div>
+<!-- Mié 8: $ 61.500 (42%) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] text-outline mb-1">61k</span>
+<div class="w-full max-w-[24px] bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[42%]"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-1.5">Mié 8</span>
+</div>
+<!-- Jue 9: $ 70.800 (48%) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] text-outline mb-1">70k</span>
+<div class="w-full max-w-[24px] bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[48%]"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-1.5">Jue 9</span>
+</div>
+<!-- Vie 10: $ 89.000 (61%) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] text-outline mb-1">89k</span>
+<div class="w-full max-w-[24px] bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[61%]"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-1.5">Vie 10</span>
+</div>
+<!-- Sáb 11: $ 210.700 (92% - Pico Panadería) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] font-bold text-primary mb-1">210k</span>
+<div class="w-full max-w-[24px] bg-primary-container rounded-t h-[92%] relative">
+<span class="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-tertiary-fixed-dim rounded-full"></span>
+</div>
+<span class="font-label-sm text-[10px] font-bold text-primary mt-1.5">Sáb 11</span>
+</div>
+<!-- Dom 12: $ 145.800 (75% - Facturas y medialunas) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] font-bold text-primary mb-1">145k</span>
+<div class="w-full max-w-[24px] bg-primary-container rounded-t h-[75%] relative">
+<span class="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-tertiary-fixed-dim rounded-full"></span>
+</div>
+<span class="font-label-sm text-[10px] font-bold text-primary mt-1.5">Dom 12</span>
+</div>
+<!-- Lun 13: $ 140.500 (68%) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] text-outline mb-1">140k</span>
+<div class="w-full max-w-[24px] bg-surface-container-highest rounded-t hover:bg-primary transition-colors h-[68%]"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-1.5">Lun 13</span>
+</div>
+<!-- Mar 14: $ 74.200 (Hoy en curso - 50%) -->
+<div class="flex-1 flex flex-col items-center group">
+<span class="font-label-sm text-[9px] text-outline mb-1">74k*</span>
+<div class="w-full max-w-[24px] bg-surface-container-highest border border-dashed border-outline rounded-t h-[50%]"></div>
+<span class="font-label-sm text-[10px] text-on-surface-variant mt-1.5">Mar 14</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-1 text-[11px] text-on-surface-variant font-label-sm">
+<span>* Martes 14 turno tarde en curso</span>
+<span class="text-primary font-bold">Promedio diario: $ 98.400</span>
+</div>
+</section>
+<!-- Quick action text banner without coral button -->
+<div class="mb-4 bg-surface-container border border-outline-variant rounded-lg p-3 flex items-center justify-between">
+<div class="flex items-center space-x-2.5">
+<span class="material-symbols-outlined text-primary" data-icon="auto_stories">auto_stories</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Mirá tus números al día</p>
+<p class="font-body-md text-xs text-on-surface-variant">Cerrá los turnos a tiempo para mantener la libreta cuadrada.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Sección Cajas Anteriores -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden mb-6">
+<div class="px-4 py-3 border-b border-outline-variant flex items-center justify-between bg-surface-bright">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="point_of_sale">point_of_sale</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Cajas anteriores</h2>
+</div>
+<span class="font-label-sm text-label-sm text-outline">ÚLTIMOS CIERRES</span>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- 1. Lunes 13 de Octubre · Turno tarde -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Lunes 13 de Octubre</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turno tarde</span>
+</div>
+<p class="font-body-md text-xs text-outline mt-0.5">Responsable: Hernán G. · Cierre 21:15 hs</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-sm font-bold text-on-surface block">$ 62.400</span>
+<span class="inline-flex items-center font-label-sm text-[10px] text-outline bg-surface-container px-1.5 py-0.5 rounded border border-outline-variant">
+                Exacto ($ 0)
+              </span>
+</div>
+</div>
+</article>
+<!-- 2. Lunes 13 de Octubre · Turno mañana -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Lunes 13 de Octubre</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turno mañana</span>
+</div>
+<p class="font-body-md text-xs text-outline mt-0.5">Responsable: Marcela V. · Cierre 13:40 hs</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-sm font-bold text-on-surface block">$ 78.100</span>
+<span class="inline-flex items-center font-label-sm text-[10px] text-primary-container bg-surface-container-high px-1.5 py-0.5 rounded border border-outline-variant font-semibold">
+                +$ 350 (Sobrante)
+              </span>
+</div>
+</div>
+</article>
+<!-- 3. Domingo 12 de Octubre · Turno único -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Domingo 12 de Octubre</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turno único</span>
+</div>
+<p class="font-body-md text-xs text-outline mt-0.5">Responsable: Hernán G. · Cierre 14:30 hs</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-sm font-bold text-on-surface block">$ 145.800</span>
+<span class="inline-flex items-center font-label-sm text-[10px] text-error bg-error-container/60 px-1.5 py-0.5 rounded border border-error/20 font-semibold">
+                -$ 500 (Faltante)
+              </span>
+</div>
+</div>
+</article>
+<!-- 4. Sábado 11 de Octubre · Turno tarde -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Sábado 11 de Octubre</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turno tarde</span>
+</div>
+<p class="font-body-md text-xs text-outline mt-0.5">Responsable: Tomás R. · Cierre 21:30 hs</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-sm font-bold text-on-surface block">$ 112.300</span>
+<span class="inline-flex items-center font-label-sm text-[10px] text-outline bg-surface-container px-1.5 py-0.5 rounded border border-outline-variant">
+                Exacto ($ 0)
+              </span>
+</div>
+</div>
+</article>
+<!-- 5. Sábado 11 de Octubre · Turno mañana -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-label-md text-label-md font-bold text-on-surface">Sábado 11 de Octubre</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Turno mañana</span>
+</div>
+<p class="font-body-md text-xs text-outline mt-0.5">Responsable: Marcela V. · Cierre 14:00 hs</p>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-sm font-bold text-on-surface block">$ 98.400</span>
+<span class="inline-flex items-center font-label-sm text-[10px] text-primary-container bg-surface-container-high px-1.5 py-0.5 rounded border border-outline-variant font-semibold">
+                +$ 1.200 (Sobrante)
+              </span>
+</div>
+</div>
+</article>
+</div>
+<!-- Footer action for past sessions -->
+<div class="p-2.5 bg-surface-container border-t border-outline-variant text-center">
+<button class="font-label-md text-label-md text-primary font-bold hover:underline inline-flex items-center space-x-1" type="button">
+<span>Ver archivo histórico de cierres</span>
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Fixed Component (Caja is the active operational section) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest flex justify-around items-center px-gutter h-16 max-w-screen-md mx-auto right-0 shadow-[0_-2px_6px_rgba(0,0,0,0.04)]">
+<!-- Tab 1: Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm font-normal hover:bg-surface-container-high transition-colors py-1 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="mt-0.5">Inicio</span>
+</a>
+<!-- Tab 2: Pedidos (Badge 3) -->
+<a class="relative flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm font-normal hover:bg-surface-container-high transition-colors py-1 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="absolute -top-0.5 right-2 bg-secondary text-on-secondary text-[10px] font-bold px-1.5 py-0.2 rounded-full leading-tight">3</span>
+<span class="mt-0.5">Pedidos</span>
+</a>
+<!-- Tab 3: Caja (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-primary font-label-sm text-label-sm font-bold active:scale-95 transition-transform duration-150 py-1 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale" style="font-variation-settings: 'FILL' 1;">point_of_sale</span>
+<span class="mt-0.5">Caja</span>
+</a>
+<!-- Tab 4: Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm font-normal hover:bg-surface-container-high transition-colors py-1 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="mt-0.5">Productos</span>
+</a>
+<!-- Tab 5: Más -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm text-label-sm font-normal hover:bg-surface-container-high transition-colors py-1 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+<span class="mt-0.5">Más</span>
+</a>
+</nav>
+</body></html>

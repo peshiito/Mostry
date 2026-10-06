@@ -1,0 +1,15 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  color: var(--marca-verde);
+}
+.texto {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.claro {
+  color: var(--sobre-verde);
+}

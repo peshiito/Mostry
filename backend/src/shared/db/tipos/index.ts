@@ -1,3 +1,4 @@
+import type { ArchivosPorBorrarTabla, AvisosSuscripcionTabla } from './archivos.js';
 import type {
   CajasTabla,
   GastosTabla,
@@ -14,7 +15,6 @@ import type * as U from './usuarios.js';
 export interface Database {
   usuarios: U.UsuariosTabla;
   codigosEmail: U.CodigosEmailTabla;
-  codigosRecuperacion: U.CodigosRecuperacionTabla;
   sesiones: U.SesionesTabla;
   tiendas: T.TiendasTabla;
   miembrosTienda: T.MiembrosTiendaTabla;
@@ -35,4 +35,6 @@ export interface Database {
   clientesLibreta: L.ClientesLibretaTabla;
   movimientosFiado: L.MovimientosFiadoTabla;
   notas: L.NotasTabla;
+  archivosPorBorrar: ArchivosPorBorrarTabla;
+  avisosSuscripcion: AvisosSuscripcionTabla;
 }

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container-low text-on-surface" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tu Pedido · La Espiga (Mostry)</title>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "error": "#ba1a1a",
+            "surface": "#fdf9f2",
+            "on-secondary-fixed": "#3c0700",
+            "on-tertiary-fixed": "#271900",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e6e2db",
+            "primary": "#004134",
+            "outline": "#6f7975",
+            "secondary-container": "#fd7958",
+            "on-secondary-container": "#6e1500",
+            "secondary-fixed-dim": "#ffb4a2",
+            "on-primary-fixed": "#002019",
+            "surface-container-low": "#f7f3ec",
+            "secondary": "#a7391e",
+            "inverse-primary": "#90d4bf",
+            "inverse-on-surface": "#f4f0e9",
+            "surface-tint": "#246959",
+            "tertiary-fixed-dim": "#fabc41",
+            "primary-container": "#0e5a4a",
+            "inverse-surface": "#31302c",
+            "on-secondary-fixed-variant": "#862208",
+            "on-error": "#ffffff",
+            "surface-bright": "#fdf9f2",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#8ccfbb",
+            "on-primary-fixed-variant": "#005141",
+            "surface-container-lowest": "#ffffff",
+            "on-surface-variant": "#3f4945",
+            "tertiary-container": "#694a00",
+            "tertiary": "#4c3400",
+            "primary-fixed": "#acf0db",
+            "on-tertiary-container": "#f5b73c",
+            "tertiary-fixed": "#ffdea8",
+            "surface-container-highest": "#e6e2db",
+            "background": "#fdf9f2",
+            "primary-fixed-dim": "#90d4bf",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#ffdad2",
+            "on-background": "#1c1c18",
+            "on-surface": "#1c1c18",
+            "surface-dim": "#dddad3",
+            "outline-variant": "#bfc9c4",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#ebe8e1",
+            "surface-container": "#f1ede6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik"],
+            "label-sm": ["Work Sans"],
+            "label-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-md": ["Work Sans"],
+            "body-lg": ["Work Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Estilo festoneado clásico de toldo de panadería */
+    .scallop-divider {
+      background-image: radial-gradient(circle at 10px 0, transparent 9px, #0e5a4a 10px);
+      background-size: 20px 10px;
+      background-repeat: repeat-x;
+      height: 10px;
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="bg-surface-container-low text-on-surface antialiased flex flex-col justify-start items-center min-h-screen">
+<!-- Mobile Container (390px spec) -->
+<main class="w-full max-w-[390px] min-h-screen bg-surface-container-low flex flex-col pb-6 border-x border-[#E2DDD5] shadow-none">
+<!-- 1. HEADER / TOPBAR INSTITUCIONAL CON FESTONEADO -->
+<header class="bg-primary-container text-on-primary sticky top-0 z-40">
+<!-- Barra superior informativa de subdominio -->
+<div class="px-space-md pt-2.5 pb-1 flex items-center justify-center border-b border-primary-container/40">
+<span class="font-label-sm text-label-sm tracking-widest text-[#acf0db] text-center">
+          PANADERÍA &amp; CONFITERÍA · laespiga.mostry.com.ar
+        </span>
+</div>
+<!-- Fila principal de navegación de mostrador -->
+<div class="px-space-md py-space-sm flex items-center justify-between">
+<!-- Volver / Cerrar -->
+<a aria-label="Volver a la tienda" class="w-9 h-9 rounded-lg flex items-center justify-center text-on-primary hover:bg-primary/40 active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</a>
+<!-- Logo e Isotipo La Espiga -->
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">bakery_dining</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-primary">
+            La Espiga
+          </span>
+</div>
+<!-- Indicador de bolsa -->
+<div class="relative w-9 h-9 rounded-lg flex items-center justify-center text-on-primary bg-primary/30">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-secondary-container text-on-primary rounded-full text-[10px] font-bold flex items-center justify-center font-label-sm leading-none">
+            2
+          </span>
+</div>
+</div>
+<!-- Remate Ondulado / Scallop Pattern Festoneado Tradicional -->
+<div class="w-full scallop-divider"></div>
+</header>
+<!-- ENCABEZADO DE SECCIÓN / TÍTULO DE PANTALLA -->
+<section class="px-space-md pt-5 pb-3">
+<div class="flex items-baseline justify-between">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">
+            Tu pedido
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+            2 productos listos en La Espiga
+          </p>
+</div>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-primary-container bg-surface border border-[#E2DDD5] px-2.5 py-1 rounded-lg font-bold">
+<span class="material-symbols-outlined text-[15px]">store</span>
+          Mostrador
+        </span>
+</div>
+</section>
+<!-- 2. LISTA DE PRODUCTOS EN EL CARRITO -->
+<section class="px-space-md flex-1">
+<div class="bg-surface-container-lowest rounded-xl border border-[#E2DDD5] overflow-hidden">
+<!-- Ítem 1: Docena surtida -->
+<article class="p-space-md flex gap-3 items-start">
+<!-- Miniatura cuadrada -->
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container border border-[#E2DDD5]">
+<img alt="Docena surtida de medialunas artesanal de manteca y grasa horneadas" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1USzjDhK6xWheCtTFavX3HymBel_Pt1OTlJ6jB3qq6X325M6RQU1Y5QFyts_kkKA5rwAXmoLazwZqUyYEgA0G8hhEPYj3TZmvdRYBUchQWYZq_s2tiyzGq4QPTLv_ignjsfCltHlzeOUvjDdFdOrtQsdkIFbLbo8N4rZC8jxk8xrAciY79RrXRMYXc3Nq495d0-Ky1BHGwMaZ-YecK76mSW4h61Awbq_0Lzvs2RHahrUPEh0j9GSS2vrPA"/>
+</div>
+<!-- Información y Controles del Ítem 1 -->
+<div class="flex-1 min-w-0 flex flex-col justify-between self-stretch">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-sm text-[16px] leading-5 text-on-surface font-bold">
+                  Docena surtida
+                </h2>
+<span class="font-headline-sm text-[16px] leading-5 text-primary-container font-bold text-right shrink-0">
+                  $ 7.800
+                </span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant mt-0.5 line-clamp-1">
+                6 manteca y 6 grasa crocantes
+              </p>
+</div>
+<!-- Fila de Controles -->
+<div class="flex items-center justify-between mt-3 pt-2">
+<!-- Selector Cantidad -->
+<div class="flex items-center border border-[#E2DDD5] rounded-lg bg-surface">
+<button aria-label="Disminuir docena" class="w-7 h-7 flex items-center justify-center text-on-surface font-bold text-sm active:bg-surface-container-highest transition-colors rounded-l-lg" type="button">
+                  −
+                </button>
+<span class="w-7 h-7 flex items-center justify-center font-headline-sm text-sm font-bold text-on-surface select-none border-x border-[#E2DDD5]">
+                  1
+                </span>
+<button aria-label="Aumentar docena" class="w-7 h-7 flex items-center justify-center text-on-surface font-bold text-sm active:bg-surface-container-highest transition-colors rounded-r-lg" type="button">
+                  +
+                </button>
+</div>
+<!-- Acción Quitar -->
+<button class="text-on-surface-variant hover:text-error active:opacity-75 flex items-center gap-1 font-label-md text-label-md py-1 px-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Quitar</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Divisor sutil de mostrador -->
+<div class="border-t border-[#E2DDD5] mx-space-md"></div>
+<!-- Ítem 2: Vigilante -->
+<article class="p-space-md flex gap-3 items-start">
+<!-- Miniatura cuadrada -->
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container border border-[#E2DDD5]">
+<img class="w-full h-full object-cover" data-alt="Traditional golden Argentine vigilante pastry covered with sweet pastry cream and gentle sugar syrup glaze sitting on a warm wooden bakery shelf in natural morning light. The composition reflects authentic neighborhood bakery charm with organic textures and warm earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWB3FgaMwxT9EuH-FmqcBQpsSEyR0NJ8Zo-oY36LCRKqH-WS8CAsvXI3gJuwx3Mxf9czu51i3ReBMliORl25rUs8uYjYABHVUBFOxHemXdOKT3WetCZjgvGxqB5WLk4ouQCGYQceABq9UKSG-37JnX1EKD6OH-AmijDANM250k1zfiJqs_1VSCio65bTz6F3qF1vtGMBmhr8yW4XZmjduWEnxCXbVvvXLKIbD-yX_mDDzsG28PkoTxuIwpaWYUTw3uRtf764uZrjU"/>
+</div>
+<!-- Información y Controles del Ítem 2 -->
+<div class="flex-1 min-w-0 flex flex-col justify-between self-stretch">
+<div>
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-sm text-[16px] leading-5 text-on-surface font-bold">
+                  Vigilante
+                </h2>
+<span class="font-headline-sm text-[16px] leading-5 text-primary-container font-bold text-right shrink-0">
+                  $ 650
+                </span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant mt-0.5 line-clamp-1">
+                Pastelero clásico con baño de almíbar suave
+              </p>
+</div>
+<!-- Fila de Controles -->
+<div class="flex items-center justify-between mt-3 pt-2">
+<!-- Selector Cantidad -->
+<div class="flex items-center border border-[#E2DDD5] rounded-lg bg-surface">
+<button aria-label="Disminuir vigilante" class="w-7 h-7 flex items-center justify-center text-on-surface font-bold text-sm active:bg-surface-container-highest transition-colors rounded-l-lg" type="button">
+                  −
+                </button>
+<span class="w-7 h-7 flex items-center justify-center font-headline-sm text-sm font-bold text-on-surface select-none border-x border-[#E2DDD5]">
+                  1
+                </span>
+<button aria-label="Aumentar vigilante" class="w-7 h-7 flex items-center justify-center text-on-surface font-bold text-sm active:bg-surface-container-highest transition-colors rounded-r-lg" type="button">
+                  +
+                </button>
+</div>
+<!-- Acción Quitar -->
+<button class="text-on-surface-variant hover:text-error active:opacity-75 flex items-center gap-1 font-label-md text-label-md py-1 px-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Quitar</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- 3. RESUMEN Y NOTA DE COMPRA -->
+<div class="mt-4 space-y-3">
+<!-- Tarjeta de Boleta / Subtotal -->
+<div class="bg-surface-container-lowest rounded-xl border border-[#E2DDD5] p- space-md p-4">
+<div class="flex justify-between items-center text-on-surface">
+<span class="font-body-md text-body-md font-medium text-on-surface-variant">
+              Subtotal (2 productos)
+            </span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">
+              $ 8.450
+            </span>
+</div>
+</div>
+<!-- Nota informativa de mostrador -->
+<div class="bg-surface rounded-xl border border-[#E2DDD5] p-3 flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary-container text-[20px] shrink-0">
+            info
+          </span>
+<p class="font-body-md text-[13px] text-on-surface-variant leading-snug">
+            El costo de envío o retiro en mostrador se define en el próximo paso.
+          </p>
+</div>
+</div>
+</section>
+<!-- 4. ACCIONES PRINCIPALES (BLOQUE INFERIOR) -->
+<section class="px-space-md mt-6 space-y-3">
+<!-- Botón de acción principal Coral #FF7A59 / secondary-container con texto en blanco -->
+<button class="w-full bg-[#FF7A59] hover:bg-[#ff6943] active:opacity-90 text-white rounded-lg py-3.5 px-space-md flex items-center justify-between font-label-md text-[15px] font-semibold transition-opacity" type="button">
+<span class="tracking-wide">Continuar</span>
+<div class="flex items-center gap-1.5 font-headline-sm font-bold text-[16px]">
+<span>$ 8.450</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</div>
+</button>
+<!-- Enlace Secundario Seguir Comprando -->
+<div class="text-center pt-1">
+<a class="inline-flex items-center justify-center font-label-md text-label-md text-primary-container font-semibold py-2 px-4 hover:underline active:opacity-75 transition-all" href="#">
+          ← Seguir comprando en La Espiga
+        </a>
+</div>
+</section>
+<!-- 5. FOOTER INSTITUCIONAL DISCRETO -->
+<footer class="mt-8 pt-4 pb-2 px-space-md border-t border-[#E2DDD5] text-center">
+<div class="flex items-center justify-center gap-1 text-on-surface-variant">
+<span class="font-label-sm text-[11px]">Hecho con</span>
+<span class="font-bold text-primary-container font-headline-sm text-[12px]">mostry</span>
+<span class="font-label-sm text-[11px]">· La libreta y tienda digital de tu barrio</span>
+</div>
+<p class="font-label-sm text-[10px] text-on-surface-variant/80 mt-1">
+        laespiga.mostry.com.ar · Todos los derechos reservados © 2026
+      </p>
+</footer>
+</main>
+</body></html>

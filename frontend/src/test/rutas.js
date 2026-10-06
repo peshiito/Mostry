@@ -1,0 +1,46 @@
+// Pantallas por zona (las usan el test de humo y el índice de desarrollo).
+// La tienda de ejemplo es la del seed (dona-rosa); el token es de un pedido grabado.
+export const TOKEN = 'O1CpZ46aNa7fi_JoYNYDAZHma3vzdfsO6AzpH_RAJvE';
+
+export const RUTAS = {
+  sitio: ['/', '/legal', '/registro', '/verificar', '/ingresar'],
+  tienda: [
+    '/',
+    '/catalogo',
+    '/producto/1',
+    '/carrito',
+    `/pedido/${TOKEN}`,
+    `/pedido/${TOKEN}/pago`,
+    `/pedido/${TOKEN}/listo`,
+  ],
+  panel: [
+    '/panel',
+    '/panel/pedidos',
+    '/panel/pedidos/8',
+    '/panel/pedidos/7/comprobante',
+    '/panel/productos',
+    '/panel/productos/1',
+    '/panel/productos/nuevo',
+    '/panel/categorias',
+    '/panel/promociones',
+    '/panel/caja',
+    '/panel/caja/cerrar',
+    '/panel/caja/resumen',
+    '/panel/gastos',
+    '/panel/gastos/nuevo',
+    '/panel/proveedores',
+    '/panel/encargos',
+    '/panel/libreta',
+    '/panel/libreta/1',
+    '/panel/libreta/notas',
+    '/panel/mas',
+    '/panel/tienda',
+    '/panel/horarios',
+    '/panel/cobros',
+    '/panel/suscripcion',
+    '/panel/cuenta',
+    '/panel/ingresar',
+    '/panel/recuperar',
+  ],
+  admin: ['/', '/tiendas/1', '/metricas', '/ingresar'],
+};

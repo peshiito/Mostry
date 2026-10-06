@@ -1,0 +1,31 @@
+.foto {
+  width: 100%;
+  max-width: var(--ancho-app);
+  margin: 0 auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.cuerpo {
+  padding-bottom: 120px;
+}
+.nombre {
+  font-size: var(--t-2xl);
+}
+.precio {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: var(--e-3);
+  padding-top: var(--e-3);
+  border-top: var(--borde);
+  color: var(--texto-2);
+  font-weight: 600;
+}
+.subtitulo {
+  margin-bottom: var(--e-2);
+  color: var(--texto-2);
+  font-family: var(--fuente-texto);
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

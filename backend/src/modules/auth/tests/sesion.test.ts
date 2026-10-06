@@ -3,9 +3,10 @@ import { beforeEach, describe, it } from 'vitest';
 import { crearApp } from '../../../app.js';
 import { db } from '../../../shared/db/db.js';
 import { CLAVE, crearCuentaCompleta, login } from '../../../test/flujoAuth.js';
+import { cookieDe } from '../../../test/sesionHttp.js';
 import { limpiarBase } from '../../../test/limpiarBase.js';
 import { crearMailerFalso } from '../../../test/mailerFalso.js';
-import { codigoTotp, origenTienda } from '../../../test/sesionHttp.js';
+import { origenTienda } from '../../../test/sesionHttp.js';
 
 const ORIGEN = origenTienda('dona-rosa');
 const nuevaApp = (correo = crearMailerFalso()) => ({
@@ -30,7 +31,7 @@ describe('sesiones y cambio de clave', () => {
       .expect(401);
   });
 
-  it('cambiar la clave pide la actual + TOTP y cierra las otras sesiones', async () => {
+  it('cambiar la clave pide la actual y cierra las otras sesiones', async () => {
     const { app, correo } = nuevaApp();
     const cuenta = await crearCuentaCompleta(app, correo, 'dona-rosa');
     const cambiar = (body: object) =>
@@ -39,22 +40,22 @@ describe('sesiones y cambio de clave', () => {
         .set('Origin', ORIGEN)
         .set('Cookie', cuenta.cookie)
         .send(body);
-    const nueva = { claveActual: CLAVE, claveNueva: 'clave-nueva-larguisima' };
+    const claveNueva = 'clave-nueva-larguisima';
+    const otra = await login(app, 'dona-rosa', cuenta.email).expect(200);
 
-    await cambiar({ ...nueva, codigoTotp: '000000' }).expect(400);
-    await cambiar({ ...nueva, codigoTotp: codigoTotp(cuenta.secreto) }).expect(200);
-    await login(app, 'dona-rosa', cuenta.email, 'clave-nueva-larguisima').expect(200);
-  });
-
-  it('logout invalida la cookie', async () => {
-    const { app, correo } = nuevaApp();
-    const cuenta = await crearCuentaCompleta(app, correo, 'dona-rosa');
-    const salir = request(app).post('/auth/logout').set('Origin', ORIGEN);
-    await salir.set('Cookie', cuenta.cookie).expect(204);
+    await cambiar({ claveActual: 'no-es-la-clave', claveNueva }).expect(400);
+    await cambiar({ claveActual: CLAVE, claveNueva }).expect(200);
+    await request(app)
+      .get('/auth/yo')
+      .set('Origin', ORIGEN)
+      .set('Cookie', cookieDe(otra))
+      .expect(401);
+    // La sesión desde la que se cambió sigue andando.
     await request(app)
       .get('/auth/yo')
       .set('Origin', ORIGEN)
       .set('Cookie', cuenta.cookie)
-      .expect(401);
+      .expect(200);
+    await login(app, 'dona-rosa', cuenta.email, 'clave-nueva-larguisima').expect(200);
   });
 });

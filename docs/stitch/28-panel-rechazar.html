@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry - Rechazar Comprobante</title>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error": "#ba1a1a",
+            "secondary-container": "#fd7958",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#31302c",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "background": "#fdf9f2",
+            "primary-fixed": "#acf0db",
+            "on-surface": "#1c1c18",
+            "surface-tint": "#246959",
+            "on-surface-variant": "#3f4945",
+            "on-secondary-fixed": "#3c0700",
+            "inverse-on-surface": "#f4f0e9",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#8ccfbb",
+            "secondary-fixed": "#ffdad2",
+            "on-tertiary-fixed": "#271900",
+            "on-primary-fixed-variant": "#005141",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f7f3ec",
+            "primary-container": "#0e5a4a",
+            "surface-dim": "#dddad3",
+            "surface": "#fdf9f2",
+            "surface-container-high": "#ebe8e1",
+            "tertiary": "#4c3400",
+            "surface-container-highest": "#e6e2db",
+            "primary-fixed-dim": "#90d4bf",
+            "tertiary-fixed": "#ffdea8",
+            "inverse-primary": "#90d4bf",
+            "surface-container": "#f1ede6",
+            "primary": "#004134",
+            "secondary-fixed-dim": "#ffb4a2",
+            "outline": "#6f7975",
+            "surface-variant": "#e6e2db",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#694a00",
+            "outline-variant": "#bfc9c4",
+            "surface-bright": "#fdf9f2",
+            "on-secondary-container": "#6e1500",
+            "on-background": "#1c1c18",
+            "on-secondary-fixed-variant": "#862208",
+            "secondary": "#a7391e",
+            "on-tertiary-container": "#f5b73c",
+            "on-primary-fixed": "#002019",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#fabc41",
+            "on-error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Work Sans"],
+            "headline-lg": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-sm": ["Work Sans"],
+            "body-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "body-lg": ["Work Sans"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      background-color: #ECE7DE;
+      font-family: 'Work Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex items-center justify-center p-0 sm:p-4 text-on-surface">
+<!-- Mobile Frame (390px wide standard) -->
+<main class="w-full max-w-[390px] h-[844px] bg-surface-container-low relative overflow-hidden flex flex-col shadow-2xl sm:rounded-2xl border border-outline-variant">
+<!-- 1. TopAppBar (Shared Component Implementation) -->
+<header class="fixed top-0 left-0 w-full z-20 flex justify-between items-center px-gutter h-14 bg-primary-container text-on-primary-container border-b border-outline-variant select-none">
+<div class="flex items-center gap-2">
+<!-- Mostry 3-bar brand glyph & Bakery Title -->
+<div class="flex items-center gap-1.5 text-on-primary">
+<div class="flex items-end gap-[2px] h-4 pb-0.5">
+<span class="w-[3px] h-3 bg-secondary-container rounded-sm"></span>
+<span class="w-[3px] h-4 bg-on-primary rounded-sm"></span>
+<span class="w-[3px] h-2.5 bg-on-primary-container rounded-sm"></span>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-primary tracking-tight">La Espiga</span>
+</div>
+<span class="bg-[#08382E] text-on-primary-container text-[9px] font-label-md px-1.5 py-0.5 rounded tracking-wider uppercase border border-[#166F5D]">
+          Panadería
+        </span>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Notificaciones" class="w-8 h-8 rounded-lg flex items-center justify-center text-on-primary-container hover:bg-primary transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- 2. Scrollable Canvas Content: Detalle de Pedido #128 (Context under modal) -->
+<section class="flex-1 overflow-y-auto pt-16 pb-20 px-space-md space-y-space-md opacity-45 pointer-events-none select-none">
+<!-- Top Order Banner -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm text-on-surface">Pedido #128</span>
+<span class="bg-[#FFF4D9] text-[#7A5600] border border-[#F2B53A] text-label-sm font-label-sm px-2 py-0.5 rounded">
+                Por revisar
+              </span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mt-0.5">Lucía Gómez · Cliente frecuente</p>
+</div>
+<span class="text-headline-sm font-headline-sm text-primary">$ 9.950</span>
+</div>
+</div>
+<!-- Ticket / Comanda de Mostrador -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md space-y-space-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-2">
+<span class="text-label-md font-label-md uppercase tracking-wider text-on-surface-variant">Comanda mostrador</span>
+<span class="text-label-sm font-label-sm text-outline">10:42 hs</span>
+</div>
+<div class="space-y-2 text-body-md font-body-md">
+<div class="flex justify-between">
+<span>1 × Docena medialunas de manteca</span>
+<span class="font-headline-sm text-[14px]">$ 8.200</span>
+</div>
+<div class="flex justify-between">
+<span>1 × Vigilante con crema pastelera</span>
+<span class="font-headline-sm text-[14px]">$ 1.750</span>
+</div>
+</div>
+<div class="border-t border-dashed border-outline-variant pt-2 flex justify-between items-baseline">
+<span class="text-body-md font-body-md font-semibold">Total a cobrar</span>
+<span class="text-headline-sm font-headline-sm text-primary">$ 9.950</span>
+</div>
+</div>
+<!-- Comprobante Bancario Preview -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-md font-label-md uppercase text-on-surface-variant">Comprobante adjunto</span>
+<span class="text-label-sm font-label-sm text-secondary font-bold">Transferencia</span>
+</div>
+<div class="w-full h-36 bg-surface-container rounded-lg border border-outline-variant flex flex-col items-center justify-center p-3 text-center">
+<span class="material-symbols-outlined text-[32px] text-outline mb-1" data-icon="receipt_long">receipt_long</span>
+<span class="text-label-md font-label-md text-on-surface">Banco Santander · CBU comprobante</span>
+<span class="text-label-sm font-label-sm text-error font-semibold mt-1">Monto declarado en ticket: $ 8.450</span>
+</div>
+</div>
+</section>
+<!-- 3. Modal Backdrop (Dim Overlay) -->
+<div class="absolute inset-0 bg-[#1C1C18]/50 z-30 transition-opacity"></div>
+<!-- 4. Bottom Sheet (Modal de Rechazo de Comprobante) -->
+<div class="absolute bottom-16 left-0 right-0 z-40 bg-surface-container-lowest rounded-t-2xl border-t border-x border-outline-variant shadow-2xl flex flex-col max-h-[82%]">
+<!-- Pill Handle de Arrastre -->
+<div class="w-full pt-3 pb-1 flex justify-center cursor-grab active:cursor-grabbing">
+<span class="w-10 h-1 bg-outline-variant rounded-full"></span>
+</div>
+<!-- Sheet Header -->
+<div class="px-space-md pt-1 pb-space-sm flex items-start justify-between border-b border-outline-variant/60">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-[#1C2B27] tracking-tight">Rechazar comprobante</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">
+            Pedido #128 · Lucía Gómez · <span class="text-primary font-bold">$ 9.950</span>
+</p>
+</div>
+<button aria-label="Cerrar modal" class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Sheet Scrollable Form Body -->
+<div class="px-space-md py-space-sm space-y-3.5 overflow-y-auto">
+<!-- Motivo Chips -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-label-md font-label-md text-on-surface font-semibold">
+              Motivo del rechazo <span class="text-error font-normal">(Obligatorio)</span>
+</label>
+</div>
+<div class="grid grid-cols-1 gap-2">
+<!-- Option 1 -->
+<label class="flex items-center justify-between p-2.5 rounded-lg border border-outline-variant bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<span class="text-body-md font-body-md text-on-surface">No llegó la plata</span>
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline" name="motivo" type="radio" value="no_llego"/>
+</label>
+<!-- Option 2 (Preseleccionada) -->
+<label class="flex items-center justify-between p-2.5 rounded-lg border-2 border-primary bg-primary-fixed/30 cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-body-md font-body-md font-semibold text-primary">Monto distinto</span>
+</div>
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary border-outline" name="motivo" type="radio" value="monto_distinto"/>
+</label>
+<!-- Option 3 -->
+<label class="flex items-center justify-between p-2.5 rounded-lg border border-outline-variant bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<span class="text-body-md font-body-md text-on-surface">Comprobante ilegible</span>
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline" name="motivo" type="radio" value="ilegible"/>
+</label>
+</div>
+</div>
+<!-- Mensaje al Cliente -->
+<div>
+<label class="block text-label-md font-label-md text-on-surface font-semibold mb-1" for="cliente-mensaje">
+            Mensaje para el cliente <span class="text-outline font-normal">(opcional)</span>
+</label>
+<div class="relative">
+<textarea class="w-full text-body-md font-body-md bg-surface-container-lowest border border-outline-variant rounded-lg p-2.5 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none placeholder:text-outline" id="cliente-mensaje" rows="2">En la cuenta entraron $ 8.450 en vez de $ 9.950. Por favor verificá el importe o cargá el comprobante correcto.</textarea>
+</div>
+<span class="text-label-sm font-label-sm text-outline mt-0.5 block text-right">Mostry lo adjunta al mensaje de WhatsApp</span>
+</div>
+<!-- Info Notice Box -->
+<div class="rounded-lg bg-[#FFF9EE] border border-[#F2B53A] p-2.5 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-[#7A5600] shrink-0 mt-0.5" data-icon="info">info</span>
+<div class="space-y-0.5">
+<p class="text-label-md font-label-md text-[#5E4200]">
+              Es el primer rechazo: el cliente puede mandar otro una vez más
+            </p>
+<p class="text-label-sm font-label-sm text-on-surface-variant leading-snug">
+              Le avisamos por WhatsApp para que suba un comprobante nuevo antes de cancelar el pedido.
+            </p>
+</div>
+</div>
+</div>
+<!-- Action Buttons Footer -->
+<div class="p-space-md pt-2 pb-3 bg-surface-container-lowest border-t border-outline-variant/60 flex flex-col gap-2">
+<!-- Primary Action Button: Ladrillo / Bermellón -->
+<button class="w-full h-11 bg-secondary text-on-secondary font-headline-sm text-[15px] font-bold rounded-lg flex items-center justify-center gap-2 active:opacity-90 transition-opacity shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="cancel">cancel</span>
+          Rechazar comprobante
+        </button>
+<!-- Secondary Dismiss Button -->
+<button class="w-full h-9 bg-transparent hover:bg-surface-container text-on-surface-variant font-label-md rounded-lg flex items-center justify-center transition-colors" type="button">
+          Volver a la revisión
+        </button>
+</div>
+</div>
+<!-- 5. BottomNavBar (Shared Component Implementation) -->
+<!-- Fixed at the bottom frame with 5 tabs; 'Pedidos' tab active per JSON mapping -->
+<nav class="fixed bottom-0 left-0 w-full z-30 flex justify-around items-center px-margin h-16 bg-surface-container-lowest border-t border-outline-variant select-none">
+<!-- Tab 1: Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="store">store</span>
+<span class="text-label-sm font-label-sm mt-0.5">Inicio</span>
+</a>
+<!-- Tab 2: Pedidos (ACTIVE - maps to current order workflow) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold py-space-xs relative" href="#">
+<span class="relative inline-block">
+<span class="material-symbols-outlined text-[22px]" data-icon="receipt_long">receipt_long</span>
+<span class="absolute -top-1 -right-2 bg-secondary text-on-secondary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+            3
+          </span>
+</span>
+<span class="text-label-sm font-label-sm mt-0.5">Pedidos</span>
+</a>
+<!-- Tab 3: Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-label-sm font-label-sm mt-0.5">Caja</span>
+</a>
+<!-- Tab 4: Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-sm font-label-sm mt-0.5">Productos</span>
+</a>
+<!-- Tab 5: Más -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="menu">menu</span>
+<span class="text-label-sm font-label-sm mt-0.5">Más</span>
+</a>
+</nav>
+</main>
+</body></html>

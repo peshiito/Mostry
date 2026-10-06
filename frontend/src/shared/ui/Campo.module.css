@@ -1,0 +1,69 @@
+.campo {
+  display: grid;
+  gap: var(--e-1);
+}
+.cabeza {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--e-2);
+}
+.etiqueta {
+  font-size: var(--t-sm);
+  font-weight: 600;
+}
+.caja {
+  display: flex;
+  align-items: stretch;
+  min-height: 48px;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  overflow: hidden;
+}
+.caja:focus-within {
+  border-color: var(--verde);
+  box-shadow: var(--foco);
+}
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  padding: var(--e-3);
+  background: transparent;
+  outline: none;
+}
+.afijo:has(button) {
+  padding: 0;
+}
+.afijo {
+  display: grid;
+  place-items: center;
+  padding: 0 var(--e-3);
+  background: var(--lona);
+  color: var(--texto-2);
+  border-right: var(--borde);
+}
+.sufijo {
+  border-right: 0;
+  border-left: var(--borde);
+}
+.invalida {
+  border-color: var(--ladrillo);
+}
+.ayuda {
+  color: var(--texto-3);
+  font-size: var(--t-sm);
+}
+.error {
+  color: var(--ladrillo);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}
+/* <select> nativo: colores explícitos (en Windows con modo oscuro, si no, la lista
+   desplegable sale blanca con letra clara). */
+select.input,
+select.input option {
+  background: var(--papel);
+  color: var(--carbon);
+}

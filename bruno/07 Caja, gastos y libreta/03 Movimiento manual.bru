@@ -1,0 +1,25 @@
+meta {
+  name: Movimiento manual
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{api}}/panel/caja/movimientos
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "tipo": "ingreso",
+    "medio": "efectivo",
+    "monto": 50000,
+    "concepto": "Venta de mostrador"
+  }
+}

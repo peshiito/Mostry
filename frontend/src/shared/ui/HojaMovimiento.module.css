@@ -1,0 +1,48 @@
+/* Abrir y cerrar las hojas (<dialog>). Transiciones con allow-discrete para
+   animar también la salida; @starting-style define desde dónde entra. */
+.hoja {
+  transition:
+    transform 400ms var(--ease-hoja),
+    opacity 200ms ease,
+    overlay 400ms allow-discrete,
+    display 400ms allow-discrete;
+}
+.hoja:not([open]) {
+  transform: translateY(100%);
+}
+@starting-style {
+  .hoja[open] {
+    transform: translateY(100%);
+  }
+}
+.hoja::backdrop {
+  opacity: 1;
+  transition:
+    opacity 300ms ease,
+    overlay 400ms allow-discrete,
+    display 400ms allow-discrete;
+}
+.hoja:not([open])::backdrop {
+  opacity: 0;
+}
+@starting-style {
+  .hoja[open]::backdrop {
+    opacity: 0;
+  }
+}
+@media (min-width: 768px) {
+  .hoja {
+    transition-duration: 220ms, 220ms, 220ms, 220ms;
+    transition-timing-function: var(--ease-out);
+  }
+  .hoja:not([open]) {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  @starting-style {
+    .hoja[open] {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+}

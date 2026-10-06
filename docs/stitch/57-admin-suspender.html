@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry · Suspender La Espiga (Panel de Administración)</title>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#0E5A4A',
+              'green-dark': '#093B30',
+              'green-light': '#147560',
+              coral: '#FF7A59',
+              'coral-hover': '#f06b49',
+              canvas: '#F7F3EC',
+              card: '#FFFFFF',
+              border: '#E4DDD3',
+              'border-subtle': '#EFECE6',
+              text: '#1C1917',
+              muted: '#6B7280',
+              'brick-red': '#C2410C',
+              'brick-red-hover': '#9A3412',
+            },
+            status: {
+              prueba: '#D97706',
+              'prueba-bg': '#FEF3C7',
+              'prueba-border': '#FDE68A',
+              activa: '#0E5A4A',
+              'activa-bg': '#E6F3EF',
+              'activa-border': '#B7DFD5',
+              gracia: '#EA580C',
+              'gracia-bg': '#FFEDD5',
+              'gracia-border': '#FED7AA',
+              suspendida: '#B91C1C',
+              'suspendida-bg': '#FEE2E2',
+              'suspendida-border': '#FECACA',
+            }
+          },
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            sans: ['Work Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background-color: #F7F3EC;
+      color: #1C1917;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-title {
+      font-family: 'Rubik', sans-serif;
+    }
+    /* Estricto: bordes de 1px en lugar de sombras */
+    .borde-estricto {
+      border: 1px solid #E4DDD3;
+      box-shadow: none !important;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #F7F3EC;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #D7CFC2;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="w-[1280px] min-h-[920px] max-w-[1280px] mx-auto bg-brand-canvas text-brand-text flex overflow-hidden relative">
+<!-- ============================================== -->
+<!-- BARRA LATERAL VERDE #0E5A4A                    -->
+<!-- ============================================== -->
+<aside class="w-[240px] shrink-0 bg-brand-green flex flex-col justify-between border-r border-[#093B30] text-white select-none z-10 min-h-screen">
+<div>
+<!-- Header de la Barra Lateral -->
+<div class="h-16 px-5 border-b border-[#136B59] flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<!-- Logo Mostry SVG en blanco -->
+<svg fill="none" height="24" viewbox="0 0 28 26" width="26" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#FFFFFF" height="18" rx="2" width="5.5" x="0" y="8"></rect>
+<rect fill="#FFFFFF" height="12" rx="2" width="5.5" x="8" y="14"></rect>
+<rect fill="#FFFFFF" height="24" rx="2" width="5.5" x="16" y="2"></rect>
+</svg>
+<span class="font-rubik text-xl font-bold tracking-tight text-white">mostry</span>
+</div>
+<span class="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded bg-[#093B30] text-[#78DBC6] border border-[#147560]">ADMIN</span>
+</div>
+<!-- Menú Interno -->
+<div class="py-4">
+<div class="px-5 pb-2 text-[11px] font-semibold uppercase tracking-wider text-[#7EAE9F]">
+          Gestión central
+        </div>
+<nav class="space-y-1 px-3">
+<!-- Ítem Tiendas (Activo) -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded text-sm font-medium bg-[#147560] text-white border border-[#1C8D74]" href="#">
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Tiendas</span>
+</div>
+<span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#093B30] text-white">142</span>
+</a>
+<!-- Ítem Métricas -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded text-sm font-medium text-[#C7E0D8] hover:bg-[#116453] hover:text-white transition-colors" href="#">
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4 text-[#A7C8BF]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Métricas</span>
+</div>
+<span class="text-xs text-[#80B2A3]">2026</span>
+</a>
+</nav>
+<!-- Filtros Rápidos en el Sidebar -->
+<div class="px-5 pt-6 pb-2 text-[11px] font-semibold uppercase tracking-wider text-[#7EAE9F]">
+          Filtros de estado
+        </div>
+<div class="px-3 space-y-1 text-xs">
+<div class="flex items-center justify-between px-3 py-1.5 rounded text-[#C7E0D8] hover:bg-[#116453] cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+<span>Prueba</span>
+</div>
+<span class="text-[#80B2A3] font-mono">18</span>
+</div>
+<div class="flex items-center justify-between px-3 py-1.5 rounded text-[#C7E0D8] hover:bg-[#116453] cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span>Activa</span>
+</div>
+<span class="text-[#80B2A3] font-mono">114</span>
+</div>
+<div class="flex items-center justify-between px-3 py-1.5 rounded text-[#C7E0D8] hover:bg-[#116453] cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-orange-400"></span>
+<span>Gracia</span>
+</div>
+<span class="text-[#80B2A3] font-mono">6</span>
+</div>
+<div class="flex items-center justify-between px-3 py-1.5 rounded text-[#C7E0D8] hover:bg-[#116453] cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-rose-400"></span>
+<span>Suspendida</span>
+</div>
+<span class="text-[#80B2A3] font-mono">4</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer de Sidebar: Operador -->
+<div class="p-3 border-t border-[#136B59] bg-[#093B30] flex items-center justify-between">
+<div class="flex items-center gap-2.5 overflow-hidden">
+<div class="w-7 h-7 rounded bg-[#147560] border border-[#1C8D74] flex items-center justify-center font-bold text-xs text-white">
+          MO
+        </div>
+<div class="overflow-hidden leading-tight">
+<div class="text-xs font-medium text-white truncate">soporte@mostry.com.ar</div>
+<div class="text-[10px] text-[#80B2A3]">Operador interno · v2.8 · 2026</div>
+</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-emerald-400" title="En línea"></span>
+</div>
+</aside>
+<!-- ============================================== -->
+<!-- CONTENIDO PRINCIPAL: DETALLE DE LA ESPIGA     -->
+<!-- ============================================== -->
+<div class="flex-1 flex flex-col h-screen overflow-y-auto custom-scroll relative">
+<!-- Topbar del Panel Interno -->
+<header class="h-16 px-8 bg-white border-b border-brand-border flex items-center justify-between shrink-0">
+<div class="flex items-center gap-3 text-sm">
+<a class="text-brand-muted hover:text-brand-text flex items-center gap-1 font-medium" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+          Tiendas
+        </a>
+<span class="text-brand-border font-light">/</span>
+<span class="font-semibold text-brand-text">Panadería La Espiga</span>
+<span class="text-xs font-mono text-brand-muted px-2 py-0.5 rounded bg-brand-canvas border border-brand-border">ID: #ESP-2026-44</span>
+</div>
+<!-- Referencia de Chips de Estado en el sistema -->
+<div class="flex items-center gap-3">
+<span class="text-xs text-brand-muted font-medium">Estados del sistema:</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-medium bg-status-prueba-bg text-status-prueba border border-status-prueba-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-prueba"></span>
+          Prueba
+        </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-medium bg-status-activa-bg text-status-activa border border-status-activa-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-activa"></span>
+          Activa
+        </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-medium bg-status-gracia-bg text-status-gracia border border-status-gracia-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-gracia"></span>
+          Gracia
+        </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-xs font-medium bg-status-suspendida-bg text-status-suspendida border border-status-suspendida-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-suspendida"></span>
+          Suspendida
+        </span>
+</div>
+</header>
+<!-- Área de Trabajo Principal (Fondo debajo del modal) -->
+<main class="p-8 space-y-6">
+<!-- Ficha Cabecera del Comercio -->
+<div class="bg-white rounded-lg p-6 borde-estricto flex items-start justify-between">
+<div class="flex items-start gap-4">
+<!-- Logo del local -->
+<div class="w-14 h-14 rounded-lg bg-brand-green flex items-center justify-center text-white shrink-0 border border-brand-green-dark">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M12 3v18m0-18c-3 0-5 2-5 5v13m5-18c3 0 5 2 5 5v13M7 8h10M7 13h10M7 18h10" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-2xl font-bold font-title text-brand-text">Panadería La Espiga</h1>
+<!-- Chip de Estado: Prueba -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-status-prueba-bg text-status-prueba border border-status-prueba-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-prueba"></span>
+                Prueba
+              </span>
+</div>
+<div class="flex items-center gap-4 mt-1.5 text-xs text-brand-muted">
+<a class="text-brand-green font-mono font-medium hover:underline flex items-center gap-1" href="#">
+                laespiga.mostry.com.ar
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<span>•</span>
+<span>Plan Mostry Barrio ($ 10.000 / mes)</span>
+<span>•</span>
+<span class="text-amber-800 font-medium">Quedan 3 días de prueba</span>
+</div>
+</div>
+</div>
+<!-- Acciones del Comercio en el Detalle -->
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded text-sm font-semibold border border-brand-brick-red text-brand-brick-red bg-white hover:bg-red-50 transition-colors" type="button">
+            Suspender
+          </button>
+<!-- Botón Principal en Coral #FF7A59 según design system -->
+<button class="px-4 py-2 rounded text-sm font-semibold bg-brand-coral hover:bg-brand-coral-hover text-white transition-colors" type="button">
+            Registrar pago
+          </button>
+</div>
+</div>
+<!-- Cuadrícula de 3 columnas de datos densos -->
+<div class="grid grid-cols-3 gap-6">
+<!-- Columna 1: Datos de titular y contacto -->
+<div class="space-y-6">
+<div class="bg-white rounded-lg p-5 borde-estricto">
+<div class="flex items-center justify-between pb-3 border-b border-brand-border-subtle">
+<h3 class="text-xs font-bold uppercase tracking-wider text-brand-text">Datos del comercio</h3>
+<span class="text-[11px] font-mono text-brand-muted">ALTA: 07/10/2026</span>
+</div>
+<dl class="mt-4 space-y-3.5 text-xs">
+<div>
+<dt class="text-brand-muted uppercase text-[10px] font-semibold tracking-wider">Titular</dt>
+<dd class="text-sm font-medium text-brand-text mt-0.5">Rosa Fernández</dd>
+</div>
+<div>
+<dt class="text-brand-muted uppercase text-[10px] font-semibold tracking-wider">Correo electrónico</dt>
+<dd class="text-sm font-mono text-brand-text mt-0.5">rosa@gmail.com</dd>
+</div>
+<div>
+<dt class="text-brand-muted uppercase text-[10px] font-semibold tracking-wider">WhatsApp de mostrador</dt>
+<dd class="text-sm font-mono text-brand-text mt-0.5">+54 9 11 4455-8821</dd>
+</div>
+<div>
+<dt class="text-brand-muted uppercase text-[10px] font-semibold tracking-wider">Dirección física</dt>
+<dd class="text-sm text-brand-text mt-0.5">Av. San Martín 1234, Barrio Norte</dd>
+</div>
+</dl>
+<div class="mt-5 p-3 rounded bg-amber-50 border border-amber-200 grid grid-cols-2 gap-2 text-center">
+<div>
+<div class="text-[10px] uppercase text-amber-700 font-semibold">Fecha de alta</div>
+<div class="text-xs font-mono font-bold text-amber-950 mt-0.5">07/10/2026</div>
+</div>
+<div class="border-l border-amber-200">
+<div class="text-[10px] uppercase text-amber-700 font-semibold">Vencimiento</div>
+<div class="text-xs font-mono font-bold text-amber-950 mt-0.5">17/10/2026</div>
+</div>
+</div>
+</div>
+<!-- Historial de Notas internas -->
+<div class="bg-white rounded-lg p-5 borde-estricto">
+<h3 class="text-xs font-bold uppercase tracking-wider text-brand-text pb-3 border-b border-brand-border-subtle">
+              Notas del equipo
+            </h3>
+<div class="mt-3 space-y-2 text-xs">
+<div class="p-2.5 rounded bg-brand-canvas border border-brand-border">
+<div class="flex justify-between text-[10px] text-brand-muted">
+<span class="font-semibold text-brand-green">Hernán G. (Operador)</span>
+<span>14/10/2026 11:20</span>
+</div>
+<p class="mt-1 text-brand-text leading-relaxed">
+                  Doña Rosa consultó por WhatsApp cómo cargar los encargos con seña. Quedó conforme.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Columna 2: Uso de plataforma y métricas -->
+<div class="space-y-6">
+<div class="bg-white rounded-lg p-5 borde-estricto">
+<div class="flex items-center justify-between pb-3 border-b border-brand-border-subtle">
+<h3 class="text-xs font-bold uppercase tracking-wider text-brand-text">Uso del local</h3>
+<span class="text-[11px] font-mono text-brand-muted">Octubre 2026</span>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="p-3 bg-brand-canvas rounded border border-brand-border">
+<div class="text-[10px] uppercase font-semibold text-brand-muted">Productos</div>
+<div class="text-xl font-bold font-title text-brand-green mt-0.5">24</div>
+<div class="text-[10px] text-brand-muted mt-0.5">19 con stock hoy</div>
+</div>
+<div class="p-3 bg-brand-canvas rounded border border-brand-border">
+<div class="text-[10px] uppercase font-semibold text-brand-muted">Pedidos mes</div>
+<div class="text-xl font-bold font-title text-brand-green mt-0.5">312</div>
+<div class="text-[10px] text-brand-muted mt-0.5">Promedio 22 / día</div>
+</div>
+</div>
+<dl class="mt-4 space-y-2.5 text-xs">
+<div class="flex justify-between py-1.5 border-b border-brand-border-subtle">
+<span class="text-brand-muted">Facturación registrada online:</span>
+<span class="font-mono font-bold text-brand-text">$ 1.240.000 ARS</span>
+</div>
+<div class="flex justify-between py-1.5 border-b border-brand-border-subtle">
+<span class="text-brand-muted">Clientes en libreta de fiados:</span>
+<span class="font-mono font-medium text-brand-text">6 ($ 47.500)</span>
+</div>
+<div class="flex justify-between py-1.5 border-b border-brand-border-subtle">
+<span class="text-brand-muted">Cierres de caja registrados:</span>
+<span class="font-mono font-medium text-brand-text">24 turnos</span>
+</div>
+<div class="flex justify-between py-1.5">
+<span class="text-brand-muted">Seguridad 2FA:</span>
+<span class="font-medium text-brand-green">Activada</span>
+</div>
+</dl>
+</div>
+</div>
+<!-- Columna 3: Historial de Pagos y Abono -->
+<div class="space-y-6">
+<div class="bg-white rounded-lg p-5 borde-estricto">
+<div class="flex items-center justify-between pb-3 border-b border-brand-border-subtle">
+<h3 class="text-xs font-bold uppercase tracking-wider text-brand-text">Abono y Cobranza</h3>
+<span class="text-[11px] font-mono text-brand-muted">$ 10.000 / mes</span>
+</div>
+<div class="mt-4 p-3 rounded bg-amber-50 border border-amber-200 text-xs">
+<div class="flex items-center justify-between font-semibold text-amber-900">
+<span>Período de prueba bonificado</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-200">Sin cargo</span>
+</div>
+<p class="text-[11px] text-amber-800 mt-1 leading-relaxed">
+                Periodo promocional del 07/10/2026 al 17/10/2026. A partir del 17/10 rige el cobro de la primera mensualidad de <strong>$ 10.000</strong>.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-brand-border-subtle text-xs space-y-2">
+<div class="flex justify-between">
+<span class="text-brand-muted">Alias de cobro Mostry:</span>
+<span class="font-mono font-bold text-brand-green">mostry.pagos</span>
+</div>
+<div class="flex justify-between">
+<span class="text-brand-muted">Razón Social:</span>
+<span class="text-brand-text">Mostry Soluciones SRL</span>
+</div>
+<div class="flex justify-between">
+<span class="text-brand-muted">CUIT:</span>
+<span class="font-mono text-brand-text">30-71829384-8</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- ============================================== -->
+<!-- MODAL: "Suspender La Espiga"                   -->
+<!-- ============================================== -->
+<!-- Backdrop oscuro con opacidad densa y estricta -->
+<div class="fixed inset-0 z-50 bg-[#1C1917]/70 flex items-center justify-center p-4">
+<!-- Diálogo del Modal (Ancho 520px, sin sombras flotantes difusas, borde 1px) -->
+<div aria-modal="true" class="w-full max-w-[520px] bg-white rounded-lg border border-[#D7CFC2] overflow-hidden" role="dialog">
+<!-- Header del Modal -->
+<div class="px-6 py-4 border-b border-brand-border flex items-center justify-between bg-white">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded bg-status-suspendida-bg border border-status-suspendida-border flex items-center justify-center text-brand-brick-red">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h2 class="font-title text-lg font-bold text-brand-text leading-tight">Suspender La Espiga</h2>
+<p class="text-xs text-brand-muted">Acción de control administrativo · Panadería y Confitería</p>
+</div>
+</div>
+<button class="w-7 h-7 rounded text-brand-muted hover:text-brand-text hover:bg-brand-canvas flex items-center justify-center border border-transparent hover:border-brand-border transition-colors" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Cuerpo del Modal -->
+<div class="p-6 space-y-5 bg-white">
+<!-- Aviso solicitado expresamente -->
+<div class="p-3.5 rounded bg-brand-canvas border border-brand-border flex items-start gap-3">
+<svg class="w-5 h-5 text-status-suspendida shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<div class="text-xs text-brand-text leading-relaxed">
+<span class="font-semibold text-brand-text">Consecuencia en mostrador y vidriera:</span><br/>
+            La tienda va a mostrar <span class="font-medium text-brand-green">Cerrada temporalmente</span> y el panel queda en solo lectura. No se borran datos.
+          </div>
+</div>
+<!-- Estado actual vs Estado resultante -->
+<div class="flex items-center justify-between p-3 rounded bg-white border border-brand-border text-xs">
+<div class="flex items-center gap-2">
+<span class="text-brand-muted">Estado actual:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-status-prueba-bg text-status-prueba border border-status-prueba-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-prueba"></span>
+              Prueba
+            </span>
+</div>
+<svg class="w-4 h-4 text-brand-muted" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<div class="flex items-center gap-2">
+<span class="text-brand-muted">Pasa a:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-status-suspendida-bg text-status-suspendida border border-status-suspendida-border">
+<span class="w-1.5 h-1.5 rounded-full bg-status-suspendida"></span>
+              Suspendida
+            </span>
+</div>
+</div>
+<!-- Formulario: Motivo de la suspensión (Obligatorio) -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<label class="block text-xs font-semibold text-brand-text uppercase tracking-wider" for="motivo-suspension">
+              Motivo de la suspensión <span class="text-brand-brick-red font-bold">*</span>
+</label>
+<span class="text-[11px] text-brand-brick-red font-medium">Campo obligatorio</span>
+</div>
+<!-- Selector de Categoría de Motivo -->
+<div class="space-y-2">
+<select class="w-full h-9 px-3 text-xs bg-brand-canvas border border-brand-border rounded text-brand-text focus:outline-none focus:border-brand-green focus:bg-white transition-colors" id="motivo-suspension">
+<option disabled="" value="">Elegí una causa administrativa...</option>
+<option selected="" value="mora">Falta de pago de mensualidad tras período de gracia</option>
+<option value="pedido-titular">Solicitud expresa del titular / Doña Rosa</option>
+<option value="inactividad">Inactividad prolongada sin pedidos ni caja abierta</option>
+<option value="incumplimiento">Uso indebido de la plataforma comercial</option>
+<option value="otro">Otro motivo administrativo</option>
+</select>
+</div>
+<!-- Detalle o Nota del Operador -->
+<div>
+<textarea class="w-full p-3 text-xs bg-brand-canvas border border-brand-border rounded text-brand-text focus:outline-none focus:border-brand-green focus:bg-white transition-colors placeholder:text-brand-muted resize-none leading-relaxed" placeholder="Describí los detalles de la suspensión (queda asentado en el historial interno con fecha y firma de operador)..." rows="3">Vencieron los 3 días de gracia del abono de octubre sin comprobante de transferencia bancaria enviado a soporte.</textarea>
+<p class="text-[11px] text-brand-muted mt-1.5">
+              Este motivo quedará asentado en el registro interno del operador y no es visible para el cliente final.
+            </p>
+</div>
+</div>
+<!-- Checkbox de confirmación -->
+<label class="flex items-start gap-2.5 cursor-pointer pt-1">
+<input checked="" class="mt-0.5 rounded border-brand-border text-brand-green focus:ring-0 w-3.5 h-3.5 accent-brand-green" type="checkbox"/>
+<span class="text-xs text-brand-text leading-tight">
+            Notificar automáticamente por WhatsApp al titular (+54 9 11 4455-8821) con las instrucciones para reactivar.
+          </span>
+</label>
+</div>
+<!-- Footer del Modal -->
+<div class="px-6 py-4 bg-brand-canvas border-t border-brand-border flex items-center justify-between">
+<button class="px-4 py-2 rounded text-xs font-semibold text-brand-muted hover:text-brand-text hover:bg-brand-border-subtle border border-brand-border bg-white transition-colors" type="button">
+          Cancelar
+        </button>
+<!-- Botón rojo ladrillo "Suspender" solicitado -->
+<button class="px-5 py-2 rounded text-xs font-bold bg-brand-brick-red hover:bg-brand-brick-red-hover text-white border border-[#9A3412] transition-colors flex items-center gap-1.5" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Suspender</span>
+</button>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.datos {
+  display: grid;
+  gap: var(--e-4);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  cursor: pointer;
+}
+.circulo {
+  transition: box-shadow var(--dur-corta) ease;
+}
+.cambiar {
+  color: var(--verde);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.logo:focus-within .circulo {
+  box-shadow: var(--foco);
+}

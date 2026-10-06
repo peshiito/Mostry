@@ -1,0 +1,9 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--e-4);
+  align-items: start;
+}
+.vacio {
+  color: var(--texto-2);
+}

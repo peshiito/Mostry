@@ -1,0 +1,16 @@
+meta {
+  name: Estado abierto-cerrado
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{api}}/panel/horarios/estado
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

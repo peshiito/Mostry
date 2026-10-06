@@ -1,0 +1,23 @@
+.alias {
+  display: grid;
+  gap: var(--e-3);
+}
+.dato {
+  display: grid;
+}
+.etiqueta {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.valor {
+  font-family: var(--fuente-mono);
+  font-size: var(--t-xl);
+  font-weight: 600;
+}
+.nota {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

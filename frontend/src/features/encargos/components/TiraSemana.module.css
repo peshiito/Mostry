@@ -1,0 +1,40 @@
+.tira {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.dia {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: 72px;
+  padding: var(--e-2) 0;
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+  cursor: pointer;
+}
+.dia[aria-pressed='true'] {
+  border-color: var(--verde);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.nombre {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.numero {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+  font-weight: 700;
+}
+.punto,
+.sinPunto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.punto {
+  background: var(--coral);
+}

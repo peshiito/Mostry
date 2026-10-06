@@ -1,0 +1,17 @@
+{
+  "tiendas": {
+    "total": 4,
+    "porEstado": {
+      "prueba": 2,
+      "activa": 2,
+      "gracia": 0,
+      "suspendida": 0
+    },
+    "nuevas30d": 4
+  },
+  "pedidos30d": 8,
+  "cobradoMes": {
+    "total": 1000000,
+    "pagos": 1
+  }
+}

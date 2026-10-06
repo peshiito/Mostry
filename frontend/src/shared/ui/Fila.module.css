@@ -1,0 +1,59 @@
+.fila {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  width: 100%;
+  min-height: 64px;
+  padding: var(--e-3) var(--e-4);
+  border: 0;
+  border-bottom: var(--borde);
+  background: var(--papel);
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+}
+.fila:last-child {
+  border-bottom: 0;
+}
+.tocable {
+  cursor: pointer;
+  transition: background-color var(--dur-toque) ease;
+}
+.tocable:active {
+  background: var(--lona);
+}
+@media (hover: hover) and (pointer: fine) {
+  .tocable:hover {
+    background: var(--fila-hover);
+  }
+}
+.inicio {
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+.textos {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+.titulo {
+  font-weight: 600;
+}
+.detalle {
+  overflow: hidden;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  text-overflow: ellipsis;
+}
+.fin {
+  flex: none;
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  text-align: right;
+}
+.flecha {
+  flex: none;
+  color: var(--texto-3);
+}

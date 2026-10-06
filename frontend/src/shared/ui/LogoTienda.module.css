@@ -1,0 +1,24 @@
+.logo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--tam);
+  height: var(--tam);
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--fondo-logo);
+  color: var(--verde);
+}
+.mostaza {
+  box-shadow: 0 0 0 3px var(--mostaza);
+}
+.claro {
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 0.6);
+}
+/* El cuadrado inscripto en el círculo mide ~71 %: con 76 % el logo usa casi
+   todo el espacio y ninguna punta queda cortada. */
+.imagen {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}

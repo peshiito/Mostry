@@ -9,8 +9,6 @@ const columnas = [
   'nombre',
   'esAdmin',
   'emailVerificadoEn',
-  'totpSecretoCifrado',
-  'totpActivadoEn',
   'activo',
 ] as const;
 

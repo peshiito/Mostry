@@ -1,0 +1,51 @@
+.ticket {
+  display: grid;
+  gap: var(--e-2);
+}
+.titulo {
+  color: var(--texto-2);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.filas {
+  display: grid;
+  gap: var(--e-2);
+  margin: 0;
+}
+.fila {
+  display: flex;
+  align-items: baseline;
+  gap: var(--e-2);
+}
+.concepto {
+  display: grid;
+}
+.detalle {
+  color: var(--texto-3);
+  font-size: var(--t-sm);
+}
+.puntos {
+  flex: 1;
+  min-width: var(--e-4);
+  border-bottom: 2px dotted var(--linea-fuerte);
+}
+.monto {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.total {
+  padding-top: var(--e-2);
+  border-top: 1px solid var(--linea);
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+}
+.ingreso {
+  color: var(--ok);
+}
+.egreso {
+  color: var(--ladrillo);
+}

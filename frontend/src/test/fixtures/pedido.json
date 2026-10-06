@@ -1,0 +1,33 @@
+{
+  "id": 8,
+  "numero": 8,
+  "estado": "en_preparacion",
+  "tipo": "inmediato",
+  "clienteNombre": "Lucía Gómez",
+  "clienteWhatsapp": "5491155551234",
+  "entrega": "retiro",
+  "direccion": null,
+  "linkMaps": null,
+  "fechaEncargo": null,
+  "subtotal": 35000,
+  "costoEnvio": 0,
+  "total": 35000,
+  "sena": 0,
+  "venceComprobanteEn": null,
+  "rechazos": 0,
+  "motivoCancelacion": null,
+  "canceladoEn": null,
+  "entregadoEn": null,
+  "creadoEn": "2026-10-05T14:03:32.000Z",
+  "items": [
+    {
+      "productoId": 1,
+      "nombre": "Medialuna de manteca",
+      "precioUnitario": 35000,
+      "cantidad": 1,
+      "subtotal": 35000
+    }
+  ],
+  "seguimiento": "http://dona-rosa.mostry.localhost:5173/pedido/ioJ4Hi8LGZngRXn7hDXu3vkTIQxiNbaLtXPKcoSXV5E",
+  "whatsapp": "https://wa.me/5491155551234?text=%C2%A1Hola%20Luc%C3%ADa%20G%C3%B3mez!%20Te%20escribimos%20de%20Facturer%C3%ADa%20Do%C3%B1a%20Rosa%3A%20estamos%20preparando%20tu%20pedido%20%238.%0A%0ASeguilo%20ac%C3%A1%3A%20http%3A%2F%2Fdona-rosa.mostry.localhost%3A5173%2Fpedido%2FioJ4Hi8LGZngRXn7hDXu3vkTIQxiNbaLtXPKcoSXV5E"
+}

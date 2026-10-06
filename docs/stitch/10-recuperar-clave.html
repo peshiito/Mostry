@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-dim" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry · Recuperar contraseña (Paso 2)</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#004134",
+            "primary-container": "#0e5a4a",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#acf0db",
+            "secondary": "#a7391e",
+            "secondary-container": "#FF7A59",
+            "surface": "#fdf9f2",
+            "surface-dim": "#dddad3",
+            "surface-bright": "#fdf9f2",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f7f3ec",
+            "surface-container": "#f1ede6",
+            "surface-container-high": "#ebe8e1",
+            "surface-container-highest": "#e6e2db",
+            "outline": "#6f7975",
+            "outline-variant": "#bfc9c4",
+            "on-surface": "#1c1c18",
+            "on-surface-variant": "#3f4945",
+            "error": "#ba1a1a"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "headline": ["Rubik", "sans-serif"],
+            "body": ["Work Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+    }
+    h1, h2, h3, .font-heading {
+      font-family: 'Rubik', sans-serif;
+    }
+  </style>
+</head>
+<body class="text-on-surface antialiased flex justify-center min-h-screen bg-surface">
+<!-- Mobile Viewport: 390px estricto -->
+<main class="min-h-screen bg-surface-container-low flex flex-col border-[#E4DED3] justify-between w-full">
+<!-- Contenido superior -->
+<div class="flex flex-col">
+<!-- Top Bar de Navegación -->
+<header class="px-4 h-14 flex items-center justify-between border-b border-[#E4DED3] bg-surface-container-low">
+<button aria-label="Volver" class="w-9 h-9 rounded-lg border border-[#E4DED3] bg-surface-container-lowest flex items-center justify-center text-primary active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<!-- Logo Mostry minimalista y distintivo de barrio -->
+<div class="flex items-center gap-1.5">
+<div class="w-6 h-6 bg-primary-container rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]">storefront</span>
+</div>
+<span class="font-heading font-bold text-[18px] text-primary tracking-tight">mostry</span>
+</div>
+<!-- Indicador de paso actual -->
+<span class="text-[11px] font-semibold text-primary uppercase tracking-wider bg-surface-container-lowest border border-[#E4DED3] px-2 py-0.5 rounded">PASO 2 DE 4</span>
+</header>
+<!-- Barra de progreso de los 4 pasos -->
+<div class="px-4 pt-4 pb-2">
+<div class="grid grid-cols-4 gap-1.5">
+<!-- Paso 1: Completado -->
+<div class="flex flex-col gap-1">
+<div class="h-1 bg-primary-container rounded-full"></div>
+<span class="text-[10px] font-semibold text-primary truncate">1. Email</span>
+</div>
+<!-- Paso 2: Activo -->
+<div class="flex flex-col gap-1">
+<div class="h-1 bg-primary-container rounded-full"></div>
+<span class="text-[10px] font-bold text-primary truncate">2. Código email</span>
+</div>
+<!-- Paso 3: Próximo -->
+<div class="flex flex-col gap-1">
+<div class="h-1 bg-[#D9D3C7] rounded-full"></div>
+<span class="text-[10px] font-medium text-on-surface-variant truncate">3. App auth</span>
+</div>
+<!-- Paso 4: Próximo -->
+<div class="flex flex-col gap-1">
+<div class="h-1 bg-[#D9D3C7] rounded-full"></div>
+<span class="text-[10px] font-medium text-on-surface-variant truncate">4. Nueva clave</span>
+</div>
+</div>
+</div>
+<!-- Tarjeta principal de acción -->
+<section class="p-4">
+<div class="bg-surface-container-lowest border border-[#E4DED3] rounded-xl p-5 flex flex-col items-center text-center">
+<!-- Ícono de buzón/email con badge sutil -->
+<div class="w-12 h-12 rounded-xl bg-surface-container-low border border-[#E4DED3] flex items-center justify-center text-primary-container mb-3.5">
+<span class="material-symbols-outlined text-[26px]">mail</span>
+</div>
+<!-- Título y bajada en español rioplatense -->
+<h1 class="font-heading font-bold text-[22px] leading-tight text-on-surface mb-2">
+            Revisá tu correo
+          </h1>
+<p class="text-[13px] leading-relaxed text-on-surface-variant mb-6">
+            Si el email está registrado, te llegó un código de 6 dígitos para continuar.
+          </p>
+<!-- Label de casillas -->
+<span class="text-[11px] font-bold uppercase tracking-wider text-outline mb-2.5 self-center">
+            Ingresá el código de 6 dígitos
+          </span>
+<!-- 6 Casillas de verificación numéricas -->
+<div class="grid grid-cols-6 gap-1.5 w-full mb-6">
+<div class="h-12 border-2 border-primary-container rounded-lg bg-surface-container-lowest flex items-center justify-center font-heading font-bold text-[20px] text-primary">
+              4
+            </div>
+<div class="h-12 border-2 border-primary-container rounded-lg bg-surface-container-lowest flex items-center justify-center font-heading font-bold text-[20px] text-primary">
+              9
+            </div>
+<div class="h-12 border-2 border-primary-container rounded-lg bg-surface-container-lowest flex items-center justify-center font-heading font-bold text-[20px] text-primary">
+              2
+            </div>
+<div class="h-12 border border-[#E4DED3] rounded-lg bg-surface-container-low flex items-center justify-center font-heading text-[18px] text-outline">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<div class="h-12 border border-[#E4DED3] rounded-lg bg-surface-container-low flex items-center justify-center font-heading text-[18px] text-outline">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+<div class="h-12 border border-[#E4DED3] rounded-lg bg-surface-container-low flex items-center justify-center font-heading text-[18px] text-outline">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-outline"></span>
+</div>
+</div>
+<!-- Botón coral 'Seguir' (único con color coral de acción principal) -->
+<button class="w-full bg-secondary-container hover:bg-[#F26B49] active:scale-[0.99] text-white font-heading font-bold text-[16px] py-3.5 px-4 rounded-lg flex items-center justify-center gap-2 border border-[#E4DED3] transition-all" type="button">
+<span>Seguir</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Reenvío de código y cambio de email -->
+<div class="mt-4 pt-4 border-t border-[#E4DED3]/70 w-full flex flex-col gap-2">
+<p class="text-[12px] text-on-surface-variant">
+              ¿No te llegó nada? <span class="font-semibold text-primary">Reenviar código (en 0:48)</span>
+</p>
+<a class="text-[12px] font-semibold text-primary hover:underline" href="#probar-otro-correo">
+              Probar con otro correo electrónico
+            </a>
+</div>
+</div>
+<!-- Tip de seguridad y aviso de spam -->
+<div class="mt-3 bg-surface-container-high border border-[#E4DED3] rounded-xl p-3.5 flex items-start gap-2.5 text-left">
+<span class="material-symbols-outlined text-outline text-[18px] mt-0.5 shrink-0">info</span>
+<p class="text-[12px] leading-relaxed text-on-surface-variant">
+            Revisá también tu carpeta de correo no deseado o spam. El remitente oficial es <span class="font-semibold text-on-surface">seguridad@mostry.com.ar</span>.
+          </p>
+</div>
+</section>
+</div>
+<!-- Footer minimalista -->
+<footer class="p-4 text-center border-t border-[#E4DED3]">
+<p class="text-[11px] text-outline">
+        Mostry · 2026 · Hecho para comercios de barrio
+      </p>
+<div class="w-32 h-1 bg-outline/30 rounded-full mx-auto mt-3"></div></footer>
+</main>
+</body>
+</html>

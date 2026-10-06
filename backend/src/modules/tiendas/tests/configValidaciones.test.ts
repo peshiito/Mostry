@@ -16,13 +16,15 @@ describe('Mi tienda: validaciones', () => {
       { whatsapp: '15 2345 6789' },
       {},
     ]) {
-      await p.patch('/tienda/config', malo).expect(400);
+      await p.patch('/panel/tienda/config', malo).expect(400);
     }
   });
 
   it('no deja apagar envío y retiro a la vez', async () => {
-    await p.patch('/tienda/config', { aceptaEnvio: false }).expect(200);
-    const res = await p.patch('/tienda/config', { aceptaRetiro: false }).expect(400);
+    await p.patch('/panel/tienda/config', { aceptaEnvio: false }).expect(200);
+    const res = await p
+      .patch('/panel/tienda/config', { aceptaRetiro: false })
+      .expect(400);
     expect(res.body.error.codigo).toBe('entrega_requerida');
   });
 });

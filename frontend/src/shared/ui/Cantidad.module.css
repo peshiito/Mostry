@@ -1,0 +1,26 @@
+.cantidad {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.boton {
+  display: grid;
+  place-items: center;
+  width: var(--toque);
+  height: var(--toque);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.boton:disabled {
+  color: var(--linea-fuerte);
+  cursor: not-allowed;
+}
+.valor {
+  min-width: 32px;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,27 @@
+.estado {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-3);
+  padding: var(--e-6) var(--e-4);
+  text-align: center;
+}
+.circulo {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.error {
+  background: var(--ladrillo-claro);
+  color: var(--ladrillo);
+}
+.titulo {
+  font-size: var(--t-xl);
+}
+.texto {
+  max-width: 32ch;
+  color: var(--texto-2);
+}

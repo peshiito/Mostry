@@ -1,0 +1,49 @@
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: var(--radio-chico);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.mayus {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.verde {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.ok {
+  background: var(--ok-claro);
+  color: var(--ok);
+}
+.mostaza {
+  background: var(--mostaza-claro);
+  color: var(--mostaza-texto);
+}
+.ladrillo {
+  background: var(--ladrillo-claro);
+  color: var(--ladrillo);
+}
+.coral {
+  background: var(--coral-claro);
+  color: var(--ladrillo-texto);
+}
+.gris {
+  background: var(--lona-oscura);
+  color: var(--texto-2);
+}
+.sobreVerde {
+  background: var(--tinte-sobre-verde);
+  color: var(--sobre-verde);
+}

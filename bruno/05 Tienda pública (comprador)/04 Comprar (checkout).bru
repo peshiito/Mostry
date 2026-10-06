@@ -1,0 +1,35 @@
+meta {
+  name: Comprar (checkout)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{api}}/publico/pedidos
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+}
+
+body:json {
+  {
+    "tipo": "inmediato",
+    "clienteNombre": "Ana Pérez",
+    "clienteWhatsapp": "11 2345-6789",
+    "entrega": "retiro",
+    "items": [
+      {
+        "productoId": 1,
+        "cantidad": 2
+      }
+    ],
+    "totalEsperado": 70000
+  }
+}
+
+docs {
+  Si totalEsperado no coincide con el precio real, 409 precio_cambio con el total correcto. Guardá el token en tokenPedido.
+}

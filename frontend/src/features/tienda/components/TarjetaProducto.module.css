@@ -1,0 +1,48 @@
+.tarjeta {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 168px;
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+  overflow: hidden;
+}
+.link {
+  display: grid;
+  gap: 4px;
+  padding-bottom: var(--e-2);
+  color: inherit;
+  text-decoration: none;
+}
+.foto {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.nombre {
+  padding: 0 var(--e-3);
+  font-size: var(--t-md);
+  font-weight: 600;
+}
+.desc {
+  padding: 0 var(--e-3);
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.sello {
+  position: absolute;
+  top: var(--e-2);
+  left: var(--e-2);
+}
+.pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--e-2) var(--e-3) var(--e-3);
+  border-top: var(--borde);
+}

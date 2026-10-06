@@ -1,0 +1,45 @@
+.header {
+  background: var(--verde);
+  color: var(--sobre-verde);
+  padding: var(--e-2) var(--e-4) var(--e-4);
+}
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2);
+}
+.dominio {
+  color: var(--sobre-verde-2);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}
+.titulo {
+  flex: 1;
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-4);
+  margin-top: var(--e-3);
+}
+.textos {
+  display: grid;
+  gap: 2px;
+}
+.nombreFila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-2);
+}
+.nombre {
+  font-size: var(--t-3xl);
+  font-weight: 700;
+}
+.frase {
+  color: var(--sobre-verde-2);
+}

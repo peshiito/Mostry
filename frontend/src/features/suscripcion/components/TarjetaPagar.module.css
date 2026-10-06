@@ -1,0 +1,14 @@
+.tarjeta {
+  display: grid;
+  gap: var(--e-3);
+}
+.precio {
+  display: flex;
+  align-items: baseline;
+  gap: var(--e-2);
+  color: var(--texto-2);
+}
+.titular {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostry · Tu negocio, online en una tarde</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Work+Sans:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            sans: ['Work Sans', 'sans-serif']
+          },
+          colors: {
+            verde: '#0E5A4A',
+            'verde-dark': '#083B30',
+            'verde-light': '#147560',
+            coral: '#FF7A59',
+            'coral-hover': '#E86646',
+            lona: '#F7F3EC',
+            'lona-card': '#FFFFFF',
+            'lona-dim': '#EFE9DE',
+            borde: '#D8D1C5',
+            'texto-principal': '#1A2E26',
+            'texto-secundario': '#52665D',
+            amarillo: '#FBE8A6'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .feston-toldo {
+      background-image: radial-gradient(circle at 12px -4px, transparent 12px, #0E5A4A 13px);
+      background-size: 24px 16px;
+      background-repeat: repeat-x;
+      height: 16px;
+    }
+    .feston-footer {
+      background-image: radial-gradient(circle at 12px 16px, #0E5A4A 12px, transparent 13px);
+      background-size: 24px 16px;
+      background-repeat: repeat-x;
+      height: 16px;
+    }
+    .raya-toldo {
+      background: repeating-linear-gradient(90deg, #0E5A4A, #0E5A4A 32px, #126D5A 32px, #126D5A 64px);
+    }
+  </style>
+</head>
+<body class="bg-lona text-texto-principal font-sans antialiased min-w-[1280px]">
+
+  <!-- HEADER CON TOLDO Y FESTÓN -->
+  <header class="w-full relative z-30">
+    <div class="raya-toldo text-white border-b border-verde-dark">
+      <div class="max-w-[1200px] mx-auto px-8 py-5 flex items-center justify-between">
+        
+        <!-- Logo toldo Mostry -->
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 bg-white rounded-lg border border-verde-dark flex items-center justify-center text-verde shadow-none">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0E5A4A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <path d="M3 9h18"/>
+              <path d="M7 13v5"/>
+              <path d="M12 13v5"/>
+              <path d="M17 13v5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-rubik text-2xl font-bold tracking-tight text-white leading-none">mostry</div>
+            <div class="text-[12px] tracking-wide text-emerald-100 font-medium mt-0.5">Vidriera y catálogo para comercios de barrio</div>
+          </div>
+        </div>
+
+        <!-- Acceso directo -->
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2 bg-verde-dark/60 border border-emerald-700/50 px-3.5 py-1.5 rounded-md text-xs font-medium text-emerald-100">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            Sin comisiones por venta
+          </div>
+          <a href="#precio" class="text-sm font-semibold text-white hover:text-emerald-100 px-3 py-1.5 border border-white/30 rounded-md transition-colors">
+            Ver planes
+          </a>
+        </div>
+
+      </div>
+    </div>
+    <!-- Festón ondulado inferior del toldo -->
+    <div class="feston-toldo w-full"></div>
+  </header>
+
+  <!-- HERO SECTION (Tu negocio, online en una tarde) -->
+  <section class="max-w-[1200px] mx-auto px-8 pt-14 pb-20">
+    <div class="grid grid-cols-12 gap-10 items-center">
+      
+      <!-- Columna izquierda: Propuesta de valor -->
+      <div class="col-span-7 pr-4">
+        
+        <div class="inline-flex items-center gap-2 bg-amarillo border border-borde px-3 py-1 rounded text-xs font-semibold text-verde-dark tracking-wide uppercase mb-5 font-rubik">
+          <span class="material-symbols-outlined text-[16px]">storefront</span>
+          Hecho para panaderías, almacenes y verdulerías
+        </div>
+
+        <h1 class="font-rubik text-5xl font-extrabold tracking-tight leading-[1.12] text-verde text-balance">
+          Tu negocio, online en una tarde.
+        </h1>
+
+        <p class="mt-6 text-lg text-texto-secundario leading-relaxed max-w-xl">
+          Creá tu vidriera digital con tus productos, precios del día y alias para cobrar sin intermediarios. Tus clientes te piden directo al WhatsApp sin dar vueltas ni pagar comisiones usureras.
+        </p>
+
+        <!-- CTA Principal Coral -->
+        <div class="mt-8 flex items-center gap-4">
+          <a href="#probar" class="inline-flex items-center justify-center gap-2 bg-coral hover:bg-coral-hover text-white font-rubik font-semibold text-lg px-8 py-4 rounded-lg border border-[#E05B3A] transition-colors">
+            Probalo 10 días gratis
+            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+          </a>
+          <span class="text-xs text-texto-secundario leading-tight max-w-[160px]">
+            Sin tarjeta de crédito.<br>Activás en 15 minutos.
+          </span>
+        </div>
+
+        <!-- Indicadores de confianza de barrio -->
+        <div class="mt-10 pt-8 border-t border-borde grid grid-cols-3 gap-6">
+          <div>
+            <div class="font-rubik text-2xl font-bold text-verde">100% tuyo</div>
+            <div class="text-xs text-texto-secundario mt-0.5">El cliente te paga a tu cuenta bancaria o alias.</div>
+          </div>
+          <div>
+            <div class="font-rubik text-2xl font-bold text-verde">0% comisión</div>
+            <div class="text-xs text-texto-secundario mt-0.5">Toda la ganancia queda en tu mostrador.</div>
+          </div>
+          <div>
+            <div class="font-rubik text-2xl font-bold text-verde">Por WhatsApp</div>
+            <div class="text-xs text-texto-secundario mt-0.5">El pedido te llega armado y prolijo al celular.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Columna derecha: Mockup fiel de La Espiga (mobile) -->
+      <div class="col-span-5 flex justify-center">
+        <div class="relative w-[340px] bg-white rounded-3xl border-4 border-verde p-3 shadow-none">
+          <!-- Speaker y notch minimalista -->
+          <div class="w-24 h-4 bg-verde/15 mx-auto rounded-full mb-3 flex items-center justify-center">
+            <div class="w-8 h-1 bg-verde/40 rounded-full"></div>
+          </div>
+
+          <!-- Pantalla celular: Réplica exacta de La Espiga -->
+          <div class="rounded-2xl border border-borde overflow-hidden bg-lona text-texto-principal text-left text-xs">
+            
+            <!-- Header Tienda La Espiga -->
+            <div class="bg-verde text-white p-3">
+              <div class="text-[10px] uppercase font-bold tracking-wider opacity-80 text-center">Panadería & Confitería</div>
+              <div class="text-[11px] font-medium text-emerald-100 text-center">laespiga.mostry.com.ar</div>
+              
+              <div class="mt-3 flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-verde shrink-0 border border-emerald-900/20">
+                  <span class="material-symbols-outlined text-[20px]">bakery_dining</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span class="font-rubik font-bold text-sm text-white truncate">La Espiga</span>
+                    <span class="text-[9px] bg-emerald-700/80 px-1.5 py-0.2 rounded font-semibold text-emerald-200 uppercase">Abierto</span>
+                  </div>
+                  <div class="text-[10px] text-emerald-100/90 truncate">Cierra 20:30 hs · Doña Rosa</div>
+                </div>
+              </div>
+
+              <!-- Cartel alias MP -->
+              <div class="mt-2.5 bg-verde-dark/80 border border-emerald-700/60 rounded px-2 py-1 flex items-center justify-between text-[10px]">
+                <div class="font-mono text-emerald-200">Alias MP: <strong>laespiga.mp</strong></div>
+                <div class="text-[9px] text-emerald-300">Cobro en caja</div>
+              </div>
+            </div>
+
+            <!-- Festón del celular -->
+            <div class="feston-toldo w-full scale-y-75 origin-top"></div>
+
+            <!-- Contenido Tienda La Espiga -->
+            <div class="p-3 space-y-3 max-h-[360px] overflow-y-hidden">
+              
+              <!-- Banner Promo del día -->
+              <div class="bg-amarillo border border-amber-300/80 rounded-lg p-2 relative">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="text-[9px] font-bold bg-amber-400/60 px-1 py-0.5 rounded text-amber-950 font-rubik">PROMO MARTES</span>
+                    <div class="font-rubik font-bold text-xs mt-1 text-amber-950">¡Docena surtida!</div>
+                    <div class="text-[10px] text-amber-900">Medialunas recién horneadas.</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-rubik font-extrabold text-sm text-verde">$ 6.500</div>
+                    <div class="text-[9px] line-through text-amber-800">$ 7.800</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rubros -->
+              <div class="grid grid-cols-4 gap-1 text-center">
+                <div class="bg-verde text-white p-1.5 rounded border border-verde">
+                  <span class="material-symbols-outlined text-[14px]">croissant</span>
+                  <div class="text-[9px] font-medium leading-none mt-1">Facturas</div>
+                </div>
+                <div class="bg-white text-texto-principal p-1.5 rounded border border-borde">
+                  <span class="material-symbols-outlined text-[14px]">bread</span>
+                  <div class="text-[9px] font-medium leading-none mt-1">Panes</div>
+                </div>
+                <div class="bg-white text-texto-principal p-1.5 rounded border border-borde">
+                  <span class="material-symbols-outlined text-[14px]">cake</span>
+                  <div class="text-[9px] font-medium leading-none mt-1">Tortas</div>
+                </div>
+                <div class="bg-white text-texto-principal p-1.5 rounded border border-borde">
+                  <span class="material-symbols-outlined text-[14px]">lunch_dining</span>
+                  <div class="text-[9px] font-medium leading-none mt-1">Salados</div>
+                </div>
+              </div>
+
+              <!-- Producto destacado -->
+              <div class="bg-white border border-borde rounded-lg p-2 flex gap-2 items-center">
+                <div class="w-12 h-12 bg-stone-100 rounded border border-borde flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-stone-500 text-xl">bakery_dining</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-rubik font-bold text-xs truncate">Medialuna de manteca</div>
+                  <div class="text-[10px] text-texto-secundario">Triple baño de almíbar suave</div>
+                  <div class="font-rubik font-bold text-verde text-xs mt-0.5">$ 700</div>
+                </div>
+                <div class="bg-verde text-white w-6 h-6 rounded flex items-center justify-center font-bold text-xs">+</div>
+              </div>
+
+              <!-- Producto 2 -->
+              <div class="bg-white border border-borde rounded-lg p-2 flex gap-2 items-center">
+                <div class="w-12 h-12 bg-stone-100 rounded border border-borde flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-stone-500 text-xl">lunch_dining</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-rubik font-bold text-xs truncate">Pan de campo (1 kg)</div>
+                  <div class="text-[10px] text-texto-secundario">Corteza crocante al horno</div>
+                  <div class="font-rubik font-bold text-verde text-xs mt-0.5">$ 3.500</div>
+                </div>
+                <div class="bg-verde text-white w-6 h-6 rounded flex items-center justify-center font-bold text-xs">+</div>
+              </div>
+
+              <!-- Barra flotante de pedido (La tienda NO tiene tabbar inferior ni menú hamburguesa) -->
+              <div class="bg-coral text-white rounded-lg p-2 flex items-center justify-between text-xs font-semibold">
+                <span>Ver mi pedido (2 prod.)</span>
+                <span class="font-rubik font-bold">$ 8.450 →</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Pie del marco -->
+          <div class="text-center mt-2">
+            <span class="text-[10px] font-mono text-verde font-semibold tracking-wider">EJEMPLO REAL: LA ESPIGA</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EL PROBLEMA: LA SITUACIÓN ACTUAL DEL COMERCIO DE BARRIO -->
+  <section class="border-y border-borde bg-white py-16">
+    <div class="max-w-[1200px] mx-auto px-8">
+      
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-bold text-verde font-rubik uppercase tracking-wider">El problema real</span>
+        <h2 class="font-rubik text-3xl font-extrabold text-texto-principal mt-1">
+          Las apps de delivery te sacan hasta el 35% y armar una web propia sale una fortuna.
+        </h2>
+        <p class="text-texto-secundario mt-3">
+          Tener presencia digital no tiene por qué comerse tu margen del mes ni obligarte a contratar un programador cada vez que cambiás el kilo de pan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6">
+        
+        <div class="bg-lona border border-borde p-6 rounded-xl">
+          <div class="w-10 h-10 rounded-lg bg-red-100 border border-red-200 flex items-center justify-center text-red-700 font-bold mb-4">
+            <span class="material-symbols-outlined text-[22px]">percent</span>
+          </div>
+          <h3 class="font-rubik text-lg font-bold text-texto-principal">Comisiones que te ahogan</h3>
+          <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+            Las aplicaciones grandes te cobran porcentajes altísimos sobre cada venta y retienen tu dinero durante semanas. Trabajás para ellos, no para vos.
+          </p>
+        </div>
+
+        <div class="bg-lona border border-borde p-6 rounded-xl">
+          <div class="w-10 h-10 rounded-lg bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-900 font-bold mb-4">
+            <span class="material-symbols-outlined text-[22px]">chat</span>
+          </div>
+          <h3 class="font-rubik text-lg font-bold text-texto-principal">Caos de mensajes de WhatsApp</h3>
+          <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+            Fotos borrosas de pizarras, audios de dos minutos y clientes preguntando diez veces qué sabores te quedan a las 11 de la mañana.
+          </p>
+        </div>
+
+        <div class="bg-lona border border-borde p-6 rounded-xl">
+          <div class="w-10 h-10 rounded-lg bg-stone-200 border border-stone-300 flex items-center justify-center text-stone-800 font-bold mb-4">
+            <span class="material-symbols-outlined text-[22px]">code_off</span>
+          </div>
+          <h3 class="font-rubik text-lg font-bold text-texto-principal">Plataformas pensadas para gigantes</h3>
+          <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+            Sistemas complicadísimos de e-commerce con carritos pesados, configuraciones en inglés y costos fijos imposibles para un almacén de barrio.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4 BENEFICIOS PRINCIPALES -->
+  <section class="max-w-[1200px] mx-auto px-8 py-20">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <span class="text-xs font-bold text-verde font-rubik uppercase tracking-wider">Beneficios pensados para vos</span>
+      <h2 class="font-rubik text-3xl font-extrabold text-verde mt-1">
+        Todo resuelto como en el mostrador
+      </h2>
+      <p class="text-texto-secundario mt-2">
+        Simple para doña Rosa, ágil para el cliente que viaja en el colectivo y listo para vender hoy mismo.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-4 gap-6">
+      
+      <!-- Beneficio 1 -->
+      <div class="bg-white border border-borde rounded-xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-emerald-50 border border-verde/30 flex items-center justify-center text-verde mb-4">
+            <span class="material-symbols-outlined text-2xl">timer</span>
+          </div>
+          <h3 class="font-rubik text-lg font-bold text-texto-principal">Listo en una tarde</h3>
+          <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+            Cargás tus productos desde el celular mientras atendés. Sin configuraciones técnicas, hosting ni instalaciones raras.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-borde text-xs font-semibold text-verde">
+          Tu enlace propio: negocio.mostry.com.ar
+        </div>
+      </div>
+
+      <!-- Beneficio 2 -->
+      <div class="bg-white border border-borde rounded-xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-emerald-50 border border-verde/30 flex items-center justify-center text-verde mb-4">
+            <span class="material-symbols-outlined text-2xl">payments</span>
+          </div>
+          <h3 class="font-rubik text-lg font-bold text-texto-principal">Cobro directo a tu alias</h3>
+          <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+            Tus clientes te transfieren directamente a tu Mercado Pago o banco. El dinero te entra al segundo, sin comisiones de Mostry.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-borde text-xs font-semibold text-verde">
+          0 pesos de retención
+        </div>
+      </div>
+
+      <!-- Beneficio 3 -->
+      <div class="bg-white border border-borde rounded-xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-emerald-50 border border-verde/30 flex items-center justify-center text-verde mb-4">
+            <span class="material-symbols-outlined text-2xl">edit_note</span>
+          </div>
+          <h3 class="font-rubik text-lg font-bold text-texto-principal">Precios y stock al día</h3>
+          <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+            ¿Aumentó la harina o se terminó la cremona? Cambiás precios o pausás productos con un toque de pantalla en 5 segundos.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-borde text-xs font-semibold text-verde">
+          Actualización instantánea
+        </div>
+      </div>
+
+      <!-- Beneficio 4 -->
+      <div class="bg-white border border-borde rounded-xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-lg bg-emerald-50 border border-verde/30 flex items-center justify-center text-verde mb-4">
+            <span class="material-symbols-outlined text-2xl">send</span>
+          </div>
+          <h3 class="font-rubik text-lg font-bold text-texto-principal">Pedidos claros por WhatsApp</h3>
+          <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+            El cliente arma su canasta y te manda un mensaje de texto formateado con detalle, total exacto y dirección de entrega.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-borde text-xs font-semibold text-verde">
+          Cero confusiones por mensaje
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN COMPARATIVA DE PRECIO: $ 10.000 vs $ 200.000 -->
+  <section id="precio" class="bg-white border-y border-borde py-20">
+    <div class="max-w-[1200px] mx-auto px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-bold text-verde font-rubik uppercase tracking-wider">Sin letras chicas ni sorpresas</span>
+        <h2 class="font-rubik text-3xl font-extrabold text-texto-principal mt-1">
+          Un precio claro y accesible para cualquier comercio
+        </h2>
+        <p class="text-texto-secundario mt-2">
+          Compará lo que sale armar una web tradicional versus empezar hoy con Mostry.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-12 gap-8 items-stretch max-w-4xl mx-auto">
+        
+        <!-- Opción 1: Web a medida tradicional -->
+        <div class="col-span-5 bg-lona border border-borde rounded-2xl p-8 flex flex-col justify-between opacity-85">
+          <div>
+            <div class="text-xs font-bold text-stone-600 font-rubik uppercase tracking-wider">Web tradicional a medida</div>
+            <div class="mt-4 font-rubik text-4xl font-bold text-stone-800 line-through">
+              $ 200.000
+            </div>
+            <div class="text-xs text-stone-500 mt-1">costo inicial + mantenimiento mensual</div>
+
+            <div class="mt-8 space-y-3 text-xs text-stone-700">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-stone-400 text-sm mt-0.5">close</span>
+                <span>Demora de 1 a 2 meses en estar lista</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-stone-400 text-sm mt-0.5">close</span>
+                <span>Dependés de un programador para cambiar precios</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-stone-400 text-sm mt-0.5">close</span>
+                <span>Costo extra por hosting, dominio y certificados</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-stone-400 text-sm mt-0.5">close</span>
+                <span>Sin soporte directo ni pensado para el rubro</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-borde text-center text-xs text-stone-500">
+            Complejo para el día a día
+          </div>
+        </div>
+
+        <!-- Opción 2: Mostry (Destacada) -->
+        <div class="col-span-7 bg-lona-card border-2 border-verde rounded-2xl p-8 flex flex-col justify-between relative shadow-none">
+          
+          <div class="absolute -top-3.5 right-6 bg-amarillo border border-borde text-verde-dark px-3 py-1 rounded text-xs font-bold font-rubik uppercase">
+            Elección recomendada
+          </div>
+
+          <div>
+            <div class="text-xs font-bold text-verde font-rubik uppercase tracking-wider">Suscripción Mostry Negocio</div>
+            <div class="mt-3 flex items-baseline gap-2">
+              <span class="font-rubik text-5xl font-extrabold text-verde">$ 10.000</span>
+              <span class="text-sm font-semibold text-texto-secundario">/ mes</span>
+            </div>
+            <div class="text-xs text-verde font-medium mt-1">Menos de lo que vendés en tres docenas de medialunas</div>
+
+            <div class="mt-8 space-y-3.5 text-sm text-texto-principal">
+              <div class="flex items-center gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-100 text-verde flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+                <span><strong>Tu tienda online completa</strong> con enlace propio (tunegocio.mostry.com.ar)</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-100 text-verde flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+                <span><strong>0% de comisión</strong> por venta, directo a tu alias bancario</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-100 text-verde flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+                <span><strong>Catálogo ilimitado</strong> de productos con fotos y rubros</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-100 text-verde flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+                <span><strong>Recepción directa en WhatsApp</strong> con pedidos ya armados</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-100 text-verde flex items-center justify-center text-xs font-bold shrink-0">✓</div>
+                <span><strong>10 días de prueba gratis</strong> sin tarjeta y sin permanencia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <a href="#probar" class="w-full inline-flex items-center justify-center gap-2 bg-coral hover:bg-coral-hover text-white font-rubik font-semibold text-lg py-4 rounded-lg border border-[#E05B3A] transition-colors">
+              Probalo 10 días gratis
+              <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </a>
+            <div class="text-center text-xs text-texto-secundario mt-2">
+              Cancelás cuando quieras con un solo clic. Sin contratos largos.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES -->
+  <section class="max-w-[1200px] mx-auto px-8 py-20">
+    <div class="max-w-2xl mb-12">
+      <span class="text-xs font-bold text-verde font-rubik uppercase tracking-wider">Dudas habituales</span>
+      <h2 class="font-rubik text-3xl font-extrabold text-verde mt-1">
+        Preguntas frecuentes
+      </h2>
+      <p class="text-texto-secundario mt-2">
+        Te contamos exactamente cómo funciona el servicio para que no te quede ninguna duda.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6">
+      
+      <!-- FAQ 1 -->
+      <div class="bg-white border border-borde p-6 rounded-xl">
+        <h3 class="font-rubik text-base font-bold text-texto-principal">
+          ¿Cómo me pagan mis clientes?
+        </h3>
+        <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+          Los clientes te abonan directamente a tu alias de Mercado Pago, billetera virtual o transferencia bancaria. Mostry nunca toca tu plata ni te retiene fondos.
+        </p>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="bg-white border border-borde p-6 rounded-xl">
+        <h3 class="font-rubik text-base font-bold text-texto-principal">
+          ¿Qué pasa cuando terminan los 10 días gratis?
+        </h3>
+        <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+          Si te sirve y querés seguir vendiendo con tu vidriera, abonás la suscripción mensual de $ 10.000. Si no querés continuar, la tienda se desactiva sin ningún cargo ni penalidad.
+        </p>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="bg-white border border-borde p-6 rounded-xl">
+        <h3 class="font-rubik text-base font-bold text-texto-principal">
+          ¿Tengo que saber algo de computación o programación?
+        </h3>
+        <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+          Para nada. Si sabés usar WhatsApp y mandar una foto, podés manejar tu tienda Mostry. Subir un producto te lleva menos de 30 segundos desde el teléfono.
+        </p>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="bg-white border border-borde p-6 rounded-xl">
+        <h3 class="font-rubik text-base font-bold text-texto-principal">
+          ¿Mis clientes tienen que descargar alguna aplicación?
+        </h3>
+        <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+          No. Entran directamente desde cualquier navegador con el enlace de tu negocio (ej. laespiga.mostry.com.ar), eligen lo que quieren y te escriben por WhatsApp.
+        </p>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="bg-white border border-borde p-6 rounded-xl">
+        <h3 class="font-rubik text-base font-bold text-texto-principal">
+          ¿Puedo cambiar precios si hay inflación durante el mes?
+        </h3>
+        <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+          Sí, las veces que haga falta. Entrás a tu panel desde el celular, editás el valor numérico y se actualiza al instante en la vidriera de todos tus clientes.
+        </p>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="bg-white border border-borde p-6 rounded-xl">
+        <h3 class="font-rubik text-base font-bold text-texto-principal">
+          ¿Cómo coordino los envíos o los retiros?
+        </h3>
+        <p class="text-sm text-texto-secundario mt-2 leading-relaxed">
+          Cuando te llega el pedido por WhatsApp, ya sabés si el cliente lo retira por tu mostrador o si te pide envío a domicilio en el barrio con su dirección clara.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BANNER FINAL ANTES DEL FOOTER -->
+  <section class="max-w-[1200px] mx-auto px-8 pb-20" id="probar">
+    <div class="bg-verde text-white rounded-2xl border border-verde-dark p-12 text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto relative z-10">
+        <span class="text-xs font-bold text-emerald-200 font-rubik uppercase tracking-wider">Activá tu local hoy</span>
+        <h2 class="font-rubik text-4xl font-extrabold text-white mt-2">
+          Abrí tu vidriera online esta misma tarde.
+        </h2>
+        <p class="text-emerald-100 text-base mt-3 leading-relaxed">
+          Empezá a recibir pedidos ordenados por WhatsApp sin pagar comisiones por venta. Configuración guiada en minutos.
+        </p>
+        <div class="mt-8 flex justify-center items-center gap-4">
+          <a href="#" class="inline-flex items-center justify-center gap-2 bg-coral hover:bg-coral-hover text-white font-rubik font-semibold text-lg px-8 py-4 rounded-lg border border-[#E05B3A] transition-colors">
+            Probalo 10 días gratis
+            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+          </a>
+        </div>
+        <div class="text-xs text-emerald-200 mt-4">
+          Sin tarjeta de crédito · Prueba completa de todas las funciones
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CON FESTÓN -->
+  <footer class="w-full relative bg-verde text-white">
+    <!-- Festón superior del footer -->
+    <div class="feston-footer w-full -mt-4 mb-2"></div>
+
+    <div class="max-w-[1200px] mx-auto px-8 pt-8 pb-12">
+      <div class="flex items-center justify-between pb-8 border-b border-emerald-800">
+        
+        <!-- Logo footer -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 bg-white rounded-lg border border-verde-dark flex items-center justify-center text-verde">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E5A4A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <path d="M3 9h18"/>
+              <path d="M7 13v5"/>
+              <path d="M12 13v5"/>
+              <path d="M17 13v5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-rubik text-xl font-bold tracking-tight text-white leading-none">mostry</div>
+            <div class="text-[11px] text-emerald-200 mt-0.5">mostry.com.ar</div>
+          </div>
+        </div>
+
+        <div class="text-xs text-emerald-100 font-medium text-right">
+          Plataforma argentina para el comercio de barrio.<br>
+          Hecho con cariño para almacenes, panaderías y verdulerías.
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex items-center justify-between text-xs text-emerald-200/80">
+        <div>
+          © 2026 Mostry · Vidriera y libreta de gestión barrial. Todos los derechos reservados.
+        </div>
+        <div class="font-mono text-[11px] text-emerald-300">
+          Buenos Aires, Argentina
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

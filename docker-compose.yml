@@ -67,6 +67,8 @@ services:
       S3_BUCKET_PUBLICO: ${S3_BUCKET_PUBLICO}
       S3_BUCKET_PRIVADO: ${S3_BUCKET_PRIVADO}
       S3_BUCKET_BACKUPS: ${S3_BUCKET_BACKUPS}
+      S3_BUCKET_PUBLICO_TEST: ${S3_BUCKET_PUBLICO_TEST}
+      S3_BUCKET_PRIVADO_TEST: ${S3_BUCKET_PRIVADO_TEST}
     volumes:
       - ./docker/rustfs/crear-buckets.sh:/crear-buckets.sh:ro
     entrypoint: ["sh", "/crear-buckets.sh"]

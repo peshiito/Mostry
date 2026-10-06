@@ -1,0 +1,22 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--e-2);
+}
+.turno {
+  min-height: var(--toque);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.turno[aria-pressed='true'] {
+  border-color: var(--verde);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.vacio {
+  color: var(--texto-2);
+}

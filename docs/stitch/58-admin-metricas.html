@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostry · Métricas y Panel de Administración Interno</title>
+  <!-- Google Fonts: Rubik & Work Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#0E5A4A',
+              hover: '#094034',
+              dark: '#073329',
+              tint: '#E7F2EE',
+              surface: '#0B4A3D'
+            },
+            coral: {
+              DEFAULT: '#FF7A59',
+              light: '#FFF0EC',
+              dark: '#D95837'
+            },
+            canvas: '#F7F3EC',
+            surface: '#FFFFFF',
+            border: '#E2DCD2',
+            borderDark: '#CCC5BA',
+            charcoal: '#222220',
+            muted: '#66635C',
+            state: {
+              pruebaBg: '#FEF6E6',
+              pruebaText: '#875306',
+              pruebaBorder: '#F2DCB3',
+              activaBg: '#E9F6F0',
+              activaText: '#0E5A4A',
+              activaBorder: '#BDE3D2',
+              graciaBg: '#FFF1EB',
+              graciaText: '#BA4623',
+              graciaBorder: '#FCD2C4',
+              suspendidaBg: '#FDF0ED',
+              suspendidaText: '#A82B1B',
+              suspendidaBorder: '#F5BEB6'
+            }
+          },
+          fontFamily: {
+            heading: ['Rubik', 'sans-serif'],
+            sans: ['"Work Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #F7F3EC;
+      color: #222220;
+      font-family: 'Work Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-heading {
+      font-family: 'Rubik', sans-serif;
+    }
+    .font-mono-numbers {
+      font-family: 'Rubik', 'JetBrains Mono', monospace;
+      font-feature-settings: "tnum" on, "lnum" on;
+    }
+    /* Estructura densa sin sombras difusas, bordes sólidos de 1px */
+    .border-standard {
+      border: 1px solid #E2DCD2;
+    }
+    .table-row-hover:hover {
+      background-color: #FCFAF6;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex bg-canvas text-charcoal">
+
+  <!-- ==================== SIDEBAR FIJO (1280px layout) ==================== -->
+  <aside class="w-60 min-h-screen bg-brand flex flex-col shrink-0 text-white select-none border-r border-brand-dark">
+    <!-- Header Sidebar con Logo Mostry -->
+    <div class="h-16 flex items-center justify-between px-5 border-b border-[#146654]">
+      <div class="flex items-center gap-2.5">
+        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="2" y="8" width="4.5" height="13" rx="1.5" />
+          <rect x="9.5" y="3" width="4.5" height="18" rx="1.5" />
+          <rect x="17" y="11" width="4.5" height="10" rx="1.5" />
+        </svg>
+        <span class="font-heading font-bold text-lg tracking-tight text-white">mostry</span>
+        <span class="text-[10px] font-mono tracking-wider font-semibold uppercase bg-brand-dark px-1.5 py-0.5 rounded text-white/90 border border-white/10">Admin</span>
+      </div>
+    </div>
+
+    <!-- Navegación lateral estricta: Tiendas y Métricas -->
+    <div class="px-3 pt-5 flex-1 space-y-1">
+      <div class="px-3 pb-2 text-[10px] font-semibold uppercase tracking-wider text-white/50 font-sans">
+        Gestión general
+      </div>
+
+      <!-- Ítem Tiendas -->
+      <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded text-sm text-white/80 hover:text-white hover:bg-brand-surface transition-colors">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px]">storefront</span>
+          <span class="font-medium">Tiendas</span>
+        </div>
+        <span class="text-[11px] font-mono px-1.5 py-0.5 bg-black/20 rounded text-white/70">27</span>
+      </a>
+
+      <!-- Ítem Métricas (Activo) -->
+      <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded text-sm text-white bg-brand-dark font-medium border border-white/15">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-[20px] text-white">insights</span>
+          <span class="font-medium">Métricas</span>
+        </div>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#34D399]"></span>
+      </a>
+    </div>
+
+    <!-- Info del Operador / Entorno -->
+    <div class="p-3 border-t border-[#146654] text-xs text-white/70">
+      <div class="flex items-center gap-2 px-2 py-1.5 rounded bg-brand-dark/60">
+        <div class="w-7 h-7 rounded bg-brand-surface border border-white/20 flex items-center justify-center font-bold text-white text-[11px]">
+          AD
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="text-[12px] font-medium text-white truncate">Soporte Mostry</div>
+          <div class="text-[10px] text-white/60 font-mono">admin@mostry.com.ar</div>
+        </div>
+      </div>
+      <div class="mt-2 px-2 flex justify-between items-center text-[10px] text-white/50 font-mono">
+        <span>v2.8 · Operativo</span>
+        <span>Año 2026</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+  <main class="flex-1 min-w-0 flex flex-col">
+
+    <!-- Topbar densa y funcional -->
+    <header class="h-16 bg-surface border-b border-border px-8 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 text-xs text-muted">
+          <span>Panel de administración</span>
+          <span>/</span>
+          <span class="text-charcoal font-medium">Métricas de la red</span>
+        </div>
+        <span class="text-borderDark">|</span>
+        <span class="inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded bg-canvas border border-border text-muted">
+          <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+          Sincronizado hoy 11:40 hs
+        </span>
+      </div>
+
+      <!-- Selector de ejercicio y filtro rápido -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 text-xs bg-canvas px-3 py-1.5 rounded border border-border">
+          <span class="material-symbols-outlined text-[16px] text-muted">calendar_today</span>
+          <span class="font-medium text-charcoal">Octubre 2026</span>
+          <span class="text-muted text-[11px]">(Semana 42)</span>
+        </div>
+        <button type="button" class="flex items-center gap-1.5 text-xs bg-surface hover:bg-canvas px-3 py-1.5 rounded border border-border font-medium text-charcoal transition-colors">
+          <span class="material-symbols-outlined text-[16px]">file_download</span>
+          Exportar informe
+        </button>
+      </div>
+    </header>
+
+    <!-- Contenedor con ancho optimizado para 1280px con margen de lectura -->
+    <div class="p-8 max-w-[1240px] mx-auto w-full space-y-6">
+
+      <!-- Título de sección y chips de estado solicitados -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 border-b border-border">
+        <div>
+          <h1 class="font-heading font-bold text-2xl tracking-tight text-charcoal">
+            Métricas generales y control de abonos
+          </h1>
+          <p class="text-sm text-muted mt-0.5">
+            Seguimiento de comercios barriales adheridos, renovaciones del período y recaudación recurrente.
+          </p>
+        </div>
+
+        <!-- Chips de estado solicitados: Prueba (mostaza), Activa (verde), Gracia (coral claro), Suspendida (rojo ladrillo) -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs text-muted font-medium mr-1">Estados:</span>
+          <!-- Prueba (mostaza) -->
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border"
+                style="background-color: #FEF6E6; color: #875306; border-color: #F2DCB3;">
+            <span class="w-1.5 h-1.5 rounded-full" style="background-color: #D97706;"></span>
+            Prueba (7)
+          </span>
+          <!-- Activa (verde) -->
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border"
+                style="background-color: #E9F6F0; color: #0E5A4A; border-color: #BDE3D2;">
+            <span class="w-1.5 h-1.5 rounded-full" style="background-color: #0E5A4A;"></span>
+            Activa (18)
+          </span>
+          <!-- Gracia (coral claro) -->
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border"
+                style="background-color: #FFF1EB; color: #BA4623; border-color: #FCD2C4;">
+            <span class="w-1.5 h-1.5 rounded-full" style="background-color: #FF7A59;"></span>
+            Gracia (2)
+          </span>
+          <!-- Suspendida (rojo ladrillo) -->
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium border"
+                style="background-color: #FDF0ED; color: #A82B1B; border-color: #F5BEB6;">
+            <span class="w-1.5 h-1.5 rounded-full" style="background-color: #A82B1B;"></span>
+            Suspendida (4)
+          </span>
+        </div>
+      </div>
+
+      <!-- ==================== 4 INDICADORES REQUERIDOS ==================== -->
+      <!-- 18 activas, 7 en prueba, 2 en gracia, ingreso del mes $ 180.000 -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <!-- Tarjeta 1: Tiendas Activas (18) -->
+        <div class="bg-surface p-4 rounded border-standard">
+          <div class="flex items-center justify-between text-xs text-muted mb-2">
+            <span class="font-medium uppercase tracking-wider text-[11px]">Tiendas activas</span>
+            <span class="material-symbols-outlined text-[18px] text-brand">store</span>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <div class="font-heading font-bold text-3xl text-charcoal font-mono-numbers">
+              18
+            </div>
+            <span class="inline-flex items-center text-[11px] font-medium text-brand bg-brand-tint px-1.5 py-0.5 rounded border border-brand/20">
+              Abono al día
+            </span>
+          </div>
+          <div class="mt-2 pt-2 border-t border-canvas text-[11px] text-muted flex items-center justify-between">
+            <span>66,7% del total</span>
+            <span class="font-mono text-charcoal font-medium">$ 10.000 / mes c/u</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: En período de prueba (7) -->
+        <div class="bg-surface p-4 rounded border-standard">
+          <div class="flex items-center justify-between text-xs text-muted mb-2">
+            <span class="font-medium uppercase tracking-wider text-[11px]">En prueba (10 días)</span>
+            <span class="material-symbols-outlined text-[18px] text-[#D97706]">timer</span>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <div class="font-heading font-bold text-3xl text-charcoal font-mono-numbers">
+              7
+            </div>
+            <span class="inline-flex items-center text-[11px] font-medium text-[#875306] bg-[#FEF6E6] px-1.5 py-0.5 rounded border border-[#F2DCB3]">
+              3 por vencer
+            </span>
+          </div>
+          <div class="mt-2 pt-2 border-t border-canvas text-[11px] text-muted flex items-center justify-between">
+            <span>Potencial: $ 70.000</span>
+            <span class="font-mono text-charcoal font-medium">Conversión 72%</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: En período de gracia (2) -->
+        <div class="bg-surface p-4 rounded border-standard">
+          <div class="flex items-center justify-between text-xs text-muted mb-2">
+            <span class="font-medium uppercase tracking-wider text-[11px]">En gracia o mora</span>
+            <span class="material-symbols-outlined text-[18px] text-[#BA4623]">warning</span>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <div class="font-heading font-bold text-3xl text-charcoal font-mono-numbers">
+              2
+            </div>
+            <span class="inline-flex items-center text-[11px] font-medium text-[#BA4623] bg-[#FFF1EB] px-1.5 py-0.5 rounded border border-[#FCD2C4]">
+              48 hs límite
+            </span>
+          </div>
+          <div class="mt-2 pt-2 border-t border-canvas text-[11px] text-muted flex items-center justify-between">
+            <span>Por cobrar: $ 20.000</span>
+            <span class="font-mono text-charcoal font-medium">Avisadas x WA</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Ingreso del mes ($ 180.000) -->
+        <div class="bg-surface p-4 rounded border-standard">
+          <div class="flex items-center justify-between text-xs text-muted mb-2">
+            <span class="font-medium uppercase tracking-wider text-[11px]">Ingreso del mes</span>
+            <span class="material-symbols-outlined text-[18px] text-brand">payments</span>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <div class="font-heading font-bold text-3xl text-brand font-mono-numbers">
+              $ 180.000
+            </div>
+            <span class="text-[11px] font-mono text-muted">ARS</span>
+          </div>
+          <div class="mt-2 pt-2 border-t border-canvas text-[11px] text-muted flex items-center justify-between">
+            <span>18 cobranzas efectivas</span>
+            <span class="font-mono text-charcoal font-medium">100% bancarizado</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================== FILA CENTRAL DE GRÁFICOS ==================== -->
+      <!-- 1) Gráfico de altas por semana + 2) Barras de tiendas por estado -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Gráfico 1: Altas por semana (7 columnas de ancho) -->
+        <section class="lg:col-span-7 bg-surface p-5 rounded border-standard flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <h2 class="font-heading font-semibold text-base text-charcoal flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px] text-brand">trending_up</span>
+                Altas por semana
+              </h2>
+              <span class="text-xs text-muted font-mono">Últimas 6 semanas · Año 2026</span>
+            </div>
+            <p class="text-xs text-muted mb-6">
+              Comercios que crearon vidriera digital y abrieron libreta en el mostrador.
+            </p>
+          </div>
+
+          <!-- Visualización del histograma de altas -->
+          <div class="space-y-2">
+            <div class="h-44 flex items-end justify-between gap-4 pt-6 px-4 border-b border-border bg-canvas/40 rounded-t">
+              <!-- Sem 37 -->
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
+                <span class="text-[11px] font-mono font-medium text-muted group-hover:text-charcoal">3</span>
+                <div class="w-full bg-[#0E5A4A]/30 rounded-t border-t border-x border-[#0E5A4A]/40 transition-all group-hover:bg-[#0E5A4A]/50" style="height: 30%;"></div>
+                <span class="text-[10px] font-mono text-muted uppercase">Sem 37</span>
+              </div>
+
+              <!-- Sem 38 -->
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
+                <span class="text-[11px] font-mono font-medium text-muted group-hover:text-charcoal">5</span>
+                <div class="w-full bg-[#0E5A4A]/40 rounded-t border-t border-x border-[#0E5A4A]/50 transition-all group-hover:bg-[#0E5A4A]/60" style="height: 50%;"></div>
+                <span class="text-[10px] font-mono text-muted uppercase">Sem 38</span>
+              </div>
+
+              <!-- Sem 39 -->
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
+                <span class="text-[11px] font-mono font-medium text-muted group-hover:text-charcoal">4</span>
+                <div class="w-full bg-[#0E5A4A]/40 rounded-t border-t border-x border-[#0E5A4A]/50 transition-all group-hover:bg-[#0E5A4A]/60" style="height: 40%;"></div>
+                <span class="text-[10px] font-mono text-muted uppercase">Sem 39</span>
+              </div>
+
+              <!-- Sem 40 -->
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
+                <span class="text-[11px] font-mono font-medium text-muted group-hover:text-charcoal">7</span>
+                <div class="w-full bg-[#0E5A4A]/70 rounded-t border-t border-x border-[#0E5A4A] transition-all group-hover:bg-[#0E5A4A]/80" style="height: 70%;"></div>
+                <span class="text-[10px] font-mono text-muted uppercase">Sem 40</span>
+              </div>
+
+              <!-- Sem 41 -->
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
+                <span class="text-[11px] font-mono font-medium text-muted group-hover:text-charcoal">6</span>
+                <div class="w-full bg-[#0E5A4A]/60 rounded-t border-t border-x border-[#0E5A4A]/80 transition-all group-hover:bg-[#0E5A4A]/70" style="height: 60%;"></div>
+                <span class="text-[10px] font-mono text-muted uppercase">Sem 41</span>
+              </div>
+
+              <!-- Sem 42 (Semana en curso) -->
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end group">
+                <span class="text-[11px] font-mono font-bold text-brand">8</span>
+                <div class="w-full bg-brand rounded-t border-t border-x border-brand-dark transition-all relative" style="height: 80%;">
+                  <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-mono bg-charcoal text-white px-1 rounded whitespace-nowrap">Pico</span>
+                </div>
+                <span class="text-[10px] font-mono font-semibold text-brand uppercase">Sem 42</span>
+              </div>
+            </div>
+
+            <!-- Resumen numérico al pie del gráfico -->
+            <div class="pt-3 flex items-center justify-between text-xs text-muted px-1">
+              <span>Total acumulado período: <strong class="text-charcoal font-mono">33 nuevas tiendas</strong></span>
+              <span class="text-brand font-medium">Promedio: 5,5 altas / sem.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gráfico 2: Barras de tiendas por estado (5 columnas de ancho) -->
+        <section class="lg:col-span-5 bg-surface p-5 rounded border-standard flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <h2 class="font-heading font-semibold text-base text-charcoal flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px] text-muted">donut_large</span>
+                Tiendas por estado
+              </h2>
+              <span class="text-xs text-muted font-mono">31 comercios cargados</span>
+            </div>
+            <p class="text-xs text-muted mb-4">
+              Distribución total de la cartera de la plataforma.
+            </p>
+          </div>
+
+          <!-- Barras de desglose horizontal con datos y porcentajes precisos -->
+          <div class="space-y-3.5 py-1">
+
+            <!-- Activa (18) -->
+            <div>
+              <div class="flex justify-between items-center text-xs mb-1">
+                <span class="font-medium text-charcoal flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full" style="background-color: #0E5A4A;"></span>
+                  Activas (al día)
+                </span>
+                <span class="font-mono text-muted text-[11px]"><strong>18</strong> tiendas (58,1%)</span>
+              </div>
+              <div class="h-3 w-full bg-canvas rounded overflow-hidden border border-border">
+                <div class="h-full bg-brand rounded-sm" style="width: 58.1%;"></div>
+              </div>
+            </div>
+
+            <!-- En prueba (7) -->
+            <div>
+              <div class="flex justify-between items-center text-xs mb-1">
+                <span class="font-medium text-charcoal flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full" style="background-color: #D97706;"></span>
+                  En período de prueba
+                </span>
+                <span class="font-mono text-muted text-[11px]"><strong>7</strong> tiendas (22,6%)</span>
+              </div>
+              <div class="h-3 w-full bg-canvas rounded overflow-hidden border border-border">
+                <div class="h-full bg-[#D97706] rounded-sm" style="width: 22.6%;"></div>
+              </div>
+            </div>
+
+            <!-- Gracia (2) -->
+            <div>
+              <div class="flex justify-between items-center text-xs mb-1">
+                <span class="font-medium text-charcoal flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full" style="background-color: #FF7A59;"></span>
+                  En gracia / aviso de pago
+                </span>
+                <span class="font-mono text-muted text-[11px]"><strong>2</strong> tiendas (6,5%)</span>
+              </div>
+              <div class="h-3 w-full bg-canvas rounded overflow-hidden border border-border">
+                <div class="h-full bg-[#FF7A59] rounded-sm" style="width: 6.5%;"></div>
+              </div>
+            </div>
+
+            <!-- Suspendidas (4) -->
+            <div>
+              <div class="flex justify-between items-center text-xs mb-1">
+                <span class="font-medium text-charcoal flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full" style="background-color: #A82B1B;"></span>
+                  Suspendidas (solo lectura)
+                </span>
+                <span class="font-mono text-muted text-[11px]"><strong>4</strong> tiendas (12,8%)</span>
+              </div>
+              <div class="h-3 w-full bg-canvas rounded overflow-hidden border border-border">
+                <div class="h-full bg-[#A82B1B] rounded-sm" style="width: 12.8%;"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Barra compuesta apilada que muestra la integridad del ecosistema -->
+          <div class="mt-4 pt-3 border-t border-canvas">
+            <div class="text-[11px] text-muted mb-1.5 flex justify-between">
+              <span>Distribución continua:</span>
+              <span class="font-mono text-charcoal">Total: 31 comercios</span>
+            </div>
+            <div class="h-2 w-full flex rounded overflow-hidden border border-border">
+              <div style="width: 58.1%;" class="bg-brand"></div>
+              <div style="width: 22.6%;" class="bg-[#D97706]"></div>
+              <div style="width: 6.5%;" class="bg-[#FF7A59]"></div>
+              <div style="width: 12.8%;" class="bg-[#A82B1B]"></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ==================== TABLA: VENCEN ESTA SEMANA ==================== -->
+      <!-- Denso, tipografía controlada, chips de estado, sin botón coral -->
+      <section class="bg-surface rounded border-standard overflow-hidden">
+        <!-- Cabecera de la tabla -->
+        <div class="p-4 px-5 border-b border-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-canvas/30">
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="font-heading font-semibold text-base text-charcoal">
+                Vencen esta semana
+              </h2>
+              <span class="text-xs font-mono font-medium px-2 py-0.5 rounded bg-surface border border-border text-charcoal">
+                5 comercios por gestionar
+              </span>
+            </div>
+            <p class="text-xs text-muted mt-0.5">
+              Pruebas gratuitas por caducar o comercios con aviso de pago vencido entre el 14 y el 19 de octubre de 2026.
+            </p>
+          </div>
+
+          <!-- Filtro rápido / búsqueda interna de tabla -->
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-2.5 top-2 text-[16px] text-muted">search</span>
+              <input type="text" placeholder="Filtrar por comercio o titular..."
+                     class="text-xs bg-surface border border-border rounded pl-8 pr-3 py-1.5 w-60 text-charcoal placeholder-muted focus:outline-none focus:border-brand">
+            </div>
+            <button type="button" class="p-1.5 bg-surface hover:bg-canvas rounded border border-border text-muted hover:text-charcoal transition-colors" title="Filtrar">
+              <span class="material-symbols-outlined text-[18px]">tune</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabla formal sin sombras, bordes de 1px -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="border-b border-border bg-canvas/60 text-muted font-medium uppercase tracking-wider text-[11px]">
+                <th class="py-2.5 px-4 font-medium">Comercio / Rubro</th>
+                <th class="py-2.5 px-4 font-medium">Titular y WhatsApp</th>
+                <th class="py-2.5 px-4 font-medium">Estado</th>
+                <th class="py-2.5 px-4 font-medium">Fecha vencimiento</th>
+                <th class="py-2.5 px-4 font-medium text-right">Monto abono</th>
+                <th class="py-2.5 px-4 font-medium text-right">Acción operativa</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border font-sans">
+
+              <!-- Fila 1: Panadería La Espiga (Prueba - 3 días) -->
+              <tr class="table-row-hover transition-colors">
+                <td class="py-3 px-4">
+                  <div class="font-heading font-medium text-charcoal text-sm">Panadería La Espiga</div>
+                  <div class="text-[11px] text-muted font-mono flex items-center gap-1.5">
+                    <span>laespiga.mostry.com.ar</span>
+                    <span class="text-borderDark">·</span>
+                    <span>Panificados</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="text-charcoal font-medium">Doña Rosa Fernández</div>
+                  <div class="text-[11px] text-muted font-mono">+54 9 11 4455-8821</div>
+                </td>
+                <td class="py-3 px-4">
+                  <!-- Chip Prueba (mostaza) -->
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium border"
+                        style="background-color: #FEF6E6; color: #875306; border-color: #F2DCB3;">
+                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: #D97706;"></span>
+                    Prueba (queda 3d)
+                  </span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="font-mono text-charcoal font-medium">17/10/2026</div>
+                  <div class="text-[10px] text-muted">Fin período sin cargo</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-heading font-semibold text-charcoal text-sm font-mono-numbers">$ 10.000</div>
+                  <div class="text-[10px] text-muted">Plan Barrio</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="inline-flex items-center gap-1.5 justify-end">
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-border bg-surface hover:bg-canvas text-charcoal transition-colors">
+                      Ver ficha
+                    </button>
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-brand/30 bg-brand-tint hover:bg-brand/10 text-brand transition-colors flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[14px]">chat</span>
+                      Avisar por WhatsApp
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Fila 2: Almacén Don Héctor (Gracia - 24 hs restantes) -->
+              <tr class="table-row-hover transition-colors">
+                <td class="py-3 px-4">
+                  <div class="font-heading font-medium text-charcoal text-sm">Almacén Don Héctor</div>
+                  <div class="text-[11px] text-muted font-mono flex items-center gap-1.5">
+                    <span>donhector.mostry.com.ar</span>
+                    <span class="text-borderDark">·</span>
+                    <span>Almacén de barrio</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="text-charcoal font-medium">Héctor Morales</div>
+                  <div class="text-[11px] text-muted font-mono">+54 9 11 6543-9876</div>
+                </td>
+                <td class="py-3 px-4">
+                  <!-- Chip Gracia (coral claro) -->
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium border"
+                        style="background-color: #FFF1EB; color: #BA4623; border-color: #FCD2C4;">
+                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: #FF7A59;"></span>
+                    Gracia (24 hs)
+                  </span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="font-mono text-[#BA4623] font-medium">15/10/2026</div>
+                  <div class="text-[10px] text-muted">Vencido hace 2 días</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-heading font-semibold text-charcoal text-sm font-mono-numbers">$ 10.000</div>
+                  <div class="text-[10px] text-[#BA4623]">Pendiente</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="inline-flex items-center gap-1.5 justify-end">
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-border bg-surface hover:bg-canvas text-charcoal transition-colors">
+                      Ver cuenta
+                    </button>
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-border bg-surface hover:bg-canvas text-brand transition-colors">
+                      Registrar pago
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Fila 3: Fiambrería 25 de Mayo (Gracia - vence hoy) -->
+              <tr class="table-row-hover transition-colors">
+                <td class="py-3 px-4">
+                  <div class="font-heading font-medium text-charcoal text-sm">Fiambrería 25 de Mayo</div>
+                  <div class="text-[11px] text-muted font-mono flex items-center gap-1.5">
+                    <span>fiambreria25.mostry.com.ar</span>
+                    <span class="text-borderDark">·</span>
+                    <span>Quesos y fiambres</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="text-charcoal font-medium">Esteban Rossi</div>
+                  <div class="text-[11px] text-muted font-mono">+54 9 11 6321-0099</div>
+                </td>
+                <td class="py-3 px-4">
+                  <!-- Chip Gracia (coral claro) -->
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium border"
+                        style="background-color: #FFF1EB; color: #BA4623; border-color: #FCD2C4;">
+                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: #FF7A59;"></span>
+                    Gracia (último día)
+                  </span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="font-mono text-[#BA4623] font-medium">14/10/2026</div>
+                  <div class="text-[10px] text-muted">Aviso automático enviado</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-heading font-semibold text-charcoal text-sm font-mono-numbers">$ 10.000</div>
+                  <div class="text-[10px] text-[#BA4623]">Impago</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="inline-flex items-center gap-1.5 justify-end">
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-border bg-surface hover:bg-canvas text-charcoal transition-colors">
+                      Ver cuenta
+                    </button>
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-[#A82B1B]/30 bg-[#FDF0ED] hover:bg-[#FBE4DF] text-[#A82B1B] transition-colors">
+                      Pausar tienda
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Fila 4: Carnicería El Trébol (Prueba - vence en 2 días) -->
+              <tr class="table-row-hover transition-colors">
+                <td class="py-3 px-4">
+                  <div class="font-heading font-medium text-charcoal text-sm">Carnicería El Trébol</div>
+                  <div class="text-[11px] text-muted font-mono flex items-center gap-1.5">
+                    <span>eltrebol.mostry.com.ar</span>
+                    <span class="text-borderDark">·</span>
+                    <span>Carnes y achuras</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="text-charcoal font-medium">Jorge Ferreyra</div>
+                  <div class="text-[11px] text-muted font-mono">+54 9 11 2291-5511</div>
+                </td>
+                <td class="py-3 px-4">
+                  <!-- Chip Prueba (mostaza) -->
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium border"
+                        style="background-color: #FEF6E6; color: #875306; border-color: #F2DCB3;">
+                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: #D97706;"></span>
+                    Prueba (queda 2d)
+                  </span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="font-mono text-charcoal font-medium">16/10/2026</div>
+                  <div class="text-[10px] text-muted">Alta: 06/10/2026</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-heading font-semibold text-charcoal text-sm font-mono-numbers">$ 10.000</div>
+                  <div class="text-[10px] text-muted">Plan Barrio</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="inline-flex items-center gap-1.5 justify-end">
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-border bg-surface hover:bg-canvas text-charcoal transition-colors">
+                      Ver ficha
+                    </button>
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-brand/30 bg-brand-tint hover:bg-brand/10 text-brand transition-colors flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[14px]">chat</span>
+                      Mandar alias
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Fila 5: Panadería Del Sol (Prueba - vence en 5 días) -->
+              <tr class="table-row-hover transition-colors">
+                <td class="py-3 px-4">
+                  <div class="font-heading font-medium text-charcoal text-sm">Panadería Del Sol</div>
+                  <div class="text-[11px] text-muted font-mono flex items-center gap-1.5">
+                    <span>delsol.mostry.com.ar</span>
+                    <span class="text-borderDark">·</span>
+                    <span>Facturas y tortas</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="text-charcoal font-medium">Mariana Paz</div>
+                  <div class="text-[11px] text-muted font-mono">+54 9 11 7712-4433</div>
+                </td>
+                <td class="py-3 px-4">
+                  <!-- Chip Prueba (mostaza) -->
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium border"
+                        style="background-color: #FEF6E6; color: #875306; border-color: #F2DCB3;">
+                    <span class="w-1.5 h-1.5 rounded-full" style="background-color: #D97706;"></span>
+                    Prueba (queda 5d)
+                  </span>
+                </td>
+                <td class="py-3 px-4">
+                  <div class="font-mono text-charcoal font-medium">19/10/2026</div>
+                  <div class="text-[10px] text-muted">Alta: 09/10/2026</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="font-heading font-semibold text-charcoal text-sm font-mono-numbers">$ 10.000</div>
+                  <div class="text-[10px] text-muted">Plan Barrio</div>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="inline-flex items-center gap-1.5 justify-end">
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-border bg-surface hover:bg-canvas text-charcoal transition-colors">
+                      Ver ficha
+                    </button>
+                    <button type="button" class="px-2.5 py-1 text-xs font-medium rounded border border-border bg-surface hover:bg-canvas text-brand transition-colors">
+                      Registrar pago
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Paginador / Estado inferior de la tabla -->
+        <div class="p-3.5 px-5 bg-canvas/30 border-t border-border flex items-center justify-between text-xs text-muted">
+          <div>
+            Mostrando <strong class="text-charcoal font-mono">5</strong> comercios con vencimiento programado esta semana
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-mono">Página 1 de 1</span>
+            <div class="inline-flex rounded border border-border overflow-hidden">
+              <button disabled class="px-2 py-1 bg-canvas text-muted/40 cursor-not-allowed">
+                <span class="material-symbols-outlined text-[14px]">chevron_left</span>
+              </button>
+              <button disabled class="px-2 py-1 bg-canvas text-muted/40 cursor-not-allowed border-l border-border">
+                <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nota al pie de auditoría y respaldo operativo -->
+      <footer class="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between text-[11px] text-muted gap-2">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[15px] text-brand">info</span>
+          <span>Las cuentas en estado <strong>Gracia</strong> disponen de 48 hs antes de pasar a pausa automática de catálogo. Los cobros se concilian al alias <strong>mostry.pagos</strong>.</span>
+        </div>
+        <div class="font-mono text-[10px] text-muted/80">
+          Mostry Plataforma · Servidor Buenos Aires · 2026
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+</body>
+</html>

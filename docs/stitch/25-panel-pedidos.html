@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container-low" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry - Panel de Pedidos | La Espiga</title>
+<!-- Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-on-surface": "#f4f0e9",
+            "surface-bright": "#fdf9f2",
+            "on-surface": "#1c1c18",
+            "on-tertiary-fixed": "#271900",
+            "surface-container-highest": "#e6e2db",
+            "secondary-fixed-dim": "#ffb4a2",
+            "surface-container": "#f1ede6",
+            "background": "#fdf9f2",
+            "surface-container-high": "#ebe8e1",
+            "primary-container": "#0e5a4a",
+            "on-secondary-fixed-variant": "#862208",
+            "on-secondary-container": "#6e1500",
+            "outline-variant": "#bfc9c4",
+            "secondary-container": "#fd7958",
+            "surface-tint": "#246959",
+            "secondary-fixed": "#ffdad2",
+            "primary": "#004134",
+            "on-primary-fixed": "#002019",
+            "on-primary-fixed-variant": "#005141",
+            "on-error-container": "#93000a",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "secondary": "#a7391e",
+            "inverse-surface": "#31302c",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-primary-container": "#8ccfbb",
+            "on-background": "#1c1c18",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "surface": "#fdf9f2",
+            "primary-fixed": "#acf0db",
+            "on-surface-variant": "#3f4945",
+            "tertiary-fixed-dim": "#fabc41",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#6f7975",
+            "surface-variant": "#e6e2db",
+            "on-primary": "#ffffff",
+            "surface-container-low": "#f7f3ec",
+            "tertiary": "#4c3400",
+            "inverse-primary": "#90d4bf",
+            "on-tertiary-container": "#f5b73c",
+            "primary-fixed-dim": "#90d4bf",
+            "tertiary-fixed": "#ffdea8",
+            "tertiary-container": "#694a00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik"],
+            "body-md": ["Work Sans"],
+            "headline-lg": ["Rubik"],
+            "label-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "body-lg": ["Work Sans"],
+            "label-sm": ["Work Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="h-full bg-surface-container-low text-on-surface font-body-md text-body-md antialiased flex flex-col items-center">
+<!-- Mobile Viewport Wrapper (390px nominal width container) -->
+<div class="w-full max-w-[420px] min-h-screen bg-surface-container-low flex flex-col relative pb-24 shadow-sm">
+<!-- 1. TopAppBar (Shared Component Implementation) -->
+<header class="fixed top-0 left-0 right-0 max-w-[420px] mx-auto z-50 flex justify-between items-center px-margin py-space-sm bg-primary-container text-on-primary border-b border-outline-variant/30">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest/15 flex items-center justify-center border border-on-primary/10">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="store">store</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5 leading-none">
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-primary">La Espiga</span>
+<span class="bg-primary-fixed/20 text-primary-fixed px-1.5 py-0.5 rounded text-[10px] font-label-sm font-bold uppercase tracking-wider">Mostry</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+<span class="font-label-md text-[11px] text-on-primary-container font-medium">Vidriera online activa</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Notificaciones" class="w-9 h-9 flex items-center justify-center rounded-lg text-on-primary hover:bg-primary transition-colors duration-150 relative" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-amber-400 rounded-full"></span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-margin pt-20 flex flex-col gap-4">
+<!-- 2. Encabezado de Sección y Buscador -->
+<section class="flex flex-col gap-3">
+<div class="flex items-baseline justify-between pt-1">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Pedidos</h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px]">Gestión de pedidos y encargos del día</p>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-lowest px-2.5 py-1 rounded-lg border border-outline-variant/60 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="sync">sync</span>
+<span>2026</span>
+</div>
+</div>
+<!-- Buscador -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</div>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-on-surface-variant/70 text-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all" placeholder="Buscar por cliente o N° de pedido..." type="search"/>
+</div>
+</section>
+<!-- 3. Chips de Filtro Horizontales -->
+<section class="relative -mx-margin px-margin overflow-x-auto no-scrollbar py-0.5">
+<div class="flex items-center gap-2 w-max pr-margin">
+<!-- Activo: Por aprobar -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-xs transition-colors" type="button">
+<span>Por aprobar</span>
+<span class="bg-surface-container-lowest text-primary-container px-1.5 py-0.2 rounded-full font-bold text-[10px]">3</span>
+</button>
+<!-- Pendientes de pago -->
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span>Pendientes de pago</span>
+</button>
+<!-- En preparación -->
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span>En preparación</span>
+</button>
+<!-- Listos -->
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span>Listos</span>
+</button>
+<!-- Entregados -->
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span>Entregados</span>
+</button>
+<!-- Cancelados -->
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<span>Cancelados</span>
+</button>
+</div>
+</section>
+<!-- Resumen operativo rápido de mostrador -->
+<div class="flex items-center justify-between px-3 py-2 bg-surface-container border border-outline-variant/60 rounded-lg text-on-surface-variant font-label-md text-[12px]">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="info">info</span>
+<span>Mostrando 3 pedidos entrantes para validar</span>
+</div>
+<button class="text-primary font-bold hover:underline" type="button">Actualizar</button>
+</div>
+<!-- 4. Lista de Pedidos -->
+<section class="flex flex-col gap-3">
+<!-- Pedido #128 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/70 p-3.5 flex flex-col gap-2.5 relative">
+<!-- Cabecera de la comanda -->
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-[16px] font-bold text-on-surface font-headline-md tracking-tight">#128 · Lucía Gómez</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-label-md text-[12px]">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="local_shipping">local_shipping</span>
+<span>Envío a domicilio</span>
+</div>
+<span>·</span>
+<span class="text-on-surface-variant/80">hace 12 min</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight block">$ 9.950</span>
+<span class="inline-flex items-center gap-1 bg-amber-50 text-amber-900 border border-amber-300 px-2 py-0.5 rounded text-[11px] font-label-sm font-semibold mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                Comprobante enviado
+              </span>
+</div>
+</div>
+<!-- Divisor sutil de mostrador -->
+<div class="border-t border-outline-variant/40 pt-2 pb-0.5">
+<p class="text-on-surface-variant font-body-md text-[13px] leading-relaxed">
+<strong class="font-semibold text-on-surface">Detalle:</strong> 1x Docena surtida, 1x Vigilante
+            </p>
+</div>
+<!-- Botones de Acción (Sin Coral: bordes definidos, sobrios y utilitarios) -->
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-outline-variant/40">
+<button class="w-full py-2 px-3 rounded-lg border border-outline text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[17px] text-on-surface-variant" data-icon="visibility">visibility</span>
+<span>Revisar comprobante</span>
+</button>
+<button class="w-full py-2 px-3 rounded-lg bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md flex items-center justify-center gap-1.5 border border-primary-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="check_circle">check_circle</span>
+<span>Aceptar pedido</span>
+</button>
+</div>
+</article>
+<!-- Pedido #127 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/70 p-3.5 flex flex-col gap-2.5">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-[16px] font-bold text-on-surface font-headline-md tracking-tight">#127 · Marta Ruiz</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-label-md text-[12px]">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="event">event</span>
+<span class="font-semibold text-primary">Encargo mié 15/10</span>
+</div>
+<span>·</span>
+<span class="text-on-surface-variant/80">Retiro 11:30 hs</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight block">$ 28.000</span>
+<span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-900 border border-emerald-300 px-2 py-0.5 rounded text-[11px] font-label-sm font-semibold mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                Producción confirmada
+              </span>
+</div>
+</div>
+<!-- Detalle de seña y saldo -->
+<div class="bg-surface-container-low p-2 rounded-lg border border-outline-variant/50 text-[12px] flex items-center justify-between text-on-surface-variant">
+<span>Seña pagada: <strong class="text-on-surface font-semibold">$ 8.400</strong> (30%)</span>
+<span>Resta cobrar: <strong class="text-on-surface font-semibold">$ 19.600</strong></span>
+</div>
+<div class="pt-0.5">
+<p class="text-on-surface-variant font-body-md text-[13px]">
+<strong class="font-semibold text-on-surface">Detalle:</strong> 3x Torta de ricota, 2x Facturas de hojaldre x docena
+            </p>
+</div>
+<div class="flex items-center gap-2 pt-1 border-t border-outline-variant/40">
+<button class="flex-1 py-2 px-3 rounded-lg border border-outline text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[17px] text-on-surface-variant" data-icon="description">description</span>
+<span>Ver ficha de encargo</span>
+</button>
+<button class="py-2 px-3 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="print">print</span>
+</button>
+</div>
+</article>
+<!-- Pedido #126 -->
+<article class="bg-surface-container-lowest rounded-xl border border-outline-variant/70 p-3.5 flex flex-col gap-2.5">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-[16px] font-bold text-on-surface font-headline-md tracking-tight">#126 · Juan Pérez</span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-label-md text-[12px]">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="storefront">storefront</span>
+<span>Retiro en mostrador</span>
+</div>
+<span>·</span>
+<span class="text-on-surface-variant/80">hace 35 min</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight block">$ 4.200</span>
+<span class="inline-flex items-center gap-1 bg-surface-container text-on-surface-variant border border-outline-variant px-2 py-0.5 rounded text-[11px] font-label-sm font-medium mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                En preparación
+              </span>
+</div>
+</div>
+<div class="pt-0.5">
+<p class="text-on-surface-variant font-body-md text-[13px]">
+<strong class="font-semibold text-on-surface">Detalle:</strong> 1x Pan casero de campo, 6x Medialunas de manteca
+            </p>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-1 border-t border-outline-variant/40">
+<button class="w-full py-2 px-3 rounded-lg border border-outline text-on-surface hover:bg-surface-container font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[17px] text-on-surface-variant" data-icon="chat">chat</span>
+<span>Avisar cliente</span>
+</button>
+<button class="w-full py-2 px-3 rounded-lg border border-primary-container text-primary-container hover:bg-primary-container hover:text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 font-semibold transition-colors" type="button">
+<span class="material-symbols-outlined text-[17px]" data-icon="done_all">done_all</span>
+<span>Marcar listo</span>
+</button>
+</div>
+</article>
+</section>
+<!-- Mensaje al pie de lista -->
+<div class="text-center py-2 text-on-surface-variant font-body-md text-[12px]">
+<span>Mostrando pedidos de hoy · Libreta sincronizada</span>
+</div>
+</main>
+<!-- 5. BottomNavBar (Shared Component Implementation) -->
+<!-- Prohibidas líneas de borde toscas, usamos delimitador sutil de 1px (#bfc9c4/40) acorde a la guía de estilo -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[420px] mx-auto z-50 flex justify-around items-center px-margin py-space-xs bg-surface-container-lowest border-t border-outline-variant/40 shadow-sm">
+<!-- 1. Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px]" href="#inicio">
+<span class="material-symbols-outlined text-[22px]" data-icon="home">home</span>
+<span class="text-[11px] mt-0.5">Inicio</span>
+</a>
+<!-- 2. Pedidos (ACTIVA) -->
+<a class="flex flex-col items-center justify-center text-primary-container font-label-sm font-bold py-space-xs relative active:scale-95 transition-transform duration-100 min-w-[56px]" href="#pedidos">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]" data-icon="receipt_long" data-weight="fill" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<!-- Badge numérico de pedidos por aprobar -->
+<span class="absolute -top-1 -right-2 bg-primary-container text-on-primary text-[10px] font-bold px-1.5 py-0.2 rounded-full leading-none flex items-center justify-center min-w-[16px] h-4 border border-surface-container-lowest">
+            3
+          </span>
+</div>
+<span class="text-[11px] mt-0.5 text-primary-container">Pedidos</span>
+<!-- Indicador de solapa activa -->
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</a>
+<!-- 3. Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px]" href="#caja">
+<span class="material-symbols-outlined text-[22px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-[11px] mt-0.5">Caja</span>
+</a>
+<!-- 4. Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px]" href="#productos">
+<span class="material-symbols-outlined text-[22px]" data-icon="inventory_2">inventory_2</span>
+<span class="text-[11px] mt-0.5">Productos</span>
+</a>
+<!-- 5. Más -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95 transition-transform duration-100 min-w-[56px]" href="#mas">
+<span class="material-symbols-outlined text-[22px]" data-icon="menu">menu</span>
+<span class="text-[11px] mt-0.5">Más</span>
+</a>
+</nav>
+</div>
+</body></html>

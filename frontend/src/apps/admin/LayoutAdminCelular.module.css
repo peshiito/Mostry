@@ -1,0 +1,18 @@
+/* Admin en pantallas chicas: la barra lateral pasa arriba. */
+@media (max-width: 800px) {
+  .admin {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+  .lateral {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--e-2);
+  }
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

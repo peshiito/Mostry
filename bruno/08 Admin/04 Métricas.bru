@@ -1,0 +1,16 @@
+meta {
+  name: Métricas
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{api}}/admin/metricas
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenAdmin}}
+  Cookie: {{cookieAdmin}}
+}

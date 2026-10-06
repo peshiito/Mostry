@@ -26,13 +26,6 @@ export function codigoNumerico(): string {
   return randomInt(0, 1_000_000).toString().padStart(6, '0');
 }
 
-// Código de recuperación: "abcde-fghij" (base32 en minúscula, ~50 bits).
-export function codigoRecuperacion(): string {
-  const alfabeto = 'abcdefghijklmnopqrstuvwxyz234567';
-  const letras = Array.from({ length: 10 }, () => alfabeto[randomInt(0, 32)]).join('');
-  return `${letras.slice(0, 5)}-${letras.slice(5)}`;
-}
-
 // Comparación en tiempo constante (evita ataques por tiempo de respuesta).
 export function igualesSeguro(a: string, b: string): boolean {
   const x = Buffer.from(a);

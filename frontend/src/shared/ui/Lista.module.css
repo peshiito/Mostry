@@ -1,0 +1,6 @@
+.lista {
+  overflow: hidden;
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}

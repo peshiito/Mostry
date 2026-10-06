@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container-low" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry - Libreta de fiados | La Espiga</title>
+<!-- Material Symbols Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "outline": "#6f7975",
+            "on-secondary-fixed": "#3c0700",
+            "tertiary-fixed": "#ffdea8",
+            "secondary-container": "#fd7958",
+            "on-primary": "#ffffff",
+            "surface-container-low": "#f7f3ec",
+            "on-secondary": "#ffffff",
+            "secondary-fixed-dim": "#ffb4a2",
+            "surface-bright": "#fdf9f2",
+            "tertiary": "#4c3400",
+            "surface-dim": "#dddad3",
+            "surface-container-highest": "#e6e2db",
+            "surface-container": "#f1ede6",
+            "background": "#fdf9f2",
+            "surface-variant": "#e6e2db",
+            "primary-container": "#0e5a4a",
+            "on-tertiary-fixed": "#271900",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface": "#fdf9f2",
+            "secondary-fixed": "#ffdad2",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "inverse-on-surface": "#f4f0e9",
+            "on-tertiary-container": "#f5b73c",
+            "on-secondary-container": "#6e1500",
+            "primary-fixed": "#acf0db",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "on-surface-variant": "#3f4945",
+            "secondary": "#a7391e",
+            "tertiary-container": "#694a00",
+            "tertiary-fixed-dim": "#fabc41",
+            "outline-variant": "#bfc9c4",
+            "surface-container-high": "#ebe8e1",
+            "on-background": "#1c1c18",
+            "surface-tint": "#246959",
+            "on-surface": "#1c1c18",
+            "on-primary-fixed-variant": "#005141",
+            "on-primary-container": "#8ccfbb",
+            "inverse-surface": "#31302c",
+            "on-secondary-fixed-variant": "#862208",
+            "on-primary-fixed": "#002019",
+            "primary-fixed-dim": "#90d4bf",
+            "primary": "#004134",
+            "inverse-primary": "#90d4bf"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-md": "1rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": [
+              "Work Sans"
+            ],
+            "body-md": [
+              "Work Sans"
+            ],
+            "headline-sm": [
+              "Rubik"
+            ],
+            "headline-md": [
+              "Rubik"
+            ],
+            "body-lg": [
+              "Work Sans"
+            ],
+            "headline-lg": [
+              "Rubik"
+            ],
+            "label-md": [
+              "Work Sans"
+            ]
+          },
+          "fontSize": {
+            "label-sm": [
+              "11px",
+              {
+                "lineHeight": "14px",
+                "letterSpacing": "0.05em",
+                "fontWeight": "700"
+              }
+            ],
+            "body-md": [
+              "14px",
+              {
+                "lineHeight": "20px",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-sm": [
+              "20px",
+              {
+                "lineHeight": "28px",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-md": [
+              "24px",
+              {
+                "lineHeight": "32px",
+                "fontWeight": "700"
+              }
+            ],
+            "body-lg": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "400"
+              }
+            ],
+            "headline-lg": [
+              "32px",
+              {
+                "lineHeight": "40px",
+                "fontWeight": "700"
+              }
+            ],
+            "label-md": [
+              "12px",
+              {
+                "lineHeight": "16px",
+                "letterSpacing": "0.04em",
+                "fontWeight": "600"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Estricto viewport simulado mobile */
+    body {
+      background-color: #dddad3;
+    }
+    .mobile-frame {
+      width: 100%;
+      max-width: 390px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background-color: #f7f3ec;
+      position: relative;
+      box-shadow: 0 0 24px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    /* Ocultar barra scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-full font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="mobile-frame pb-24 overflow-x-hidden">
+<!-- 1. Header Institucional (TopAppBar del JSON acatado) -->
+<header class="bg-primary-container text-on-primary flex justify-between items-center w-full px-margin h-14 sticky top-0 z-40 border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[22px] text-on-primary" data-icon="storefront">storefront</span>
+<div class="flex items-baseline gap-1.5">
+<span class="text-headline-sm font-headline-sm font-bold text-on-primary">La Espiga</span>
+<span class="text-[9px] font-label-sm uppercase tracking-widest px-1.5 py-0.5 rounded bg-on-primary/15 text-primary-fixed font-bold">MOSTRY</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Notificaciones" class="relative p-2 rounded-lg text-on-primary hover:bg-primary transition-colors active:opacity-80" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-primary-container"></span>
+</button>
+</div>
+</header>
+<!-- Canvas principal -->
+<main class="flex-1 px-margin pt-space-md space-y-space-md">
+<!-- 2. Migas de pan, contexto y título -->
+<section class="space-y-1">
+<div class="flex items-center justify-between text-on-surface-variant font-label-md text-label-md">
+<div class="flex items-center gap-1">
+<span>Negocio</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-bold">Libreta de fiados</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-semibold text-[11px]">2026</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Libreta de fiados</h1>
+</section>
+<!-- Tarjeta Resumen Total (Bento/Card estilo mostrador) -->
+<section class="bg-surface-container-lowest rounded-lg border border-[#E4DED3] p-space-md">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Cuentas corrientes del mostrador</span>
+<div class="mt-1 flex items-baseline gap-1.5">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">Te deben $ 47.500</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">entre 6 clientes registrados</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center border border-[#E4DED3]">
+<span class="material-symbols-outlined text-primary" data-icon="menu_book">menu_book</span>
+</div>
+</div>
+<div class="mt-3.5 pt-3 border-t border-[#E4DED3] flex items-center justify-between font-label-md text-label-md">
+<div class="flex items-center gap-1.5 text-secondary font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>4 con saldo</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1.5 text-primary-container font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>2 al día</span>
+</div>
+<span class="text-outline-variant">•</span>
+<span class="text-on-surface-variant">Cierre quincenal</span>
+</div>
+</section>
+<!-- 3. Pestañas de vista / Segmented control -->
+<section class="bg-surface-container-highest p-1 rounded-lg flex items-center gap-1 border border-[#E4DED3]">
+<button class="flex-1 py-1.5 px-3 rounded-md bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all" type="button">
+<span>Clientes</span>
+<span class="px-1.5 py-0.2 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px]">6</span>
+</button>
+<button class="flex-1 py-1.5 px-3 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-semibold flex items-center justify-center gap-1 transition-all" type="button">
+<span>Notas del día</span>
+</button>
+</section>
+<!-- 4. Buscador de cliente -->
+<section class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</div>
+<input class="w-full pl-9 pr-8 py-2 bg-surface-container-lowest border border-[#E4DED3] rounded-lg font-body-md text-body-md placeholder:text-outline text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Buscar cliente por nombre o apodo..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2.5 flex items-center">
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="tune">tune</span>
+</div>
+</section>
+<!-- 5. Lista de clientes de la libreta (Filas prolijas de mostrador) -->
+<section class="space-y-2">
+<div class="flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Libreta activa</span>
+<span class="font-label-sm text-label-sm text-outline">Actualizado recién</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg border border-[#E4DED3] divide-y divide-[#E4DED3] overflow-hidden">
+<!-- Cliente 1: Don Carlos -->
+<div class="p-3 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between gap-3 active:bg-surface-container">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#fcece7] text-secondary font-headline-sm text-headline-sm flex items-center justify-center shrink-0 border border-secondary-fixed">
+                C
+              </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface font-semibold truncate">Don Carlos</h3>
+<span class="text-[11px] font-label-md text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded shrink-0">Taller mecánico</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant truncate mt-0.5">Facturas y pan flauta · Ayer</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="inline-block px-2 py-0.5 rounded bg-error-container text-on-error-container font-headline-sm text-[13px] font-bold">
+                debe $ 15.000
+              </span>
+<p class="font-label-sm text-[10px] text-outline mt-0.5">3 compras</p>
+</div>
+</div>
+<!-- Cliente 2: Ana Ríos -->
+<div class="p-3 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between gap-3 active:bg-surface-container">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#fcece7] text-secondary font-headline-sm text-headline-sm flex items-center justify-center shrink-0 border border-secondary-fixed">
+                A
+              </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface font-semibold truncate">Ana Ríos</h3>
+<span class="text-[11px] font-label-md text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded shrink-0">Depto 3B</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant truncate mt-0.5">1 kg criollitos · Mar 14</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="inline-block px-2 py-0.5 rounded bg-error-container text-on-error-container font-headline-sm text-[13px] font-bold">
+                debe $ 8.200
+              </span>
+<p class="font-label-sm text-[10px] text-outline mt-0.5">1 compra</p>
+</div>
+</div>
+<!-- Cliente 3: Graciela (Al día) -->
+<div class="p-3 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between gap-3 active:bg-surface-container">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#e3f4ee] text-primary-container font-headline-sm text-headline-sm flex items-center justify-center shrink-0 border border-primary-fixed">
+                G
+              </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface font-semibold truncate">Graciela</h3>
+<span class="text-[11px] font-label-md text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded shrink-0">Seño escuela</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant truncate mt-0.5">Saldó $ 6.500 en efectivo · Lun 13</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-headline-sm text-[13px] font-bold">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                al día · $ 0
+              </span>
+<p class="font-label-sm text-[10px] text-outline mt-0.5">Sin deuda</p>
+</div>
+</div>
+<!-- Cliente 4: Jorge Ferreyra -->
+<div class="p-3 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between gap-3 active:bg-surface-container">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#fcece7] text-secondary font-headline-sm text-headline-sm flex items-center justify-center shrink-0 border border-secondary-fixed">
+                J
+              </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface font-semibold truncate">Jorge Ferreyra</h3>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant truncate mt-0.5">Pan y sándwiches · Sáb 11</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="inline-block px-2 py-0.5 rounded bg-error-container text-on-error-container font-headline-sm text-[13px] font-bold">
+                debe $ 14.800
+              </span>
+<p class="font-label-sm text-[10px] text-outline mt-0.5">4 compras</p>
+</div>
+</div>
+<!-- Cliente 5: Marta Peralta -->
+<div class="p-3 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between gap-3 active:bg-surface-container">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#fcece7] text-secondary font-headline-sm text-headline-sm flex items-center justify-center shrink-0 border border-secondary-fixed">
+                M
+              </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface font-semibold truncate">Marta Peralta</h3>
+<span class="text-[11px] font-label-md text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded shrink-0">Pasaje Ramos</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant truncate mt-0.5">Tarta de ricota · Vie 10</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="inline-block px-2 py-0.5 rounded bg-error-container text-on-error-container font-headline-sm text-[13px] font-bold">
+                debe $ 9.500
+              </span>
+<p class="font-label-sm text-[10px] text-outline mt-0.5">2 compras</p>
+</div>
+</div>
+<!-- Cliente 6: Roberto Gómez (Al día) -->
+<div class="p-3 hover:bg-surface-container-low transition-colors cursor-pointer flex items-center justify-between gap-3 active:bg-surface-container">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-full bg-[#e3f4ee] text-primary-container font-headline-sm text-headline-sm flex items-center justify-center shrink-0 border border-primary-fixed">
+                R
+              </div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-[15px] leading-tight text-on-surface font-semibold truncate">Roberto Gómez</h3>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant truncate mt-0.5">Saldó $ 4.200 con transferencia MP</p>
+</div>
+</div>
+<div class="text-right shrink-0">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-headline-sm text-[13px] font-bold">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                al día · $ 0
+              </span>
+<p class="font-label-sm text-[10px] text-outline mt-0.5">Sin deuda</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Cartel de aviso de mostrador / Tip de gestión -->
+<section class="p-3.5 bg-surface-container rounded-lg border border-[#E4DED3] flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5" data-icon="tips_and_updates">tips_and_updates</span>
+<div class="space-y-1">
+<p class="font-headline-sm text-[13px] font-bold text-on-surface">Anotá en el momento</p>
+<p class="font-body-md text-[12px] leading-relaxed text-on-surface-variant">
+            Podés mandar el resumen de cuenta por WhatsApp tocando sobre cada cliente cuando cierre la quincena o fin de mes.
+          </p>
+</div>
+</section>
+</main>
+<!-- 7. Botón flotante (FAB) Coral #FF7A59 -->
+<div class="fixed bottom-20 right-4 z-40">
+<button class="bg-secondary-container text-on-secondary-container font-headline-sm text-headline-sm font-bold px-4 py-3 rounded-full flex items-center gap-2 shadow-lg active:scale-95 transition-transform duration-150 border border-on-secondary-fixed/10 hover:brightness-105" style="background-color: #FF7A59; color: #1B1B1B;" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_add">person_add</span>
+<span class="text-[14px] tracking-wide">+ Cliente</span>
+</button>
+</div>
+<!-- 8. Barra de navegación inferior fija (BottomNavBar del JSON acatado) -->
+<!-- Destination count: 5. Labels: ["Inicio", "Pedidos", "Caja", "Productos", "Más"] -->
+<!-- Se respeta contextualmente marcando 'Caja' como destino financiero/mostrador directo -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin py-space-xs h-16 bg-surface-container-lowest text-primary border-t border-outline-variant dark:border-outline-variant max-w-[390px] mx-auto right-0">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm mt-0.5">Inicio</span>
+</a>
+<!-- Pedidos (con badge contador 3) -->
+<a class="relative flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="receipt_long">receipt_long</span>
+<span class="absolute top-0 right-1 px-1.5 py-0.2 rounded-full bg-secondary-container text-on-secondary text-[10px] font-bold leading-tight">3</span>
+<span class="text-label-sm font-label-sm mt-0.5">Pedidos</span>
+</a>
+<!-- Caja (Activa por libreta de fiados y cuentas corrientes) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold py-space-xs hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="point_of_sale" data-weight="fill" style="font-variation-settings: 'FILL' 1;">point_of_sale</span>
+<span class="text-label-sm font-label-sm mt-0.5">Caja</span>
+</a>
+<!-- Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-sm font-label-sm mt-0.5">Productos</span>
+</a>
+<!-- Más -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-space-xs hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="menu">menu</span>
+<span class="text-label-sm font-label-sm mt-0.5">Más</span>
+</a>
+</nav>
+</div>
+</body></html>

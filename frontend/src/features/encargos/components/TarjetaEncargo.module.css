@@ -1,0 +1,31 @@
+.tarjeta {
+  display: grid;
+  gap: var(--e-1);
+}
+.pendiente {
+  border-color: var(--mostaza-borde);
+}
+.cabeza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hora {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-2xl);
+  font-weight: 700;
+}
+.detalle {
+  font-size: var(--t-lg);
+  font-weight: 600;
+}
+.cliente,
+.plata {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.acciones {
+  display: flex;
+  gap: var(--e-2);
+  margin-top: var(--e-2);
+}

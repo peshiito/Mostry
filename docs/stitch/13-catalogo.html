@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container-low text-on-surface antialiased" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>La Espiga · Panadería de Barrio en Mostry</title>
+<!-- Typography: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration matching the Brand & Style Guide tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "error-container": "#ffdad6",
+            "background": "#fdf9f2",
+            "tertiary-fixed-dim": "#fabc41",
+            "surface-container": "#f1ede6",
+            "on-primary-container": "#8ccfbb",
+            "surface-variant": "#e6e2db",
+            "tertiary-fixed": "#ffdea8",
+            "surface-dim": "#dddad3",
+            "tertiary-container": "#694a00",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#f4f0e9",
+            "on-secondary-fixed-variant": "#862208",
+            "inverse-primary": "#90d4bf",
+            "surface-container-low": "#f7f3ec",
+            "surface-container-high": "#ebe8e1",
+            "primary": "#004134",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "surface-bright": "#fdf9f2",
+            "on-secondary-fixed": "#3c0700",
+            "tertiary": "#4c3400",
+            "on-secondary-container": "#6e1500",
+            "primary-container": "#0e5a4a",
+            "on-tertiary-container": "#f5b73c",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "surface": "#fdf9f2",
+            "primary-fixed-dim": "#90d4bf",
+            "primary-fixed": "#acf0db",
+            "inverse-surface": "#31302c",
+            "on-primary-fixed": "#002019",
+            "on-surface": "#1c1c18",
+            "secondary-container": "#fd7958",
+            "secondary-fixed-dim": "#ffb4a2",
+            "outline-variant": "#bfc9c4",
+            "secondary": "#a7391e",
+            "on-tertiary-fixed": "#271900",
+            "surface-tint": "#246959",
+            "on-background": "#1c1c18",
+            "on-primary-fixed-variant": "#005141",
+            "surface-container-highest": "#e6e2db",
+            "on-surface-variant": "#3f4945",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#ffdad2",
+            "outline": "#6f7975",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Work Sans", "sans-serif"],
+            "headline-sm": ["Rubik", "sans-serif"],
+            "headline-lg": ["Rubik", "sans-serif"],
+            "label-md": ["Work Sans", "sans-serif"],
+            "headline-md": ["Rubik", "sans-serif"],
+            "body-lg": ["Work Sans", "sans-serif"],
+            "body-md": ["Work Sans", "sans-serif"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined[data-weight="fill"] {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Estilo del toldo tradicional / festón de panadería */
+    .feston-toldo {
+      background-image: radial-gradient(circle at 10px 0px, transparent 10px, #0e5a4a 11px);
+      background-size: 20px 12px;
+      background-repeat: repeat-x;
+      height: 12px;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface min-h-screen flex flex-col font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-white">
+<!-- Contenedor central móvil estructurado -->
+<div class="w-full max-w-md mx-auto min-h-screen bg-surface-container-low flex flex-col relative pb-28 border-x border-surface-variant">
+<!-- 1. HEADER INSTITUCIONAL COMPACTO: LA ESPIGA -->
+<header class="bg-primary-container text-on-primary pt-3 pb-0 sticky top-0 z-30 shadow-none">
+<!-- Subtítulo de dominio y rubro -->
+<div class="px-space-md flex items-center justify-between text-on-primary-container pb-2 border-b border-primary">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary-container font-semibold">
+          PANADERÍA &amp; CONFITERÍA · laespiga.mostry.com.ar
+        </span>
+<span class="font-label-sm text-label-sm text-on-primary-container">Buenos Aires</span>
+</div>
+<!-- Bloque central de identidad -->
+<div class="px-space-md py-3 flex items-start justify-between">
+<div class="flex items-center space-x-3">
+<!-- Medallón de panadería -->
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest text-primary flex items-center justify-center border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-3xl" data-icon="bakery_dining">bakery_dining</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center space-x-2">
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-primary leading-tight">
+                La Espiga
+              </h1>
+<span class="inline-flex items-center gap-1 bg-[#8CCFBB] text-[#002019] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> ABIERTO
+              </span>
+</div>
+<p class="font-label-md text-label-md text-on-primary-container leading-none mt-1">
+              Facturas caseras desde 1998 · Doña Rosa Fernández
+            </p>
+</div>
+</div>
+<!-- Botón Carrito Header -->
+<a aria-label="Carrito de compras" class="relative p-2 rounded-lg bg-primary hover:bg-primary/80 transition-colors text-on-primary flex items-center justify-center border border-outline-variant/30 active:scale-95" href="#carrito">
+<span class="material-symbols-outlined text-2xl" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute -top-1.5 -right-1.5 bg-secondary-container text-white font-headline-sm text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border border-surface-container-lowest">
+            2
+          </span>
+</a>
+</div>
+<!-- Toldo festón decorativo inferior -->
+<div class="w-full feston-toldo -mb-[11px] relative z-10 pointer-events-none"></div>
+</header>
+<!-- 2. BARRA DE BÚSQUEDA Y CATEGORÍAS (Sticky) -->
+<div class="bg-surface-container-low pt-4 pb-2 px-space-md sticky top-[102px] z-20 space-y-3">
+<!-- Buscador -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</div>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest text-on-surface border border-surface-variant rounded-lg text-body-md font-body-md placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Buscá medialunas, tortas…" type="search"/>
+</div>
+<!-- Chips de categorías -->
+<div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-1 pt-0.5">
+<!-- Chip Todo -->
+<button class="flex-shrink-0 px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container-lowest text-on-surface-variant hover:border-outline font-label-md text-label-md transition-colors">
+          Todo
+        </button>
+<!-- Chip Facturas (ACTIVO según diseño) -->
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary font-bold font-label-md text-label-md flex items-center space-x-1.5 shadow-none border border-primary">
+<span class="material-symbols-outlined text-sm leading-none" data-icon="done">done</span>
+<span>Facturas</span>
+</button>
+<!-- Demás chips inactivos -->
+<button class="flex-shrink-0 px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container-lowest text-on-surface-variant hover:border-outline font-label-md text-label-md transition-colors">
+          Panes
+        </button>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container-lowest text-on-surface-variant hover:border-outline font-label-md text-label-md transition-colors">
+          Tortas
+        </button>
+<button class="flex-shrink-0 px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container-lowest text-on-surface-variant hover:border-outline font-label-md text-label-md transition-colors">
+          Salados
+        </button>
+</div>
+</div>
+<!-- 3. LISTADO DE PRODUCTOS DEL CATÁLOGO -->
+<main class="flex-1 px-space-md pt-2 space-y-3">
+<!-- Subcabecera de sección actual -->
+<div class="flex items-baseline justify-between pt-1 pb-1">
+<h2 class="font-headline-sm text-headline-sm text-primary flex items-center space-x-1.5">
+<span>Horneadas del día</span>
+</h2>
+<span class="font-label-md text-label-md text-outline">7 productos</span>
+</div>
+<!-- Item 1: Medialuna de manteca -->
+<article class="bg-surface-container-lowest rounded-lg border border-surface-variant p-3 flex gap-3 items-center justify-between transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container flex-shrink-0 overflow-hidden border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Golden crisp freshly baked Argentine sweet butter croissant medialuna coated with shiny sugar syrup glaze, set on rustic bakery linen counter in natural bright morning daylight, warm artisanal mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_mM-0R0tSmnWosI2Lb_J_dWDZS5Cntcy4KSAJ57iN4cbjjA2kg9y2aPOJhhlR-EHYbEu2EJzeCO4a8PENqZdMfLcrN7b1ZogxUys8Hlh3J7T1qUEvaQBHvhdWoqH1FnoPtu8EGU1gOgRsAhafJbdLr3NOw_PdipZyo9s2I2zGIyyabvjjNGCeghOQUCXPzsJjPbjhTKJP24y8yyMOZ2P0c7mftNJy1lSEX-OB0ZvcgXfd6iOMPMUdXesJOy0veGrqoT5Ba4YNqys"/>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<h3 class="font-headline-sm text-[16px] leading-snug font-bold text-on-surface truncate">
+            Medialuna de manteca
+          </h3>
+<p class="font-body-md text-[13px] text-on-surface-variant line-clamp-1 mt-0.5">
+            Masa hojaldrada tradicional con almíbar tibio.
+          </p>
+<div class="mt-1.5 flex items-center">
+<span class="font-headline-sm text-[17px] font-bold text-primary font-headline-sm">
+              $ 700
+            </span>
+</div>
+</div>
+<button aria-label="Agregar Medialuna de manteca" class="w-10 h-10 rounded-lg bg-surface-container-low border border-primary-container text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+</button>
+</article>
+<!-- Item 2: Docena de medialunas (Con etiqueta destacada) -->
+<article class="bg-surface-container-lowest rounded-lg border-2 border-primary-container/20 p-3 flex gap-3 items-center justify-between relative transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container flex-shrink-0 overflow-hidden border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A bakery dozen carton filled with twelve golden caramelized Argentine medialunas glaseadas, displayed inside an authentic artisanal neighbourhood bakery counter with soft clean lighting and rich warm tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwPmU-Kk7kz2bAW1xVWF5HSa25cIRViUej08XvUq1OWfuqO-mNbaVFtVRKAJbfW44coROmgCFO8KuxAnvBwtjggGRHLafZbZdJBZ6363iFEafih2Kr13DiCfaSfc-w5f-Exr-7Qi1AuCKRmpd0mUDa7cajo5aq6tQuG1-pVRhwPzqfAEXT48DoP6DXwCgksLR3ZTESvTLS6MxoWyX1rn25gpAxA--m4owTa7yhtfqUdvBTqWtEI0g6GgC75ifs_qgy-t8UM58Xt1s"/>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1.5 mb-0.5">
+<span class="bg-[#F2B53A] text-tertiary font-label-sm text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">
+              PROMO DÍA
+            </span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-snug font-bold text-on-surface truncate">
+            Docena de medialunas
+          </h3>
+<p class="font-body-md text-[13px] text-on-surface-variant line-clamp-1 mt-0.5">
+            Elegí manteca, grasa o surtidas al retirar.
+          </p>
+<div class="mt-1.5 flex items-center space-x-2">
+<span class="font-headline-sm text-[17px] font-bold text-primary font-headline-sm">
+              $ 7.800
+            </span>
+</div>
+</div>
+<button aria-label="Agregar Docena de medialunas" class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center hover:bg-primary transition-colors active:scale-95 flex-shrink-0 border border-primary" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+</button>
+</article>
+<!-- Item 3: Vigilante -->
+<article class="bg-surface-container-lowest rounded-lg border border-surface-variant p-3 flex gap-3 items-center justify-between transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container flex-shrink-0 overflow-hidden border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Traditional Argentine vigilante pastry elongated sweet dough pastry filled with deep red quince paste and rich custard cream lines baked golden brown, photographed overhead on neutral parchment paper." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtLFWMVWpzaex-HpmzFspEXvckWOjMDqdf4naXuSHaBNB8z39UtY2hEN_yg65L9535ePKVslc38No6ta5bdRVR8ab7MNF_9wF04gsGClZ3fHHzsTtvoX-PBm3jN0ZJKMsjVbc9XzCy723jzHqbdWtqtji0jl8ZIzW3mCIYcOpuAQgBg_cQcdtCMGDsSfR8MVJGFtzAsbwJsk1MNhixVPFbz43eMKEyioIDcdBB8VB_ZubSl2DMClRiIKTjazZu2SiZFdFFiSdp_Ko"/>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<h3 class="font-headline-sm text-[16px] leading-snug font-bold text-on-surface truncate">
+            Vigilante
+          </h3>
+<p class="font-body-md text-[13px] text-on-surface-variant line-clamp-1 mt-0.5">
+            Con dulce de membrillo casero y crema pastelera.
+          </p>
+<div class="mt-1.5 flex items-center">
+<span class="font-headline-sm text-[17px] font-bold text-primary font-headline-sm">
+              $ 650
+            </span>
+</div>
+</div>
+<button aria-label="Agregar Vigilante" class="w-10 h-10 rounded-lg bg-surface-container-low border border-primary-container text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+</button>
+</article>
+<!-- Item 4: Bola de fraile (AGOTADO - Atenuada) -->
+<article class="bg-surface-container rounded-lg border border-surface-variant p-3 flex gap-3 items-center justify-between opacity-50 relative select-none">
+<div class="w-20 h-20 rounded bg-surface-dim flex-shrink-0 overflow-hidden border border-surface-variant relative">
+<img class="w-full h-full object-cover grayscale" data-alt="Fluffy round Argentine fried berlinesa pastry bola de fraile rolled in fine granulated white sugar, sliced open revealing rich creamy dulce de leche caramel filling on bakery parchment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD242H0emGC_nfKVttrrJIUVwILvfg2Ww4gXx6wZT_kIsrlWd4dgrrxhalKAPljcNX2ZTFMIlZ4xbDjek_H5KTH9aPTOe6OgnjeFwx08ncG4psHn3j_Czlcyq2vXDjo7GbL4wepI-RUYAcGpobOcxMJaxo4hmNO93kn-3XCL0aatXoQ3t90kzQCChrHFa1pY1lXxygOiv30I9yxkR7vn6qw45AC5YBGTKqa3OtVHVWjdfxrS5pGLEAqNq-bNTDj9TzkzBmLNceN8z4"/>
+<div class="absolute inset-0 bg-surface-dim/40"></div>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1 mb-0.5">
+<span class="bg-error text-on-error font-label-sm text-[10px] px-1.5 py-0.2 rounded font-bold uppercase tracking-wide">
+              AGOTADO
+            </span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-snug font-bold text-on-surface line-through truncate">
+            Bola de fraile
+          </h3>
+<p class="font-body-md text-[13px] text-on-surface-variant line-clamp-1 mt-0.5">
+            Rellena de abundante dulce de leche repostero.
+          </p>
+<div class="mt-1.5 flex items-center">
+<span class="font-headline-sm text-[17px] font-medium text-outline font-headline-sm">
+              $ 750
+            </span>
+</div>
+</div>
+<button aria-label="Producto agotado" class="w-10 h-10 rounded-lg bg-surface-variant text-outline flex items-center justify-center cursor-not-allowed flex-shrink-0 border border-outline-variant/50" disabled="" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="block">block</span>
+</button>
+</article>
+<!-- Item 5: Pan de campo 1 kg -->
+<article class="bg-surface-container-lowest rounded-lg border border-surface-variant p-3 flex gap-3 items-center justify-between transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container flex-shrink-0 overflow-hidden border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Rustic crusty country sourdough bread loaf pan de campo with flour dusted artisanal score marks on wooden counter top, illuminated by soft morning window bakery light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ3RVs4VH7BErhiZqacOYndyfhz2L6gaZvVzMxDm7N53MiQ202Fx-OSrVDJVwJvGsPFia0U_qf_lmcVpdqjwxohx12DfBKE9YeFoA80qC4SWLG-qhfymCU-J-NQExPsOLLreEWMke47-RkYXpJ8CQ2cS7HRGLR5eqExKZBJXfmiDRCt1PBENm8ahhBdNFE5-nrxGfsAabO1Be0Qw-UqIKiRMWYpxfQ3ABL-U-cYeCFYI3nQ_NlbKP2odazY54pv8BcWx-G7GEk6f4"/>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<h3 class="font-headline-sm text-[16px] leading-snug font-bold text-on-surface truncate">
+            Pan de campo 1 kg
+          </h3>
+<p class="font-body-md text-[13px] text-on-surface-variant line-clamp-1 mt-0.5">
+            Corteza gruesa crocante y miga aireada de masa madre.
+          </p>
+<div class="mt-1.5 flex items-center">
+<span class="font-headline-sm text-[17px] font-bold text-primary font-headline-sm">
+              $ 3.500
+            </span>
+</div>
+</div>
+<button aria-label="Agregar Pan de campo 1 kg" class="w-10 h-10 rounded-lg bg-surface-container-low border border-primary-container text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+</button>
+</article>
+<!-- Item 6: Torta rogel (POR ENCARGO) -->
+<article class="bg-surface-container-lowest rounded-lg border border-surface-variant p-3 flex gap-3 items-center justify-between transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container flex-shrink-0 overflow-hidden border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Artisanal Argentine rogel cake with dozens of thin crisp dough layers stacked high with rich dulce de leche and crowned with toasted peaks of glossy Italian meringue." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-tH-UFVfQGS6mAqXkk5NZhXXVQiqLbjQYO5EckUZQGfc99nLHep9Na2qwi-KLnVHoSs0C_EI8_WCenJyXnmGqgTTPlxqB7uLh0YjzYf6STiAbdZH7XR-fGT7rWWvLuGaKBFwJr89PucwlJnqhDuP8OFZoOmzZgJzroHSnWGxFy5eHrUgJwvqrE9h6fkKcUOAbZmCpabZ6yZUmWM3GWtcQpFjNTtwxpHLH-1Lz58gNVDajN309_ZOLyk2YZrv78WKeRfWXVgQCICU"/>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<div class="flex items-center space-x-1 mb-0.5">
+<span class="bg-surface-container-high text-on-surface-variant border border-outline-variant font-label-sm text-[10px] px-1.5 py-0.2 rounded font-bold uppercase tracking-wide">
+              POR ENCARGO
+            </span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-snug font-bold text-on-surface truncate">
+            Torta rogel
+          </h3>
+<p class="font-body-md text-[13px] text-on-surface-variant line-clamp-1 mt-0.5">
+            8 capas crocantes, dulce de leche y merengue italiano.
+          </p>
+<div class="mt-1.5 flex items-center">
+<span class="font-headline-sm text-[17px] font-bold text-primary font-headline-sm">
+              $ 28.000
+            </span>
+</div>
+</div>
+<button class="px-2.5 h-10 rounded-lg bg-surface-container-low border border-primary-container text-primary font-label-md text-label-md font-bold flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 flex-shrink-0" type="button">
+          Encargar
+        </button>
+</article>
+<!-- Item 7: Pasta frola -->
+<article class="bg-surface-container-lowest rounded-lg border border-surface-variant p-3 flex gap-3 items-center justify-between transition-colors">
+<div class="w-20 h-20 rounded bg-surface-container flex-shrink-0 overflow-hidden border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Classic handmade Argentine pasta frola tart with golden lattice pastry strips baked over ruby red shiny quince paste filling, displayed on rustic artisanal pottery dish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyePSsnZ_tCak6IhFi4TwUrGstxr4kD9O4Y0eZlS-JPPZrr6Z3_pc9W7oknGBmEkkr7i07jf2edH6wRAK9cuq5T0CzLH9kB4lm11cn5_sQEyDhEYZP3J7L4TI48MVKRe-tK-s9vIHdS5aETiPBSmRqAZbY6nAKKFoN7VTuLuibEoMGsALI467uTXKcc-EvzPU1NeOU7jq6SYT7HF8LZ4KzswnB4gQP_jrsoFk4RNBvNHYLRXXWb4hDtb51Wwga_puOZCkboL7iyuM"/>
+</div>
+<div class="flex-1 min-w-0 pr-2">
+<h3 class="font-headline-sm text-[16px] leading-snug font-bold text-on-surface truncate">
+            Pasta frola
+          </h3>
+<p class="font-body-md text-[13px] text-on-surface-variant line-clamp-1 mt-0.5">
+            Masa frola casera de manteca y dulce de membrillo rubí.
+          </p>
+<div class="mt-1.5 flex items-center">
+<span class="font-headline-sm text-[17px] font-bold text-primary font-headline-sm">
+              $ 9.500
+            </span>
+</div>
+</div>
+<button aria-label="Agregar Pasta frola" class="w-10 h-10 rounded-lg bg-surface-container-low border border-primary-container text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors active:scale-95 flex-shrink-0" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+</button>
+</article>
+</main>
+<!-- 4. PIE DE PÁGINA SENCILLO Y COMUNITARIO -->
+<footer class="mt-8 px-space-md pt-6 pb-12 border-t border-surface-variant bg-surface-container/60 text-center space-y-4">
+<!-- Datos del local -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-center space-x-1.5 text-primary font-headline-sm text-[15px] font-bold">
+<span class="material-symbols-outlined text-lg" data-icon="storefront">storefront</span>
+<span>Panadería La Espiga</span>
+</div>
+<p class="font-body-md text-[13px] text-on-surface-variant">
+          Av. San Martín 1234, Barrio Norte
+        </p>
+<p class="font-label-md text-label-md text-outline">
+          Horarios: Lun a sáb 7:00 a 13:00 y 16:30 a 20:30 · Dom cerrado
+        </p>
+</div>
+<!-- Soporte / WhatsApp -->
+<div class="pt-2">
+<a class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-surface-variant bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors" href="https://wa.me/5491100000000">
+<span class="material-symbols-outlined text-primary text-base" data-icon="chat">chat</span>
+<span>¿Tenés dudas? Escribile a Rosa por WhatsApp</span>
+</a>
+</div>
+<!-- Firma institucional Mostry -->
+<div class="pt-4 border-t border-surface-variant/80 text-outline space-y-1 font-label-sm text-label-sm">
+<p class="font-bold text-on-surface-variant">Hecho con Mostry · La libreta y tienda digital de tu barrio</p>
+<p>© 2026 Mostry Argentina. Todos los derechos reservados.</p>
+</div>
+</footer>
+<!-- 5. BOTÓN FLOTANTE INFERIOR FIJO (STICKY CTA: CORAL #FF7A59) -->
+<div class="fixed bottom-0 left-0 right-0 z-40 p-space-md pointer-events-none">
+<div class="max-w-md mx-auto pointer-events-auto">
+<button class="w-full bg-[#FF7A59] hover:bg-[#e86948] text-[#1B1B1B] font-headline-sm text-[16px] font-bold py-3.5 px-5 rounded-lg border border-[#e06545] shadow-lg flex items-center justify-between transition-transform active:scale-[0.98]" type="button">
+<div class="flex items-center space-x-2.5">
+<span class="material-symbols-outlined text-xl" data-icon="shopping_basket" data-weight="fill">shopping_basket</span>
+<span>Ver carrito</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-[17px] font-bold text-[#1B1B1B]">$ 8.450</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+</body></html>

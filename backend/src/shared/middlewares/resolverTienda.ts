@@ -1,8 +1,9 @@
 import type { RequestHandler } from 'express';
+import type { TiendaId } from '../db/tiendaId.js';
 import { AppError } from '../errors/AppError.js';
 import { zonaDelOrigen } from '../utils/origen.js';
 
-export type TiendaResuelta = { id: number; slug: string };
+export type TiendaResuelta = { id: TiendaId; slug: string };
 export type BuscarTiendaPorSlug = (slug: string) => Promise<TiendaResuelta | undefined>;
 
 // Deja en req.tienda la tienda del subdominio que hace la request.
@@ -17,7 +18,7 @@ export function resolverTienda(buscarPorSlug: BuscarTiendaPorSlug): RequestHandl
     if (!tienda) {
       throw new AppError(404, 'tienda_no_encontrada', 'No encontramos esta tienda.');
     }
-    req.tienda = tienda;
+    req.tienda = { id: tienda.id, slug: tienda.slug };
     next();
   };
 }

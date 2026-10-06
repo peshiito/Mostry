@@ -1,0 +1,21 @@
+meta {
+  name: Reenviar código
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{api}}/auth/verificar-email/reenviar
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenSitio}}
+}
+
+body:json {
+  {
+    "email": "nueva@test.com"
+  }
+}

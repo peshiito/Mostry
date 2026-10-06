@@ -1,0 +1,5 @@
+.miniatura {
+  border-radius: var(--radio-chico);
+  object-fit: cover;
+  background: var(--lona-oscura);
+}

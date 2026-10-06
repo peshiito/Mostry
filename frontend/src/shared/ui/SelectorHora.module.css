@@ -1,0 +1,43 @@
+.disparador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-width: 0;
+  width: 100%;
+  min-height: var(--toque);
+  padding: 0 var(--e-2);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  color: var(--texto-2);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-corta) ease,
+    transform var(--dur-toque) var(--ease-out);
+}
+.disparador:active {
+  transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+  .disparador:hover {
+    border-color: var(--verde);
+  }
+}
+.valor {
+  color: var(--carbon);
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-variant-numeric: tabular-nums;
+}
+.ruedas {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: 0 var(--e-4);
+}
+.dosPuntos {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-2xl);
+  font-weight: 700;
+}

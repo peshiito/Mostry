@@ -1,0 +1,55 @@
+.icono {
+  display: grid;
+  flex: none;
+  margin-top: 1px;
+  color: var(--verde);
+}
+.icono[data-tipo='exito'] {
+  color: var(--ok);
+}
+.icono[data-tipo='error'] {
+  color: var(--ladrillo);
+}
+.textos {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.titulo {
+  margin: 0;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  line-height: 1.35;
+}
+.descripcion {
+  margin: 0;
+  color: var(--texto-2);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+.cerrar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: -4px -4px 0 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texto-3);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-toque) ease,
+    transform var(--dur-toque) ease-out;
+}
+.cerrar:active {
+  transform: scale(0.92);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cerrar:hover {
+    background: var(--lona-oscura);
+    color: var(--carbon);
+  }
+}

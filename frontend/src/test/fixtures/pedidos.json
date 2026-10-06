@@ -1,0 +1,111 @@
+{
+  "pedidos": [
+    {
+      "id": 8,
+      "numero": 8,
+      "estado": "en_preparacion",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 35000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": null,
+      "creadoEn": "2026-10-05T14:03:32.000Z"
+    },
+    {
+      "id": 7,
+      "numero": 7,
+      "estado": "comprobante_enviado",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 35000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": null,
+      "creadoEn": "2026-10-05T14:02:16.000Z"
+    },
+    {
+      "id": 6,
+      "numero": 6,
+      "estado": "pendiente_pago",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 35000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": "2026-10-05T16:00:59.000Z",
+      "creadoEn": "2026-10-05T14:00:58.000Z"
+    },
+    {
+      "id": 5,
+      "numero": 5,
+      "estado": "pendiente_pago",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 35000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": "2026-10-05T16:00:19.000Z",
+      "creadoEn": "2026-10-05T14:00:19.000Z"
+    },
+    {
+      "id": 4,
+      "numero": 4,
+      "estado": "pendiente_pago",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 35000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": "2026-10-05T15:58:34.000Z",
+      "creadoEn": "2026-10-05T13:58:34.000Z"
+    },
+    {
+      "id": 3,
+      "numero": 3,
+      "estado": "pendiente_pago",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 35000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": "2026-10-05T15:58:05.000Z",
+      "creadoEn": "2026-10-05T13:58:04.000Z"
+    },
+    {
+      "id": 2,
+      "numero": 2,
+      "estado": "pendiente_pago",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 35000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": "2026-10-05T15:57:08.000Z",
+      "creadoEn": "2026-10-05T13:57:08.000Z"
+    },
+    {
+      "id": 1,
+      "numero": 1,
+      "estado": "pendiente_pago",
+      "tipo": "inmediato",
+      "clienteNombre": "Lucía Gómez",
+      "total": 70000,
+      "sena": 0,
+      "entrega": "retiro",
+      "fechaEncargo": null,
+      "venceComprobanteEn": "2026-10-05T15:52:23.000Z",
+      "creadoEn": "2026-10-05T13:52:22.000Z"
+    }
+  ],
+  "total": 8,
+  "pagina": 1,
+  "paginas": 1
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Suscripción
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{api}}/panel/tienda/suscripcion
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container-low" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry - Editar Producto</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#a7391e",
+            "on-primary-container": "#8ccfbb",
+            "tertiary-fixed": "#ffdea8",
+            "surface-container-high": "#ebe8e1",
+            "primary-fixed": "#acf0db",
+            "outline": "#6f7975",
+            "surface-bright": "#fdf9f2",
+            "outline-variant": "#bfc9c4",
+            "primary": "#004134",
+            "surface-dim": "#dddad3",
+            "inverse-surface": "#31302c",
+            "on-tertiary-fixed": "#271900",
+            "inverse-on-surface": "#f4f0e9",
+            "secondary-fixed-dim": "#ffb4a2",
+            "secondary-fixed": "#ffdad2",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-primary-fixed": "#002019",
+            "surface-container": "#f1ede6",
+            "on-surface": "#1c1c18",
+            "inverse-primary": "#90d4bf",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#694a00",
+            "on-tertiary-container": "#f5b73c",
+            "primary-fixed-dim": "#90d4bf",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed-variant": "#862208",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f7f3ec",
+            "tertiary-fixed-dim": "#fabc41",
+            "on-secondary-fixed": "#3c0700",
+            "on-secondary-container": "#6e1500",
+            "surface-container-highest": "#e6e2db",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-background": "#1c1c18",
+            "secondary-container": "#fd7958",
+            "primary-container": "#0e5a4a",
+            "on-primary-fixed-variant": "#005141",
+            "surface-variant": "#e6e2db",
+            "on-secondary": "#ffffff",
+            "background": "#fdf9f2",
+            "surface-tint": "#246959",
+            "error": "#ba1a1a",
+            "on-surface-variant": "#3f4945",
+            "tertiary": "#4c3400",
+            "surface": "#fdf9f2",
+            "on-primary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "body-lg": ["Work Sans"],
+            "headline-lg": ["Rubik"],
+            "label-sm": ["Work Sans"],
+            "body-md": ["Work Sans"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased flex justify-center min-h-screen">
+<!-- Mobile Viewport Canvas fixed to 390px -->
+<div class="w-[390px] min-h-screen bg-surface-container-low flex flex-col relative shadow-sm border-x border-outline-variant/30">
+<!-- 1. TopAppBar (Shared Component implementation) -->
+<header class="fixed top-0 left-0 right-0 max-w-[390px] mx-auto w-full z-50 flex justify-between items-center px-margin h-14 bg-primary-container text-on-primary border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<button aria-label="Volver" class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-primary/20 active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-on-primary">arrow_back</span>
+</button>
+<div class="flex items-center gap-1.5">
+<span class="text-headline-sm font-headline-sm font-bold text-on-primary">La Espiga</span>
+<span class="text-label-sm font-label-sm px-1.5 py-0.5 rounded bg-on-primary/15 text-on-primary uppercase tracking-wider">Panel</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Notificaciones" class="relative flex items-center justify-center w-8 h-8 rounded-full hover:bg-primary/20 active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined text-on-primary">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas (Fluid single column) -->
+<main class="flex-1 px-margin pt-16 pb-28 space-y-4">
+<!-- Breadcrumbs & Status Header -->
+<section class="pt-2">
+<div class="flex items-center gap-1.5 text-label-md font-label-md text-on-surface-variant">
+<span>Catálogo</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary-container font-semibold">Facturas</span>
+</div>
+<div class="flex items-center justify-between mt-1">
+<h1 class="text-headline-md font-headline-md text-on-surface tracking-tight">Editar producto</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            En vidriera
+          </span>
+</div>
+</section>
+<!-- 3. Image Grid Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-3.5">
+<div class="flex items-baseline justify-between mb-1">
+<h2 class="text-body-md font-body-md font-bold text-on-surface">Fotos del producto</h2>
+<span class="text-label-sm font-label-sm text-outline">Hasta 6 fotos</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant mb-3">
+          La primera imagen se exhibe como portada principal en la tienda de mostrador.
+        </p>
+<!-- 3x2 Grid for 6 Photos -->
+<div class="grid grid-cols-3 gap-2">
+<!-- Foto 1 (Principal) -->
+<div class="relative aspect-square rounded-lg border border-primary-container overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A warm, appetizing close-up photograph of golden Argentine medialunas glazed with sweet syrup, freshly baked and resting on clean baker's wax paper. The lighting is soft and natural, emphasizing the buttery, flaky layers of the crescent pastries. High quality commercial food photography tailored for a neighborhood bakery online shop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWjn1RnQMQOwDCyFbTfudpegteW6EAcIry9KRmSZMJIQh_KayREhxLxN4S6v6AKqVi-vNEcO_edSiT3WBZ545H2qQ7OK-RpT5gc_rts9gR6j6ragrZehC55ZFxRxy0kcOLhEoRgQBzNDftn76q1b-icXVo-1PlHOkj7-Mo9ETvHVTJqtgDDMYVpmO9rqpt5WvyKpA2hf1CufPcrMijGHzfqxCSHHw7xx4D1HnWMfVGeCd0j-S-p1rWdhWE0K84aeWhBucwm-RPoO4"/>
+<span class="absolute top-1 left-1 bg-primary-container text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded leading-none shadow-sm">
+              Principal
+            </span>
+<button aria-label="Editar foto principal" class="absolute bottom-1 right-1 w-6 h-6 rounded-md bg-inverse-surface/80 text-inverse-on-surface flex items-center justify-center active:scale-90 transition-transform" type="button">
+<span class="material-symbols-outlined text-[14px]">edit</span>
+</button>
+</div>
+<!-- Foto 2 (Secundaria cargada) -->
+<div class="relative aspect-square rounded-lg border border-outline-variant/50 overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A top-down shot of a dozen artisanal baked medialunas arranged neatly inside a traditional Argentine bakery cardboard box with parchment paper lining. Warm ambient lighting highlights the crisp golden crust and glistening sugar syrup. Clean rustic counter aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9kfh1VqXnx9674EYRhvBhnVSsOXBbVu-47pfDtq2Zo-zLK2E_4GHaAJcbAc11fpbWsekdSd9_sPB7Ekywjn0M8VKvdV1IhRntGtNKDKuX4JgGd6bh7YFyAvgidfgWtI4o0L0MFT1gBNRMk5jurEpapycAhhN2GRgRoKzTp60PheV57KmD7tYN21DfjoKBJU0d2cfEk3xaWF79p_rEu6T_AgKuxEFXy3Vqyld4KuCW41PSaSHLU62DZVSlo5vm3XdUcmYi6i8oXOw"/>
+<button aria-label="Eliminar foto" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-error text-on-error flex items-center justify-center active:scale-90 transition-transform shadow-sm" type="button">
+<span class="material-symbols-outlined text-[13px]">close</span>
+</button>
+</div>
+<!-- Foto 3 (Agregar foto activa) -->
+<button class="aspect-square rounded-lg border-2 border-dashed border-primary-container/60 bg-primary-fixed/20 hover:bg-primary-fixed/40 flex flex-col items-center justify-center text-primary-container active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]">add_a_photo</span>
+<span class="text-label-sm font-label-sm mt-0.5">+ Agregar</span>
+</button>
+<!-- Foto 4 (Vacío) -->
+<div class="aspect-square rounded-lg border border-dashed border-outline-variant/60 bg-surface-container-low flex flex-col items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="text-[10px] font-medium mt-0.5">+ Foto</span>
+</div>
+<!-- Foto 5 (Vacío) -->
+<div class="aspect-square rounded-lg border border-dashed border-outline-variant/60 bg-surface-container-low flex flex-col items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="text-[10px] font-medium mt-0.5">+ Foto</span>
+</div>
+<!-- Foto 6 (Vacío) -->
+<div class="aspect-square rounded-lg border border-dashed border-outline-variant/60 bg-surface-container-low flex flex-col items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="text-[10px] font-medium mt-0.5">+ Foto</span>
+</div>
+</div>
+</section>
+<!-- 4. Formulario de Datos Principales -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-3.5 space-y-3.5">
+<!-- Nombre del producto -->
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1" for="product-name">
+            Nombre del producto <span class="text-secondary">*</span>
+</label>
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" id="product-name" type="text" value="Docena de medialunas"/>
+</div>
+<!-- Descripción -->
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="text-label-md font-label-md text-on-surface" for="product-desc">
+              Descripción del producto
+            </label>
+<span class="text-label-sm font-label-sm text-outline">114 / 240 car.</span>
+</div>
+<textarea class="w-full p-3 rounded-lg border border-outline-variant text-body-md font-body-md text-on-surface bg-surface-container-lowest focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none resize-none leading-snug" id="product-desc" rows="3">6 medialunas de manteca y 6 de grasa artesanales, con almíbar suave y masa hojaldrada recién salida del horno.</textarea>
+</div>
+<!-- 2 Columnas: Precio y Categoría -->
+<div class="grid grid-cols-2 gap-2.5">
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1" for="product-price">
+              Precio al público <span class="text-secondary">*</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 text-body-md font-headline-sm font-bold text-on-surface">$</span>
+<input class="w-full h-11 pl-7 pr-3 rounded-lg border border-outline-variant font-headline-sm text-headline-sm font-bold text-on-surface bg-surface-container-lowest focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" id="product-price" type="text" value="7.800"/>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1" for="product-category">
+              Categoría <span class="text-secondary">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-11 px-3 pr-8 rounded-lg border border-outline-variant text-body-md font-body-md font-medium text-on-surface bg-surface-container-lowest appearance-none focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" id="product-category">
+<option selected="" value="facturas">Facturas</option>
+<option value="panaderia">Panadería</option>
+<option value="sandwiches">Sándwiches de miga</option>
+<option value="reposteria">Repostería</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline">
+                arrow_drop_down
+              </span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Control de Stock de Mostrador -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 p-3.5 space-y-3">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container">inventory</span>
+<h2 class="text-body-md font-body-md font-bold text-on-surface">Control de stock de mostrador</h2>
+</div>
+<div class="grid grid-cols-2 gap-2.5 pt-1">
+<!-- Stock Disponible -->
+<div class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex flex-col items-center">
+<span class="text-label-md font-label-md text-on-surface-variant mb-2">Stock disponible</span>
+<div class="flex items-center justify-between w-full px-1">
+<button aria-label="Restar stock" class="w-8 h-8 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-on-surface flex items-center justify-center font-bold text-lg active:scale-90 transition-transform" type="button">
+                −
+              </button>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">8</span>
+<button aria-label="Sumar stock" class="w-8 h-8 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-on-surface flex items-center justify-center font-bold text-lg active:scale-90 transition-transform" type="button">
+                +
+              </button>
+</div>
+</div>
+<!-- Avisarme con menos de -->
+<div class="p-2.5 rounded-lg bg-surface-container-low border border-outline-variant/40 flex flex-col items-center">
+<span class="text-label-md font-label-md text-on-surface-variant mb-2">Avisarme con menos de</span>
+<div class="flex items-center justify-between w-full px-1">
+<button aria-label="Restar umbral de aviso" class="w-8 h-8 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-on-surface flex items-center justify-center font-bold text-lg active:scale-90 transition-transform" type="button">
+                −
+              </button>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">5</span>
+<button aria-label="Sumar umbral de aviso" class="w-8 h-8 rounded-lg bg-surface-container-lowest border border-outline-variant/50 text-on-surface flex items-center justify-center font-bold text-lg active:scale-90 transition-transform" type="button">
+                +
+              </button>
+</div>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant flex items-start gap-1 pt-1 leading-normal">
+<span class="material-symbols-outlined text-[15px] text-tertiary-fixed-dim shrink-0 mt-0.5">info</span>
+          Te notificamos al quedar 5 unidades para volver a hornear o pausar la publicación.
+        </p>
+</section>
+<!-- 6. Opciones y Switches Toggle -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 divide-y divide-outline-variant/20">
+<!-- Switch 1: Acepta encargos -->
+<label class="p-3.5 flex items-start justify-between cursor-pointer">
+<div class="pr-3">
+<p class="text-body-md font-body-md font-bold text-on-surface">Acepta encargos</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant leading-tight mt-0.5">
+              Permite que los clientes programen el pedido con anticipación para retirar o envío.
+            </p>
+</div>
+<div class="relative shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant/50 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+<!-- Switch 2: Destacado en el inicio -->
+<label class="p-3.5 flex items-start justify-between cursor-pointer">
+<div class="pr-3">
+<div class="flex items-center gap-1.5">
+<p class="text-body-md font-body-md font-bold text-on-surface">Destacado en el inicio</p>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold px-1.5 py-0.5 rounded leading-none">
+                Salido del horno
+              </span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant leading-tight mt-0.5">
+              Se muestra en el carrusel principal de la vidriera y en las recomendaciones del día.
+            </p>
+</div>
+<div class="relative shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant/50 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+<!-- Switch 3: Visible en la tienda -->
+<label class="p-3.5 flex items-start justify-between cursor-pointer">
+<div class="pr-3">
+<p class="text-body-md font-body-md font-bold text-on-surface">Visible en la tienda</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant leading-tight mt-0.5">
+              El producto está publicado y los clientes pueden verlo y sumarlo al pedido online.
+            </p>
+</div>
+<div class="relative shrink-0 mt-0.5">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant/50 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</label>
+</section>
+<!-- 7. Botones de Acción al pie -->
+<section class="pt-2 space-y-3">
+<!-- Botón primario Coral #FF7A59 (#fd7958 token) -->
+<button class="w-full h-12 bg-secondary-container text-on-background font-body-lg font-bold rounded-lg shadow-sm flex items-center justify-center gap-2 active:scale-98 transition-transform" type="button">
+<span class="material-symbols-outlined text-[20px]">check</span>
+<span>Guardar cambios</span>
+</button>
+<!-- Link destructivo rojo centrado -->
+<button class="w-full py-2 text-secondary text-label-md font-label-md flex items-center justify-center gap-1.5 hover:underline active:opacity-75 transition-opacity" type="button">
+<span class="material-symbols-outlined text-[16px]">do_not_disturb_on</span>
+<span>Desactivar producto</span>
+</button>
+</section>
+</main>
+<!-- 8. BottomNavBar (Shared Component implementation) -->
+<!-- Destination count: 5. Active: "Productos" -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto w-full z-50 flex justify-around items-center h-16 px-space-xs pb-safe bg-surface border-t border-outline-variant/40">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#inicio">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-label-sm font-label-sm mt-0.5">Inicio</span>
+</a>
+<!-- Pedidos (Con badge rojo 3) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 relative hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#pedidos">
+<div class="relative">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="absolute -top-1 -right-2 bg-secondary text-on-secondary text-[10px] font-bold px-1 rounded-full leading-tight min-w-[15px] text-center">
+            3
+          </span>
+</div>
+<span class="text-label-sm font-label-sm mt-0.5">Pedidos</span>
+</a>
+<!-- Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#caja">
+<span class="material-symbols-outlined">point_of_sale</span>
+<span class="text-label-sm font-label-sm mt-0.5">Caja</span>
+</a>
+<!-- Productos (Activa) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold py-1 active:scale-95 transition-transform duration-150" href="#productos">
+<div class="relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary"></span>
+</div>
+<span class="text-label-sm font-label-sm mt-0.5 text-primary">Productos</span>
+</a>
+<!-- Más -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#mas">
+<span class="material-symbols-outlined">menu</span>
+<span class="text-label-sm font-label-sm mt-0.5">Más</span>
+</a>
+</nav>
+</div>
+</body></html>

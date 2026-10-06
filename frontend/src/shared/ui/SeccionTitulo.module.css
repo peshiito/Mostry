@@ -1,0 +1,14 @@
+.fila {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--e-3);
+}
+.titulo {
+  font-size: var(--t-xl);
+  font-weight: 600;
+}
+.bajada {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

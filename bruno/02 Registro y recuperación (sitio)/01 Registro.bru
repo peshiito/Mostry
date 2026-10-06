@@ -1,0 +1,29 @@
+meta {
+  name: Registro
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{api}}/auth/registro
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenSitio}}
+}
+
+body:json {
+  {
+    "email": "nueva@test.com",
+    "clave": "una-clave-larga",
+    "nombre": "Juan",
+    "nombreNegocio": "Kiosco Juan",
+    "slug": "kiosco-juan"
+  }
+}
+
+docs {
+  El código llega a Mailpit: http://localhost:8025
+}

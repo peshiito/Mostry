@@ -1,0 +1,44 @@
+/* Región fija de los avisos. Escritorio: abajo a la derecha, la pila crece
+   hacia arriba. Celular: arriba, de lado a lado, la pila baja. */
+.region {
+  --dir: -1;
+  --ancla: auto 0 0 0;
+  --origen: bottom center;
+  position: fixed;
+  inset: auto 24px 96px auto; /* arriba de las barras fijas de abajo */
+  width: 360px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  color: var(--carbon);
+  transition: height 400ms ease;
+}
+.pila {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Rellena el espacio entre avisos para que el hover no se corte. */
+.pila::before {
+  content: '';
+  position: absolute;
+  inset: -12px 0;
+}
+@media (max-width: 600px) {
+  .region {
+    --dir: 1;
+    --ancla: 0 0 auto 0;
+    --origen: top center;
+    inset: calc(12px + env(safe-area-inset-top)) 12px auto 12px;
+    width: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .region {
+    transition: none;
+  }
+}

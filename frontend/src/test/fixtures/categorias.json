@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Facturas",
+    "orden": 0,
+    "productosActivos": 4
+  },
+  {
+    "id": 2,
+    "nombre": "Tortas",
+    "orden": 1,
+    "productosActivos": 2
+  },
+  {
+    "id": 3,
+    "nombre": "Panadería",
+    "orden": 2,
+    "productosActivos": 1
+  }
+]

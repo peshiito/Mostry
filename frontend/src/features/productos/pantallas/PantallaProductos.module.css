@@ -1,0 +1,15 @@
+.lista {
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.flotante {
+  position: fixed;
+  right: var(--e-4);
+  bottom: calc(var(--alto-nav) + var(--e-4) + env(safe-area-inset-bottom));
+  z-index: 15;
+  box-shadow: var(--sombra-flotante);
+}
+.agregar {
+  margin-top: var(--e-3);
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Editar config
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{api}}/panel/tienda/config
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "frase": "Facturas caseras desde 1987",
+    "whatsapp": "11 2345-6789",
+    "costoEnvio": 150000
+  }
+}

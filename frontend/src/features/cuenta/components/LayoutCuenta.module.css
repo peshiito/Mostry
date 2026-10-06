@@ -1,0 +1,22 @@
+.marco {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+.header {
+  display: grid;
+  grid-template-columns: var(--toque) 1fr var(--toque);
+  justify-items: center;
+  align-items: center;
+  padding: var(--e-3) var(--e-4);
+}
+.pagina {
+  align-content: start;
+  padding-top: var(--e-5);
+}
+.pie {
+  padding: var(--e-5) var(--e-4);
+  color: var(--texto-3);
+  font-size: var(--t-sm);
+  text-align: center;
+}

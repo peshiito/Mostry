@@ -1,0 +1,52 @@
+{
+  "tienda": {
+    "id": 1,
+    "slug": "dona-rosa",
+    "nombre": "Facturería Doña Rosa",
+    "frase": "Facturas caseras desde 1987, recién salidas del horno.",
+    "logoClave": null,
+    "paleta": "toldo",
+    "alias": "dona.rosa.facturas",
+    "titularAlias": "Rosa Elena Gómez",
+    "whatsapp": "5491123456789",
+    "direccion": "Av. Hipólito Yrigoyen 4250, Lanús Oeste",
+    "estado": "activa",
+    "pruebaHasta": null,
+    "planHasta": "2026-11-02T13:15:37.000Z",
+    "suspendidaManual": false,
+    "motivoSuspension": null,
+    "pausada": false,
+    "plazoComprobanteHoras": 2,
+    "plazoSenaHoras": 24,
+    "anticipacionEncargoHoras": 24,
+    "senaPorcentaje": 30,
+    "costoEnvio": 150000,
+    "aceptaEnvio": true,
+    "aceptaRetiro": true,
+    "zonaEnvio": "Lanús Oeste y Remedios de Escalada",
+    "ultimoNumeroPedido": 8,
+    "creadoEn": "2026-10-03T13:15:37.000Z",
+    "actualizadoEn": "2026-10-05T14:03:32.000Z"
+  },
+  "suscripcion": {
+    "estado": "activa",
+    "venceEl": "2026-11-02T13:15:37.000Z",
+    "finGracia": "2026-11-05T13:15:37.000Z",
+    "diasRestantes": 28,
+    "mostrarAviso": false
+  },
+  "duenos": [
+    {
+      "id": 2,
+      "email": "rosa@dona-rosa.test",
+      "nombre": "Rosa Gómez",
+      "emailVerificadoEn": "2026-10-03T13:15:37.000Z",
+      "rol": "dueno"
+    }
+  ],
+  "conteos": {
+    "productos": 8,
+    "pedidos": 8
+  },
+  "pagos": []
+}

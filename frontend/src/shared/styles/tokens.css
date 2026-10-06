@@ -1,0 +1,163 @@
+/* Tokens de diseño de Mostry ("Vidriera de barrio"). Única fuente de colores,
+   tipografías, espacios y radios. Ningún componente usa hex sueltos. */
+:root {
+  /* Marca */
+  --verde: #0e5a4a; /* toldo: header, pestaña activa, links */
+  --verde-oscuro: #0a4538;
+  --verde-claro: #e3efe9;
+  --marca-verde: #0e5a4a; /* el logo de Mostry: nunca toma el color de la tienda */
+  --marca-crema: #f7f3ec;
+  --coral: #ff7a59; /* SOLO el botón principal, con texto carbón */
+  --coral-presionado: #f2643f;
+  --coral-claro: #ffe6de;
+  --mostaza: #f2b53a; /* etiquetas de precio, promos, pendientes */
+  --mostaza-claro: #fdf1d6;
+  --mostaza-texto: #6b4a00;
+  --ladrillo: #c2412d; /* errores, deudas, cancelado */
+  --ladrillo-claro: #fbe4df;
+  --ok: #1f7a4d;
+  --ok-claro: #e2f3e9;
+
+  /* Bordes y textos de los avisos de color */
+  --mostaza-borde: #ecd9a8;
+  --mostaza-punteado: #d9b35c;
+  --ladrillo-borde: #efc2b8;
+  --ladrillo-texto: #8a2a12;
+  --ok-borde: #b9dcc8;
+
+  /* Texto sobre los colores llenos (siempre con contraste ≥ 4.5:1) */
+  --sobre-coral: #1b1b1b;
+  --sobre-mostaza: #1b1b1b;
+  --sobre-ladrillo: #ffffff;
+
+  /* Superficies y texto */
+  --lona: #f7f3ec; /* fondo de página */
+  --lona-oscura: #efe9de;
+  --papel: #ffffff;
+  --carbon: #1b1b1b;
+  --texto-2: #5c5a55; /* secundario: 6.6:1 sobre lona */
+  --texto-3: #6f6c66; /* ayudas: 5:1 sobre papel */
+  --linea: #e4ded3;
+  --linea-fuerte: #cfc7b8;
+  --sobre-verde: #ffffff;
+  --sobre-verde-2: #cfe6dd;
+  --velo: rgb(27 27 27 / 0.45);
+  --fila-hover: #fcfaf6;
+  --tinte-sobre-verde: rgb(255 255 255 / 0.12);
+  --tinte-boton: rgb(0 0 0 / 0.05);
+  --sombra-aviso: 0 6px 20px rgb(27 27 27 / 0.1);
+  --fondo-logo: #ffffff;
+
+  /* Tipografía */
+  --fuente-titulo: 'Rubik Variable', 'Rubik', system-ui, sans-serif;
+  --fuente-texto: 'Work Sans Variable', 'Work Sans', system-ui, sans-serif;
+  --fuente-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --t-xs: 0.75rem; /* 12 px: mínimo absoluto */
+  --t-sm: 0.875rem;
+  --t-md: 1rem; /* base 16 px */
+  --t-lg: 1.125rem;
+  --t-xl: 1.375rem;
+  --t-2xl: 1.75rem;
+  --t-3xl: 2.25rem;
+  --t-4xl: 3rem;
+  --interlineado: 1.5;
+
+  /* Espacios */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem; /* margen lateral en celular */
+  --e-5: 1.5rem;
+  --e-6: 2rem;
+  --e-7: 3rem;
+
+  /* Forma */
+  --radio: 8px;
+  --radio-chico: 4px;
+  --radio-redondo: 999px;
+  --borde: 1px solid var(--linea);
+  --sombra-hoja: 0 -8px 24px rgb(27 27 27 / 0.12);
+  --sombra-flotante: 0 6px 18px rgb(27 27 27 / 0.18);
+  --toque: 44px; /* área táctil mínima */
+  --ancho-app: 480px;
+  --ancho-lectura: 680px;
+  --alto-nav: 64px;
+  --foco: 0 0 0 3px rgb(14 90 74 / 0.35);
+  --transicion: 160ms ease-out;
+  color-scheme: light;
+
+  /* Movimiento (curvas fuertes: las de CSS por defecto quedan blandas) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-hoja: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-toque: 140ms;
+  --dur-corta: 200ms;
+  --dur-media: 280ms;
+}
+
+/* Modo oscuro (sección 8): verde #5CC7A5 sobre #0F1714. No es invertir colores:
+   las superficies suben de tono cuanto más "arriba" están (fondo < tarjeta < hoja)
+   y los colores de marca se aclaran. Todos los pares texto/fondo ≥ 4.5:1. */
+:root[data-tema='oscuro'] {
+  color-scheme: dark;
+  --marca-verde: #5cc7a5;
+  --marca-crema: #e9e4d8;
+  --verde: #5cc7a5;
+  --verde-oscuro: #7fd6b9;
+  --verde-claro: #173a2f;
+  --coral: #ff8a6b;
+  --coral-presionado: #ffa088;
+  --coral-claro: #3b231c;
+  --mostaza: #f2b53a;
+  --mostaza-claro: #2c2513;
+  --mostaza-texto: #f3c86a;
+  --mostaza-borde: #5b4a1c;
+  --mostaza-punteado: #8a6d27;
+  --ladrillo: #f08a75;
+  --ladrillo-claro: #3a1f1a;
+  --ladrillo-borde: #6e3327;
+  --ladrillo-texto: #f6ac9c;
+  --ok: #6fd39c;
+  --ok-claro: #14301f;
+  --ok-borde: #2e5c40;
+  --sobre-ladrillo: #1b1b1b;
+
+  --lona: #0f1714;
+  --lona-oscura: #16201c;
+  --papel: #1a2420;
+  --carbon: #eef3f0;
+  --texto-2: #b3c2bb;
+  --texto-3: #98a9a1;
+  --linea: #2a3832;
+  --linea-fuerte: #3d4e47;
+  --sobre-verde: #0f1714;
+  --sobre-verde-2: #1e4a3d;
+  --velo: rgb(0 0 0 / 0.6);
+  --fila-hover: #1f2b26;
+  --tinte-sobre-verde: rgb(0 0 0 / 0.1);
+  --tinte-boton: rgb(255 255 255 / 0.06);
+  --sombra-hoja: 0 -8px 24px rgb(0 0 0 / 0.5);
+  --sombra-flotante: 0 6px 18px rgb(0 0 0 / 0.5);
+  --sombra-aviso: 0 8px 24px rgb(0 0 0 / 0.45);
+  --foco: 0 0 0 3px rgb(92 199 165 / 0.45);
+  --fondo-logo: #f4f1ea;
+}
+
+/* Colores de cada tienda (vidriera y panel). La tienda pone --paleta y
+   --paleta-acento con data-paleta; de ahí salen los tonos de los dos modos. */
+[data-paleta] {
+  --verde: var(--paleta);
+  --verde-oscuro: color-mix(in srgb, var(--paleta) 78%, black);
+  --verde-claro: color-mix(in srgb, var(--paleta) 12%, white);
+  --sobre-verde-2: color-mix(in srgb, var(--paleta) 18%, white);
+  --foco: 0 0 0 3px color-mix(in srgb, var(--paleta) 35%, transparent);
+  --mostaza: var(--paleta-acento);
+}
+/* En oscuro, el color de la tienda se aclara (tono pastel) y lleva texto oscuro. */
+:root[data-tema='oscuro'] [data-paleta] {
+  --verde: color-mix(in oklab, var(--paleta) 48%, white);
+  --verde-oscuro: color-mix(in oklab, var(--paleta) 35%, white);
+  --verde-claro: color-mix(in oklab, var(--paleta) 40%, #0f1714);
+  --sobre-verde-2: color-mix(in oklab, var(--paleta) 75%, black);
+  --foco: 0 0 0 3px color-mix(in oklab, var(--paleta) 50%, white);
+}

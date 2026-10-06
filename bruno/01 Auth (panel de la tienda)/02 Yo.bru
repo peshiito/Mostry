@@ -1,0 +1,16 @@
+meta {
+  name: Yo
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{api}}/auth/yo
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

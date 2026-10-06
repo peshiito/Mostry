@@ -1,0 +1,16 @@
+meta {
+  name: Resumen del período
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{api}}/panel/caja/resumen?desde=2026-10-01&hasta=2026-10-31
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

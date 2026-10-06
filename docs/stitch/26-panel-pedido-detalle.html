@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry · Detalle Pedido #128</title>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#0E5A4A',
+              greenDark: '#0A4337',
+              greenLight: '#E8F3F0',
+              coral: '#FF7A59',
+              coralHover: '#F46542',
+              cream: '#FDFBF7',
+              canvas: '#FDF9F2',
+              border: '#E6DFD5',
+              borderDark: '#D5CCC0',
+              text: '#222222',
+              muted: '#6B655B',
+              warningBg: '#FFF6E5',
+              warningText: '#9A5B00',
+              warningBorder: '#F0D5A8',
+              danger: '#DC2626',
+              dangerLight: '#FEF2F2',
+              whatsapp: '#25D366'
+            }
+          },
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            sans: ['"Work Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #FDF9F2;
+      font-family: 'Work Sans', sans-serif;
+      color: #222222;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 0;
+    }
+    .rubik-heading {
+      font-family: 'Rubik', sans-serif;
+    }
+    .ticket-dashed-line {
+      border-top: 1px dashed #D5CCC0;
+    }
+    .tap-active:active {
+      transform: scale(0.98);
+      transition: transform 0.08s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-[#FDF9F2] text-[#222222] min-h-screen">
+<div class="w-full max-w-[390px] mx-auto min-h-screen bg-[#FDF9F2] flex flex-col relative pb-24 shadow-none">
+<!-- TOP HEADER VERDE (Logo Mostry + La Espiga) -->
+<header class="bg-[#0E5A4A] text-white px-4 py-3 sticky top-0 z-40 border-b border-[#0A4337] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Volver -->
+<a aria-label="Volver" class="p-1 -ml-1 text-white hover:text-white/80 active:opacity-75" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="flex items-center gap-2">
+<!-- Logo chico Mostry (isologotipo de 3 bastones) -->
+<svg class="w-4 h-4 text-emerald-300 fill-current" viewbox="0 0 24 24">
+<rect height="11" rx="1" width="4" x="3" y="10"></rect>
+<rect height="17" rx="1" width="4" x="10" y="4"></rect>
+<rect height="13" rx="1" width="4" x="17" y="8"></rect>
+</svg>
+<span class="text-xs uppercase tracking-wider font-semibold opacity-90 border-r border-white/20 pr-2 leading-none">Mostry</span>
+<span class="rubik-heading font-bold text-base tracking-tight leading-none">La Espiga</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-[#0A4337] text-white/90 text-[11px] font-medium px-2 py-0.5 rounded border border-white/10 rubik-heading">
+          #128
+        </span>
+</div>
+</header>
+<!-- CUERPO PRINCIPAL DEL DETALLE -->
+<main class="px-4 py-4 space-y-3.5 flex-1">
+<!-- TARJETA 1: ENCABEZADO DE COMANDA DIGITAL & ESTADO -->
+<section class="bg-[#FDFBF7] border border-[#E6DFD5] rounded-lg p-4">
+<div class="flex items-start justify-between gap-2">
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-[#6B655B] block mb-0.5">
+              Comanda digital
+            </span>
+<h1 class="rubik-heading text-2xl font-bold text-[#222222] leading-tight">
+              Pedido #128
+            </h1>
+<p class="text-xs text-[#6B655B] mt-0.5">
+              Hoy, 10:45 hs · Pago con transferencia
+            </p>
+</div>
+<!-- Badge de estado -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#FFF6E5] text-[#9A5B00] border border-[#F0D5A8] text-xs font-semibold whitespace-nowrap rubik-heading">
+<span class="w-1.5 h-1.5 rounded-full bg-[#E08A00]"></span>
+            Comprobante enviado
+          </span>
+</div>
+<!-- Banner de acción inmediata requerida -->
+<div class="mt-3.5 pt-3 border-t border-[#E6DFD5] flex items-center gap-2.5 text-xs text-[#6B655B]">
+<svg class="w-4 h-4 text-[#0E5A4A] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>El cliente adjuntó el comprobante. Cotejá los fondos antes de hornear o despachar.</span>
+</div>
+</section>
+<!-- TARJETA 2: DATOS DEL CLIENTE Y ENVÍO -->
+<section class="bg-[#FDFBF7] border border-[#E6DFD5] rounded-lg p-4 space-y-3">
+<!-- Cliente + WhatsApp -->
+<div class="flex items-center justify-between">
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-[#6B655B] block mb-0.5">Cliente</span>
+<div class="rubik-heading text-base font-bold text-[#222222]">Lucía Gómez</div>
+<span class="text-xs text-[#6B655B]">Cliente frecuente del barrio</span>
+</div>
+<a class="tap-active inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-[#25D366] text-[#0E5A4A] bg-[#E8F3F0] text-xs font-semibold hover:bg-emerald-100 transition-colors" href="https://wa.me/5491155551234" target="_blank">
+<svg class="w-4 h-4 text-[#25D366] fill-current" viewbox="0 0 24 24">
+<path d="M12.031 2C6.516 2 2.023 6.492 2.023 12.008c0 1.808.484 3.516 1.328 5.016L2 22l5.125-1.344a9.92 9.92 0 004.906 1.352h.008c5.516 0 10.008-4.492 10.008-10.008S17.547 2 12.031 2zm0 18.258h-.008a8.23 8.23 0 01-4.195-1.156l-.305-.18-3.047.8 1.031-2.969-.195-.312a8.21 8.21 0 01-1.266-4.433c0-4.555 3.711-8.266 8.273-8.266 4.555 0 8.266 3.711 8.266 8.266 0 4.563-3.711 8.25-8.557 8.25z"></path>
+</svg>
+            WhatsApp
+          </a>
+</div>
+<div class="ticket-dashed-line"></div>
+<!-- Dirección de entrega + Link Maps -->
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-2.5">
+<div class="mt-0.5 text-[#0E5A4A]">
+<!-- Ícono de ubicación -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<span class="text-xs font-semibold text-[#222222] block">Envío a domicilio</span>
+<p class="text-xs text-[#222222] font-medium">Belgrano 456, 2° B</p>
+<p class="text-[11px] text-[#6B655B]">Timbre Gómez · Dejar en recepción</p>
+</div>
+</div>
+<a class="tap-active text-xs font-semibold text-[#0E5A4A] underline underline-offset-2 flex items-center gap-1 whitespace-nowrap pt-0.5" href="https://maps.google.com/?q=Belgrano+456" target="_blank">
+            Ver en Maps
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+</section>
+<!-- TARJETA 3: DETALLE DEL TICKET DE COMPRA -->
+<section class="bg-[#FDFBF7] border border-[#E6DFD5] rounded-lg p-4">
+<div class="flex items-center justify-between pb-3 border-b border-[#E6DFD5]">
+<span class="text-xs uppercase tracking-wider font-semibold text-[#6B655B]">Detalle del ticket</span>
+<span class="text-xs text-[#6B655B] font-medium">2 productos</span>
+</div>
+<div class="py-3 space-y-2.5">
+<!-- Ítem 1 -->
+<div class="flex items-start justify-between text-sm">
+<div>
+<span class="font-semibold text-[#222222]">1× Docena de medialunas</span>
+<span class="text-xs text-[#6B655B] block">6 de manteca y 6 de grasa</span>
+</div>
+<span class="rubik-heading font-medium text-[#222222]">$ 7.800</span>
+</div>
+<!-- Ítem 2 -->
+<div class="flex items-start justify-between text-sm">
+<div>
+<span class="font-semibold text-[#222222]">1× Vigilante</span>
+<span class="text-xs text-[#6B655B] block">Con dulce de membrillo</span>
+</div>
+<span class="rubik-heading font-medium text-[#222222]">$ 650</span>
+</div>
+<!-- Envío -->
+<div class="flex items-start justify-between text-sm text-[#6B655B] pt-1">
+<span>Costo de envío (reparto barrial)</span>
+<span class="rubik-heading font-medium text-[#222222]">$ 1.500</span>
+</div>
+</div>
+<div class="ticket-dashed-line my-1"></div>
+<!-- Total a cobrar -->
+<div class="pt-3 flex items-baseline justify-between">
+<div>
+<span class="text-xs uppercase font-bold text-[#6B655B] tracking-wider block">Total a cobrar</span>
+<span class="text-[11px] text-[#6B655B]">Transferencia directa / MP</span>
+</div>
+<div class="text-right">
+<span class="rubik-heading text-2xl font-bold text-[#0E5A4A]">$ 9.950</span>
+</div>
+</div>
+</section>
+<!-- TARJETA 4: HISTORIAL DE LO QUE PASÓ -->
+<section class="bg-[#FDFBF7] border border-[#E6DFD5] rounded-lg p-4">
+<h2 class="text-xs uppercase tracking-wider font-semibold text-[#6B655B] mb-3">
+          Historial de lo que pasó
+        </h2>
+<ol class="relative border-l border-[#D5CCC0] ml-2 space-y-3.5">
+<!-- Hito 1: Pedido recibido -->
+<li class="ml-4">
+<span class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-[#0E5A4A] ring-4 ring-[#FDFBF7]"></span>
+<div class="flex items-baseline justify-between">
+<span class="text-xs font-semibold text-[#222222]">Pedido recibido</span>
+<time class="text-[11px] text-[#6B655B]">10:42 hs</time>
+</div>
+<p class="text-xs text-[#6B655B] mt-0.5">El cliente armó el pedido desde la tienda pública.</p>
+</li>
+<!-- Hito 2: Comprobante enviado -->
+<li class="ml-4">
+<span class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-[#FF7A59] ring-4 ring-[#FDFBF7]"></span>
+<div class="flex items-baseline justify-between">
+<span class="text-xs font-semibold text-[#222222]">Comprobante enviado</span>
+<time class="text-[11px] text-[#6B655B]">10:44 hs</time>
+</div>
+<p class="text-xs text-[#6B655B] mt-0.5">Lucía subió la captura de transferencia por $ 9.950.</p>
+</li>
+<!-- Hito 3: Esperando revisión -->
+<li class="ml-4">
+<span class="absolute -left-1.5 mt-1 w-3 h-3 rounded-full bg-[#D5CCC0] ring-4 ring-[#FDFBF7]"></span>
+<div class="flex items-baseline justify-between">
+<span class="text-xs font-semibold text-[#6B655B]">Esperando revisión en mostrador</span>
+<span class="text-[11px] font-semibold text-[#FF7A59] rubik-heading uppercase">Ahora</span>
+</div>
+<p class="text-xs text-[#6B655B] mt-0.5">Falta corroborar acreditación para mandar a preparar.</p>
+</li>
+</ol>
+</section>
+<!-- BOTONES DE ACCIÓN DEL COMERCIANTE -->
+<section class="space-y-2 pt-1 pb-2">
+<!-- Botón principal CORAL: Revisar comprobante -->
+<button class="tap-active w-full bg-[#FF7A59] hover:bg-[#F46542] text-white py-3.5 px-4 rounded-lg rubik-heading font-semibold text-base flex items-center justify-center gap-2 border border-[#E66242] shadow-none">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+          Revisar comprobante
+        </button>
+<!-- Botón secundario: Avisar por WhatsApp -->
+<button class="tap-active w-full bg-[#E8F3F0] hover:bg-emerald-100 text-[#0E5A4A] py-3 px-4 rounded-lg rubik-heading font-semibold text-sm flex items-center justify-center gap-2 border border-[#0E5A4A]/20">
+<svg class="w-4 h-4 text-[#25D366] fill-current" viewbox="0 0 24 24">
+<path d="M12.031 2C6.516 2 2.023 6.492 2.023 12.008c0 1.808.484 3.516 1.328 5.016L2 22l5.125-1.344a9.92 9.92 0 004.906 1.352h.008c5.516 0 10.008-4.492 10.008-10.008S17.547 2 12.031 2zm0 18.258h-.008a8.23 8.23 0 01-4.195-1.156l-.305-.18-3.047.8 1.031-2.969-.195-.312a8.21 8.21 0 01-1.266-4.433c0-4.555 3.711-8.266 8.273-8.266 4.555 0 8.266 3.711 8.266 8.266 0 4.563-3.711 8.25-8.557 8.25z"></path>
+</svg>
+          Avisar por WhatsApp
+        </button>
+<!-- Texto rojo centrado: Cancelar pedido -->
+<div class="text-center pt-2">
+<button class="tap-active text-xs text-[#DC2626] hover:text-red-700 font-semibold underline underline-offset-4 py-1">
+            Cancelar pedido
+          </button>
+</div>
+</section>
+</main>
+<!-- BARRA INFERIOR FIJA CON 5 PESTAÑAS (Mostry Panel) -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-[#FDFBF7] border-t border-[#E6DFD5] h-16 z-50 flex items-center justify-around px-2">
+<!-- 1. Inicio -->
+<a class="tap-active flex flex-col items-center justify-center flex-1 py-1 text-[#6B655B] hover:text-[#0E5A4A]" href="#">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-medium leading-none">Inicio</span>
+</a>
+<!-- 2. Pedidos (ACTIVA con badge 3) -->
+<a class="tap-active flex flex-col items-center justify-center flex-1 py-1 text-[#0E5A4A] relative" href="#">
+<div class="relative">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<!-- Badge 3 -->
+<span class="absolute -top-1.5 -right-2 bg-[#FF7A59] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white rubik-heading leading-none">
+            3
+          </span>
+</div>
+<span class="text-[11px] font-bold leading-none">Pedidos</span>
+</a>
+<!-- 3. Caja -->
+<a class="tap-active flex flex-col items-center justify-center flex-1 py-1 text-[#6B655B] hover:text-[#0E5A4A]" href="#">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-medium leading-none">Caja</span>
+</a>
+<!-- 4. Productos -->
+<a class="tap-active flex flex-col items-center justify-center flex-1 py-1 text-[#6B655B] hover:text-[#0E5A4A]" href="#">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-medium leading-none">Productos</span>
+</a>
+<!-- 5. Más -->
+<a class="tap-active flex flex-col items-center justify-center flex-1 py-1 text-[#6B655B] hover:text-[#0E5A4A]" href="#">
+<svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-medium leading-none">Más</span>
+</a>
+</nav>
+</div>
+</body></html>

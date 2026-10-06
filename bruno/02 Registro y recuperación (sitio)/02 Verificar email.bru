@@ -1,0 +1,22 @@
+meta {
+  name: Verificar email
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{api}}/auth/verificar-email
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenSitio}}
+}
+
+body:json {
+  {
+    "email": "nueva@test.com",
+    "codigo": "123456"
+  }
+}

@@ -1,0 +1,30 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-2) var(--e-4);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}
+.texto {
+  flex: 1;
+}
+.link {
+  min-height: var(--toque);
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  font-weight: 700;
+}
+.prueba {
+  background: var(--mostaza-claro);
+  color: var(--mostaza-texto);
+}
+.gracia {
+  background: var(--coral-claro);
+  color: var(--ladrillo-texto);
+}
+.suspendida {
+  background: var(--ladrillo);
+  color: var(--sobre-ladrillo);
+}

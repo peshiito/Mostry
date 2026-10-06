@@ -3,6 +3,8 @@ import type { EstadoTienda } from '../../../shared/db/tipos/tiendas.js';
 const DIA_MS = 24 * 60 * 60 * 1000;
 export const DIAS_GRACIA = 3;
 const DIAS_AVISO = 3;
+// MySQL redondea DATETIME al segundo: sin tolerancia, "10 días" podía mostrarse como 11.
+const TOLERANCIA_MS = 60 * 1000;
 
 export type FechasSuscripcion = {
   estado: EstadoTienda;
@@ -34,7 +36,7 @@ export function resumenSuscripcion(t: FechasSuscripcion, ahora = new Date()) {
   const estado = estadoEfectivo(t, ahora);
   const vence = vencimiento(t);
   const diasRestantes = vence
-    ? Math.max(0, Math.ceil((vence.getTime() - ahora.getTime()) / DIA_MS))
+    ? Math.max(0, Math.ceil((vence.getTime() - ahora.getTime() - TOLERANCIA_MS) / DIA_MS))
     : null;
   const finGracia = vence ? new Date(vence.getTime() + DIAS_GRACIA * DIA_MS) : null;
   const porVencer = diasRestantes !== null && diasRestantes <= DIAS_AVISO;

@@ -1,0 +1,16 @@
+meta {
+  name: Pedidos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{api}}/panel/pedidos
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

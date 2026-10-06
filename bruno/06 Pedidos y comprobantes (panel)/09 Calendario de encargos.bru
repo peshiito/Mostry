@@ -1,0 +1,16 @@
+meta {
+  name: Calendario de encargos
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{api}}/panel/encargos
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

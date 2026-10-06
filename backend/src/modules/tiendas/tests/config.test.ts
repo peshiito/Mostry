@@ -10,7 +10,7 @@ describe('Mi tienda: /tienda/config', () => {
   });
 
   it('devuelve la configuración de la tienda', async () => {
-    const res = await p.get('/tienda/config').expect(200);
+    const res = await p.get('/panel/tienda/config').expect(200);
     expect(res.body).toMatchObject({
       slug: 'dona-rosa',
       paleta: 'toldo',
@@ -25,7 +25,7 @@ describe('Mi tienda: /tienda/config', () => {
       zonaEnvio: '',
       paleta: 'menta',
     };
-    const res = await p.patch('/tienda/config', cambios).expect(200);
+    const res = await p.patch('/panel/tienda/config', cambios).expect(200);
     expect(res.body).toMatchObject({
       frase: 'Facturas caseras',
       whatsapp: '5491123456789',
@@ -41,7 +41,7 @@ describe('Mi tienda: /tienda/config', () => {
       { slug: 'otra' },
       { alias: 'x.y.z.w' },
     ]) {
-      await p.patch('/tienda/config', campo).expect(400);
+      await p.patch('/panel/tienda/config', campo).expect(400);
     }
     const tienda = await db
       .selectFrom('tiendas')
@@ -51,9 +51,11 @@ describe('Mi tienda: /tienda/config', () => {
   });
 
   it('pausa y despausa la tienda', async () => {
-    expect((await p.put('/tienda/pausa', { pausada: true }).expect(200)).body).toEqual({
+    expect(
+      (await p.put('/panel/tienda/pausa', { pausada: true }).expect(200)).body,
+    ).toEqual({
       pausada: true,
     });
-    expect((await p.get('/tienda/config')).body.pausada).toBe(true);
+    expect((await p.get('/panel/tienda/config')).body.pausada).toBe(true);
   });
 });

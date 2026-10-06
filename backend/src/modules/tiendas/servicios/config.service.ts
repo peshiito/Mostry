@@ -1,11 +1,17 @@
+import type { TiendaId } from '../../../shared/db/tiendaId.js';
+import { urlPublica } from '../../../shared/archivos/almacenamiento.js';
 import { AppError } from '../../../shared/errors/AppError.js';
 import type { DatosConfig } from '../schemas.js';
 import { tiendaConfigRepo } from '../tiendaConfig.repository.js';
 
-export const verConfig = (tiendaId: number) => tiendaConfigRepo.buscar(tiendaId);
+// El panel recibe la URL del logo, no la clave interna del bucket.
+export async function verConfig(tiendaId: TiendaId) {
+  const { logoClave, ...config } = await tiendaConfigRepo.buscar(tiendaId);
+  return { ...config, logoUrl: logoClave ? urlPublica(logoClave) : null };
+}
 
 // Edita "Mi tienda". Tiene que quedar al menos una forma de entrega.
-export async function editarConfig(tiendaId: number, cambios: DatosConfig) {
+export async function editarConfig(tiendaId: TiendaId, cambios: DatosConfig) {
   const actual = await tiendaConfigRepo.buscar(tiendaId);
   const envio = cambios.aceptaEnvio ?? actual.aceptaEnvio;
   const retiro = cambios.aceptaRetiro ?? actual.aceptaRetiro;
@@ -17,10 +23,10 @@ export async function editarConfig(tiendaId: number, cambios: DatosConfig) {
     );
   }
   await tiendaConfigRepo.actualizar(tiendaId, cambios);
-  return tiendaConfigRepo.buscar(tiendaId);
+  return verConfig(tiendaId);
 }
 
-export async function pausarTienda(tiendaId: number, pausada: boolean) {
+export async function pausarTienda(tiendaId: TiendaId, pausada: boolean) {
   await tiendaConfigRepo.actualizar(tiendaId, { pausada });
   return { pausada };
 }

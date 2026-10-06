@@ -1,0 +1,9 @@
+{
+  "usuario": {
+    "id": 1,
+    "email": "admin@mostry.test",
+    "nombre": "Admin Mostry",
+    "esAdmin": true
+  },
+  "tiendas": []
+}

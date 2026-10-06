@@ -1,0 +1,16 @@
+meta {
+  name: Productos
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{api}}/panel/productos?stockBajo=false&pagina=1
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

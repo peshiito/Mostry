@@ -1,0 +1,52 @@
+.header {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--verde) 0 48px,
+    color-mix(in srgb, var(--verde) 88%, white) 48px 96px
+  );
+  color: var(--sobre-verde);
+}
+.interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--e-3) var(--e-4);
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  color: inherit;
+  text-decoration: none;
+}
+.logo {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radio);
+  background: var(--lona);
+}
+.nombre {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-2xl);
+  font-weight: 700;
+}
+.ingresar {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+  padding: 0 var(--e-4);
+  border: 1px solid color-mix(in srgb, var(--sobre-verde) 45%, transparent);
+  border-radius: var(--radio);
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}

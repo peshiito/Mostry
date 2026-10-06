@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry - Guardá tus códigos de recuperación</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "surface-variant": "#e6e2db",
+            "on-secondary-container": "#6e1500",
+            "surface-container-high": "#ebe8e1",
+            "on-secondary-fixed-variant": "#862208",
+            "on-primary-fixed-variant": "#005141",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed": "#002019",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "secondary-fixed": "#ffdad2",
+            "on-primary-container": "#8ccfbb",
+            "tertiary-fixed": "#ffdea8",
+            "surface-container-highest": "#e6e2db",
+            "secondary-fixed-dim": "#ffb4a2",
+            "error": "#ba1a1a",
+            "background": "#fdf9f2",
+            "surface-container": "#f1ede6",
+            "surface-bright": "#fdf9f2",
+            "on-secondary-fixed": "#3c0700",
+            "tertiary-fixed-dim": "#fabc41",
+            "inverse-surface": "#31302c",
+            "surface-dim": "#dddad3",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#3f4945",
+            "outline": "#6f7975",
+            "on-background": "#1c1c18",
+            "secondary-container": "#fd7958",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#694a00",
+            "tertiary": "#4c3400",
+            "surface-tint": "#246959",
+            "inverse-primary": "#90d4bf",
+            "primary-fixed": "#acf0db",
+            "on-error-container": "#93000a",
+            "primary-container": "#0e5a4a",
+            "primary-fixed-dim": "#90d4bf",
+            "on-tertiary-fixed": "#271900",
+            "primary": "#004134",
+            "secondary": "#a7391e",
+            "surface": "#fdf9f2",
+            "outline-variant": "#bfc9c4",
+            "on-tertiary-container": "#f5b73c",
+            "surface-container-low": "#f7f3ec",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#f4f0e9",
+            "on-surface": "#1c1c18"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-md": ["Work Sans"],
+            "body-lg": ["Work Sans"],
+            "label-sm": ["Work Sans"],
+            "label-md": ["Work Sans"],
+            "mono": ["JetBrains Mono", "monospace"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface min-h-screen flex flex-col justify-between antialiased selection:bg-tertiary-fixed selection:text-on-background">
+<main class="w-full max-w-[390px] mx-auto px-space-md pt-6 pb-space-lg flex-1 flex flex-col justify-between">
+<div>
+<!-- Encabezado simple -->
+<header class="flex items-center justify-between pb-space-sm border-b border-surface-variant">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-sm font-bold tracking-tight text-primary-container">Mostry</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase font-semibold">Vidriera de barrio</span>
+</div>
+<div class="px-2 py-0.5 rounded border border-outline-variant bg-surface-container-lowest">
+<span class="font-label-sm text-label-sm font-bold text-primary-container">Paso 2 de 2</span>
+</div>
+</header>
+<!-- Indicador de progreso lineal -->
+<div class="w-full bg-surface-variant h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary-container h-full w-full rounded-full"></div>
+</div>
+<!-- Título y Bajada explicativa -->
+<section class="mt-space-lg mb-space-md">
+<h1 class="font-headline-md text-headline-md text-primary-container tracking-tight text-left">
+          Guardá tus códigos de recuperación
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 text-left">
+          Si perdés el celular, con uno de estos códigos podés entrar. Cada uno sirve una sola vez.
+        </p>
+</section>
+<!-- Tarjeta contenedora estilo libreta de papel / ticket -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md">
+<div class="flex items-center justify-between pb-space-xs mb-space-xs border-b border-surface-variant">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Libreta de llaves</span>
+<span class="font-label-sm text-label-sm text-outline-variant">10 usos únicos</span>
+</div>
+<!-- Grilla de códigos (2 columnas x 5 filas) -->
+<div class="grid grid-cols-2 gap-x-2 gap-y-1.5 py-1">
+<!-- Columna 1 -->
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">1.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">a7k2-9fq3</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">2.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">b4m9-1tx8</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">3.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">k8p2-7zw1</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">4.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">m3n5-8vr9</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">5.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">t9x1-4kp6</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">6.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">w2d7-5jc8</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">7.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">f6h3-9bm2</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">8.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">r1s4-6yn7</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">9.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">c5v8-2xq3</span>
+</div>
+<div class="flex items-center justify-between px-2 py-1.5 rounded bg-surface-container-low border border-surface-variant">
+<span class="font-mono text-label-sm text-outline font-semibold">10.</span>
+<span class="font-mono text-body-md font-semibold text-primary tracking-tight">p9k3-7tl5</span>
+</div>
+</div>
+<!-- Botones de utilidad para guardar -->
+<div class="grid grid-cols-2 gap-2 mt-space-sm pt-space-xs border-t border-surface-variant">
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface hover:bg-surface-container active:scale-[0.98] transition-all" onclick="alert('Códigos copiados al portapapeles')" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" data-icon="content_copy">content_copy</span>
+<span>Copiar todos</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface hover:bg-surface-container active:scale-[0.98] transition-all" onclick="alert('Descargando codigos-mostry.txt')" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" data-icon="download">download</span>
+<span>Descargar (.txt)</span>
+</button>
+</div>
+</section>
+<!-- Aviso sobrio en mostaza / ocre suave -->
+<aside class="mt-space-sm rounded-lg border border-tertiary-fixed-dim bg-surface-bright p-space-sm flex items-start gap-2.5">
+<span class="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5" data-icon="warning">warning</span>
+<div class="text-left">
+<p class="font-label-md text-label-md font-bold text-tertiary">
+            No los vamos a volver a mostrar
+          </p>
+<p class="font-body-md text-[13px] leading-tight text-on-surface-variant mt-0.5">
+            Anotalos en un cuaderno de almacén o guardalos en un archivo protegido.
+          </p>
+</div>
+</aside>
+<!-- Checkbox de confirmación -->
+<div class="mt-space-md bg-surface-container-lowest border border-outline-variant rounded-lg p-space-sm">
+<label class="flex items-center gap-3 cursor-pointer select-none">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary-container focus:ring-primary focus:ring-offset-0 transition-colors" id="check-confirm" type="checkbox"/>
+<span class="font-label-md text-body-md font-semibold text-on-surface">
+            Ya los guardé en un lugar seguro
+          </span>
+</label>
+</div>
+</div>
+<!-- Botón de acción principal fijo al fondo relativo -->
+<div class="mt-space-lg pt-space-xs">
+<button class="w-full py-3.5 px-space-md rounded-lg bg-secondary-container hover:opacity-95 text-on-primary font-headline-sm text-headline-sm font-bold tracking-normal active:scale-[0.99] transition-transform text-center flex items-center justify-center gap-2" type="button">
+<span>Ir a mi panel</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Pie de página sobrio -->
+<footer class="mt-space-sm text-center">
+<p class="font-label-sm text-label-sm text-outline">
+          Mostry · 2026 · Hecho para comercios de barrio
+        </p>
+</footer>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,33 @@
+meta {
+  name: Guardar horarios
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{api}}/panel/horarios
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "tramos": [
+      {
+        "diaSemana": 1,
+        "abre": "07:00",
+        "cierra": "13:00"
+      },
+      {
+        "diaSemana": 1,
+        "abre": "16:30",
+        "cierra": "20:30"
+      }
+    ]
+  }
+}

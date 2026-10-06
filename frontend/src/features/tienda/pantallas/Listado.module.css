@@ -1,0 +1,15 @@
+.seccion {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--e-3);
+}
+.lista {
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.vacio {
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}

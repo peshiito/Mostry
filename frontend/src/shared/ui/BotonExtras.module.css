@@ -1,0 +1,25 @@
+/* Tamaños y estado cargando del botón. */
+.sm {
+  min-height: 36px;
+  font-size: var(--t-sm);
+}
+.lg {
+  min-height: 52px;
+  font-size: var(--t-lg);
+}
+.ancho {
+  width: 100%;
+}
+.ruedita {
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: girar 0.7s linear infinite;
+}
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}

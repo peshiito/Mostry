@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Código de verificación · Mostry</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#004134",
+            "primary-container": "#0e5a4a",
+            "on-primary": "#ffffff",
+            "secondary": "#a7391e",
+            "secondary-container": "#fd7958",
+            "on-secondary": "#ffffff",
+            "surface": "#fdf9f2",
+            "surface-bg": "#fdf9f2",
+            "surface-card": "#ffffff",
+            "surface-dim": "#dddad3",
+            "surface-container": "#f1ede6",
+            "surface-container-low": "#f7f3ec",
+            "border-subtle": "#bfc9c4",
+            "border-card": "#e6e2db",
+            "on-surface": "#1c1c18",
+            "on-surface-variant": "#3f4945",
+            "error": "#ba1a1a",
+            "error-brick": "#ba1a1a",
+            "outline": "#6f7975",
+            "outline-variant": "#bfc9c4"
+          },
+          fontFamily: {
+            "rubik": ["Rubik", "sans-serif"],
+            "work": ["Work Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-heading {
+      font-family: 'Rubik', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col justify-between p-0">
+<!-- Mobile Viewport: direct mobile screen layout filling width with px-4 horizontal margins -->
+<div class="w-full max-w-[390px] mx-auto min-h-screen flex flex-col justify-between px-4 pb-6 pt-2">
+<!-- Top Bar / Header de navegación contextual -->
+<header class="w-full pt-2 pb-3 flex items-center justify-between">
+<a aria-label="Volver atrás" class="w-10 h-10 rounded-xl border border-border-card bg-surface-card flex items-center justify-center text-on-surface hover:bg-white active:scale-95 transition-transform shadow-sm" href="#volver">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</a>
+<!-- Marca Mostry con isotipo toldo tradicional -->
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-surface-card rounded-sm border border-[#002019] flex flex-col justify-between overflow-hidden p-[2px]">
+<div class="w-full flex h-3">
+<span class="w-1/4 h-full bg-primary-container"></span>
+<span class="w-1/4 h-full bg-surface"></span>
+<span class="w-1/4 h-full bg-primary-container"></span>
+<span class="w-1/4 h-full bg-surface"></span>
+</div>
+<div class="w-full h-1 bg-secondary-container rounded-xs"></div>
+</div>
+<div class="flex flex-col items-start leading-none">
+<span class="font-heading font-bold text-primary-container text-[19px] tracking-tight">mostry</span>
+<span class="font-work text-[8.5px] uppercase font-bold tracking-[0.14em] text-outline mt-0.5">Vidriera de barrio</span>
+</div>
+</div>
+<!-- Espaciador balanceador visual -->
+<div class="w-10"></div>
+</header>
+<!-- Contenido Principal: Tarjeta central de validación 2FA -->
+<div class="w-full py-4 flex-1 flex flex-col justify-center">
+<div class="w-full bg-surface-card border border-border-card rounded-xl p-6 flex flex-col items-center shadow-sm">
+<!-- Ícono decorativo sobrio de seguridad -->
+<div class="w-12 h-12 rounded-xl bg-surface-container-low border border-border-card flex items-center justify-center text-primary-container mb-5">
+<span class="material-symbols-outlined text-[24px]">lock</span>
+</div>
+<!-- Título y subtítulo -->
+<h1 class="font-heading font-bold text-[22px] leading-tight text-on-surface text-center mb-2">
+          Código de verificación
+        </h1>
+<p class="font-work text-[14px] leading-snug text-on-surface-variant text-center max-w-[260px] mb-6">
+          Abrí tu app autenticadora y escribí el código
+        </p>
+<!-- Etiqueta de campo -->
+<span class="self-start text-[11px] font-bold uppercase tracking-wider text-outline mb-2.5">
+          Código de 6 dígitos
+        </span>
+<!-- Grilla de 6 casillas con los números ingresados y estado de error -->
+<div aria-label="Casillas de código de 6 dígitos" class="grid grid-cols-6 gap-2 w-full mb-3" role="group">
+<div class="h-12 aspect-square bg-surface-card border-2 border-error-brick rounded-lg flex items-center justify-center font-heading font-bold text-[20px] text-error-brick select-none">
+            7
+          </div>
+<div class="h-12 aspect-square bg-surface-card border-2 border-error-brick rounded-lg flex items-center justify-center font-heading font-bold text-[20px] text-error-brick select-none">
+            2
+          </div>
+<div class="h-12 aspect-square bg-surface-card border-2 border-error-brick rounded-lg flex items-center justify-center font-heading font-bold text-[20px] text-error-brick select-none">
+            9
+          </div>
+<div class="h-12 aspect-square bg-surface-card border-2 border-error-brick rounded-lg flex items-center justify-center font-heading font-bold text-[20px] text-error-brick select-none">
+            4
+          </div>
+<div class="h-12 aspect-square bg-surface-card border-2 border-error-brick rounded-lg flex items-center justify-center font-heading font-bold text-[20px] text-error-brick select-none">
+            0
+          </div>
+<div class="h-12 aspect-square bg-surface-card border-2 border-error-brick rounded-lg flex items-center justify-center font-heading font-bold text-[20px] text-error-brick select-none">
+            3
+          </div>
+</div>
+<!-- Mensaje de error explícito debajo de las casillas en rojo ladrillo -->
+<div class="flex items-center gap-1.5 self-center text-error-brick mb-6" role="alert">
+<span class="material-symbols-outlined text-[17px] text-error-brick">error</span>
+<span class="font-work text-[13px] font-medium leading-none">Código incorrecto</span>
+</div>
+<!-- Botón principal Coral 'Confirmar' -->
+<button class="w-full bg-secondary-container hover:brightness-95 active:scale-[0.98] transition-all text-white font-heading font-bold text-[15px] py-3.5 px-4 rounded-lg flex items-center justify-center border border-black/10 mb-4 cursor-pointer shadow-sm" type="button">
+          Confirmar
+        </button>
+<!-- Separador sutil -->
+<div class="w-full border-t border-border-card my-2"></div>
+<!-- Enlace alternativo 'Usar un código de recuperación' -->
+<a class="font-work font-medium text-[13.5px] text-primary-container hover:underline py-2 active:opacity-75 transition-opacity" href="#recuperacion">
+          Usar un código de recuperación
+        </a>
+</div>
+<!-- Tarjeta informativa / Tip de mostrador discreta -->
+<div class="w-full bg-surface-card border border-border-card rounded-lg p-3.5 mt-4 flex items-start gap-2.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-primary-container shrink-0 mt-0.5">verified_user</span>
+<p class="font-work text-[12px] leading-relaxed text-on-surface-variant">
+          El código de 6 dígitos se renueva automáticamente cada 30 segundos en la aplicación que configuraste en tu celular.
+        </p>
+</div>
+</div>
+<!-- Footer sobrio de la plataforma con año 2026 -->
+<footer class="w-full py-4 text-center flex flex-col items-center gap-1.5">
+<div class="w-8 h-1 bg-border-card mb-1 rounded-full"></div>
+<p class="font-work text-[11px] text-outline">
+        Mostry · 2026 · Hecho para comercios de barrio
+      </p>
+</footer>
+</div>
+</body>
+</html>

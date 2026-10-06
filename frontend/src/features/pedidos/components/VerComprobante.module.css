@@ -1,0 +1,24 @@
+.caja {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+}
+.icono {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radio);
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.textos {
+  flex: 1;
+}
+.nombre {
+  font-weight: 600;
+}
+.detalle {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

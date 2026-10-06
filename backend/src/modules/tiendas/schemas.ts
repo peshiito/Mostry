@@ -52,7 +52,8 @@ export const esquemaCobro = z.strictObject({
       'De 6 a 20 caracteres: letras, números, puntos o guiones',
     ),
   titularAlias: z.string().trim().min(2).max(100),
-  codigoTotp: z.string().regex(/^\d{6}$/, 'Son 6 dígitos'),
+  // Contraseña actual del que hace el cambio (acción sensible).
+  clave: z.string().min(1).max(128),
 });
 
 export const esquemaPausa = z.strictObject({ pausada: z.boolean() });

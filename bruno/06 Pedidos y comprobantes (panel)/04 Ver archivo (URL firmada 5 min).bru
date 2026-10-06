@@ -1,0 +1,16 @@
+meta {
+  name: Ver archivo (URL firmada 5 min)
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{api}}/panel/pedidos/{{pedidoId}}/comprobantes/{{comprobanteId}}/archivo
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

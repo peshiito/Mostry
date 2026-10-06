@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=390, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry | La Espiga - Mi tienda</title>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#fdf9f2",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f7f3ec",
+            "surface-container": "#f1ede6",
+            "surface-container-high": "#ebe8e1",
+            "surface-dim": "#dddad3",
+            "on-surface": "#1c1c18",
+            "on-surface-variant": "#3f4945",
+            "outline": "#6f7975",
+            "outline-variant": "#bfc9c4",
+            "primary": "#004134",
+            "primary-container": "#0e5a4a",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#8ccfbb",
+            "secondary-accent": "#ff7a59",
+            "secondary-dark": "#d85a3a",
+            "brand-green": "#0e5a4a"
+          },
+          fontFamily: {
+            headline: ["Rubik", "sans-serif"],
+            body: ["Work Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    body {
+      width: 100%;
+      max-width: 390px;
+      margin: 0 auto;
+      background-color: #f7f3ec;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Work Sans', sans-serif;
+    }
+    input:focus {
+      outline: none;
+      border-color: #0e5a4a !important;
+      box-shadow: 0 0 0 1px #0e5a4a !important;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-low text-on-surface min-h-screen flex flex-col antialiased select-none pb-24 w-full">
+<!-- 1. Header institucional verde pino (#0E5A4A) -->
+<header class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-4 h-14 bg-primary-container text-on-primary border-b border-outline-variant/30 right-0">
+<div class="flex items-center gap-2">
+<!-- Mostry logo chico + Panadería La Espiga -->
+<div class="w-7 h-7 rounded-md bg-[#004134] flex items-center justify-center border border-white/20 text-[#8ccfbb]">
+<span class="material-symbols-outlined text-lg">storefront</span>
+</div>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline font-bold text-xs tracking-wider uppercase text-[#8ccfbb]">MOSTRY</span>
+<span class="text-white/40 text-xs">|</span>
+<span class="font-headline font-bold text-sm tracking-tight text-white">La Espiga</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#004134] text-[#8ccfbb] border border-white/10 font-headline">
+        2026
+      </span>
+<div class="relative p-1 text-white">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-secondary-accent ring-2 ring-primary-container"></span>
+</div>
+</div>
+</header>
+<!-- Contenedor Principal (Mobile 390px flow) -->
+<main class="w-full px-4 pt-16 mt-2 flex flex-col gap-4">
+<!-- 2. Título de sección y migas de pan -->
+<div class="flex flex-col gap-0.5 pt-1">
+<nav aria-label="Migas de pan" class="flex items-center gap-1 text-xs text-on-surface-variant font-medium">
+<span>Mi tienda</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-bold text-primary-container">Datos y apariencia</span>
+</nav>
+<h1 class="font-headline text-2xl font-bold tracking-tight text-on-surface mt-1">Mi tienda</h1>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+        Configurá la identidad visible para tus clientes y el estado de tu vidriera.
+      </p>
+</div>
+<!-- 3. Switch destacado 'Pausar tienda' -->
+<section class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3.5 flex flex-col gap-2">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary-container shrink-0 border border-outline-variant/40">
+<span class="material-symbols-outlined text-xl">store</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline text-sm font-bold text-on-surface">Pausar tienda</span>
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#acf0db] text-[#002019] text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#005141] animate-pulse"></span>
+                En vivo
+              </span>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-tight mt-0.5">
+              Si la pausás, verán local cerrado y no recibirás pedidos.
+            </p>
+</div>
+</div>
+<!-- Switch Toggle -->
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</section>
+<!-- 4. Enlace público de tu vidriera -->
+<section class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3.5 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Enlace público de tu vidriera</span>
+<span class="text-[11px] font-semibold text-primary-container flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Online
+        </span>
+</div>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface-container-low rounded-lg border border-outline-variant/60 text-xs font-medium text-on-surface">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">link</span>
+<span class="truncate flex-1 font-mono text-[13px]">laespiga.mostry.com.ar</span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-0.5">
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-outline-variant/70 bg-white hover:bg-surface-container-low text-xs font-semibold text-on-surface transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-base text-primary-container">content_copy</span>
+          Copiar enlace
+        </button>
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-outline-variant/70 bg-white hover:bg-surface-container-low text-xs font-semibold text-on-surface transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-base text-primary-container">share</span>
+          Compartir
+        </button>
+</div>
+</section>
+<!-- 5. Identidad del comercio -->
+<section class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3.5 flex flex-col gap-3.5">
+<h2 class="font-headline text-sm font-bold text-on-surface border-b border-outline-variant/30 pb-2">Identidad del comercio</h2>
+<!-- Logo circular con Cambiar logo -->
+<div class="flex items-center gap-3.5">
+<div class="relative w-14 h-14 rounded-full bg-[#0e5a4a] text-white flex items-center justify-center shrink-0 border-2 border-white shadow-sm ring-1 ring-outline-variant/50">
+<span class="material-symbols-outlined text-2xl">bakery_dining</span>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-[#ff7a59] border-2 border-white"></span>
+</div>
+<div class="flex flex-col gap-1 flex-1">
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-primary-container text-primary-container hover:bg-primary-container/5 text-xs font-semibold flex items-center gap-1 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+              Cambiar logo
+            </button>
+</div>
+<span class="text-[10px] text-on-surface-variant">Recomendado circular o cuadrado, hasta 2 MB.</span>
+</div>
+</div>
+<!-- Campo Nombre del negocio -->
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-bold text-on-surface-variant">Nombre del negocio *</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 px-3 pr-9 rounded-lg border border-outline-variant/80 bg-surface-container-lowest text-xs text-on-surface font-medium focus:ring-0" type="text" value="La Espiga"/>
+<span class="material-symbols-outlined absolute right-3 text-base text-on-surface-variant">storefront</span>
+</div>
+</div>
+<!-- Campo Frase del comercio -->
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-bold text-on-surface-variant">Frase del comercio</label>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant/80 bg-surface-container-lowest text-xs text-on-surface font-medium focus:ring-0" type="text" value="Facturas caseras desde 1998"/>
+<span class="text-[10px] text-on-surface-variant">Aparece debajo del nombre en el encabezado de tu tienda.</span>
+</div>
+<!-- Campo WhatsApp para recibir pedidos -->
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-bold text-on-surface-variant">WhatsApp para recibir pedidos *</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 px-3 pr-9 rounded-lg border border-outline-variant/80 bg-surface-container-lowest text-xs text-on-surface font-medium font-mono focus:ring-0" type="text" value="+54 9 11 4455-8821"/>
+<span class="material-symbols-outlined absolute right-3 text-base text-[#0e5a4a]">chat</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">A este número entran las comandas listas para preparar.</span>
+</div>
+<!-- Campo Dirección del mostrador -->
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-bold text-on-surface-variant">Dirección del mostrador *</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 px-3 pr-9 rounded-lg border border-outline-variant/80 bg-surface-container-lowest text-xs text-on-surface font-medium focus:ring-0" type="text" value="Av. San Martín 1234, Barrio Norte"/>
+<span class="material-symbols-outlined absolute right-3 text-base text-[#0e5a4a]">location_on</span>
+</div>
+</div>
+</section>
+<!-- 6. Colores de tu vidriera y preview en vivo -->
+<section class="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3.5 flex flex-col gap-3.5">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-2">
+<h2 class="font-headline text-sm font-bold text-on-surface">Colores de tu vidriera</h2>
+<span class="text-[10px] font-bold text-primary-container uppercase tracking-wider">Personalización</span>
+</div>
+<!-- Selectores de color -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Principal -->
+<div class="p-2.5 rounded-lg border border-outline-variant/60 bg-surface-container-low flex flex-col gap-1.5">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Color principal</span>
+<div class="flex items-center gap-2 bg-white px-2 py-1.5 rounded-md border border-outline-variant/60">
+<span class="w-5 h-5 rounded shrink-0 border border-black/10" style="background-color: #0E5A4A;"></span>
+<span class="font-mono text-xs font-semibold text-on-surface">#0E5A4A</span>
+</div>
+<span class="text-[9px] text-on-surface-variant leading-tight">Header y botones secundarios</span>
+</div>
+<!-- Acento -->
+<div class="p-2.5 rounded-lg border border-outline-variant/60 bg-surface-container-low flex flex-col gap-1.5">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">Color de acento</span>
+<div class="flex items-center gap-2 bg-white px-2 py-1.5 rounded-md border border-outline-variant/60">
+<span class="w-5 h-5 rounded shrink-0 border border-black/10" style="background-color: #FF7A59;"></span>
+<span class="font-mono text-xs font-semibold text-on-surface">#FF7A59</span>
+</div>
+<span class="text-[9px] text-on-surface-variant leading-tight">Botones de compra y avisos</span>
+</div>
+</div>
+<!-- Nota: Tu panel mantiene los colores de Mostry -->
+<div class="p-2.5 rounded-lg bg-[#fdf9f2] border border-outline-variant/60 flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-primary-container shrink-0 mt-0.5">info</span>
+<p class="text-[11px] text-on-surface-variant leading-snug">
+<span class="font-bold text-on-surface">Aviso:</span> Tu panel mantiene los colores de Mostry.
+        </p>
+</div>
+<!-- Vista previa en vivo para el cliente -->
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Vista previa en vivo para el cliente</span>
+<span class="text-[10px] text-on-surface-variant">Tarjeta de catálogo</span>
+</div>
+<!-- Tarjeta de producto simulada -->
+<div class="p-2.5 rounded-xl border border-outline-variant/70 bg-white flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<div class="w-12 h-12 rounded-lg bg-[#0e5a4a]/10 flex items-center justify-center text-[#0e5a4a] border border-[#0e5a4a]/20 shrink-0">
+<span class="material-symbols-outlined text-xl">bakery_dining</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline text-xs font-bold text-on-surface">Docena de medialunas</span>
+<span class="px-1.5 py-0.2 rounded text-[9px] font-bold bg-[#ff7a59] text-white">Destacado</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">6 de manteca y 6 de grasa crocantes</span>
+<span class="font-headline font-bold text-xs text-[#0e5a4a] mt-0.5">$ 7.800</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg bg-[#0e5a4a] text-white flex items-center justify-center shrink-0 active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 7. Botón Guardar cambios (Coral #FF7A59) -->
+<div class="flex flex-col gap-2 pt-1 pb-4">
+<button class="w-full h-12 rounded-xl bg-secondary-accent hover:bg-secondary-dark text-white font-headline font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">check</span>
+        Guardar cambios
+      </button>
+<p class="text-[11px] text-center text-on-surface-variant">
+        Los cambios impactan al instante en tu vidriera pública <span class="font-medium text-primary-container">laespiga.mostry.com.ar</span>
+</p>
+</div>
+</main>
+<!-- 8. Barra inferior fija con 5 pestañas -->
+<nav class="fixed bottom-0 left-0 w-full z-40 bg-surface-container-lowest border-t border-outline-variant/60 flex justify-around items-center h-16 px-1 right-0">
+<!-- 1. Inicio -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">home</span>
+<span class="text-[10px] font-medium mt-0.5">Inicio</span>
+</a>
+<!-- 2. Pedidos con badge 3 -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-primary-container transition-colors relative" href="#">
+<div class="relative inline-block">
+<span class="material-symbols-outlined text-xl">receipt_long</span>
+<span class="absolute -top-1 -right-2 px-1 min-w-[15px] h-[15px] rounded-full bg-secondary-accent text-white text-[9px] font-headline font-bold flex items-center justify-center ring-2 ring-white">
+          3
+        </span>
+</div>
+<span class="text-[10px] font-medium mt-0.5">Pedidos</span>
+</a>
+<!-- 3. Caja -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">point_of_sale</span>
+<span class="text-[10px] font-medium mt-0.5">Caja</span>
+</a>
+<!-- 4. Productos -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-on-surface-variant hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="text-[10px] font-medium mt-0.5">Productos</span>
+</a>
+<!-- 5. Más (Activo) -->
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-primary-container font-bold relative" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="text-[10px] font-headline font-bold mt-0.5">Más</span>
+<span class="w-1 h-1 rounded-full bg-primary-container mt-0.5"></span>
+</a>
+</nav>
+</body>
+</html>

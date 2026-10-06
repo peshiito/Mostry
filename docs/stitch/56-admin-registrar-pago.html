@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry Admin · La Espiga</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#0E5A4A',
+              'green-dark': '#093B31',
+              'green-light': '#147561',
+              coral: '#FF7A59',
+              'coral-hover': '#F06947',
+              canvas: '#F7F3EC',
+              card: '#FFFFFF',
+              border: '#E3DDD3',
+              'border-subtle': '#EFEAE1',
+              text: '#1E2522',
+              muted: '#636E67',
+              dim: '#8F9992',
+              // Status chips
+              'status-prueba-bg': '#FEF3C7',
+              'status-prueba-text': '#92400E',
+              'status-prueba-border': '#FDE68A',
+              'status-activa-bg': '#E6F4EA',
+              'status-activa-text': '#0E5A4A',
+              'status-activa-border': '#B7E1CD',
+              'status-gracia-bg': '#FFEDD5',
+              'status-gracia-text': '#C2410C',
+              'status-gracia-border': '#FED7AA',
+              'status-suspendida-bg': '#FEE2E2',
+              'status-suspendida-text': '#991B1B',
+              'status-suspendida-border': '#FECACA',
+            }
+          },
+          fontFamily: {
+            headline: ['Rubik', 'sans-serif'],
+            body: ['"Work Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      color: #1E2522;
+      background-color: #F7F3EC;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-rubik {
+      font-family: 'Rubik', sans-serif;
+    }
+    /* Estilo de scroll denso y técnico */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F7F3EC;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D8D2C6;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="h-full flex overflow-hidden bg-brand-canvas text-[13px] antialiased">
+<!-- BARRA LATERAL (Verde #0E5A4A) -->
+<aside class="w-60 bg-brand-green flex flex-col shrink-0 text-white select-none border-r border-brand-green-dark">
+<!-- Header Sidebar con Logo Mostry en blanco -->
+<div class="h-14 px-5 flex items-center border-b border-white/10 gap-2.5">
+<div class="flex items-center gap-2">
+<!-- Mostry Logo Icon -->
+<svg class="w-6 h-6 text-white" fill="none" viewbox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<rect fill="currentColor" height="14" rx="2" width="4" x="3" y="10"></rect>
+<rect fill="currentColor" height="19" rx="2" width="4" x="10" y="5"></rect>
+<rect fill="currentColor" height="11" rx="2" width="4" x="17" y="13"></rect>
+<circle cx="12" cy="3" fill="#FF7A59" r="1.5"></circle>
+</svg>
+<span class="font-rubik font-bold text-lg tracking-tight text-white leading-none">mostry</span>
+</div>
+<span class="ml-auto text-[10px] font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-white/15 text-white/90">Admin</span>
+</div>
+<!-- Navegación Lateral: Tiendas y Métricas -->
+<nav class="p-3 space-y-1 flex-1">
+<div class="px-2 pb-1.5 text-[10px] uppercase font-semibold text-white/40 tracking-wider">Gestión central</div>
+<!-- Tiendas (Activo) -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md bg-white/15 text-white font-medium text-[13px] transition-colors" href="#">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Tiendas</span>
+</div>
+<span class="text-[11px] font-rubik font-semibold bg-white/20 text-white px-1.5 py-0.5 rounded">142</span>
+</a>
+<!-- Métricas -->
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-md text-white/70 hover:text-white hover:bg-white/10 font-medium text-[13px] transition-colors" href="#">
+<svg class="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Métricas</span>
+</a>
+<!-- Referencia visual de chips en barra lateral -->
+<div class="pt-6 px-2">
+<div class="text-[10px] uppercase font-semibold text-white/40 tracking-wider mb-2">Filtros de estado</div>
+<div class="space-y-1.5 text-[11px]">
+<div class="flex items-center justify-between text-white/80 py-1 px-2 rounded hover:bg-white/5 cursor-pointer">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#EAB308]"></span> Prueba
+            </span>
+<span class="font-rubik text-white/60">18</span>
+</div>
+<div class="flex items-center justify-between text-white/80 py-1 px-2 rounded hover:bg-white/5 cursor-pointer">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#10B981]"></span> Activa
+            </span>
+<span class="font-rubik text-white/60">114</span>
+</div>
+<div class="flex items-center justify-between text-white/80 py-1 px-2 rounded hover:bg-white/5 cursor-pointer">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#FB923C]"></span> Gracia
+            </span>
+<span class="font-rubik text-white/60">6</span>
+</div>
+<div class="flex items-center justify-between text-white/80 py-1 px-2 rounded hover:bg-white/5 cursor-pointer">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#EF4444]"></span> Suspendida
+            </span>
+<span class="font-rubik text-white/60">4</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Footer Sidebar con perfil operador -->
+<div class="p-3 border-t border-white/10 bg-brand-green-dark/40 flex items-center justify-between text-[11px] text-white/70">
+<div class="flex items-center gap-2 truncate">
+<div class="w-6 h-6 rounded bg-white/10 flex items-center justify-center font-bold text-white text-[10px]">MO</div>
+<div class="truncate">
+<p class="font-medium text-white truncate leading-tight">soporte@mostry.com.ar</p>
+<p class="text-[10px] text-white/50">Operador #1 · 2026</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- CONTENIDO PRINCIPAL (1280px viewport total) -->
+<main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- Barra superior de contexto de administración -->
+<header class="h-14 bg-white border-b border-brand-border px-8 flex items-center justify-between shrink-0">
+<div class="flex items-center gap-3">
+<a class="text-brand-muted hover:text-brand-text flex items-center gap-1 text-[13px] font-medium transition-colors" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          Tiendas
+        </a>
+<span class="text-brand-border">/</span>
+<span class="font-semibold text-brand-text">La Espiga</span>
+<span class="text-[11px] font-mono text-brand-dim">ID: #ESP-2026-44</span>
+</div>
+<!-- Leyenda de chips de estado requeridos -->
+<div class="flex items-center gap-2">
+<span class="text-[11px] text-brand-muted mr-1 font-medium">Estados del sistema:</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-brand-status-prueba-bg text-brand-status-prueba-text border border-brand-status-prueba-border">Prueba</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-brand-status-activa-bg text-brand-status-activa-text border border-brand-status-activa-border">Activa</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-brand-status-gracia-bg text-brand-status-gracia-text border border-brand-status-gracia-border">Gracia</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-brand-status-suspendida-bg text-brand-status-suspendida-text border border-brand-status-suspendida-border">Suspendida</span>
+</div>
+</header>
+<div class="p-8 max-w-[1240px] w-full mx-auto space-y-6">
+<!-- CABECERA DE LA TIENDA LA ESPIGA -->
+<section class="bg-white border border-brand-border rounded-lg p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<!-- Logo de la tienda -->
+<div class="w-14 h-14 rounded-md bg-[#0E5A4A] flex items-center justify-center shrink-0 border border-brand-border text-white">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M4 11a8 8 0 0 1 16 0c0 4.418-3.582 8-8 8s-8-3.582-8-8z"></path>
+<path d="M8 12c.5-2 2-3.5 4-3.5s3.5 1.5 4 3.5"></path>
+<path d="M12 8.5V19"></path>
+<path d="M7 16l3-2"></path>
+<path d="M17 16l-3-2"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-center gap-2.5">
+<h1 class="font-rubik text-xl font-bold text-brand-text tracking-tight">Panadería La Espiga</h1>
+<!-- Chip de Estado: Prueba (mostaza) -->
+<span class="px-2.5 py-0.5 rounded text-[12px] font-semibold bg-brand-status-prueba-bg text-brand-status-prueba-text border border-brand-status-prueba-border">
+                Prueba
+              </span>
+</div>
+<div class="flex items-center gap-3 mt-1 text-brand-muted">
+<!-- Link público laespiga.mostry.com.ar -->
+<a class="font-mono text-[12px] text-brand-green hover:underline flex items-center gap-1 font-medium" href="https://laespiga.mostry.com.ar" target="_blank">
+                laespiga.mostry.com.ar
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+<span class="text-brand-border">•</span>
+<span class="text-[12px]">Plan Mostry Barrio ($ 10.000 / mes)</span>
+<span class="text-brand-border">•</span>
+<span class="text-[12px] text-amber-700 font-medium">Quedan 3 días de prueba</span>
+</div>
+</div>
+</div>
+<!-- Botones de Acción: Registrar pago (coral) y Suspender (rojo) -->
+<div class="flex items-center gap-3">
+<!-- Botón secundario rojo Suspender -->
+<button class="px-4 py-2 rounded border border-red-300 bg-white hover:bg-red-50 text-red-700 font-semibold text-[13px] transition-colors focus:outline-none focus:ring-1 focus:ring-red-400">
+            Suspender
+          </button>
+<!-- Botón principal Coral Registrar pago -->
+<button class="px-4 py-2 rounded bg-brand-coral hover:bg-brand-coral-hover text-white font-rubik font-semibold text-[13px] tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-brand-coral/40">
+            Registrar pago
+          </button>
+</div>
+</section>
+<!-- GRILLA DE 3 COLUMNAS: DATOS, USO E HISTORIAL DE PAGOS -->
+<div class="grid grid-cols-12 gap-6 items-start">
+<!-- COLUMNA 1: DATOS DEL COMERCIO (4 columnas) -->
+<div class="col-span-4 space-y-6">
+<div class="bg-white border border-brand-border rounded-lg p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-brand-border-subtle pb-3">
+<h2 class="font-rubik font-bold text-sm text-brand-text">Datos del comercio</h2>
+<span class="text-[11px] font-mono text-brand-dim">ALTA: 07/10/2026</span>
+</div>
+<div class="space-y-3.5 text-[13px]">
+<div>
+<span class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider">Titular</span>
+<span class="font-medium text-brand-text">Rosa Fernández</span>
+</div>
+<div>
+<span class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider">Correo electrónico</span>
+<span class="font-mono text-brand-text">rosa@gmail.com</span>
+</div>
+<div>
+<span class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider">WhatsApp de mostrador</span>
+<span class="font-mono text-brand-text">+54 9 11 4455-8821</span>
+</div>
+<div>
+<span class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider">Dirección física</span>
+<span class="text-brand-text">Av. San Martín 1234, Barrio Norte</span>
+</div>
+<div class="pt-2 border-t border-brand-border-subtle grid grid-cols-2 gap-3">
+<div class="bg-brand-canvas p-2.5 rounded border border-brand-border">
+<span class="block text-[10px] uppercase font-bold text-brand-dim">Fecha de alta</span>
+<span class="font-rubik font-semibold text-brand-text text-[13px]">07/10/2026</span>
+</div>
+<div class="bg-amber-50 p-2.5 rounded border border-amber-200">
+<span class="block text-[10px] uppercase font-bold text-amber-800">Vencimiento</span>
+<span class="font-rubik font-semibold text-amber-900 text-[13px]">17/10/2026</span>
+</div>
+</div>
+</div>
+</div>
+<!-- NOTAS INTERNAS (Dentro de columna lateral para densidad óptima) -->
+<div class="bg-white border border-brand-border rounded-lg p-5 space-y-3">
+<div class="flex items-center justify-between border-b border-brand-border-subtle pb-2.5">
+<h2 class="font-rubik font-bold text-sm text-brand-text">Notas internas</h2>
+<span class="text-[10px] uppercase font-semibold text-brand-dim">Uso exclusivo equipo</span>
+</div>
+<!-- Listado de notas existentes -->
+<div class="space-y-2.5">
+<div class="p-2.5 rounded bg-brand-canvas border border-brand-border text-[12px] space-y-1">
+<div class="flex justify-between items-center text-brand-dim text-[10px]">
+<span class="font-semibold text-brand-muted">Operador Hernán</span>
+<span>14/10/2026 · 11:20 hs</span>
+</div>
+<p class="text-brand-text leading-snug">
+                  Doña Rosa consultó por WhatsApp cómo cargar los encargos con 48 hs de seña. Se le explicó por audio y quedó conforme. Muy activa con el turno mañana.
+                </p>
+</div>
+<div class="p-2.5 rounded bg-brand-canvas border border-brand-border text-[12px] space-y-1">
+<div class="flex justify-between items-center text-brand-dim text-[10px]">
+<span class="font-semibold text-brand-muted">Operador Mariana</span>
+<span>07/10/2026 · 09:00 hs</span>
+</div>
+<p class="text-brand-text leading-snug">
+                  Comercio adherido vía recomendación de Molino Cañuelas. Comenzó prueba de 10 días sin tarjeta.
+                </p>
+</div>
+</div>
+<!-- Input para agregar nueva nota interna -->
+<div class="pt-2">
+<textarea class="w-full text-[12px] p-2 rounded border border-brand-border bg-white text-brand-text placeholder-brand-dim focus:outline-none focus:border-brand-green resize-none" placeholder="Escribí una nota interna sobre esta tienda..." rows="2"></textarea>
+<div class="flex justify-end mt-1.5">
+<button class="px-3 py-1 rounded bg-brand-green hover:bg-brand-green-light text-white font-medium text-[11px] transition-colors">
+                  Guardar nota
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- COLUMNA 2: USO DE LA PLATAFORMA (4 columnas) -->
+<div class="col-span-4 space-y-6">
+<div class="bg-white border border-brand-border rounded-lg p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-brand-border-subtle pb-3">
+<h2 class="font-rubik font-bold text-sm text-brand-text">Uso de la plataforma</h2>
+<span class="text-[11px] text-brand-muted">Octubre 2026</span>
+</div>
+<!-- Métricas destacadas requeridas: 24 productos y 312 pedidos este mes -->
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3.5 bg-brand-canvas rounded border border-brand-border">
+<span class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider">Productos</span>
+<div class="mt-1 flex items-baseline gap-1.5">
+<span class="font-rubik text-2xl font-bold text-brand-text">24</span>
+<span class="text-[11px] text-brand-muted">cargados</span>
+</div>
+<span class="text-[10px] text-emerald-700 font-medium">19 con stock hoy</span>
+</div>
+<div class="p-3.5 bg-brand-canvas rounded border border-brand-border">
+<span class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider">Pedidos este mes</span>
+<div class="mt-1 flex items-baseline gap-1.5">
+<span class="font-rubik text-2xl font-bold text-brand-green">312</span>
+<span class="text-[11px] text-brand-muted">tickets</span>
+</div>
+<span class="text-[10px] text-brand-muted font-medium">Promedio: 22 / día</span>
+</div>
+</div>
+<!-- Desglose de uso operativo -->
+<div class="space-y-3 pt-2 text-[12px]">
+<div class="flex items-center justify-between py-1 border-b border-brand-border-subtle">
+<span class="text-brand-muted">Facturación registrada online</span>
+<span class="font-rubik font-semibold text-brand-text">$ 1.240.000 ARS</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-brand-border-subtle">
+<span class="text-brand-muted">Clientes en libreta de fiados</span>
+<span class="font-rubik font-semibold text-brand-text">6 anotados ($ 47.500)</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-brand-border-subtle">
+<span class="text-brand-muted">Cierres de caja registrados</span>
+<span class="font-rubik font-semibold text-brand-text">24 turnos cuadrados</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-brand-border-subtle">
+<span class="text-brand-muted">Último pedido entrante</span>
+<span class="font-mono text-brand-text">Hoy 10:44 hs (#128)</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="text-brand-muted">Seguridad 2FA</span>
+<span class="text-emerald-700 font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Activada
+                </span>
+</div>
+</div>
+<!-- Resumen de canal y dispositivo -->
+<div class="p-3 bg-brand-canvas rounded border border-brand-border text-[11px] space-y-1">
+<span class="font-semibold text-brand-text block">Dispositivos conectados</span>
+<p class="text-brand-muted">1 celular Chrome (sesión activa mostrador) + 1 notebook Firefox.</p>
+</div>
+</div>
+</div>
+<!-- COLUMNA 3: HISTORIAL DE PAGOS (4 columnas) -->
+<div class="col-span-4 space-y-6">
+<div class="bg-white border border-brand-border rounded-lg p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-brand-border-subtle pb-3">
+<h2 class="font-rubik font-bold text-sm text-brand-text">Historial de pagos</h2>
+<span class="text-[11px] font-mono text-brand-dim">ABONO $10.000/MES</span>
+</div>
+<!-- Resumen del ciclo actual -->
+<div class="p-3 bg-amber-50/70 border border-amber-200/80 rounded space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-amber-900 uppercase">Ciclo de bienvenida</span>
+<span class="text-[10px] font-semibold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">Sin cargo</span>
+</div>
+<p class="text-[12px] text-amber-950 leading-snug">
+                Periodo promocional del 07/10/2026 al 17/10/2026. A partir del 17/10 rige el cobro de la primera mensualidad de <strong>$ 10.000</strong>.
+              </p>
+</div>
+<!-- Tabla de movimientos y pagos -->
+<div class="space-y-2">
+<span class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider">Comprobantes y registros</span>
+<div class="space-y-2 text-[12px]">
+<!-- Item 1: Próximo cobro programado -->
+<div class="p-2.5 rounded border border-dashed border-brand-border bg-brand-canvas flex items-center justify-between">
+<div>
+<span class="font-medium text-brand-text block">Mensualidad #1 (Noviembre 2026)</span>
+<span class="text-[11px] text-brand-dim">Vence el 17/10/2026 · Transferencia bancaria</span>
+</div>
+<div class="text-right">
+<span class="font-rubik font-bold text-brand-text block">$ 10.000</span>
+<span class="text-[10px] text-amber-700 font-semibold">Pendiente</span>
+</div>
+</div>
+<!-- Item 2: Activación de prueba -->
+<div class="p-2.5 rounded border border-brand-border bg-white flex items-center justify-between">
+<div>
+<span class="font-medium text-brand-text block">Alta cuenta &amp; Bonificación 10 días</span>
+<span class="text-[11px] text-brand-dim">07/10/2026 · Sistema automatizado</span>
+</div>
+<div class="text-right">
+<span class="font-rubik font-bold text-brand-green block">$ 0</span>
+<span class="text-[10px] text-brand-green font-semibold">Bonificado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Datos bancarios de Mostry para registrar transferencias manuales -->
+<div class="pt-3 border-t border-brand-border-subtle text-[11px] space-y-1.5 text-brand-muted">
+<div class="flex justify-between">
+<span>Alias de cobro Mostry:</span>
+<span class="font-mono font-semibold text-brand-text">mostry.pagos</span>
+</div>
+<div class="flex justify-between">
+<span>Razón Social:</span>
+<span class="text-brand-text">Mostry Soluciones SRL</span>
+</div>
+<div class="flex justify-between">
+<span>CUIT:</span>
+<span class="font-mono text-brand-text">30-71829384-8</span>
+</div>
+</div>
+<!-- Botón directo dentro del módulo -->
+<button class="w-full py-2 rounded bg-brand-coral hover:bg-brand-coral-hover text-white font-rubik font-semibold text-[12px] tracking-wide transition-colors">
+              Registrar comprobante recibido
+            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[1px] p-4 select-none" id="modal-registrar-pago"><div class="bg-white border border-brand-border rounded-lg shadow-xl w-full max-w-[480px] overflow-hidden flex flex-col"><div class="px-5 py-4 border-b border-brand-border-subtle flex items-center justify-between"><div class="space-y-0.5"><div class="flex items-center gap-2"><h3 class="font-rubik font-bold text-base text-brand-text">Registrar pago</h3><span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-brand-status-prueba-bg text-brand-status-prueba-text border border-brand-status-prueba-border">Prueba</span></div><p class="text-[11px] text-brand-muted font-medium">Panadería La Espiga · Plan Mostry Barrio ($ 10.000 / mes)</p></div><button aria-label="Cerrar" class="text-brand-dim hover:text-brand-text p-1 rounded hover:bg-brand-canvas transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button></div><div class="p-5 space-y-4"><div class="grid grid-cols-2 gap-3"><div><label class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider mb-1">Monto recibido ($ ARS)</label><div class="relative"><span class="absolute left-3 top-2 text-brand-muted font-medium">$</span><input class="w-full pl-7 pr-3 py-1.5 text-[13px] font-rubik font-semibold border border-brand-border rounded bg-brand-canvas text-brand-text focus:outline-none focus:border-brand-green" type="text" value="10.000"/></div></div><div><label class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider mb-1">Fecha del pago</label><input class="w-full px-3 py-1.5 text-[12px] border border-brand-border rounded bg-white text-brand-text focus:outline-none focus:border-brand-green font-mono" type="text" value="17 de octubre de 2026"/></div></div><div><label class="block text-[11px] uppercase font-semibold text-brand-dim tracking-wider mb-1">Medio de cobro / Vía</label><select class="w-full px-2.5 py-1.5 text-[12px] border border-brand-border rounded bg-white text-brand-text focus:outline-none focus:border-brand-green font-medium mb-2"><option selected="">Transferencia bancaria / MP (mostry.pagos)</option><option>Efectivo contra factura</option><option>Cheque / Débito automático</option></select><input class="w-full px-3 py-1.5 text-[12px] border border-brand-border rounded bg-white text-brand-text placeholder-brand-dim focus:outline-none focus:border-brand-green font-mono" placeholder="N° comprobante / Referencia bancaria (ej. OP-882194)" type="text"/></div><div class="p-3 bg-brand-status-activa-bg border border-brand-status-activa-border rounded flex items-start gap-2.5"><svg class="w-4 h-4 text-brand-green shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><div class="space-y-0.5"><span class="block text-[11px] font-bold text-brand-green uppercase tracking-wide">Nueva vigencia calculada</span><p class="text-[12px] text-brand-text">El plan pasa a vencer el <strong class="font-semibold text-brand-green">16/11/2026</strong> (30 días desde el 17/10). El estado cambiará a <span class="font-semibold text-brand-green">Activa</span>.</p></div></div><div class="pt-1 flex items-start gap-2.5"><input checked="" class="mt-0.5 rounded border-brand-border text-brand-green focus:ring-brand-green" id="check-notif" type="checkbox"/><label class="text-[12px] text-brand-text leading-snug cursor-pointer" for="check-notif">Enviar comprobante y confirmación por WhatsApp a <strong>Rosa (+54 9 11 4455-8821)</strong></label></div></div><div class="px-5 py-3 bg-brand-canvas border-t border-brand-border-subtle flex items-center justify-end gap-2.5"><button class="px-3.5 py-1.5 rounded border border-brand-border bg-white hover:bg-brand-canvas text-brand-muted hover:text-brand-text font-medium text-[12px] transition-colors">Cancelar</button><button class="px-4 py-1.5 rounded bg-brand-coral hover:bg-brand-coral-hover text-white font-rubik font-semibold text-[12px] tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-brand-coral/40">Registrar pago</button></div></div></div></body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>La Espiga · Encargo especial</title>
+<!-- Google Fonts: Rubik (Titulares) & Work Sans (Cuerpo y Etiquetas) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdea8",
+            "surface-container-highest": "#e6e2db",
+            "error-container": "#ffdad6",
+            "primary-fixed": "#acf0db",
+            "on-primary-container": "#8ccfbb",
+            "inverse-primary": "#90d4bf",
+            "on-surface-variant": "#3f4945",
+            "inverse-on-surface": "#f4f0e9",
+            "on-primary-fixed-variant": "#005141",
+            "on-secondary-fixed": "#3c0700",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "secondary-container": "#fd7958",
+            "on-tertiary": "#ffffff",
+            "outline": "#6f7975",
+            "surface-tint": "#246959",
+            "on-primary-fixed": "#002019",
+            "surface-container": "#f1ede6",
+            "surface-bright": "#fdf9f2",
+            "on-surface": "#1c1c18",
+            "surface-container-high": "#ebe8e1",
+            "surface-dim": "#dddad3",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#ffdad2",
+            "on-secondary-fixed-variant": "#862208",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#31302c",
+            "background": "#fdf9f2",
+            "on-primary": "#ffffff",
+            "surface": "#fdf9f2",
+            "primary-fixed-dim": "#90d4bf",
+            "primary-container": "#0e5a4a",
+            "tertiary": "#4c3400",
+            "tertiary-container": "#694a00",
+            "secondary-fixed-dim": "#ffb4a2",
+            "on-error-container": "#93000a",
+            "tertiary-fixed-dim": "#fabc41",
+            "surface-container-low": "#f7f3ec",
+            "on-tertiary-container": "#f5b73c",
+            "on-secondary-container": "#6e1500",
+            "on-background": "#1c1c18",
+            "outline-variant": "#bfc9c4",
+            "secondary": "#a7391e",
+            "surface-variant": "#e6e2db",
+            "on-tertiary-fixed": "#271900",
+            "primary": "#004134"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-md": "1rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Rubik", "sans-serif"],
+            "headline-md": ["Rubik", "sans-serif"],
+            "headline-lg": ["Rubik", "sans-serif"],
+            "body-md": ["Work Sans", "sans-serif"],
+            "label-sm": ["Work Sans", "sans-serif"],
+            "body-lg": ["Work Sans", "sans-serif"],
+            "label-md": ["Work Sans", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    /* Estilo de punteado tradicional de ticket de mostrador */
+    .dotted-receipt-border {
+      background-image: radial-gradient(circle, #bfc9c4 1px, transparent 1.2px);
+      background-size: 8px 3px;
+      background-repeat: repeat-x;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-full flex flex-col antialiased selection:bg-primary-fixed selection:text-primary">
+<!-- ENCABEZADO SUPERIOR: Panadería La Espiga en Mostry -->
+<header class="sticky top-0 z-40 bg-primary-container text-on-primary">
+<!-- Sub-barra institucional de dominio de barrio -->
+<div class="px-space-md py-1 border-b border-primary/30 flex items-center justify-between text-[11px] font-label-sm tracking-wider opacity-90">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+        PANADERÍA &amp; CONFITERÍA
+      </span>
+<span class="text-on-primary-container font-medium">laespiga.mostry.com.ar</span>
+</div>
+<!-- Barra de navegación del checkout (Task-focused: sin hamburguesa ni bottom nav global) -->
+<div class="max-w-md mx-auto px-space-md py-space-sm flex items-center justify-between">
+<a aria-label="Volver al carrito" class="p-1 -ml-1 text-on-primary hover:bg-primary rounded-lg transition-colors flex items-center justify-center" href="#">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</a>
+<div class="text-center">
+<h1 class="font-headline-sm text-headline-sm text-on-primary leading-tight">Encargo especial</h1>
+<p class="text-[11px] text-on-primary-container font-label-md">Mostrador artesanal</p>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="local_mall">local_mall</span>
+</div>
+</div>
+</header>
+<!-- CONTENEDOR PRINCIPAL MOBILE -->
+<main class="flex-1 w-full max-w-md mx-auto px-space-md pt-space-md pb-32">
+<!-- PASO DEL CHECKOUT: Indicador estructurado -->
+<section class="mb-space-md">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+          Paso 2 de 3 · Fecha y horario de retiro
+        </span>
+<span class="text-xs font-bold text-primary-container">66%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-2/3 transition-all duration-300"></div>
+</div>
+</section>
+<!-- TARJETA COMPACTA: Resumen del producto en encargo -->
+<section class="mb-space-lg bg-surface-container-lowest border border-surface-dim rounded-lg p-3">
+<div class="flex gap-3 items-center">
+<div class="relative w-16 h-16 rounded-md overflow-hidden bg-surface-container flex-shrink-0 border border-surface-dim">
+<img alt="Torta Rogel artesanal con capas crujientes y abundante dulce de leche" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1USzjDhK6xWheCtTFavX3HymBel_Pt1OTlJ6jB3qq6X325M6RQU1Y5QFyts_kkKA5rwAXmoLazwZqUyYEgA0G8hhEPYj3TZmvdRYBUchQWYZq_s2tiyzGq4QPTLv_ignjsfCltHlzeOUvjDdFdOrtQsdkIFbLbo8N4rZC8jxk8xrAciY79RrXRMYXc3Nq495d0-Ky1BHGwMaZ-YecK76mSW4h61Awbq_0Lzvs2RHahrUPEh0j9GSS2vrPA"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between gap-1">
+<h2 class="font-headline-sm text-[16px] text-on-surface leading-snug truncate">Torta Rogel artesanal</h2>
+<span class="font-headline-sm text-[16px] text-on-surface flex-shrink-0">$ 28.000</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-0.5 truncate">Tamaño familiar (10-12 porciones) · Merengue italiano</p>
+<div class="mt-1.5 inline-flex items-center gap-1 text-[11px] font-label-md font-semibold text-secondary bg-secondary-fixed/50 px-2 py-0.5 rounded border border-secondary/20">
+<span class="material-symbols-outlined text-[13px]" data-icon="schedule">schedule</span>
+<span>Requiere 48 h de anticipación</span>
+</div>
+</div>
+</div>
+</section>
+<!-- TÍTULO PRINCIPAL DE LA PANTALLA -->
+<section class="mb-space-md">
+<h3 class="font-headline-lg text-[22px] leading-tight text-on-surface">¿Para cuándo lo querés?</h3>
+<p class="font-body-md text-on-surface-variant text-xs mt-1">
+        Elegí el día y la franja para que el maestro pastelero hornee tu Rogel a punto.
+      </p>
+</section>
+<!-- CALENDARIO INTERACTIVO DE ENCARGOS -->
+<section class="bg-surface-container-lowest border border-surface-dim rounded-lg p-space-md mb-space-lg">
+<!-- Cabecera del mes -->
+<div class="flex items-center justify-between mb-4">
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface">Abril 2026</span>
+<span class="block text-[11px] font-label-md text-primary font-bold">Producción confirmada</span>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Mes anterior" class="w-8 h-8 rounded border border-surface-dim flex items-center justify-center text-on-surface-variant opacity-40 cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button aria-label="Mes siguiente" class="w-8 h-8 rounded border border-surface-dim flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Días de la semana -->
+<div class="grid grid-cols-7 gap-1 text-center font-label-sm text-[11px] text-on-surface-variant mb-2 font-semibold">
+<span class="py-1 text-error">Dom</span>
+<span class="py-1">Lun</span>
+<span class="py-1">Mar</span>
+<span class="py-1">Mié</span>
+<span class="py-1">Jue</span>
+<span class="py-1">Vie</span>
+<span class="py-1">Sáb</span>
+</div>
+<!-- Grilla de días del mes -->
+<div class="grid grid-cols-7 gap-1 text-center text-sm font-body-md">
+<!-- Semana 1 -->
+<span class="py-2 text-surface-dim select-none font-medium">29</span>
+<span class="py-2 text-surface-dim select-none font-medium">30</span>
+<span class="py-2 text-surface-dim select-none font-medium">31</span>
+<span class="py-2 text-surface-dim line-through select-none">1</span>
+<span class="py-2 text-surface-dim line-through select-none">2</span>
+<span class="py-2 text-surface-dim line-through select-none">3</span>
+<span class="py-2 text-surface-dim line-through select-none">4</span>
+<!-- Semana 2 -->
+<span class="py-2 text-[10px] text-error font-semibold select-none flex items-center justify-center">Cerrado</span>
+<span class="py-2 text-surface-dim line-through select-none">6</span>
+<span class="py-2 text-surface-dim line-through select-none">7</span>
+<span class="py-2 text-surface-dim line-through select-none">8</span>
+<span class="py-2 text-surface-dim line-through select-none">9</span>
+<span class="py-2 text-surface-dim line-through select-none">10</span>
+<span class="py-2 text-surface-dim line-through select-none">11</span>
+<!-- Semana 3: Hoy es 12/13 abril -> 48h de anticipación habilitan desde el 15 -->
+<div class="flex flex-col items-center justify-center py-1">
+<span class="text-[10px] text-error font-semibold select-none">Cerrado</span>
+</div>
+<div class="flex items-center justify-center py-1">
+<span class="text-surface-dim line-through text-xs" title="Menos de 48h">13</span>
+</div>
+<div class="flex items-center justify-center py-1">
+<span class="text-surface-dim line-through text-xs" title="Menos de 48h">14</span>
+</div>
+<!-- MIÉRCOLES 15: SELECCIONADO ACTIVAMENTE -->
+<div class="flex items-center justify-center py-1">
+<button aria-current="date" class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-headline-sm text-sm font-bold flex items-center justify-center ring-2 ring-primary ring-offset-2 shadow-sm" type="button">
+            15
+          </button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">
+            16
+          </button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">
+            17
+          </button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">
+            18
+          </button>
+</div>
+<!-- Semana 4 -->
+<div class="flex flex-col items-center justify-center py-1">
+<span class="text-[10px] text-error font-semibold select-none">Cerrado</span>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">20</button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">21</button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">22</button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">23</button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">24</button>
+</div>
+<div class="flex items-center justify-center py-1">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container font-medium text-on-surface flex items-center justify-center transition-colors" type="button">25</button>
+</div>
+</div>
+<!-- Leyenda de advertencia del calendario -->
+<div class="mt-4 pt-3 border-t border-surface-dim flex items-start gap-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container mt-0.5 flex-shrink-0" data-icon="info">info</span>
+<p class="leading-relaxed">
+          Los encargos se toman con <strong class="text-on-surface font-semibold">mínimo 48 h de anticipación</strong> para garantizar masa hojaldrada fresca y merengue recién batido.
+        </p>
+</div>
+</section>
+<!-- SELECTOR DE HORARIO DE RETIRO -->
+<section class="bg-surface-container-lowest border border-surface-dim rounded-lg p-space-md mb-space-lg">
+<div class="flex items-center justify-between mb-3">
+<h4 class="font-headline-sm text-[16px] text-on-surface">Horario estimado de retiro</h4>
+<span class="text-[11px] font-label-md text-primary-container font-bold bg-primary-fixed/40 px-2 py-0.5 rounded">Mié 15 Abril</span>
+</div>
+<!-- Turno Mañana -->
+<div class="mb-3">
+<div class="flex items-center gap-1.5 mb-2 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px]" data-icon="wb_sunny">wb_sunny</span>
+<span>Turno mañana (7:00 a 13:00)</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-2 text-xs font-label-md font-medium text-on-surface bg-surface-container-low border border-surface-dim rounded-lg hover:border-primary-container transition-colors" type="button">
+            9:00
+          </button>
+<!-- CHIP SELECCIONADO -->
+<button class="py-2 text-xs font-label-md font-bold text-on-primary bg-primary-container border border-primary-container rounded-lg ring-1 ring-primary flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[13px]" data-icon="check" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span>
+            9:30
+          </button>
+<button class="py-2 text-xs font-label-md font-medium text-on-surface bg-surface-container-low border border-surface-dim rounded-lg hover:border-primary-container transition-colors" type="button">
+            10:00
+          </button>
+<button class="py-2 text-xs font-label-md font-medium text-on-surface bg-surface-container-low border border-surface-dim rounded-lg hover:border-primary-container transition-colors" type="button">
+            10:30
+          </button>
+</div>
+</div>
+<!-- Turno Tarde -->
+<div>
+<div class="flex items-center gap-1.5 mb-2 text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px]" data-icon="wb_twilight">wb_twilight</span>
+<span>Turno tarde (16:30 a 20:30)</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-2 text-xs font-label-md font-medium text-on-surface bg-surface-container-low border border-surface-dim rounded-lg hover:border-primary-container transition-colors" type="button">
+            11:30
+          </button>
+<button class="py-2 text-xs font-label-md font-medium text-on-surface bg-surface-container-low border border-surface-dim rounded-lg hover:border-primary-container transition-colors" type="button">
+            17:00
+          </button>
+<button class="py-2 text-xs font-label-md font-medium text-on-surface bg-surface-container-low border border-surface-dim rounded-lg hover:border-primary-container transition-colors" type="button">
+            18:00
+          </button>
+<button class="py-2 text-xs font-label-md font-medium text-on-surface bg-surface-container-low border border-surface-dim rounded-lg hover:border-primary-container transition-colors" type="button">
+            19:00
+          </button>
+</div>
+</div>
+</section>
+<!-- TICKET DE SEÑA / DESGLOSE DE PAGO (Estilo boleta tradicional de panadería) -->
+<section class="bg-surface-container-lowest border border-surface-dim rounded-lg overflow-hidden mb-space-lg">
+<div class="bg-surface-container-low px-space-md py-2.5 border-b border-surface-dim flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="receipt_long">receipt_long</span>
+<span class="font-headline-sm text-sm text-on-surface">Condiciones de encargo</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant bg-surface-container px-2 py-0.5 rounded border border-surface-dim">
+          Libreta de señas
+        </span>
+</div>
+<div class="p-space-md space-y-2.5 font-body-md text-sm">
+<div class="flex justify-between items-baseline">
+<span class="text-on-surface-variant">Valor total del encargo</span>
+<span class="font-headline-sm text-base text-on-surface">$ 28.000</span>
+</div>
+<div class="flex justify-between items-center py-2 px-3 bg-tertiary-fixed/30 border border-tertiary-fixed rounded-lg text-tertiary">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" data-icon="payments">payments</span>
+<span class="font-semibold text-xs text-on-surface">Seña del 30 % requerida:</span>
+</div>
+<span class="font-headline-sm text-[17px] text-secondary font-bold">$ 8.400 ahora</span>
+</div>
+<div class="flex justify-between items-baseline text-xs text-on-surface-variant pt-1">
+<span>Saldo restante a cancelar:</span>
+<span class="font-semibold text-on-surface">$ 19.600 al retirar en el mostrador</span>
+</div>
+<!-- Línea divisoria punteada estilo ticket -->
+<div class="dotted-receipt-border h-[3px] w-full my-2"></div>
+<div class="flex items-start gap-2 bg-surface-container-low p-2.5 rounded text-xs text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-[16px] text-primary flex-shrink-0 mt-0.5" data-icon="mark_chat_read">mark_chat_read</span>
+<p>
+            El pago de la seña se realiza por <strong class="text-on-surface">transferencia o Mercado Pago</strong> al confirmar el pedido por WhatsApp con el mostrador.
+          </p>
+</div>
+</div>
+</section>
+<!-- FOOTER DISCRETO DE BARRIO -->
+<footer class="text-center text-xs text-on-surface-variant space-y-1 pt-2 pb-6 border-t border-surface-dim">
+<p class="font-medium text-on-surface">Panadería La Espiga · Av. San Martín 1234, Barrio Norte</p>
+<p class="text-[11px] text-outline">Hecho con Mostry · La libreta y tienda digital de tu barrio · © 2026</p>
+</footer>
+</main>
+<!-- BOTÓN FIJO INFERIOR (CTA PRINCIPAL EN CORAL) -->
+<aside class="fixed bottom-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-sm border-t border-surface-dim py-space-sm px-space-md shadow-lg">
+<div class="max-w-md mx-auto">
+<button class="w-full bg-[#FF7A59] hover:bg-secondary-container active:scale-[0.99] text-on-secondary font-headline-sm text-[16px] font-bold py-3.5 px-space-md rounded-lg flex items-center justify-between shadow-sm transition-transform duration-100" type="button">
+<span class="flex items-center gap-2">
+<span>Confirmar encargo</span>
+</span>
+<span class="flex items-center gap-1 text-sm bg-black/15 py-1 px-2.5 rounded">
+<span>Seña $ 8.400</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</button>
+<p class="text-center text-[10px] text-on-surface-variant mt-1.5 font-label-sm">
+        Retiro programado: Miércoles 15 de Abril a las 9:30 hs
+      </p>
+</div>
+</aside>
+</body></html>

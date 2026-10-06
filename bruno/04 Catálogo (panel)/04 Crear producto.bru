@@ -1,0 +1,25 @@
+meta {
+  name: Crear producto
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{api}}/panel/productos
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "nombre": "Medialuna",
+    "precio": 35000,
+    "stock": 120,
+    "stockMinimo": 24
+  }
+}

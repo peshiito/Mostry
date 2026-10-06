@@ -8,7 +8,6 @@ import { sinSesion } from '../errores.js';
 import { sesionesRepo, type SesionVigente } from '../repositorios/sesiones.repository.js';
 import { usuariosRepo } from '../repositorios/usuarios.repository.js';
 import type { DatosCambiarClave } from '../schemas.js';
-import { verificarTotp } from './totp.service.js';
 
 export async function datosDeCuenta(usuarioId: number) {
   const usuario = await usuariosRepo.buscarPorId(usuarioId);
@@ -20,7 +19,7 @@ export async function datosDeCuenta(usuarioId: number) {
   };
 }
 
-// Acción sensible: pide la clave actual y un TOTP nuevo.
+// Acción sensible: pide la contraseña actual.
 export async function cambiarClave(
   sesion: SesionVigente,
   datos: DatosCambiarClave,
@@ -29,12 +28,8 @@ export async function cambiarClave(
   const usuario = await usuariosRepo.buscarPorId(sesion.usuarioId);
   if (!usuario) throw sinSesion();
   const claveOk = await verificarClave(usuario.hashClave, datos.claveActual);
-  if (!claveOk || !(await verificarTotp(usuario, datos.codigoTotp))) {
-    throw new AppError(
-      400,
-      'datos_incorrectos',
-      'La contraseña actual o el código no son correctos.',
-    );
+  if (!claveOk) {
+    throw new AppError(400, 'clave_incorrecta', 'La contraseña actual no es correcta.');
   }
   await usuariosRepo.cambiarClave(usuario.id, await hashearClave(datos.claveNueva));
   await sesionesRepo.borrarDeUsuario(usuario.id, sesion.id);

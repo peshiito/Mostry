@@ -17,7 +17,7 @@ describe('suscripción: gracia y suspensión', () => {
   });
 
   it('en prueba muestra los días que quedan y los datos para pagar', async () => {
-    const res = await p.get('/tienda/suscripcion').expect(200);
+    const res = await p.get('/panel/tienda/suscripcion').expect(200);
     expect(res.body).toMatchObject({
       estado: 'prueba',
       diasRestantes: 10,
@@ -28,19 +28,19 @@ describe('suscripción: gracia y suspensión', () => {
 
   it('en gracia la tienda sigue funcionando, con aviso', async () => {
     await vencerPrueba(1);
-    const res = await p.get('/tienda/suscripcion').expect(200);
+    const res = await p.get('/panel/tienda/suscripcion').expect(200);
     expect(res.body).toMatchObject({ estado: 'gracia', mostrarAviso: true });
-    await p.patch('/tienda/config', { frase: 'Sigo vendiendo' }).expect(200);
+    await p.patch('/panel/tienda/config', { frase: 'Sigo vendiendo' }).expect(200);
   });
 
   it('suspendida: puede leer, pero la API bloquea toda escritura', async () => {
     await vencerPrueba(4);
-    expect((await p.get('/tienda/suscripcion').expect(200)).body.estado).toBe(
+    expect((await p.get('/panel/tienda/suscripcion').expect(200)).body.estado).toBe(
       'suspendida',
     );
-    await p.get('/tienda/config').expect(200);
-    const res = await p.patch('/tienda/config', { frase: 'Hackeo' }).expect(403);
+    await p.get('/panel/tienda/config').expect(200);
+    const res = await p.patch('/panel/tienda/config', { frase: 'Hackeo' }).expect(403);
     expect(res.body.error.codigo).toBe('tienda_suspendida');
-    await p.put('/tienda/pausa', { pausada: true }).expect(403);
+    await p.put('/panel/tienda/pausa', { pausada: true }).expect(403);
   });
 });

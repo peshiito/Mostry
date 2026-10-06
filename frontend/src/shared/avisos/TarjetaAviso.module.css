@@ -1,0 +1,60 @@
+/* Un aviso. La dirección (--dir), el ancla y el origen los define la región:
+   en escritorio la pila crece hacia arriba desde abajo a la derecha; en el
+   celular baja desde arriba. Transiciones (no keyframes): se pueden interrumpir. */
+.aviso {
+  position: absolute;
+  inset: var(--ancla);
+  height: var(--alto-propio);
+  z-index: calc(10 - var(--i));
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  border-radius: 12px;
+  background: var(--papel);
+  box-shadow: var(--sombra-aviso);
+  transform-origin: var(--origen);
+  transform: translateY(calc(var(--dir) * var(--i) * 12px))
+    scale(calc(1 - var(--i) * 0.05));
+  transition:
+    transform 400ms ease,
+    opacity 400ms ease,
+    height 400ms ease;
+  touch-action: pan-y;
+  user-select: none;
+}
+/* Detrás del primero: se achican a su altura y esconden el texto. */
+.aviso[data-frente='false'] {
+  height: var(--alto-frente);
+}
+.aviso[data-montado='false'],
+.aviso[data-saliendo='true'] {
+  opacity: 0;
+  transform: translateY(calc(var(--dir) * -100%));
+}
+.aviso[data-saliendo='true'] {
+  transition-duration: 250ms;
+}
+.aviso[data-saliendo='true'][data-por-lado='true'] {
+  transform: translateX(110%);
+}
+.aviso[data-arrastrando='true'] {
+  transform: translateX(var(--dx, 0));
+  transition: none;
+}
+.contenido {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  padding: 14px var(--e-3) 14px var(--e-4);
+  transition: opacity 400ms ease;
+}
+.aviso[data-frente='false'] .contenido {
+  opacity: 0;
+}
+/* Pila abierta (hover): cada uno en su lugar, completo. */
+.aviso[data-abierta='true'] {
+  height: var(--alto-propio);
+  transform: translateY(calc(var(--dir) * var(--desplazo)));
+}
+.aviso[data-abierta='true'] .contenido {
+  opacity: 1;
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Cambiar clave
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{api}}/auth/cambiar-clave
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "claveActual": "{{clave}}",
+    "claveNueva": "otra-clave-larga"
+  }
+}

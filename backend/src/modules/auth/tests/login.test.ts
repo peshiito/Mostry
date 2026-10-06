@@ -9,9 +9,9 @@ import {
 } from '../../../test/flujoAuth.js';
 import { limpiarBase } from '../../../test/limpiarBase.js';
 import { crearMailerFalso } from '../../../test/mailerFalso.js';
-import { cookieDe, origenTienda } from '../../../test/sesionHttp.js';
+import { origenTienda } from '../../../test/sesionHttp.js';
 
-describe('login (paso 1) y configuración del TOTP', () => {
+describe('login con email y contraseña', () => {
   let app: Express;
   let correo: ReturnType<typeof crearMailerFalso>;
   const yo = (cookie: string, slug = 'dona-rosa') =>
@@ -23,20 +23,22 @@ describe('login (paso 1) y configuración del TOTP', () => {
     app = crearApp({ pingDb: async () => {}, mailer: correo.mailer });
   });
 
-  it('flujo completo: clave → configurar app → 10 códigos → sesión completa', async () => {
+  it('registro → verificación → login deja una sesión que sirve', async () => {
     const cuenta = await crearCuentaCompleta(app, correo, 'dona-rosa');
-    expect(cuenta.codigosRecuperacion).toHaveLength(10);
     const res = await yo(cuenta.cookie).expect(200);
     expect(res.body.tiendas).toEqual([
       expect.objectContaining({ slug: 'dona-rosa', rol: 'dueno' }),
     ]);
   });
 
-  it('la sesión parcial (sin TOTP) no sirve para operar', async () => {
-    const email = await registrarYVerificar(app, correo, 'dona-rosa');
-    const res = await login(app, 'dona-rosa', email).expect(200);
-    expect(res.body.siguientePaso).toBe('configurar_totp');
-    await yo(cookieDe(res)).expect(401);
+  it('la cookie de una tienda no sirve en otra', async () => {
+    const cuenta = await crearCuentaCompleta(app, correo, 'dona-rosa');
+    await registrarYVerificar(app, correo, 'otra-tienda');
+    await request(app)
+      .get('/panel/tienda/config')
+      .set('Origin', origenTienda('otra-tienda'))
+      .set('Cookie', cuenta.cookie)
+      .expect(403);
   });
 
   it('clave incorrecta y email inexistente dan exactamente el mismo error', async () => {

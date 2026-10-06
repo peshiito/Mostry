@@ -1,0 +1,5 @@
+.toldo {
+  height: 14px;
+  background: radial-gradient(circle at 14px 0, var(--verde) 13px, transparent 14px) 0 0 /
+    28px 14px repeat-x;
+}

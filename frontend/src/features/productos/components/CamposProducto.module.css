@@ -1,0 +1,13 @@
+.campos {
+  display: grid;
+  gap: var(--e-4);
+}
+.dos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--e-3);
+}
+.cuenta {
+  color: var(--texto-3);
+  font-size: var(--t-xs);
+}

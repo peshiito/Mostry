@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-2) var(--e-4);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.logo {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radio);
+  background: var(--lona);
+}
+.textos {
+  flex: 1;
+  display: grid;
+  line-height: 1.2;
+}
+.tienda {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+  font-weight: 700;
+}
+.sub {
+  color: var(--sobre-verde-2);
+  font-size: var(--t-xs);
+}

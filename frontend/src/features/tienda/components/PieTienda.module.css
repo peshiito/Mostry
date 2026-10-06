@@ -1,0 +1,23 @@
+.pie {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-2);
+  padding: var(--e-6) var(--e-4) calc(var(--e-7) + 64px);
+  border-top: var(--borde);
+  background: var(--papel);
+  text-align: center;
+}
+.nombre {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+}
+.horario {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.mostry {
+  margin-top: var(--e-3);
+  color: var(--texto-3);
+  font-size: var(--t-sm);
+}

@@ -1,0 +1,17 @@
+/* Área de texto multilínea. */
+.area {
+  padding: var(--e-3);
+  min-height: 96px;
+  width: 100%;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  resize: vertical;
+}
+.area:focus {
+  border-color: var(--verde);
+  box-shadow: var(--foco);
+}
+.invalida {
+  border-color: var(--ladrillo);
+}

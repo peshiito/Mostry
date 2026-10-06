@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry - Notas de la libreta · La Espiga</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#90d4bf",
+            "outline": "#6f7975",
+            "on-tertiary-fixed": "#271900",
+            "surface-container-low": "#f7f3ec",
+            "secondary": "#a7391e",
+            "on-secondary-fixed": "#3c0700",
+            "surface-variant": "#e6e2db",
+            "inverse-on-surface": "#f4f0e9",
+            "tertiary-container": "#694a00",
+            "surface-container-lowest": "#ffffff",
+            "surface-container": "#f1ede6",
+            "secondary-container": "#fd7958",
+            "on-surface": "#1c1c18",
+            "on-error": "#ffffff",
+            "tertiary": "#4c3400",
+            "error-container": "#ffdad6",
+            "on-primary-container": "#8ccfbb",
+            "surface-container-high": "#ebe8e1",
+            "on-primary-fixed-variant": "#005141",
+            "error": "#ba1a1a",
+            "on-background": "#1c1c18",
+            "surface": "#fdf9f2",
+            "primary": "#004134",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#e6e2db",
+            "on-secondary-fixed-variant": "#862208",
+            "background": "#fdf9f2",
+            "surface-dim": "#dddad3",
+            "on-surface-variant": "#3f4945",
+            "on-secondary-container": "#6e1500",
+            "tertiary-fixed-dim": "#fabc41",
+            "surface-tint": "#246959",
+            "secondary-fixed": "#ffdad2",
+            "outline-variant": "#bfc9c4",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-primary-fixed": "#002019",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#90d4bf",
+            "secondary-fixed-dim": "#ffb4a2",
+            "primary-fixed": "#acf0db",
+            "on-tertiary-container": "#f5b73c",
+            "surface-bright": "#fdf9f2",
+            "primary-container": "#0e5a4a",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#ffdea8",
+            "inverse-surface": "#31302c"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Work Sans"],
+            "label-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "body-md": ["Work Sans"],
+            "body-lg": ["Work Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .notebook-rule {
+      background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, #ebe8e1 28px);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-screen pb-28 selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar Component (from Shared Components JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin py-space-sm bg-primary-container text-on-primary">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center border border-outline-variant/30 text-on-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="store">store</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-headline-sm font-headline-sm font-bold text-on-primary tracking-tight">La Espiga</span>
+<span class="text-label-sm font-label-sm px-1.5 py-0.5 rounded bg-surface-container-highest/20 text-on-primary-container">2026</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-primary-container font-normal -mt-0.5">Panadería y Confitería</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-primary/40 border border-outline-variant/20 text-on-primary-container text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span>Turno Mañana</span>
+</div>
+<button aria-label="Notificaciones" class="relative p-2 rounded-lg text-on-primary hover:bg-primary transition-colors duration-150 active:opacity-80">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin max-w-lg mx-auto w-full">
+<!-- Title & Context Header -->
+<section class="mt-2 mb-space-md">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 text-primary text-label-md font-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit_note">edit_note</span>
+<span>Cuaderno de mostrador</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Actualizado hace 5m</span>
+</div>
+<h1 class="text-headline-md font-headline-md text-on-surface tracking-tight mt-0.5">Notas de la libreta</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Anotaciones rápidas del mostrador y recordatorios del turno</p>
+</section>
+<!-- Sub-filtros / Segmented Context Control -->
+<section class="mb-space-md">
+<div class="p-1 bg-surface-container rounded-lg flex items-center gap-1 border border-outline-variant">
+<button class="flex-1 py-1.5 px-3 rounded text-center text-label-md font-label-md bg-surface-container-lowest text-primary shadow-sm border border-outline-variant/40 transition-all">
+          Todas <span class="text-label-sm font-label-sm text-primary font-bold">(4)</span>
+</button>
+<button class="flex-1 py-1.5 px-3 rounded text-center text-label-md font-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors">
+          Cuadra / Horno
+        </button>
+<button class="flex-1 py-1.5 px-3 rounded text-center text-label-md font-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors">
+          Encargos
+        </button>
+</div>
+</section>
+<!-- Grid / Cards de notas estilo papel de libreta -->
+<section aria-label="Listado de notas" class="space-y-space-sm mb-space-lg">
+<!-- Nota 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md relative overflow-hidden transition-all hover:border-outline">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm tracking-wider font-bold">
+              PROVEEDOR
+            </span>
+<span class="text-label-md font-label-md text-on-surface-variant">Molino Cañuelas</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Hoy · 08:30 hs</span>
+</div>
+<p class="text-body-lg font-body-lg font-medium text-on-surface mt-2.5 leading-snug">
+          Pedir 25 kg de harina el jueves
+        </p>
+<div class="mt-3 pt-2.5 border-t border-dashed border-outline-variant flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-[15px]" data-icon="swipe_left">swipe_left</span>
+            Deslizá para tachar o borrar
+          </span>
+<button aria-label="Tachar nota" class="p-1 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</article>
+<!-- Nota 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md relative overflow-hidden transition-all hover:border-outline">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold text-label-sm font-label-sm tracking-wider">
+              ENCARGO
+            </span>
+<span class="text-label-md font-label-md text-on-surface-variant">Torta de ricota</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Ayer · 18:45 hs</span>
+</div>
+<p class="text-body-lg font-body-lg font-medium text-on-surface mt-2.5 leading-snug">
+          Marta encarga torta para el 20
+        </p>
+<div class="mt-3 pt-2.5 border-t border-dashed border-outline-variant flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="person">person</span>
+            Cliente Marta (Seña $3.000)
+          </span>
+<button aria-label="Tachar nota" class="p-1 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</article>
+<!-- Nota 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md relative overflow-hidden transition-all hover:border-outline">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-bold text-label-sm font-label-sm tracking-wider">
+              MOSTRADOR
+            </span>
+<span class="text-label-md font-label-md text-on-surface-variant">Cliente Don Carlos</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">Ayer · 16:10 hs</span>
+</div>
+<p class="text-body-lg font-body-lg font-medium text-on-surface mt-2.5 leading-snug">
+          Avisar a Don Carlos cuando salgan las cremonas calientes
+        </p>
+<div class="mt-3 pt-2.5 border-t border-dashed border-outline-variant flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="call">call</span>
+            Pasa a las 17:30 hs
+          </span>
+<button aria-label="Tachar nota" class="p-1 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</article>
+<!-- Nota 4 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md relative overflow-hidden transition-all hover:border-outline">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-bold text-label-sm font-label-sm tracking-wider">
+              INSUMOS
+            </span>
+<span class="text-label-md font-label-md text-on-surface-variant">Papelera del Centro</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-medium">12 de octubre</span>
+</div>
+<p class="text-body-lg font-body-lg font-medium text-on-surface mt-2.5 leading-snug">
+          Comprar bobinas de papel sulfito y bolsas kraft N° 4
+        </p>
+<div class="mt-3 pt-2.5 border-t border-dashed border-outline-variant flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]" data-icon="inventory">inventory</span>
+            Stock en mínimo de empaques
+          </span>
+<button aria-label="Tachar nota" class="p-1 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</article>
+</section>
+<!-- Bloque de carga de notas -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md mb-8">
+<div class="flex items-center justify-between mb-2">
+<label class="text-label-md font-label-md text-on-surface font-bold flex items-center gap-1.5" for="nueva-nota">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="post_add">post_add</span>
+          Nueva anotación rápida
+        </label>
+<span class="text-label-sm font-label-sm text-outline">Papel borrador</span>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-3 text-body-md font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all resize-none notebook-rule" id="nueva-nota" placeholder="Escribí una nota rápida para el mostrador o la cuadra…" rows="3"></textarea>
+</div>
+<!-- Selectores de etiqueta rápida -->
+<div class="mt-3 flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+<button class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="label">label</span>
+            Insumos
+          </button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="shopping_basket">shopping_basket</span>
+            Encargo
+          </button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant text-label-sm font-label-sm text-on-surface-variant hover:bg-surface-variant transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span>
+            Para hoy
+          </button>
+</div>
+<!-- Botón principal en Coral #FF7A59 (#FD7958) según Brand Anchor -->
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-secondary-container text-on-surface font-label-md text-label-md font-semibold hover:brightness-105 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+          Guardar nota
+        </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component (from Shared Components JSON) -->
+<!-- Contextual note: Screen represents 'Más / Libreta de mostrador', active is 'Más' -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin py-space-xs bg-surface-container-lowest border-t border-outline-variant">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="home">home</span>
+<span class="mt-0.5">Inicio</span>
+</a>
+<!-- Pedidos (con badge coral) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95 relative" href="#">
+<div class="relative inline-block">
+<span class="material-symbols-outlined text-[24px]" data-icon="receipt_long">receipt_long</span>
+<span class="absolute -top-1 -right-2 px-1 py-0.2 rounded-full bg-secondary-container text-on-surface font-bold text-[9px] leading-3 flex items-center justify-center min-w-[15px]">
+          3
+        </span>
+</div>
+<span class="mt-0.5">Pedidos</span>
+</a>
+<!-- Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="mt-0.5">Caja</span>
+</a>
+<!-- Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="inventory_2">inventory_2</span>
+<span class="mt-0.5">Productos</span>
+</a>
+<!-- Más (Active Tab for Libreta/Herramientas adicionales) -->
+<a class="flex flex-col items-center justify-center text-primary font-label-sm font-bold py-space-xs relative hover:text-primary transition-colors duration-150 active:scale-95" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[24px]" data-icon="menu">menu</span>
+<span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"></span>
+</div>
+<span class="mt-0.5">Más</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,20 @@
+.lista {
+  display: grid;
+  gap: var(--e-2);
+}
+.bloque {
+  border-radius: var(--radio);
+  background: linear-gradient(
+    90deg,
+    var(--lona-oscura),
+    var(--papel),
+    var(--lona-oscura)
+  );
+  background-size: 200% 100%;
+  animation: brillo 1.4s ease-in-out infinite;
+}
+@keyframes brillo {
+  to {
+    background-position: -200% 0;
+  }
+}

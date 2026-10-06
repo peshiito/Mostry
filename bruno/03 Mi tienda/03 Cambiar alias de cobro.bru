@@ -1,0 +1,24 @@
+meta {
+  name: Cambiar alias de cobro
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{api}}/panel/tienda/cobro
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "alias": "dona.rosa.mp",
+    "titularAlias": "Rosa Gómez",
+    "clave": "{{clave}}"
+  }
+}

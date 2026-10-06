@@ -1,0 +1,32 @@
+meta {
+  name: Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{api}}/auth/login
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+}
+
+body:json {
+  {
+    "email": "{{emailTienda}}",
+    "clave": "{{clave}}"
+  }
+}
+
+script:post-response {
+  const crudas = res.getHeader('set-cookie') || [];
+  const cookie = [].concat(crudas).find((c) => c.startsWith('__Host-'));
+  if (cookie) bru.setEnvVar('cookie', cookie.split(';')[0]);
+}
+
+docs {
+  Email y contraseña. Guarda la cookie de la sesión en {{cookie}}.
+}

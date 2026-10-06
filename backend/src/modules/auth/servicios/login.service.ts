@@ -1,5 +1,5 @@
 import { verificarClave } from '../../../shared/crypto/claves.js';
-import type { EstadoSesion, TipoSesion } from '../../../shared/db/tipos/usuarios.js';
+import type { TipoSesion } from '../../../shared/db/tipos/usuarios.js';
 import { AppError } from '../../../shared/errors/AppError.js';
 import type { Zona } from '../../../shared/utils/zonaDesdeOrigen.js';
 import { miembrosRepo } from '../../tiendas/miembros.repository.js';
@@ -7,7 +7,7 @@ import { tiendasRepo } from '../../tiendas/tiendas.repository.js';
 import { credencialesInvalidas } from '../errores.js';
 import { usuariosRepo } from '../repositorios/usuarios.repository.js';
 
-type Resultado = { usuarioId: number; tipo: TipoSesion; estado: EstadoSesion };
+type Resultado = { usuarioId: number; tipo: TipoSesion };
 
 async function puedeEntrarA(zona: Zona, usuario: { id: number; esAdmin: boolean }) {
   if (zona.tipo === 'admin') return usuario.esAdmin;
@@ -16,7 +16,7 @@ async function puedeEntrarA(zona: Zona, usuario: { id: number; esAdmin: boolean 
   return tienda !== undefined && (await miembrosRepo.esMiembro(tienda.id, usuario.id));
 }
 
-// Primer paso del login (email + clave). El segundo es siempre el TOTP.
+// Login con email y contraseña, desde la zona de la tienda o del admin.
 export async function autenticar(
   email: string,
   clave: string,
@@ -37,6 +37,5 @@ export async function autenticar(
   return {
     usuarioId: usuario.id,
     tipo: zona.tipo === 'admin' ? 'admin' : 'panel',
-    estado: usuario.totpActivadoEn ? 'falta_totp' : 'falta_configurar_totp',
   };
 }

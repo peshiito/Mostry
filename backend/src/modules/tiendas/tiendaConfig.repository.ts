@@ -1,3 +1,4 @@
+import type { TiendaId } from '../../shared/db/tiendaId.js';
 import type { Updateable } from 'kysely';
 import { db } from '../../shared/db/db.js';
 import type { TiendasTabla } from '../../shared/db/tipos/tiendas.js';
@@ -26,24 +27,24 @@ const columnasConfig = [
 
 // Toda consulta recibe el tiendaId (la tienda resuelta por el Origin).
 export const tiendaConfigRepo = {
-  buscar: (tiendaId: number) =>
+  buscar: (tiendaId: TiendaId) =>
     db
       .selectFrom('tiendas')
       .select(columnasConfig)
       .where('id', '=', tiendaId)
       .executeTakeFirstOrThrow(),
 
-  actualizar: (tiendaId: number, cambios: Updateable<TiendasTabla>) =>
+  actualizar: (tiendaId: TiendaId, cambios: Updateable<TiendasTabla>) =>
     db.updateTable('tiendas').set(cambios).where('id', '=', tiendaId).execute(),
 
-  suscripcion: (tiendaId: number) =>
+  suscripcion: (tiendaId: TiendaId) =>
     db
       .selectFrom('tiendas')
       .select(['estado', 'pruebaHasta', 'planHasta', 'suspendidaManual'])
       .where('id', '=', tiendaId)
       .executeTakeFirstOrThrow(),
 
-  emailsDeDuenos: (tiendaId: number) =>
+  emailsDeDuenos: (tiendaId: TiendaId) =>
     db
       .selectFrom('miembrosTienda')
       .innerJoin('usuarios', 'usuarios.id', 'miembrosTienda.usuarioId')

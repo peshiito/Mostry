@@ -1,0 +1,6 @@
+.deuda {
+  color: var(--ladrillo);
+}
+.pago {
+  color: var(--ok);
+}

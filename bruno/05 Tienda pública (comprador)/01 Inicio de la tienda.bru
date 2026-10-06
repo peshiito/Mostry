@@ -1,0 +1,15 @@
+meta {
+  name: Inicio de la tienda
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{api}}/publico/tienda
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+}

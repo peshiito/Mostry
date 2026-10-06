@@ -1,0 +1,84 @@
+{
+  "productos": [
+    {
+      "id": 3,
+      "nombre": "Bola de fraile",
+      "descripcion": "Con dulce de leche.",
+      "precio": 45000,
+      "categoriaId": 1,
+      "destacado": false,
+      "disponible": true,
+      "aceptaEncargo": false,
+      "foto": null
+    },
+    {
+      "id": 4,
+      "nombre": "Docena surtida",
+      "descripcion": null,
+      "precio": 420000,
+      "categoriaId": 1,
+      "destacado": true,
+      "disponible": true,
+      "aceptaEncargo": false,
+      "foto": null
+    },
+    {
+      "id": 6,
+      "nombre": "Lemon pie",
+      "descripcion": "Para 8 porciones.",
+      "precio": 2200000,
+      "categoriaId": 2,
+      "destacado": false,
+      "disponible": true,
+      "aceptaEncargo": true,
+      "foto": null
+    },
+    {
+      "id": 1,
+      "nombre": "Medialuna de manteca",
+      "descripcion": "Hojaldrada, con almíbar.",
+      "precio": 35000,
+      "categoriaId": 1,
+      "destacado": true,
+      "disponible": true,
+      "aceptaEncargo": false,
+      "foto": null
+    },
+    {
+      "id": 7,
+      "nombre": "Pan francés (1 kg)",
+      "descripcion": null,
+      "precio": 250000,
+      "categoriaId": 3,
+      "destacado": false,
+      "disponible": true,
+      "aceptaEncargo": false,
+      "foto": null
+    },
+    {
+      "id": 5,
+      "nombre": "Rogel",
+      "descripcion": "Capas finas con dulce de leche y merengue italiano.",
+      "precio": 2800000,
+      "categoriaId": 2,
+      "destacado": true,
+      "disponible": false,
+      "aceptaEncargo": true,
+      "foto": null
+    },
+    {
+      "id": 2,
+      "nombre": "Vigilante",
+      "descripcion": "Con membrillo y crema pastelera.",
+      "precio": 40000,
+      "categoriaId": 1,
+      "destacado": false,
+      "disponible": true,
+      "aceptaEncargo": false,
+      "foto": null
+    }
+  ],
+  "total": 7,
+  "pagina": 1,
+  "paginas": 1
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Seguimiento
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{api}}/publico/pedidos/{{tokenPedido}}
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+}
+
+docs {
+  Para subir el comprobante usá multipart (campo 'comprobante') a /publico/pedidos/{{tokenPedido}}/comprobante.
+}

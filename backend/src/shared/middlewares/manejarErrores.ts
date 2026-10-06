@@ -12,7 +12,13 @@ const CODIGOS_4XX: Record<number, string> = {
 // Al cliente, mensajes genéricos; el detalle va solo a los logs.
 export const manejarErrores: ErrorRequestHandler = (err, req, res, _next) => {
   if (err instanceof AppError) {
-    responderError(res, err.status, err.codigo, err.message);
+    responderError(
+      res,
+      err.status,
+      err.codigo,
+      err.message,
+      err.detalle ? { detalle: err.detalle } : {},
+    );
     return;
   }
   if (err instanceof ZodError) {
@@ -20,7 +26,7 @@ export const manejarErrores: ErrorRequestHandler = (err, req, res, _next) => {
       campo: i.path.join('.'),
       mensaje: i.message,
     }));
-    responderError(res, 400, 'datos_invalidos', 'Revisá los datos enviados.', campos);
+    responderError(res, 400, 'datos_invalidos', 'Revisá los datos enviados.', { campos });
     return;
   }
   const status = Number(err?.status);

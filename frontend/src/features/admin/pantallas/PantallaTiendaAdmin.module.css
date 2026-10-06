@@ -1,0 +1,4 @@
+.acciones {
+  display: flex;
+  gap: var(--e-2);
+}

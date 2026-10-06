@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry - Mi cuenta · La Espiga</title>
+<!-- Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Google Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#dddad3",
+            "surface-container-lowest": "#ffffff",
+            "surface-tint": "#246959",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-secondary": "#ffffff",
+            "primary": "#004134",
+            "surface-container-high": "#ebe8e1",
+            "tertiary-container": "#694a00",
+            "on-surface": "#1c1c18",
+            "tertiary-fixed": "#ffdea8",
+            "on-background": "#1c1c18",
+            "on-primary-fixed-variant": "#005141",
+            "on-tertiary-fixed": "#271900",
+            "inverse-on-surface": "#f4f0e9",
+            "on-secondary-fixed-variant": "#862208",
+            "on-surface-variant": "#3f4945",
+            "secondary-fixed-dim": "#ffb4a2",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#002019",
+            "tertiary-fixed-dim": "#fabc41",
+            "surface-container-low": "#f7f3ec",
+            "surface": "#fdf9f2",
+            "on-tertiary-container": "#f5b73c",
+            "background": "#fdf9f2",
+            "outline-variant": "#bfc9c4",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "secondary-fixed": "#ffdad2",
+            "secondary": "#a7391e",
+            "tertiary": "#4c3400",
+            "outline": "#6f7975",
+            "on-secondary-container": "#6e1500",
+            "primary-fixed-dim": "#90d4bf",
+            "surface-variant": "#e6e2db",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "primary-container": "#0e5a4a",
+            "inverse-primary": "#90d4bf",
+            "surface-container": "#f1ede6",
+            "primary-fixed": "#acf0db",
+            "on-primary-container": "#8ccfbb",
+            "on-secondary-fixed": "#3c0700",
+            "secondary-container": "#fd7958",
+            "surface-container-highest": "#e6e2db",
+            "inverse-surface": "#31302c",
+            "surface-bright": "#fdf9f2"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xl": "2rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "headline-md": ["Rubik"],
+            "label-md": ["Work Sans"],
+            "body-lg": ["Work Sans"],
+            "body-md": ["Work Sans"],
+            "headline-lg": ["Rubik"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .ticket-dashed {
+      background-image: linear-gradient(to right, #bfc9c4 40%, rgba(255,255,255,0) 0%);
+      background-position: bottom;
+      background-size: 8px 1px;
+      background-repeat: repeat-x;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased font-body-md text-body-md min-h-full flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TOP APP BAR (Shared Component Anchor) -->
+<header class="fixed top-0 left-0 w-full z-40 flex items-center justify-between px-margin h-14 bg-primary-container text-on-primary shadow-none">
+<div class="flex items-center gap-2">
+<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-surface-container-lowest/10 text-on-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="storefront">storefront</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary tracking-tight">La Espiga</span>
+<span class="text-[10px] font-label-sm font-bold uppercase tracking-wider bg-primary text-on-primary-container px-1.5 py-0.5 rounded">Mostry</span>
+</div>
+<span class="text-[10px] font-label-sm text-on-primary-container leading-none">Panadería y confitería</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Notificaciones" class="relative p-2 rounded-lg text-on-primary hover:bg-primary/20 active:opacity-80 transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="w-full max-w-xl mx-auto pt-16 pb-24 px-margin flex flex-col gap-4">
+<!-- BREADCRUMB & HEADER TITLE -->
+<section class="pt-2 pb-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-md text-label-md mb-1">
+<span>Ajustes</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-bold">Mi cuenta</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Mi cuenta</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+        Datos de acceso, credenciales y seguridad de tu comercio.
+      </p>
+</section>
+<!-- BENTO / CARD 1: DATOS DE ACCESO -->
+<section class="bg-surface-container-lowest rounded-lg border border-surface-dim p-4 flex flex-col">
+<div class="flex items-center gap-2 pb-3 border-b border-surface-dim">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="manage_accounts">manage_accounts</span>
+<h2 class="font-label-md text-label-md font-bold uppercase tracking-wider text-on-surface">1. Datos de acceso</h2>
+</div>
+<!-- Fila Correo -->
+<div class="py-3 ticket-dashed flex items-center justify-between gap-3">
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Correo electrónico</span>
+<span class="font-body-lg text-body-lg font-semibold text-on-surface truncate">rosa@gmail.com</span>
+</div>
+<button class="shrink-0 font-label-md text-label-md font-bold text-primary hover:text-primary-container px-3 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors" type="button">
+          Cambiar
+        </button>
+</div>
+<!-- Fila Contraseña -->
+<div class="pt-3 flex items-center justify-between gap-3">
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Contraseña de acceso</span>
+<span class="font-headline-sm text-headline-sm tracking-widest text-on-surface leading-snug">••••••••••••</span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Modificada el 14 de ene. 2026</span>
+</div>
+<button class="shrink-0 font-label-md text-label-md font-bold text-primary hover:text-primary-container px-3 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors" type="button">
+          Cambiar
+        </button>
+</div>
+</section>
+<!-- BENTO / CARD 2: SEGURIDAD DE LA CUENTA -->
+<section class="bg-surface-container-lowest rounded-lg border border-surface-dim p-4 flex flex-col gap-3">
+<div class="flex items-center gap-2 pb-3 border-b border-surface-dim">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="shield_lock">shield_lock</span>
+<h2 class="font-label-md text-label-md font-bold uppercase tracking-wider text-on-surface">2. Seguridad de la cuenta</h2>
+</div>
+<!-- Estado 2FA -->
+<div class="flex items-start justify-between gap-3 py-1">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Verificación en dos pasos (2FA)</span>
+<span class="inline-flex items-center gap-1 bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Activada
+            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Protege el ingreso a tu caja y libreta de pedidos desde cualquier dispositivo nuevo.
+          </p>
+</div>
+</div>
+<div class="pt-1 flex items-center justify-between">
+<button class="inline-flex items-center gap-1.5 font-label-md text-label-md font-bold text-primary hover:text-primary-container py-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="lock_reset">lock_reset</span>
+          Generar nuevos códigos
+        </button>
+<span class="font-label-sm text-label-sm text-outline">Libreta de respaldo</span>
+</div>
+<!-- Nota de Mostrador -->
+<div class="bg-surface-container p-3 rounded-lg border border-outline-variant/40 flex items-start gap-2.5 mt-1">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5" data-icon="info">info</span>
+<p class="font-body-md text-body-md text-on-surface-variant text-[13px] leading-relaxed">
+<strong class="text-on-surface font-semibold">Consejo de mostrador:</strong> Si compartís el teléfono de la panadería con los empleados del turno tarde, asegurate de no dejar guardada la clave en navegadores compartidos.
+        </p>
+</div>
+</section>
+<!-- BENTO / CARD 3: DISPOSITIVOS Y SESIONES ABIERTAS -->
+<section class="bg-surface-container-lowest rounded-lg border border-surface-dim p-4 flex flex-col">
+<div class="flex items-center justify-between pb-3 border-b border-surface-dim">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="devices">devices</span>
+<h2 class="font-label-md text-label-md font-bold uppercase tracking-wider text-on-surface">3. Dispositivos y sesiones</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded font-bold">2 activas</span>
+</div>
+<!-- Sesión 1: Celular actual -->
+<div class="py-3 ticket-dashed flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-9 h-9 rounded-lg bg-primary-fixed/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="smartphone">smartphone</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-bold text-on-surface truncate">Este celular</span>
+<span class="bg-primary/10 text-primary font-label-sm text-[10px] px-1.5 py-0.2 rounded font-bold uppercase">Sesión actual</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant text-[13px]">Chrome · Buenos Aires, AR</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0" data-icon="verified_user">verified_user</span>
+</div>
+<!-- Sesión 2: Notebook -->
+<div class="pt-3 flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="laptop">laptop</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate">Notebook mostrador</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-[13px]">Firefox · hace 3 días</span>
+</div>
+</div>
+<button class="shrink-0 font-label-md text-label-md font-bold text-secondary hover:bg-secondary-fixed/40 px-3 py-1.5 rounded-lg border border-secondary-fixed-dim transition-colors" type="button">
+          Cerrar
+        </button>
+</div>
+</section>
+<!-- BLOQUE 4: ACCIÓN DE CIERRE -->
+<section class="pt-2">
+<button class="w-full bg-[#FF7A59] hover:bg-[#ff6943] active:scale-[0.99] text-[#1B1B1B] font-label-md text-body-lg font-bold py-3.5 px-4 rounded-lg flex items-center justify-center gap-2 shadow-sm transition-all duration-150" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span>Cerrar sesión</span>
+</button>
+<p class="text-center font-label-sm text-label-sm text-outline mt-3">
+        Mostry Comercio · Terminal Panadería La Espiga v2.8 (2026)
+      </p>
+</section>
+</main>
+<!-- BOTTOM NAVIGATION BAR (Shared Component Anchor) -->
+<!-- Contextual State: "Más" is active destination as "Mi cuenta" resides in settings/extra options -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex items-center justify-around px-margin h-16 bg-surface-container-lowest border-t border-outline-variant">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<!-- Pedidos (Con Badge Coral) -->
+<a class="relative flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="relative">
+<span class="material-symbols-outlined text-[22px]" data-icon="receipt_long">receipt_long</span>
+<span class="absolute -top-1 -right-2 bg-secondary-container text-on-secondary font-label-sm text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+</span>
+<span class="font-label-sm text-label-sm">Pedidos</span>
+</a>
+<!-- Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="font-label-sm text-label-sm">Caja</span>
+</a>
+<!-- Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm">Productos</span>
+</a>
+<!-- Más (ACTIVO) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold gap-1 active:scale-95 duration-150" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]" data-icon="menu">menu</span>
+<span class="absolute -bottom-1 w-4 h-0.5 bg-primary-container rounded-full"></span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Más</span>
+</a>
+</nav>
+</body></html>

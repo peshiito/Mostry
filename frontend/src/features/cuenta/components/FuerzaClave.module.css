@@ -1,0 +1,28 @@
+.fuerza {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+}
+.barras {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.barra {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--linea);
+}
+.n1 {
+  background: var(--mostaza);
+}
+.n2,
+.n3 {
+  background: var(--verde);
+}
+.texto {
+  color: var(--texto-2);
+  font-size: var(--t-xs);
+  font-weight: 600;
+}

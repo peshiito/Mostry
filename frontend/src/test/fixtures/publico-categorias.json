@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "nombre": "Facturas",
+    "productos": 4
+  },
+  {
+    "id": 2,
+    "nombre": "Tortas",
+    "productos": 2
+  },
+  {
+    "id": 3,
+    "nombre": "Panadería",
+    "productos": 1
+  }
+]

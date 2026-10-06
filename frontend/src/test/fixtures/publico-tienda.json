@@ -1,0 +1,93 @@
+{
+  "nombre": "Facturería Doña Rosa",
+  "frase": "Facturas caseras desde 1987, recién salidas del horno.",
+  "logoUrl": null,
+  "paleta": "toldo",
+  "disponible": true,
+  "whatsapp": "5491123456789",
+  "direccion": "Av. Hipólito Yrigoyen 4250, Lanús Oeste",
+  "entrega": {
+    "envio": true,
+    "retiro": true,
+    "costoEnvio": 150000,
+    "zonaEnvio": "Lanús Oeste y Remedios de Escalada"
+  },
+  "encargos": {
+    "senaPorcentaje": 30,
+    "anticipacionHoras": 24
+  },
+  "apertura": {
+    "abierta": true,
+    "cierraA": "13:00"
+  },
+  "horarios": [
+    {
+      "diaSemana": 0,
+      "abre": "08:00",
+      "cierra": "13:00"
+    },
+    {
+      "diaSemana": 1,
+      "abre": "07:00",
+      "cierra": "13:00"
+    },
+    {
+      "diaSemana": 1,
+      "abre": "16:30",
+      "cierra": "20:30"
+    },
+    {
+      "diaSemana": 2,
+      "abre": "07:00",
+      "cierra": "13:00"
+    },
+    {
+      "diaSemana": 2,
+      "abre": "16:30",
+      "cierra": "20:30"
+    },
+    {
+      "diaSemana": 3,
+      "abre": "07:00",
+      "cierra": "13:00"
+    },
+    {
+      "diaSemana": 3,
+      "abre": "16:30",
+      "cierra": "20:30"
+    },
+    {
+      "diaSemana": 4,
+      "abre": "07:00",
+      "cierra": "13:00"
+    },
+    {
+      "diaSemana": 4,
+      "abre": "16:30",
+      "cierra": "20:30"
+    },
+    {
+      "diaSemana": 5,
+      "abre": "07:00",
+      "cierra": "13:00"
+    },
+    {
+      "diaSemana": 5,
+      "abre": "16:30",
+      "cierra": "20:30"
+    },
+    {
+      "diaSemana": 6,
+      "abre": "07:00",
+      "cierra": "13:00"
+    }
+  ],
+  "promociones": [
+    {
+      "id": 1,
+      "titulo": "2x1 en medialunas",
+      "descripcion": "Martes y jueves de 16 a 18 h.",
+      "hasta": "2026-10-17T13:15:37.000Z"
+    }
+  ]
+}

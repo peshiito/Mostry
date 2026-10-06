@@ -1,0 +1,28 @@
+meta {
+  name: Login admin
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{api}}/auth/login
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenAdmin}}
+}
+
+body:json {
+  {
+    "email": "{{emailAdmin}}",
+    "clave": "{{clave}}"
+  }
+}
+
+script:post-response {
+  const crudas = res.getHeader('set-cookie') || [];
+  const cookie = [].concat(crudas).find((c) => c.startsWith('__Host-'));
+  if (cookie) bru.setEnvVar('cookieAdmin', cookie.split(';')[0]);
+}

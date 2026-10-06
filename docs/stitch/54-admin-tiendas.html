@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostry · Backoffice de Comercios</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Rubik & Work Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'canvas-bg': '#F7F3EC',
+            'surface-card': '#FFFFFF',
+            'brand-green': '#0E5A4A',
+            'brand-green-hover': '#094337',
+            'brand-green-light': '#E6F0ED',
+            'accent-coral': '#FF7A59',
+            'accent-coral-hover': '#E86646',
+            'border-base': '#E3DED4',
+            'border-light': '#EFECE6',
+            'text-main': '#1E2421',
+            'text-muted': '#5D6660',
+            'text-subtle': '#87918B',
+            
+            // Chips de estado del brief
+            'status-trial-bg': '#FEF7DA',
+            'status-trial-text': '#8F6B00',
+            'status-trial-border': '#ECDCA0',
+            
+            'status-active-bg': '#E6F4EA',
+            'status-active-text': '#0E5A4A',
+            'status-active-border': '#B7E1CD',
+            
+            'status-grace-bg': '#FFEFE9',
+            'status-grace-text': '#C85332',
+            'status-grace-border': '#F8C8BA',
+            
+            'status-suspended-bg': '#FCE8E6',
+            'status-suspended-text': '#B3261E',
+            'status-suspended-border': '#F2B8B5',
+          },
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            sans: ['Work Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background-color: #F7F3EC;
+      color: #1E2421;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-rubik {
+      font-family: 'Rubik', sans-serif;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 450, 'GRAD' 0, 'opsz' 20;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 450, 'GRAD' 0, 'opsz' 20;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col antialiased bg-canvas-bg text-text-main selection:bg-brand-green selection:text-white">
+
+  <div class="flex h-full min-h-screen">
+    <!-- BARRA LATERAL (Verde #0E5A4A, densa, institucional) -->
+    <aside class="w-64 bg-brand-green flex flex-col justify-between shrink-0 select-none">
+      <div>
+        <!-- Logo Mostry en blanco -->
+        <div class="h-16 px-6 flex items-center border-b border-[#1A6E5C] gap-3">
+          <div class="w-8 h-8 rounded bg-white flex items-center justify-center shrink-0">
+            <!-- Icono isotipo Mostry de 3 bastones -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="11" width="4" height="10" rx="1" fill="#0E5A4A" />
+              <rect x="10" y="5" width="4" height="16" rx="1" fill="#0E5A4A" />
+              <rect x="17" y="8" width="4" height="13" rx="1" fill="#0E5A4A" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-rubik font-bold text-white text-lg tracking-tight">mostry</span>
+            <span class="text-[10px] uppercase font-mono-code font-semibold tracking-wider bg-[#16705D] text-emerald-100 px-1.5 py-0.5 rounded ml-2">Interno</span>
+          </div>
+        </div>
+
+        <!-- Menú de navegación lateral: Ítems Tiendas y Métricas -->
+        <div class="p-3">
+          <div class="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider px-3 py-2">
+            Administración
+          </div>
+          <nav class="space-y-1">
+            <!-- Ítem activo: Tiendas -->
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded text-sm font-medium bg-[#136B59] text-white">
+              <span class="material-symbols-outlined text-[20px]">storefront</span>
+              <span>Tiendas</span>
+              <span class="ml-auto text-xs bg-[#094337] px-2 py-0.5 rounded text-emerald-200 font-mono-code">24</span>
+            </a>
+            <!-- Ítem: Métricas -->
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded text-sm font-medium text-emerald-100 hover:bg-[#136B59]/60 hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-[20px]">insights</span>
+              <span>Métricas</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Pie de barra lateral con sesión de soporte -->
+      <div class="p-4 border-t border-[#1A6E5C] text-xs text-emerald-200">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-7 h-7 rounded-full bg-[#187562] text-white font-medium flex items-center justify-center font-rubik text-xs border border-white/20">
+            AD
+          </div>
+          <div class="overflow-hidden">
+            <p class="font-medium text-white truncate text-xs">Admin Mostry</p>
+            <p class="text-[11px] text-emerald-300/80 truncate">admin@mostry.com.ar</p>
+          </div>
+        </div>
+        <div class="pt-2 flex items-center justify-between text-[11px] text-emerald-300/60 font-mono-code">
+          <span>v2.8 · Año 2026</span>
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL DE CONTENIDO (1280px friendly layout) -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      
+      <!-- HEADER INTERNO COMPACTO -->
+      <header class="bg-white border-b border-border-base px-8 py-4 flex items-center justify-between shrink-0">
+        <div>
+          <div class="flex items-center gap-2 text-xs text-text-muted mb-0.5">
+            <span>Panel de control</span>
+            <span class="text-text-subtle">/</span>
+            <span class="text-text-main font-medium">Gestión de comercios</span>
+          </div>
+          <h1 class="font-rubik text-2xl font-bold text-text-main tracking-tight">Tiendas de barrio</h1>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Botón secundario denso -->
+          <button class="inline-flex items-center gap-1.5 px-3 py-2 rounded text-xs font-semibold bg-white border border-border-base text-text-main hover:bg-canvas-bg transition-colors">
+            <span class="material-symbols-outlined text-[16px]">file_download</span>
+            <span>Exportar CSV</span>
+          </button>
+          
+          <!-- Botón coral solo en la acción principal -->
+          <button class="inline-flex items-center gap-1.5 px-4 py-2 rounded text-xs font-semibold bg-accent-coral text-white hover:bg-accent-coral-hover transition-colors shadow-none">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            <span>Alta manual de tienda</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CUERPO DEL PANEL: Filtros, Buscador y Tabla Densa -->
+      <div class="p-8 space-y-5">
+        
+        <!-- RESUMEN DE INDICADORES RÁPIDOS -->
+        <div class="grid grid-cols-4 gap-4">
+          <div class="bg-white border border-border-base rounded p-3.5 flex items-center justify-between">
+            <div>
+              <p class="text-xs text-text-muted">Total de tiendas</p>
+              <p class="font-rubik text-xl font-bold text-text-main mt-0.5">24</p>
+            </div>
+            <span class="material-symbols-outlined text-text-subtle text-[22px]">store</span>
+          </div>
+          <div class="bg-white border border-border-base rounded p-3.5 flex items-center justify-between">
+            <div>
+              <p class="text-xs text-text-muted">En período de prueba</p>
+              <p class="font-rubik text-xl font-bold text-[#8F6B00] mt-0.5">6</p>
+            </div>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono-code font-semibold bg-status-trial-bg text-status-trial-text border border-status-trial-border">
+              Prueba
+            </span>
+          </div>
+          <div class="bg-white border border-border-base rounded p-3.5 flex items-center justify-between">
+            <div>
+              <p class="text-xs text-text-muted">Activas y al día</p>
+              <p class="font-rubik text-xl font-bold text-brand-green mt-0.5">14</p>
+            </div>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono-code font-semibold bg-status-active-bg text-status-active-text border border-status-active-border">
+              Activas
+            </span>
+          </div>
+          <div class="bg-white border border-border-base rounded p-3.5 flex items-center justify-between">
+            <div>
+              <p class="text-xs text-text-muted">En gracia o mora</p>
+              <p class="font-rubik text-xl font-bold text-status-grace-text mt-0.5">4</p>
+            </div>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-mono-code font-semibold bg-status-grace-bg text-status-grace-text border border-status-grace-border">
+              Revisión
+            </span>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DE LA TABLA Y HERRAMIENTAS -->
+        <div class="bg-white border border-border-base rounded overflow-hidden">
+          
+          <!-- BARRA DE BÚSQUEDA Y FILTROS DE ESTADO -->
+          <div class="p-4 border-b border-border-base flex items-center justify-between gap-4 bg-[#FCFAF6]">
+            
+            <!-- Buscador por nombre, slug o email -->
+            <div class="relative w-96">
+              <span class="material-symbols-outlined absolute left-3 top-2.5 text-text-subtle text-[18px]">search</span>
+              <input 
+                type="text" 
+                placeholder="Buscá por nombre, slug o email del dueño..." 
+                value="laespiga"
+                class="w-full pl-9 pr-8 py-2 text-xs bg-white border border-border-base rounded focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green placeholder:text-text-subtle"
+              >
+              <button class="absolute right-2.5 top-2.5 text-text-subtle hover:text-text-main">
+                <span class="material-symbols-outlined text-[16px]">close</span>
+              </button>
+            </div>
+
+            <!-- Filtros de estado (Chips interactivos del brief) -->
+            <div class="flex items-center gap-1.5">
+              <span class="text-xs text-text-muted mr-1 font-medium">Estado:</span>
+              
+              <button class="px-2.5 py-1 rounded text-xs font-semibold bg-brand-green text-white border border-brand-green">
+                Todos (24)
+              </button>
+              
+              <!-- Chip Prueba (mostaza) -->
+              <button class="px-2.5 py-1 rounded text-xs font-semibold bg-status-trial-bg text-status-trial-text border border-status-trial-border hover:bg-[#F9F0CE] transition-colors flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#D4A313]"></span>
+                <span>Prueba</span>
+                <span class="font-mono-code text-[11px] ml-0.5 opacity-80">(6)</span>
+              </button>
+
+              <!-- Chip Activa (verde) -->
+              <button class="px-2.5 py-1 rounded text-xs font-semibold bg-status-active-bg text-status-active-text border border-status-active-border hover:bg-[#D7EEDF] transition-colors flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
+                <span>Activa</span>
+                <span class="font-mono-code text-[11px] ml-0.5 opacity-80">(14)</span>
+              </button>
+
+              <!-- Chip Gracia (coral claro) -->
+              <button class="px-2.5 py-1 rounded text-xs font-semibold bg-status-grace-bg text-status-grace-text border border-status-grace-border hover:bg-[#FFE3D8] transition-colors flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent-coral"></span>
+                <span>Gracia</span>
+                <span class="font-mono-code text-[11px] ml-0.5 opacity-80">(2)</span>
+              </button>
+
+              <!-- Chip Suspendida (rojo ladrillo) -->
+              <button class="px-2.5 py-1 rounded text-xs font-semibold bg-status-suspended-bg text-status-suspended-text border border-status-suspended-border hover:bg-[#F7D4D1] transition-colors flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-status-suspended-text"></span>
+                <span>Suspendida</span>
+                <span class="font-mono-code text-[11px] ml-0.5 opacity-80">(2)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TABLA DENSA Y PRECISA DE TIENDAS -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-canvas-bg/60 border-b border-border-base text-text-muted font-medium select-none">
+                  <th class="py-2.5 px-4 font-semibold text-text-main">Tienda (Logo · Nombre · Slug)</th>
+                  <th class="py-2.5 px-4 font-semibold text-text-main">Dueño / a</th>
+                  <th class="py-2.5 px-4 font-semibold text-text-main text-center">Estado</th>
+                  <th class="py-2.5 px-4 font-semibold text-text-main">Vence</th>
+                  <th class="py-2.5 px-4 font-semibold text-text-main">Último pago</th>
+                  <th class="py-2.5 px-4 font-semibold text-text-main text-right">Pedidos 30 días</th>
+                  <th class="py-2.5 px-4 font-semibold text-text-main text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border-light">
+
+                <!-- FILA 1: La Espiga (Prueba, vence 17/10) -->
+                <tr class="hover:bg-[#FAF8F3] transition-colors group">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <!-- Logo de La Espiga -->
+                      <div class="w-8 h-8 rounded bg-brand-green text-white flex items-center justify-center shrink-0 border border-brand-green font-rubik font-bold text-xs">
+                        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                          <line x1="6" y1="1" x2="6" y2="4"></line>
+                          <line x1="10" y1="1" x2="10" y2="4"></line>
+                          <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-1.5">
+                          <span class="font-rubik font-bold text-text-main text-sm">La Espiga</span>
+                          <span class="text-[10px] text-text-subtle font-normal bg-canvas-bg px-1.5 py-0.2 rounded border border-border-base">Panadería</span>
+                        </div>
+                        <a href="https://laespiga.mostry.com.ar" target="_blank" class="font-mono-code text-[11px] text-brand-green hover:underline flex items-center gap-0.5">
+                          laespiga<span class="text-text-subtle">.mostry.com.ar</span>
+                          <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <p class="font-medium text-text-main">Doña Rosa Fernández</p>
+                    <p class="text-text-muted text-[11px] font-mono-code">rosa@gmail.com</p>
+                    <p class="text-text-subtle text-[11px]">+54 9 11 4455-8821</p>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <!-- Chip: Prueba (mostaza) -->
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-semibold bg-status-trial-bg text-status-trial-text border border-status-trial-border">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[#D4A313]"></span>
+                      Prueba
+                    </span>
+                  </td>
+                  <td class="py-3 px-4 font-mono-code">
+                    <span class="font-semibold text-text-main">17/10/2026</span>
+                    <span class="block text-[11px] text-[#8F6B00] font-sans font-medium">Quedan 3 días</span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="text-text-subtle font-mono-code text-[11px]">Sin abonos (período gratis)</span>
+                    <span class="block text-[11px] text-text-muted">Abono: $ 10.000 / mes</span>
+                  </td>
+                  <td class="py-3 px-4 text-right">
+                    <span class="font-rubik font-bold text-text-main text-sm">84</span>
+                    <span class="block text-[11px] text-brand-green font-mono-code font-medium">$ 324.500 ARS</span>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-brand-green" title="Ver detalle de comisiones y libreta">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-text-main" title="Contactar por WhatsApp">
+                        <span class="material-symbols-outlined text-[18px]">chat</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-text-main" title="Más opciones">
+                        <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 2: Heladería Polo (Activa, vence 02/11) -->
+                <tr class="hover:bg-[#FAF8F3] transition-colors group">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <!-- Logo de Heladería Polo -->
+                      <div class="w-8 h-8 rounded bg-[#1A73E8] text-white flex items-center justify-center shrink-0 border border-[#1A73E8] font-rubik font-bold text-xs">
+                        <span class="material-symbols-outlined text-[18px]">icecream</span>
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-1.5">
+                          <span class="font-rubik font-bold text-text-main text-sm">Heladería Polo</span>
+                          <span class="text-[10px] text-text-subtle font-normal bg-canvas-bg px-1.5 py-0.2 rounded border border-border-base">Heladería</span>
+                        </div>
+                        <a href="https://polo.mostry.com.ar" target="_blank" class="font-mono-code text-[11px] text-brand-green hover:underline flex items-center gap-0.5">
+                          polo<span class="text-text-subtle">.mostry.com.ar</span>
+                          <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <p class="font-medium text-text-main">Lucas Castelli</p>
+                    <p class="text-text-muted text-[11px] font-mono-code">castelli.polo@gmail.com</p>
+                    <p class="text-text-subtle text-[11px]">+54 9 11 3290-1122</p>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <!-- Chip: Activa (verde) -->
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-semibold bg-status-active-bg text-status-active-text border border-status-active-border">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
+                      Activa
+                    </span>
+                  </td>
+                  <td class="py-3 px-4 font-mono-code">
+                    <span class="font-semibold text-text-main">02/11/2026</span>
+                    <span class="block text-[11px] text-brand-green font-sans font-medium">Al día (19 días)</span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="font-semibold text-text-main font-mono-code">02/10/2026</span>
+                    <span class="block text-[11px] text-text-muted">Abonó $ 10.000 · Transf. MP</span>
+                  </td>
+                  <td class="py-3 px-4 text-right">
+                    <span class="font-rubik font-bold text-text-main text-sm">142</span>
+                    <span class="block text-[11px] text-brand-green font-mono-code font-medium">$ 618.900 ARS</span>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-brand-green" title="Ver detalle de comisiones y libreta">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-text-main" title="Contactar por WhatsApp">
+                        <span class="material-symbols-outlined text-[18px]">chat</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-text-main" title="Más opciones">
+                        <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 3: Almacén Doña Tita (Gracia, venció 12/10) -->
+                <tr class="hover:bg-[#FAF8F3] transition-colors group">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <!-- Logo de Almacén Doña Tita -->
+                      <div class="w-8 h-8 rounded bg-[#8E44AD] text-white flex items-center justify-center shrink-0 border border-[#8E44AD] font-rubik font-bold text-xs">
+                        <span class="material-symbols-outlined text-[18px]">local_convenience_store</span>
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-1.5">
+                          <span class="font-rubik font-bold text-text-main text-sm">Almacén Doña Tita</span>
+                          <span class="text-[10px] text-text-subtle font-normal bg-canvas-bg px-1.5 py-0.2 rounded border border-border-base">Almacén</span>
+                        </div>
+                        <a href="https://donatita.mostry.com.ar" target="_blank" class="font-mono-code text-[11px] text-brand-green hover:underline flex items-center gap-0.5">
+                          donatita<span class="text-text-subtle">.mostry.com.ar</span>
+                          <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <p class="font-medium text-text-main">Héctor Gómez</p>
+                    <p class="text-text-muted text-[11px] font-mono-code">almacendonatita@hotmail.com</p>
+                    <p class="text-text-subtle text-[11px]">+54 9 11 6543-9876</p>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <!-- Chip: Gracia (coral claro) -->
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-semibold bg-status-grace-bg text-status-grace-text border border-status-grace-border">
+                      <span class="w-1.5 h-1.5 rounded-full bg-accent-coral"></span>
+                      Gracia
+                    </span>
+                  </td>
+                  <td class="py-3 px-4 font-mono-code">
+                    <span class="font-semibold text-status-grace-text">12/10/2026</span>
+                    <span class="block text-[11px] text-status-grace-text font-sans font-medium">Venció hace 2 días</span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="font-semibold text-text-main font-mono-code">12/09/2026</span>
+                    <span class="block text-[11px] text-status-grace-text">Pendiente aviso de pago</span>
+                  </td>
+                  <td class="py-3 px-4 text-right">
+                    <span class="font-rubik font-bold text-text-main text-sm">62</span>
+                    <span class="block text-[11px] text-brand-green font-mono-code font-medium">$ 210.400 ARS</span>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-brand-green" title="Ver detalle de comisiones y libreta">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-accent-coral" title="Enviar recordatorio de pago por WhatsApp">
+                        <span class="material-symbols-outlined text-[18px]">notification_important</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-text-main" title="Más opciones">
+                        <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 4: Ropa Mía (Suspendida) -->
+                <tr class="hover:bg-[#FAF8F3] transition-colors group bg-status-suspended-bg/20">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center gap-3">
+                      <!-- Logo de Ropa Mía -->
+                      <div class="w-8 h-8 rounded bg-[#7F8C8D] text-white flex items-center justify-center shrink-0 border border-[#7F8C8D] font-rubik font-bold text-xs">
+                        <span class="material-symbols-outlined text-[18px]">checkroom</span>
+                      </div>
+                      <div>
+                        <div class="flex items-center gap-1.5">
+                          <span class="font-rubik font-bold text-text-main text-sm line-through text-text-muted">Ropa Mía</span>
+                          <span class="text-[10px] text-text-subtle font-normal bg-canvas-bg px-1.5 py-0.2 rounded border border-border-base">Indumentaria</span>
+                        </div>
+                        <a href="https://ropamia.mostry.com.ar" target="_blank" class="font-mono-code text-[11px] text-text-subtle hover:underline flex items-center gap-0.5">
+                          ropamia<span class="text-text-subtle">.mostry.com.ar</span>
+                          <span class="material-symbols-outlined text-[12px]">lock</span>
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4">
+                    <p class="font-medium text-text-main">Micaela Soler</p>
+                    <p class="text-text-muted text-[11px] font-mono-code">ropamia.av@gmail.com</p>
+                    <p class="text-text-subtle text-[11px]">+54 9 11 5112-4090</p>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <!-- Chip: Suspendida (rojo ladrillo) -->
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-semibold bg-status-suspended-bg text-status-suspended-text border border-status-suspended-border">
+                      <span class="w-1.5 h-1.5 rounded-full bg-status-suspended-text"></span>
+                      Suspendida
+                    </span>
+                  </td>
+                  <td class="py-3 px-4 font-mono-code">
+                    <span class="font-semibold text-status-suspended-text">28/09/2026</span>
+                    <span class="block text-[11px] text-status-suspended-text font-sans font-medium">Pausada por mora</span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <span class="font-semibold text-text-main font-mono-code">28/08/2026</span>
+                    <span class="block text-[11px] text-text-subtle">Sin comprobante</span>
+                  </td>
+                  <td class="py-3 px-4 text-right">
+                    <span class="font-rubik font-bold text-text-muted text-sm">0</span>
+                    <span class="block text-[11px] text-text-subtle font-mono-code font-medium">Catálogo pausado</span>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="flex items-center justify-center gap-1">
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-brand-green" title="Ver comprobantes anteriores">
+                        <span class="material-symbols-outlined text-[18px]">receipt_long</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-status-suspended-text" title="Reactivar manualmente tras validar transferencia">
+                        <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                      </button>
+                      <button class="p-1 rounded hover:bg-canvas-bg text-text-muted hover:text-text-main" title="Más opciones">
+                        <span class="material-symbols-outlined text-[18px]">more_vert</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- PAGINACIÓN Y ESTADO DE REGISTROS -->
+          <div class="px-4 py-3 bg-[#FCFAF6] border-t border-border-base flex items-center justify-between text-xs text-text-muted">
+            <div class="flex items-center gap-2">
+              <span>Mostrando</span>
+              <select class="bg-white border border-border-base rounded px-2 py-1 text-text-main font-medium focus:outline-none focus:border-brand-green">
+                <option>10 comercios</option>
+                <option>25 comercios</option>
+                <option>50 comercios</option>
+              </select>
+              <span>de <strong class="text-text-main">24 comercios registrados</strong></span>
+            </div>
+
+            <div class="flex items-center gap-1">
+              <span class="text-text-subtle mr-2 font-mono-code">Página 1 de 3</span>
+              <button class="p-1 rounded border border-border-base bg-white text-text-subtle cursor-not-allowed" disabled>
+                <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              </button>
+              <button class="px-2.5 py-1 rounded border border-brand-green bg-brand-green text-white font-semibold">
+                1
+              </button>
+              <button class="px-2.5 py-1 rounded border border-border-base bg-white text-text-main hover:bg-canvas-bg">
+                2
+              </button>
+              <button class="px-2.5 py-1 rounded border border-border-base bg-white text-text-main hover:bg-canvas-bg">
+                3
+              </button>
+              <button class="p-1 rounded border border-border-base bg-white text-text-main hover:bg-canvas-bg">
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- NOTA AL PIE DE OPERACIÓN Y AUDITORÍA DE FACTURACIÓN -->
+        <div class="p-3.5 bg-white border border-border-base rounded flex items-center justify-between text-xs text-text-muted">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-brand-green text-[18px]">info</span>
+            <span>Las tiendas en estado <strong>Gracia</strong> cuentan con 48 hs antes de pasar a pausa automática. Los cobros de abonos se concilian con comprobantes en WhatsApp o banco.</span>
+          </div>
+          <span class="font-mono-code text-[11px] text-text-subtle">Última sincronización: 14 de octubre de 2026, 11:00 hs</span>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>

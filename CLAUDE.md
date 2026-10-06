@@ -259,7 +259,8 @@ mostry/
 - **Logo:** toldo a rayas verticales verde y crema con borde festoneado de 6 semicírculos, una barra coral debajo y "mostry" en minúscula. Los SVG y `mostry-tokens.css` te los paso yo.
 - **Colores:** verde toldo `#0E5A4A` (marca) · coral `#FF7A59` (botón principal, texto oscuro) · lona `#F7F3EC` (fondo) · carbón `#1B1B1B` · mostaza `#F2B53A`.
   **Modo oscuro:** verde `#5CC7A5`, fondo `#0F1714`.
-- **Tipografías:** Bricolage Grotesque (títulos y precios grandes) y Figtree (interfaz y texto).
+- **Tipografías:** Rubik (títulos y precios grandes) y Work Sans (interfaz y texto). Reemplazan a Bricolage Grotesque + Figtree (decisión de Pedro tras los diseños de Stitch; se puede revisar más adelante).
+- **Diseños:** los genera Google Stitch (proyecto "Mostry · Vidriera de barrio (v2)"); las exportaciones de referencia están en `docs/stitch/`.
 - **Tono:** voseo rioplatense, corto, cálido y preciso con la plata. **Un solo botón coral por pantalla.**
 - **Las tiendas** pueden cambiar su logo y sus colores; la interfaz del panel conserva la marca Mostry.
 
@@ -351,10 +352,12 @@ Detalle de cada punto en `docs/etapa-1-refinamiento.md`. Todo lo no listado acá
   - `admin.mostry.com.ar` → admin.
   - `api.mostry.com.ar` → **API**, con **CORS** con lista blanca (`mostry.com.ar`, `*.mostry.com.ar`, orígenes de dev).
 - **Sesiones:** cookie host-only de `api.mostry.com.ar` (`httpOnly`, `Secure`, `SameSite=Lax`), servida por un servicio de sesiones común a todas las zonas. Las tiendas se resuelven por el header `Origin`. Cada request autenticada verifica que el usuario sea miembro de esa tienda. El admin usa una cookie aparte.
-- **2FA para todo lo de usuarios:**
-  - Códigos de 6 dígitos por email (10 min, máximo 5 intentos) para verificar el email al registrarse y para recuperar la contraseña.
-  - TOTP (app autenticadora) **obligatorio** para comerciantes y admin, configurado tras verificar el email, con 10 códigos de recuperación.
-  - Recuperar la contraseña pide el código por email **y** el TOTP (o un código de recuperación).
-  - Las acciones sensibles piden TOTP de nuevo: cambiar email, contraseña o alias de cobro, y agregar usuarios.
+- **Ingreso solo con contraseña** (decisión de Pedro, Etapa 11; reemplaza al 2FA): sin app autenticadora ni códigos de recuperación.
+  - Código de 6 dígitos por email (10 min, máximo 5 intentos) para verificar el email al registrarse y para recuperar la contraseña.
+  - Las acciones sensibles piden la contraseña de nuevo: cambiar la contraseña o el alias de cobro.
 - **Encargo sin seña:** `pendiente_confirmacion → confirmado → en_preparacion → en_camino | listo_retirar → entregado` (`cancelado` antes de `entregado`).
 - **Modelo:** `productos.categoria_id` (opcional), `tiendas.costo_envio` y `zona_envio`, `pedidos.costo_envio`, `tiendas.ultimo_numero_pedido`, `movimientos_caja.caja_id` nulo para transferencias fuera de caja.
+- **Panel con los colores de la tienda** (decisión de Pedro, Etapa 11; pisa la sección 8): la paleta elegida se aplica a la vidriera y al panel. El panel muestra el logo de la tienda (o el de Mostry si no tiene).
+- **Logos normalizados:** al subirlo se recorta el borde vacío y se centra en un cuadrado de 512 px; en pantalla va entero (sin recortes) dentro de un círculo del mismo tamaño para todas las tiendas.
+- **Avisos y movimiento:** avisos flotantes propios al estilo Sonner (`shared/avisos`), animaciones con transform/opacity y curvas fuertes (tokens `--ease-*`), y selector de hora propio con ruedas en lugar del reloj del navegador.
+- **Modo oscuro en todas las zonas:** "Automático" (sigue al dispositivo), "Claro" u "Oscuro"; se guarda por navegador. Botón en cada header y selector en Panel → Más → Apariencia. Los colores de la tienda se aclaran a un tono pastel con texto oscuro. Todo color sale de `tokens.css` (sin hex sueltos) y cada par texto/fondo cumple 4.5:1 en los dos modos.

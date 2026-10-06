@@ -10,16 +10,20 @@ describe('admin: suspender y reactivar', () => {
   beforeEach(async () => {
     ctx = await appConCuenta('dona-rosa');
     admin = await crearAdminLogueado(ctx.app);
-    id = (await ctx.panel.get('/tienda/config')).body.id;
+    id = (await ctx.panel.get('/panel/tienda/config')).body.id;
   });
 
   it('suspender bloquea las escrituras del panel aunque esté en prueba', async () => {
     await admin
       .post(`/admin/tiendas/${id}/suspender`, { motivo: 'Pago rechazado' })
       .expect(200);
-    const res = await ctx.panel.patch('/tienda/config', { frase: 'Hola' }).expect(403);
+    const res = await ctx.panel
+      .patch('/panel/tienda/config', { frase: 'Hola' })
+      .expect(403);
     expect(res.body.error.codigo).toBe('tienda_suspendida');
-    expect((await ctx.panel.get('/tienda/suscripcion')).body.estado).toBe('suspendida');
+    expect((await ctx.panel.get('/panel/tienda/suscripcion')).body.estado).toBe(
+      'suspendida',
+    );
   });
 
   it('reactivar vuelve al estado que le toca por fechas', async () => {
@@ -28,7 +32,7 @@ describe('admin: suspender y reactivar', () => {
       .expect(200);
     const res = await admin.post(`/admin/tiendas/${id}/reactivar`).expect(200);
     expect(res.body.estado).toBe('prueba');
-    await ctx.panel.patch('/tienda/config', { frase: 'Volví' }).expect(200);
+    await ctx.panel.patch('/panel/tienda/config', { frase: 'Volví' }).expect(200);
   });
 
   it('el motivo es obligatorio y el detalle lo muestra', async () => {

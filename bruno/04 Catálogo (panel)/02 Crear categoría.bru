@@ -1,0 +1,22 @@
+meta {
+  name: Crear categoría
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{api}}/panel/categorias
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "nombre": "Facturas"
+  }
+}

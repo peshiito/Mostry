@@ -1,0 +1,55 @@
+.nav {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-bottom: env(safe-area-inset-bottom);
+  border-top: var(--borde);
+  background: var(--papel);
+}
+.pestana {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: var(--alto-nav);
+  padding-top: var(--e-2);
+  color: var(--texto-2);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  text-decoration: none;
+}
+.pestana[aria-current='page'] {
+  color: var(--verde);
+}
+.icono {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 30px;
+  border-radius: var(--radio-redondo);
+  transition:
+    background-color var(--dur-corta) ease,
+    transform var(--dur-corta) var(--ease-out);
+}
+.pestana[aria-current='page'] .icono {
+  background: var(--verde-claro);
+}
+.pestana:active .icono {
+  transform: scale(0.92);
+}
+.insignia {
+  position: absolute;
+  top: -6px;
+  right: -12px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: var(--radio-redondo);
+  background: var(--coral);
+  color: var(--sobre-coral);
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Promociones
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{api}}/panel/promociones
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

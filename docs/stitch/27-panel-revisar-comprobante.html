@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry - Revisar comprobante</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom theme config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface-variant": "#3f4945",
+            "on-surface": "#1c1c18",
+            "primary-fixed": "#acf0db",
+            "on-primary": "#ffffff",
+            "secondary-container": "#fd7958",
+            "on-secondary-fixed-variant": "#862208",
+            "secondary": "#a7391e",
+            "surface": "#fdf9f2",
+            "surface-bright": "#fdf9f2",
+            "surface-container": "#f1ede6",
+            "surface-container-low": "#f7f3ec",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#6e1500",
+            "tertiary-container": "#694a00",
+            "outline-variant": "#bfc9c4",
+            "surface-tint": "#246959",
+            "on-error-container": "#93000a",
+            "tertiary-fixed-dim": "#fabc41",
+            "tertiary-fixed": "#ffdea8",
+            "on-primary-fixed": "#002019",
+            "inverse-primary": "#90d4bf",
+            "primary-fixed-dim": "#90d4bf",
+            "inverse-on-surface": "#f4f0e9",
+            "surface-container-highest": "#e6e2db",
+            "on-tertiary-container": "#f5b73c",
+            "surface-container-high": "#ebe8e1",
+            "on-secondary-fixed": "#3c0700",
+            "on-error": "#ffffff",
+            "on-background": "#1c1c18",
+            "inverse-surface": "#31302c",
+            "background": "#fdf9f2",
+            "secondary-fixed": "#ffdad2",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed": "#271900",
+            "on-primary-fixed-variant": "#005141",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#ffb4a2",
+            "tertiary": "#4c3400",
+            "primary": "#004134",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "surface-container-lowest": "#ffffff",
+            "surface-variant": "#e6e2db",
+            "surface-dim": "#dddad3",
+            "on-tertiary": "#ffffff",
+            "outline": "#6f7975",
+            "on-primary-container": "#8ccfbb",
+            "primary-container": "#0e5a4a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik", "sans-serif"],
+            "body-md": ["Work Sans", "sans-serif"],
+            "label-md": ["Work Sans", "sans-serif"],
+            "headline-lg": ["Rubik", "sans-serif"],
+            "headline-sm": ["Rubik", "sans-serif"],
+            "label-sm": ["Work Sans", "sans-serif"],
+            "body-lg": ["Work Sans", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-full flex flex-col font-body-md text-body-md select-none">
+<!-- 1. Header superior verde institucional #0E5A4A -->
+<header class="flex justify-between items-center h-16 w-full px-margin z-40 fixed top-0 left-0 bg-primary-container text-on-primary">
+<div class="flex items-center space-x-3">
+<!-- Botón volver a pedidos -->
+<button aria-label="Volver a lista de pedidos" class="w-10 h-10 -ml-1.5 flex items-center justify-center rounded-lg hover:bg-primary active:opacity-85 text-on-primary transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<!-- Identidad Comercio & Contexto -->
+<div class="flex flex-col">
+<div class="flex items-center space-x-2">
+<span class="font-headline-sm text-headline-sm text-on-primary font-bold tracking-tight">Mostry</span>
+<span class="text-outline-variant opacity-60">|</span>
+<span class="font-label-md text-label-md text-on-primary font-medium">La Espiga</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<span class="font-label-sm text-label-sm text-on-primary-container">Revisar comprobante · Pedido #128</span>
+</div>
+</div>
+</div>
+<!-- Indicador de rol / rubro mostrador -->
+<div class="flex items-center">
+<span class="bg-primary text-on-primary-container text-label-sm font-label-sm px-2 py-0.5 rounded border border-outline-variant/30">
+        Mostrador
+      </span>
+</div>
+</header>
+<!-- Contenedor Principal Scrollable (con padding top por header y bottom por barra fija y acciones) -->
+<main class="flex-1 w-full max-w-md mx-auto pt-20 pb-28 px-margin flex flex-col space-y-4">
+<!-- 2. Alerta / Recordatorio claro de cotejo bancario -->
+<section class="bg-surface-container border border-outline-variant rounded-lg p-3 flex items-start space-x-3">
+<div class="w-8 h-8 rounded bg-primary text-primary-fixed flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance">account_balance</span>
+</div>
+<div class="flex-1 flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Cotejo previo en tu cuenta</span>
+<p class="font-body-md text-body-md text-on-surface leading-snug mt-0.5">
+          Tenés que recibir <strong class="font-bold text-on-surface">$ 9.950</strong> en el alias <span class="font-semibold text-primary underline underline-offset-2">laespiga.mp</span> antes de entregar la mercadería.
+        </p>
+</div>
+</section>
+<!-- 3. Visor de captura de la transferencia (Simulación realista) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="bg-surface-container-high px-3 py-2 border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant" data-icon="image">image</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Captura enviada por la clienta</span>
+</div>
+<button class="text-primary font-label-sm text-label-sm flex items-center space-x-1 hover:underline active:opacity-85" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="zoom_in">zoom_in</span>
+<span>Ampliar</span>
+</button>
+</div>
+<!-- Ticket digital simulado dentro del visor -->
+<div class="p-4 bg-surface-container-low/50">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-none max-w-sm mx-auto relative">
+<!-- Sello visual del ticket -->
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant border-dashed">
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="check" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">Comprobante Digital</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">10:44 hs</span>
+</div>
+<!-- Monto central del comprobante -->
+<div class="py-4 text-center border-b border-outline-variant border-dashed">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Transferencia realizada</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight block mt-0.5">$ 9.950</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold mt-1 inline-block bg-primary-fixed/40 px-2 py-0.5 rounded">
+              Acreditación inmediata
+            </span>
+</div>
+<!-- Detalle de cuentas en ticket -->
+<div class="pt-3 space-y-2 font-label-sm text-label-sm">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Destino:</span>
+<span class="font-semibold text-on-surface text-right">Rosa Fernández / La Espiga</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">CVU/Alias:</span>
+<span class="font-mono text-on-surface font-semibold">laespiga.mp</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Fecha:</span>
+<span class="text-on-surface">14 de abril de 2026</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Operación:</span>
+<span class="font-mono text-on-surface">00004928174921</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high px-3 py-1.5 text-center border-t border-outline-variant">
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+          Adjuntado por Lucía Gómez mediante Mostry Web
+        </span>
+</div>
+</section>
+<!-- 4. Sección 'Datos de la transferencia' cotejados con pedido -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col space-y-3">
+<div class="flex justify-between items-baseline border-b border-outline-variant pb-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Datos de la transferencia</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pedido #128</span>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Monto declarado</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">$ 9.950</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Fecha y hora</span>
+<span class="font-body-md text-body-md font-medium text-on-surface block mt-1">14 abr 2026 · 10:44 hs</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1 border-t border-outline-variant border-dashed">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Titular que pagó</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Lucía Gómez</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Nro. de comprobante</span>
+<span class="font-body-md text-body-md font-mono text-on-surface">4928174921</span>
+</div>
+</div>
+<!-- Resumen del pedido para comparar montos -->
+<div class="bg-surface-container-low border border-outline-variant rounded p-3 mt-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold block mb-1.5">Detalle del mostrador</span>
+<div class="flex justify-between text-body-md text-on-surface py-0.5">
+<span>1× Docena facturas surtidas</span>
+<span class="font-medium">$ 7.800</span>
+</div>
+<div class="flex justify-between text-body-md text-on-surface py-0.5">
+<span>1× Vigilante dulce de leche</span>
+<span class="font-medium">$ 950</span>
+</div>
+<div class="flex justify-between text-body-md text-on-surface py-0.5">
+<span>Envío barrio Centro</span>
+<span class="font-medium">$ 1.200</span>
+</div>
+<div class="border-t border-outline-variant mt-2 pt-2 flex justify-between items-center">
+<span class="font-label-md text-label-md font-bold text-on-surface">Total liquidado:</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">$ 9.950</span>
+</div>
+</div>
+</section>
+<!-- 5. Acciones del comerciante -->
+<section class="flex flex-col space-y-2.5 pt-1">
+<!-- Botón principal Coral #FF7A59 -->
+<button class="w-full h-13 py-3.5 bg-secondary-container hover:bg-secondary text-on-surface font-headline-sm text-headline-sm font-bold rounded-lg flex items-center justify-center space-x-2 transition-colors active:opacity-90 shadow-none border border-on-secondary-container/20" type="button">
+<span class="material-symbols-outlined text-[24px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-on-primary">Aprobar pago</span>
+</button>
+<!-- Botón secundario Rechazar -->
+<button class="w-full h-11 py-2.5 bg-surface-container-lowest hover:bg-error-container text-error font-body-lg text-body-lg font-semibold rounded-lg border border-outline-variant flex items-center justify-center space-x-2 transition-colors active:opacity-85" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="cancel">cancel</span>
+<span>Rechazar comprobante</span>
+</button>
+<!-- Enlace auxiliar a WhatsApp -->
+<div class="pt-1 text-center">
+<button class="inline-flex items-center space-x-1.5 text-on-surface-variant hover:text-primary font-label-md text-label-md py-1.5 px-3 rounded hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="chat">chat</span>
+<span>Escribirle a Lucía por WhatsApp</span>
+</button>
+</div>
+</section>
+</main>
+<!-- 6. Barra inferior fija de navegación con 5 pestañas (Shared Component BottomNavBar) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-gutter bg-surface-container-lowest border-t border-outline-variant">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal hover:text-primary transition-colors active:scale-95 duration-100 w-16 py-1" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm mt-0.5">Inicio</span>
+</a>
+<!-- Pedidos (Activo + Badge 3) -->
+<a class="flex flex-col items-center justify-center text-secondary font-bold hover:text-primary transition-colors active:scale-95 duration-100 relative w-16 py-1" href="#">
+<div class="relative inline-flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="receipt_long">receipt_long</span>
+<!-- Badge naranja de 3 pendientes -->
+<span class="absolute -top-1 -right-2 bg-secondary text-on-secondary text-[10px] font-bold font-label-sm h-4 min-w-4 px-1 rounded-full flex items-center justify-center border border-surface-container-lowest">
+          3
+        </span>
+</div>
+<span class="text-label-sm font-label-sm mt-0.5">Pedidos</span>
+</a>
+<!-- Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal hover:text-primary transition-colors active:scale-95 duration-100 w-16 py-1" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-label-sm font-label-sm mt-0.5">Caja</span>
+</a>
+<!-- Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal hover:text-primary transition-colors active:scale-95 duration-100 w-16 py-1" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="inventory_2">inventory_2</span>
+<span class="text-label-sm font-label-sm mt-0.5">Productos</span>
+</a>
+<!-- Más -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-normal hover:text-primary transition-colors active:scale-95 duration-100 w-16 py-1" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="menu">menu</span>
+<span class="text-label-sm font-label-sm mt-0.5">Más</span>
+</a>
+</nav>
+</body></html>

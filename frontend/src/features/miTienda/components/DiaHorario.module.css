@@ -1,0 +1,15 @@
+.dia {
+  display: grid;
+  gap: var(--e-2);
+}
+.tramo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--e-2);
+}
+.error {
+  color: var(--ladrillo);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}

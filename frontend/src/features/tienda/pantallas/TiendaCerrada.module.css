@@ -1,0 +1,21 @@
+.pagina {
+  justify-items: center;
+  padding-top: var(--e-7);
+  text-align: center;
+}
+.logo {
+  justify-self: center;
+  box-shadow: 0 0 0 2px var(--linea-fuerte);
+}
+.titulo {
+  font-size: var(--t-3xl);
+}
+.texto {
+  color: var(--texto-2);
+}
+.datos {
+  width: 100%;
+}
+.nombre {
+  font-weight: 600;
+}

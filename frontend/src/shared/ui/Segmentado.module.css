@@ -1,0 +1,23 @@
+.grupo {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: 4px;
+  padding: 4px;
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--lona-oscura);
+}
+.opcion {
+  min-height: 40px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-weight: 600;
+  color: var(--texto-2);
+  cursor: pointer;
+}
+.opcion[aria-checked='true'] {
+  background: var(--verde);
+  color: var(--sobre-verde);
+}

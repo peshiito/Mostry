@@ -1,6 +1,6 @@
 import type { Insertable } from 'kysely';
 import { db } from '../../../shared/db/db.js';
-import type { EstadoSesion, SesionesTabla } from '../../../shared/db/tipos/usuarios.js';
+import type { SesionesTabla } from '../../../shared/db/tipos/usuarios.js';
 
 export const sesionesRepo = {
   crear: (datos: Insertable<SesionesTabla>) =>
@@ -15,7 +15,6 @@ export const sesionesRepo = {
         'sesiones.id',
         'sesiones.usuarioId',
         'sesiones.tipo',
-        'sesiones.estado',
         'sesiones.expiraEn',
         'usuarios.esAdmin',
       ])
@@ -24,7 +23,7 @@ export const sesionesRepo = {
       .where('usuarios.activo', '=', true)
       .executeTakeFirst(),
 
-  actualizar: (id: number, cambios: { estado?: EstadoSesion; expiraEn?: Date }) =>
+  actualizar: (id: number, cambios: { expiraEn: Date }) =>
     db
       .updateTable('sesiones')
       .set({ ...cambios, ultimoUsoEn: new Date() })

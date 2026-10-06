@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry · La Espiga · Gestión de Productos</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#e6e2db",
+            "surface": "#fdf9f2",
+            "outline-variant": "#bfc9c4",
+            "secondary": "#a7391e",
+            "on-primary-fixed": "#002019",
+            "on-secondary": "#ffffff",
+            "on-background": "#1c1c18",
+            "inverse-surface": "#31302c",
+            "secondary-fixed-dim": "#ffb4a2",
+            "tertiary-fixed-dim": "#fabc41",
+            "outline": "#6f7975",
+            "tertiary-container": "#694a00",
+            "on-tertiary-fixed": "#271900",
+            "on-primary-fixed-variant": "#005141",
+            "on-primary": "#ffffff",
+            "surface-tint": "#246959",
+            "primary-fixed-dim": "#90d4bf",
+            "on-secondary-fixed-variant": "#862208",
+            "surface-bright": "#fdf9f2",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#f5b73c",
+            "surface-dim": "#dddad3",
+            "surface-container-high": "#ebe8e1",
+            "background": "#fdf9f2",
+            "on-surface-variant": "#3f4945",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#ffdea8",
+            "tertiary": "#4c3400",
+            "surface-container-low": "#f7f3ec",
+            "surface-container": "#f1ede6",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-container": "#8ccfbb",
+            "primary-container": "#0e5a4a",
+            "on-secondary-fixed": "#3c0700",
+            "on-surface": "#1c1c18",
+            "surface-container-highest": "#e6e2db",
+            "secondary-container": "#fd7958",
+            "inverse-on-surface": "#f4f0e9",
+            "on-secondary-container": "#6e1500",
+            "secondary-fixed": "#ffdad2",
+            "primary": "#004134",
+            "inverse-primary": "#90d4bf",
+            "primary-fixed": "#acf0db"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik"],
+            "label-sm": ["Work Sans"],
+            "headline-lg": ["Rubik"],
+            "headline-sm": ["Rubik"],
+            "body-md": ["Work Sans"],
+            "body-lg": ["Work Sans"],
+            "label-md": ["Work Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Estilo sutil de recorte estilo etiqueta gondola */
+    .ticket-cut {
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+    }
+    /* Scrollbar oculta para chips táctiles */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-high text-on-surface antialiased font-body-md min-h-screen flex justify-center selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Contenedor estricto formato móvil 390px -->
+<div class="w-full max-w-[390px] min-h-screen bg-surface-container-low flex flex-col relative shadow-xl overflow-x-hidden border-x border-outline-variant/30">
+<!-- TopAppBar Compartido (Fuente JSON Ejecutada) -->
+<header class="fixed top-0 left-0 w-full max-w-[390px] z-40 flex items-center justify-between px-margin h-14 bg-primary-container text-on-primary border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded bg-primary flex items-center justify-center text-inverse-primary border border-primary-fixed-dim/20">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+</div>
+<div class="flex flex-col leading-tight">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary tracking-tight text-[17px]">La Espiga</span>
+<span class="inline-flex items-center gap-1 bg-primary text-primary-fixed text-[10px] font-label-md px-1.5 py-0.5 rounded border border-primary-fixed/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Abierto
+            </span>
+</div>
+<span class="font-label-sm text-[10px] text-on-primary-container tracking-wider">Mostry · Mostrador v2.6</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Notificaciones" class="relative w-8 h-8 rounded flex items-center justify-center hover:bg-primary/20 transition-colors text-on-primary">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+</div>
+</header>
+<!-- Contenido Principal Desplazable -->
+<main class="flex-1 pt-16 pb-36 px-margin">
+<!-- Cabecera de Sección -->
+<section class="mt-2 mb-3">
+<div class="flex items-start justify-between gap-2">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface text-[22px] tracking-tight">Productos</h1>
+<p class="font-body-md text-on-surface-variant text-[12px] leading-snug mt-0.5">Control de mostrador, precios y stock en tiempo real</p>
+</div>
+<button class="flex items-center gap-1 text-primary bg-surface-container-lowest border border-outline-variant/50 hover:bg-surface-container px-2.5 py-1.5 rounded-lg active:scale-95 transition-transform text-label-md font-semibold text-[11px] shrink-0">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span>Categorías</span>
+</button>
+</div>
+</section>
+<!-- Buscador de Mostrador -->
+<section class="mb-3">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">search</span>
+<input class="w-full pl-9 pr-9 py-2 bg-surface-container-lowest border border-outline-variant/60 rounded-lg text-[13px] font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-none transition-all" placeholder="Buscar por nombre o rubro..." type="text"/>
+<button aria-label="Filtro de búsqueda" class="absolute right-2 text-outline hover:text-on-surface p-1">
+<span class="material-symbols-outlined text-[17px]">tune</span>
+</button>
+</div>
+</section>
+<!-- Chips de Categoría Horizontales -->
+<section class="mb-3.5 -mx-margin px-margin overflow-x-auto no-scrollbar flex items-center gap-1.5 py-0.5">
+<button class="whitespace-nowrap px-3 py-1 rounded-lg bg-primary text-on-primary font-label-md text-[12px] font-semibold border border-primary transition-colors flex items-center gap-1">
+<span>Todos</span>
+<span class="bg-primary-container text-primary-fixed text-[10px] px-1.5 py-0.2 rounded-full">7</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-md text-[12px] font-medium border border-outline-variant/50 hover:border-outline transition-colors flex items-center gap-1">
+<span>Facturas</span>
+<span class="text-outline text-[11px]">4</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-md text-[12px] font-medium border border-outline-variant/50 hover:border-outline transition-colors flex items-center gap-1">
+<span>Panes</span>
+<span class="text-outline text-[11px]">1</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-md text-[12px] font-medium border border-outline-variant/50 hover:border-outline transition-colors flex items-center gap-1">
+<span>Tortas</span>
+<span class="text-outline text-[11px]">2</span>
+</button>
+<button class="whitespace-nowrap px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface-variant font-label-md text-[12px] font-medium border border-outline-variant/50 hover:border-outline transition-colors flex items-center gap-1">
+<span>Salados</span>
+<span class="text-outline text-[11px]">0</span>
+</button>
+</section>
+<!-- Lista de Productos (Fila de Mostrador Barrial) -->
+<section class="flex flex-col gap-2">
+<!-- 1. Medialuna de manteca -->
+<article class="bg-surface-container-lowest border border-outline-variant/50 rounded-lg p-2.5 flex items-center justify-between gap-2.5 hover:border-outline transition-colors">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-container border border-outline-variant/40 flex items-center justify-center shrink-0 overflow-hidden text-tertiary">
+<span class="material-symbols-outlined text-[24px]">bakery_dining</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-headline-sm text-[14px] leading-tight font-semibold text-on-surface truncate">Medialuna de manteca</h3>
+</div>
+<p class="font-body-md text-[11px] text-on-surface-variant mt-0.5">
+                Facturas · <span class="font-semibold text-primary">Stock: 48 u.</span>
+</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-sm text-primary text-[15px] font-bold tracking-tight">$ 700</span>
+<span class="font-label-sm text-[10px] text-outline">/ unidad</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 justify-center">
+<!-- Toggle Switch Activo -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="font-label-sm text-[9px] text-primary font-medium mt-1">Activo</span>
+</div>
+</article>
+<!-- 2. Docena de medialunas -->
+<article class="bg-surface-container-lowest border border-outline-variant/50 rounded-lg p-2.5 flex items-center justify-between gap-2.5 hover:border-outline transition-colors">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-container border border-outline-variant/40 flex items-center justify-center shrink-0 overflow-hidden text-tertiary">
+<span class="material-symbols-outlined text-[24px]">lunch_dining</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-headline-sm text-[14px] leading-tight font-semibold text-on-surface truncate">Docena de medialunas</h3>
+</div>
+<p class="font-body-md text-[11px] text-on-surface-variant mt-0.5">
+                Facturas · <span class="font-semibold text-primary">Stock: 14 u.</span>
+</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-sm text-primary text-[15px] font-bold tracking-tight">$ 7.800</span>
+<span class="font-label-sm text-[10px] text-outline">/ docena</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="font-label-sm text-[9px] text-primary font-medium mt-1">Activo</span>
+</div>
+</article>
+<!-- 3. Vigilante (Stock Bajo) -->
+<article class="bg-surface-container-lowest border border-outline-variant/50 rounded-lg p-2.5 flex items-center justify-between gap-2.5 hover:border-outline transition-colors border-l-4 border-l-tertiary-fixed-dim">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-container border border-outline-variant/40 flex items-center justify-center shrink-0 overflow-hidden text-tertiary">
+<span class="material-symbols-outlined text-[24px]">cookie</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-headline-sm text-[14px] leading-tight font-semibold text-on-surface truncate">Vigilante</h3>
+<span class="ticket-cut px-1.5 py-0.2 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[9px] tracking-tight">STOCK BAJO</span>
+</div>
+<p class="font-body-md text-[11px] text-on-surface-variant mt-0.5">
+                Facturas · <span class="font-bold text-secondary">Stock: 2 u.</span>
+</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-sm text-primary text-[15px] font-bold tracking-tight">$ 650</span>
+<span class="font-label-sm text-[10px] text-outline">/ unidad</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="font-label-sm text-[9px] text-primary font-medium mt-1">Activo</span>
+</div>
+</article>
+<!-- 4. Bola de fraile (Agotado / Pausado) -->
+<article class="bg-surface-container-lowest/80 border border-outline-variant/40 rounded-lg p-2.5 flex items-center justify-between gap-2.5 opacity-85 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center shrink-0 overflow-hidden text-outline">
+<span class="material-symbols-outlined text-[24px]">trip_origin</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-headline-sm text-[14px] leading-tight font-semibold text-on-surface/80 truncate">Bola de fraile</h3>
+<span class="px-1.5 py-0.2 bg-error-container text-on-error-container font-label-sm text-[9px] rounded">AGOTADO</span>
+</div>
+<p class="font-body-md text-[11px] text-outline mt-0.5">
+                Facturas · <span class="font-medium text-error">Stock: 0 u.</span>
+</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-sm text-outline text-[15px] font-bold line-through">$ 750</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="font-label-sm text-[9px] text-outline font-medium mt-1">Pausado</span>
+</div>
+</article>
+<!-- 5. Pan de campo 1 kg -->
+<article class="bg-surface-container-lowest border border-outline-variant/50 rounded-lg p-2.5 flex items-center justify-between gap-2.5 hover:border-outline transition-colors">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-container border border-outline-variant/40 flex items-center justify-center shrink-0 overflow-hidden text-tertiary">
+<span class="material-symbols-outlined text-[24px]">grain</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-headline-sm text-[14px] leading-tight font-semibold text-on-surface truncate">Pan de campo 1 kg</h3>
+</div>
+<p class="font-body-md text-[11px] text-on-surface-variant mt-0.5">
+                Panes · <span class="font-semibold text-primary">Stock: 10 u.</span>
+</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-sm text-primary text-[15px] font-bold tracking-tight">$ 3.500</span>
+<span class="font-label-sm text-[10px] text-outline">/ hogaza</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="font-label-sm text-[9px] text-primary font-medium mt-1">Activo</span>
+</div>
+</article>
+<!-- 6. Torta rogel (Por encargo) -->
+<article class="bg-surface-container-lowest border border-outline-variant/50 rounded-lg p-2.5 flex items-center justify-between gap-2.5 hover:border-outline transition-colors border-l-4 border-l-primary-fixed-dim">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-container border border-outline-variant/40 flex items-center justify-center shrink-0 overflow-hidden text-tertiary">
+<span class="material-symbols-outlined text-[24px]">cake</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-headline-sm text-[14px] leading-tight font-semibold text-on-surface truncate">Torta rogel</h3>
+<span class="px-1.5 py-0.2 bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-[9px] font-semibold rounded">POR ENCARGO</span>
+</div>
+<p class="font-body-md text-[11px] text-on-surface-variant mt-0.5">
+                Tortas · <span class="font-medium text-on-surface-variant">48 h de anticipación</span>
+</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-sm text-primary text-[15px] font-bold tracking-tight">$ 28.000</span>
+<span class="font-label-sm text-[10px] text-outline">/ entera</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="font-label-sm text-[9px] text-primary font-medium mt-1">Activo</span>
+</div>
+</article>
+<!-- 7. Pasta frola -->
+<article class="bg-surface-container-lowest border border-outline-variant/50 rounded-lg p-2.5 flex items-center justify-between gap-2.5 hover:border-outline transition-colors">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-11 h-11 rounded-lg bg-surface-container border border-outline-variant/40 flex items-center justify-center shrink-0 overflow-hidden text-tertiary">
+<span class="material-symbols-outlined text-[24px]">cloud_download</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<h3 class="font-headline-sm text-[14px] leading-tight font-semibold text-on-surface truncate">Pasta frola</h3>
+</div>
+<p class="font-body-md text-[11px] text-on-surface-variant mt-0.5">
+                Tortas · <span class="font-semibold text-primary">Stock: 4 u.</span>
+</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-sm text-primary text-[15px] font-bold tracking-tight">$ 9.500</span>
+<span class="font-label-sm text-[10px] text-outline">/ tarta</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+<span class="font-label-sm text-[9px] text-primary font-medium mt-1">Activo</span>
+</div>
+</article>
+</section>
+<!-- Pie de Lista Informativo -->
+<footer class="mt-4 mb-2 p-2.5 rounded-lg bg-surface-container border border-outline-variant/30 text-center">
+<p class="font-body-md text-[11px] text-on-surface-variant flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">sync</span>
+          Los cambios de disponibilidad y precio se actualizan al instante en <strong class="text-on-surface font-semibold">laespiga.mostry.com.ar</strong>
+</p>
+</footer>
+</main>
+<!-- Botón Flotante Acción Primaria (+ Producto) sobre la BottomBar -->
+<div class="fixed bottom-20 right-4 z-40">
+<button class="bg-secondary-container text-on-secondary font-headline-sm text-[13px] font-semibold py-2.5 px-4 rounded-lg shadow-lg flex items-center gap-1.5 active:scale-95 transition-transform border border-secondary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>+ Producto</span>
+</button>
+</div>
+<!-- BottomNavBar Compartido (Fuente JSON Ejecutada con 'Productos' Activo) -->
+<nav class="fixed bottom-0 left-0 w-full max-w-[390px] z-50 flex items-center justify-around px-margin h-16 bg-surface-container-lowest border-t border-outline-variant">
+<!-- 1. Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#inicio">
+<span class="material-symbols-outlined text-[22px]">home</span>
+<span class="font-label-sm text-[10px]">Inicio</span>
+</a>
+<!-- 2. Pedidos con badge -->
+<a class="relative flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#pedidos">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]">receipt_long</span>
+<span class="absolute -top-1 -right-2 bg-secondary text-on-secondary font-label-sm text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">3</span>
+</div>
+<span class="font-label-sm text-[10px]">Pedidos</span>
+</a>
+<!-- 3. Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#caja">
+<span class="material-symbols-outlined text-[22px]">point_of_sale</span>
+<span class="font-label-sm text-[10px]">Caja</span>
+</a>
+<!-- 4. Productos (ACTIVO según la semántica de la pantalla) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold gap-1 active:scale-95 transition-transform duration-150 relative" href="#productos">
+<div class="w-8 h-6 bg-primary-fixed/50 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined fill text-[20px]">inventory_2</span>
+</div>
+<span class="font-label-sm text-[10px]">Productos</span>
+</a>
+<!-- 5. Más -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant gap-1 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#mas">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+<span class="font-label-sm text-[10px]">Más</span>
+</a>
+</nav>
+</div>
+</body></html>

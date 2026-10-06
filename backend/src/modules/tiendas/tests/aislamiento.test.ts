@@ -14,9 +14,9 @@ describe('Mi tienda: aislamiento entre tiendas', () => {
 
   it('con la sesión de Rosa no se puede ver ni editar la heladería', async () => {
     const ajeno = panel(ctx.app, 'heladeria', ctx.cuenta.cookie);
-    await ajeno.get('/tienda/config').expect(403);
-    await ajeno.patch('/tienda/config', { nombre: 'Robada' }).expect(403);
-    await ajeno.put('/tienda/pausa', { pausada: true }).expect(403);
+    await ajeno.get('/panel/tienda/config').expect(403);
+    await ajeno.patch('/panel/tienda/config', { nombre: 'Robada' }).expect(403);
+    await ajeno.put('/panel/tienda/pausa', { pausada: true }).expect(403);
     const heladeria = await db
       .selectFrom('tiendas')
       .select(['nombre', 'pausada'])
@@ -26,6 +26,6 @@ describe('Mi tienda: aislamiento entre tiendas', () => {
   });
 
   it('sin sesión no hay acceso', async () => {
-    await panel(ctx.app, 'dona-rosa', '').get('/tienda/config').expect(401);
+    await panel(ctx.app, 'dona-rosa', '').get('/panel/tienda/config').expect(401);
   });
 });

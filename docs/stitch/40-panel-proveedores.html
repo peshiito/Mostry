@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Proveedores - La Espiga | Mostry</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#002019",
+            "on-error-container": "#93000a",
+            "on-primary-fixed-variant": "#005141",
+            "outline-variant": "#bfc9c4",
+            "secondary-fixed": "#ffdad2",
+            "primary-container": "#0e5a4a",
+            "on-secondary-container": "#6e1500",
+            "error-container": "#ffdad6",
+            "secondary-container": "#fd7958",
+            "on-error": "#ffffff",
+            "surface-tint": "#246959",
+            "secondary-fixed-dim": "#ffb4a2",
+            "primary": "#004134",
+            "on-background": "#1c1c18",
+            "on-primary-container": "#8ccfbb",
+            "on-secondary-fixed-variant": "#862208",
+            "surface-bright": "#fdf9f2",
+            "surface-container-lowest": "#ffffff",
+            "surface-variant": "#e6e2db",
+            "secondary": "#a7391e",
+            "background": "#fdf9f2",
+            "surface-dim": "#dddad3",
+            "on-tertiary-fixed": "#271900",
+            "on-surface-variant": "#3f4945",
+            "primary-fixed": "#acf0db",
+            "on-surface": "#1c1c18",
+            "tertiary-fixed": "#ffdea8",
+            "surface-container-low": "#f7f3ec",
+            "on-secondary-fixed": "#3c0700",
+            "inverse-surface": "#31302c",
+            "surface": "#fdf9f2",
+            "inverse-primary": "#90d4bf",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#fabc41",
+            "outline": "#6f7975",
+            "primary-fixed-dim": "#90d4bf",
+            "inverse-on-surface": "#f4f0e9",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-tertiary-container": "#f5b73c",
+            "surface-container-high": "#ebe8e1",
+            "surface-container-highest": "#e6e2db",
+            "tertiary-container": "#694a00",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "tertiary": "#4c3400",
+            "surface-container": "#f1ede6",
+            "error": "#ba1a1a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Rubik"],
+            "body-lg": ["Work Sans"],
+            "label-md": ["Work Sans"],
+            "label-sm": ["Work Sans"],
+            "body-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "headline-lg": ["Rubik"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface min-h-screen flex flex-col font-body-md text-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar Fijo -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin h-14 max-w-screen-md mx-auto bg-primary dark:bg-surface-container text-on-primary">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="storefront">storefront</span>
+<div class="flex flex-col leading-tight">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-primary">La Espiga</span>
+<span class="bg-primary-container text-on-primary-container px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider font-label-sm">Mostry</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-primary-container font-medium">Panadería &amp; Confitería</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Notificaciones" class="relative p-2 rounded-lg text-on-primary hover:bg-primary-container active:opacity-80 transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary-container rounded-full ring-2 ring-primary"></span>
+</button>
+</div>
+</header>
+<!-- Contenedor Principal (Canvas de Mostrador) -->
+<main class="w-full max-w-screen-md mx-auto pt-14 pb-24 px-margin flex-1 flex flex-col gap-space-md">
+<!-- Encabezado de Página y Contexto -->
+<section class="pt-space-md">
+<nav aria-label="Migas de pan" class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md mb-1">
+<span>Negocio</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-semibold">Proveedores</span>
+</nav>
+<div class="flex items-baseline justify-between">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">Proveedores</h1>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2 py-0.5 rounded border border-outline-variant font-medium">Octubre 2026</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Contactos directos, pedidos de insumos y cuentas del mes.</p>
+</section>
+<!-- Resumen Rápido de Gastos de Insumos -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-dim">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface-variant uppercase tracking-wide">Insumos del mes</span>
+</div>
+<span class="bg-surface-container-high text-on-surface px-2 py-0.5 rounded text-[11px] font-semibold font-label-sm border border-outline-variant">
+          2 activos
+        </span>
+</div>
+<div class="pt-space-sm flex items-end justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-0.5">Total acumulado compras</span>
+<div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">
+            $ 137.500
+          </div>
+</div>
+<div class="text-right">
+<span class="text-[11px] font-label-sm text-on-surface-variant block">Subtotales registrados</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">$96.000 + $41.500</span>
+</div>
+</div>
+</section>
+<!-- Botón de Acción Principal (+ Nuevo proveedor) -->
+<section>
+<button class="w-full h-12 bg-secondary-container text-on-background font-headline-sm text-[15px] font-bold rounded-lg flex items-center justify-center gap-2 border border-[#e06546] active:scale-[0.99] transition-transform" type="button">
+<span class="material-symbols-outlined font-bold text-[20px]" data-icon="add">add</span>
+<span>+ Nuevo proveedor</span>
+</button>
+</section>
+<!-- Listado de Proveedores -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between px-0.5">
+<h2 class="font-headline-sm text-[16px] font-bold text-on-surface">Libreta de contactos</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">Orden: Mayor consumo</span>
+</div>
+<!-- Proveedor 1: Molino Cañuelas -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md flex flex-col gap-3">
+<!-- Fila Superior: Título y Rubro -->
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface leading-snug">Molino Cañuelas</h3>
+</div>
+<div class="inline-block mt-1">
+<span class="bg-[#F2B53A] text-[#1B1B1B] text-[11px] font-bold px-2 py-0.5 rounded font-label-sm">
+                Harinas y premezclas
+              </span>
+</div>
+</div>
+<button aria-label="Opciones de Molino Cañuelas" class="p-1 rounded text-on-surface-variant hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Fila Datos: Contacto y Monto Mensual -->
+<div class="grid grid-cols-2 gap-2 py-2 border-y border-dashed border-surface-dim font-body-md">
+<div>
+<span class="font-label-sm text-[11px] text-on-surface-variant block uppercase">Contacto</span>
+<span class="font-semibold text-on-surface text-[13px] block truncate">Juan</span>
+<span class="text-[12px] text-on-surface-variant font-mono">11 4444-2222</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-[11px] text-on-surface-variant block uppercase">Cuenta corriente</span>
+<span class="font-label-md text-label-md font-bold text-primary text-[14px]">Este mes $ 96.000</span>
+<span class="text-[11px] text-on-surface-variant block">3 entregas recibidas</span>
+</div>
+</div>
+<!-- Acciones Operativas -->
+<div class="grid grid-cols-12 gap-2 pt-0.5">
+<a class="col-span-8 h-10 bg-primary text-on-primary rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all" href="https://wa.me/5491144442222" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+<span>Escribir por WhatsApp</span>
+</a>
+<button class="col-span-4 h-10 bg-surface-container border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-1 hover:bg-surface-container-high active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="receipt">receipt</span>
+<span>Ver cuenta</span>
+</button>
+</div>
+</article>
+<!-- Proveedor 2: Lácteos Don Pedro -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md flex flex-col gap-3">
+<!-- Fila Superior: Título y Rubro -->
+<div class="flex items-start justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface leading-snug">Lácteos Don Pedro</h3>
+</div>
+<div class="inline-block mt-1">
+<span class="bg-[#F2B53A] text-[#1B1B1B] text-[11px] font-bold px-2 py-0.5 rounded font-label-sm">
+                Manteca, leche y muzzarella
+              </span>
+</div>
+</div>
+<button aria-label="Opciones de Lácteos Don Pedro" class="p-1 rounded text-on-surface-variant hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Fila Datos: Contacto y Monto Mensual -->
+<div class="grid grid-cols-2 gap-2 py-2 border-y border-dashed border-surface-dim font-body-md">
+<div>
+<span class="font-label-sm text-[11px] text-on-surface-variant block uppercase">Contacto</span>
+<span class="font-semibold text-on-surface text-[13px] block truncate">Reparto habitual</span>
+<span class="text-[12px] text-on-surface-variant font-mono">Martes y Viernes</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-[11px] text-on-surface-variant block uppercase">Cuenta corriente</span>
+<span class="font-label-md text-label-md font-bold text-primary text-[14px]">Este mes $ 41.500</span>
+<span class="text-[11px] text-on-surface-variant block">Al día</span>
+</div>
+</div>
+<!-- Acciones Operativas -->
+<div class="grid grid-cols-12 gap-2 pt-0.5">
+<a class="col-span-8 h-10 bg-primary text-on-primary rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+<span>Escribir por WhatsApp</span>
+</a>
+<button class="col-span-4 h-10 bg-surface-container border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md font-bold flex items-center justify-center gap-1 hover:bg-surface-container-high active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="receipt">receipt</span>
+<span>Ver cuenta</span>
+</button>
+</div>
+</article>
+</section>
+<!-- Tip de Almacén / Recordatorio de Mostrador -->
+<section class="bg-surface-container border border-outline-variant rounded-lg p-3 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5" data-icon="lightbulb">lightbulb</span>
+<p class="font-body-md text-[13px] leading-snug text-on-surface">
+<strong class="font-semibold">Consejo de mostrador:</strong> Anotá las boletas al recibir el flete para mantener cuadrada la caja diaria.
+      </p>
+</section>
+</main>
+<!-- BottomNavBar Fija Abajo (Shared Component Exacto) -->
+<nav aria-label="Navegación principal" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter h-16 max-w-screen-md mx-auto bg-surface-container-lowest dark:bg-surface-container border-t border-outline-variant dark:border-outline shadow-[0_-2px_6px_rgba(0,0,0,0.03)]">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-label-sm text-label-sm font-normal py-1 px-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="home">home</span>
+<span class="mt-0.5">Inicio</span>
+</a>
+<!-- Pedidos con Badge -->
+<a class="relative flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-label-sm text-label-sm font-normal py-1 px-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="receipt_long">receipt_long</span>
+<span class="absolute top-1 right-2.5 bg-secondary-container text-on-background font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center ring-1 ring-surface-container-lowest">
+        3
+      </span>
+<span class="mt-0.5">Pedidos</span>
+</a>
+<!-- Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-label-sm text-label-sm font-normal py-1 px-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="mt-0.5">Caja</span>
+</a>
+<!-- Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-label-sm text-label-sm font-normal py-1 px-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="inventory_2">inventory_2</span>
+<span class="mt-0.5">Productos</span>
+</a>
+<!-- Más (Activo: Proveedores forma parte de Más / Administración del Negocio) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-label-sm text-label-sm font-bold py-1 px-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="menu" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="mt-0.5">Más</span>
+</a>
+</nav>
+</body></html>

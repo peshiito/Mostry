@@ -1,0 +1,51 @@
+{
+  "tiendas": [
+    {
+      "id": 4,
+      "slug": "flujo",
+      "nombre": "Panadería Flujo",
+      "estado": "prueba",
+      "pruebaHasta": "2026-10-15T13:50:09.000Z",
+      "planHasta": null,
+      "suspendidaManual": false,
+      "creadoEn": "2026-10-05T13:49:52.000Z",
+      "emailDueno": "flujo@mostry.test"
+    },
+    {
+      "id": 3,
+      "slug": "pruebamail",
+      "nombre": "Prueba Mail",
+      "estado": "prueba",
+      "pruebaHasta": null,
+      "planHasta": null,
+      "suspendidaManual": false,
+      "creadoEn": "2026-10-05T13:30:14.000Z",
+      "emailDueno": "prueba-mail@mostry.test"
+    },
+    {
+      "id": 1,
+      "slug": "dona-rosa",
+      "nombre": "Facturería Doña Rosa",
+      "estado": "activa",
+      "pruebaHasta": null,
+      "planHasta": "2026-11-02T13:15:37.000Z",
+      "suspendidaManual": false,
+      "creadoEn": "2026-10-03T13:15:37.000Z",
+      "emailDueno": "rosa@dona-rosa.test"
+    },
+    {
+      "id": 2,
+      "slug": "heladeria",
+      "nombre": "Heladería del Parque",
+      "estado": "activa",
+      "pruebaHasta": "2026-10-09T13:15:37.000Z",
+      "planHasta": "2026-11-08T13:15:37.000Z",
+      "suspendidaManual": false,
+      "creadoEn": "2026-10-03T13:15:37.000Z",
+      "emailDueno": "martin@heladeria.test"
+    }
+  ],
+  "total": 4,
+  "pagina": 1,
+  "paginas": 1
+}

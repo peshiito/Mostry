@@ -4,7 +4,7 @@ import { pagosController as pagos } from './controladores/pagos.controller.js';
 import { tiendasAdminController as tiendas } from './controladores/tiendas.controller.js';
 import { requerirAdmin } from './requerirAdmin.js';
 
-// Solo desde admin.mostry.com.ar, con sesión de admin completa (clave + TOTP).
+// Solo desde admin.mostry.com.ar, con sesión de admin.
 export function rutasAdmin(): Router {
   const r = Router();
   r.use(requerirSesion(), requerirAdmin);

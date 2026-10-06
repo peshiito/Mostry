@@ -1,0 +1,16 @@
+{
+  "usuario": {
+    "id": 2,
+    "email": "rosa@dona-rosa.test",
+    "nombre": "Rosa Gómez",
+    "esAdmin": false
+  },
+  "tiendas": [
+    {
+      "id": 1,
+      "slug": "dona-rosa",
+      "nombre": "Facturería Doña Rosa",
+      "rol": "dueno"
+    }
+  ]
+}

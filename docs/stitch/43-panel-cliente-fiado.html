@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface-container-low" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry - Libreta de Fiados · Don Carlos</title>
+<!-- Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration with Design Tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#004134",
+            "error-container": "#ffdad6",
+            "secondary-fixed": "#ffdad2",
+            "on-secondary-fixed-variant": "#862208",
+            "on-primary-fixed": "#002019",
+            "inverse-surface": "#31302c",
+            "surface-container-high": "#ebe8e1",
+            "primary-container": "#0e5a4a",
+            "on-background": "#1c1c18",
+            "tertiary-fixed-dim": "#fabc41",
+            "on-error-container": "#93000a",
+            "inverse-on-surface": "#f4f0e9",
+            "surface-container-low": "#f7f3ec",
+            "secondary": "#a7391e",
+            "on-secondary-container": "#6e1500",
+            "surface-dim": "#dddad3",
+            "surface-container-lowest": "#ffffff",
+            "surface-bright": "#fdf9f2",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#8ccfbb",
+            "surface": "#fdf9f2",
+            "inverse-primary": "#90d4bf",
+            "surface-container": "#f1ede6",
+            "outline": "#6f7975",
+            "on-tertiary-fixed": "#271900",
+            "on-surface": "#1c1c18",
+            "background": "#fdf9f2",
+            "primary-fixed-dim": "#90d4bf",
+            "surface-variant": "#e6e2db",
+            "secondary-fixed-dim": "#ffb4a2",
+            "on-surface-variant": "#3f4945",
+            "tertiary": "#4c3400",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-error": "#ffffff",
+            "tertiary-container": "#694a00",
+            "secondary-container": "#fd7958",
+            "error": "#ba1a1a",
+            "surface-container-highest": "#e6e2db",
+            "on-primary-fixed-variant": "#005141",
+            "tertiary-fixed": "#ffdea8",
+            "surface-tint": "#246959",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#f5b73c",
+            "primary-fixed": "#acf0db",
+            "outline-variant": "#bfc9c4",
+            "on-secondary-fixed": "#3c0700"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "body-lg": ["Work Sans"],
+            "headline-md": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "label-sm": ["Work Sans"],
+            "body-md": ["Work Sans"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Estilo clásico libreta de almacén con punteado de ticket */
+    .ledger-dots {
+      background-image: radial-gradient(circle, #bfc9c4 1px, transparent 1px);
+      background-size: 8px 1px;
+      background-repeat: repeat-x;
+      background-position: bottom;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased flex flex-col min-h-full font-body-md text-body-md select-none">
+<!-- TOP APP BAR (from Shared Components JSON with Contextual Sub-bar) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-primary-container text-on-primary">
+<div class="flex justify-between items-center px-margin py-space-sm">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Volver a Libreta" class="p-1 rounded text-on-primary hover:bg-primary active:opacity-80 transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<div class="flex items-center gap-space-xs text-headline-sm font-headline-sm font-bold text-on-primary">
+<span class="material-symbols-outlined text-[22px]">store</span>
+<span>La Espiga</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="bg-primary/50 text-on-primary-container text-label-sm font-label-sm px-2 py-0.5 rounded border border-outline/30">
+          Libreta 2026
+        </span>
+<button aria-label="Notificaciones" class="p-1.5 rounded-full hover:bg-primary text-on-primary active:opacity-80 transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN SCROLLABLE CANVAS -->
+<main class="flex-1 w-full max-w-md mx-auto pt-16 pb-24 px-margin flex flex-col gap-space-md">
+<!-- SUB-NAV BREADCRUMB / CONTEXT TAG -->
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-label-md font-label-md">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span>Libreta de fiados</span>
+<span class="text-outline">/</span>
+<span class="text-on-surface font-semibold">Ficha de cuenta</span>
+</div>
+<span class="text-label-sm font-label-sm text-primary-container bg-primary-fixed/30 px-2 py-0.5 rounded font-medium">
+        Cuenta al día
+      </span>
+</div>
+<!-- CLIENT IDENTIFICATION CARD (Bento Profile Header) -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-4 flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<!-- Avatar con iniciales de mostrador -->
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center border border-outline-variant text-primary font-headline-sm font-bold">
+            DC
+          </div>
+<div>
+<div class="flex items-center gap-1.5">
+<h1 class="text-headline-sm font-headline-sm text-on-surface leading-tight">Don Carlos</h1>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;" title="Cliente verificado de confianza">verified</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant text-xs">Carlos Benítez · Barrio Norte</p>
+</div>
+</div>
+<button aria-label="Opciones del cliente" class="text-on-surface-variant hover:text-on-surface p-1" type="button">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<!-- Trust note & WhatsApp quick access -->
+<div class="pt-2 border-t border-outline-variant/60 flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-label-md font-label-md">
+<span class="material-symbols-outlined text-[16px] text-outline">home_pin</span>
+<span>Vecino de la esquina · Cuenta abierta 2024</span>
+</div>
+<!-- WhatsApp Chip -->
+<a class="inline-flex items-center gap-1.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#075E54] px-2.5 py-1 rounded text-label-md font-label-md font-semibold transition-colors border border-[#25D366]/30" href="https://wa.me/5491144558821" target="_blank">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span>11 4455-8821</span>
+</a>
+</div>
+</section>
+<!-- BIG SALDO CARD (Gondola / Almacén Balance Card) -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-4">
+<div class="flex items-center justify-between mb-1">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-on-surface-variant">Estado de cuenta actual</span>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-secondary font-semibold bg-secondary-fixed/40 px-2 py-0.5 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Saldo pendiente
+        </span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<div>
+<span class="text-body-md font-body-md text-on-surface-variant">Debe en mostrador</span>
+<div class="text-headline-lg font-headline-lg text-primary tracking-tight font-bold">
+            $ 15.000<span class="text-body-lg font-body-lg text-outline">,00</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-on-surface-variant block">Límite pactado</span>
+<span class="text-body-md font-body-md font-semibold text-on-surface">$ 40.000</span>
+</div>
+</div>
+<!-- Micro state indicator -->
+<div class="mt-3 pt-2.5 border-t border-outline-variant/60 flex items-center justify-between text-label-md font-label-md text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-outline">history</span>
+          Último movimiento: ayer a las 19:15 hs
+        </span>
+<span class="text-primary font-medium">4 anotaciones</span>
+</div>
+</section>
+<!-- QUICK ACTIONS ROW -->
+<section class="grid grid-cols-2 gap-space-sm">
+<!-- Botón Secundario: + Anotar Deuda -->
+<button class="w-full h-12 bg-surface-container-lowest hover:bg-surface-container border border-outline rounded-lg text-on-surface font-label-md text-body-md font-semibold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-secondary text-[20px]">add_circle</span>
+<span>Anotar deuda</span>
+</button>
+<!-- Botón Primario: Registrar Pago (Coral #FF7A59) -->
+<button class="w-full h-12 bg-secondary-container hover:bg-secondary text-surface-container-lowest font-label-md text-body-md font-bold rounded-lg flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] transition-all" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span>Registrar pago</span>
+</button>
+</section>
+<!-- CUADERNO DE MOSTRADOR / MOVIMIENTOS HISTÓRICOS -->
+<section class="bg-surface-container-lowest rounded-lg border border-outline-variant flex flex-col overflow-hidden">
+<!-- Section Header -->
+<div class="px-4 py-3 bg-surface-container/60 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">receipt_long</span>
+<h2 class="text-headline-sm font-headline-sm text-base text-on-surface font-bold">Libreta de mostrador</h2>
+</div>
+<button class="text-label-sm font-label-sm text-primary font-semibold hover:underline flex items-center gap-0.5" type="button">
+<span>Filtrar</span>
+<span class="material-symbols-outlined text-[14px]">tune</span>
+</button>
+</div>
+<!-- Ledger Movements List -->
+<div class="divide-y divide-outline-variant/60">
+<!-- Movimiento 1: Pago en efectivo (-$5.000) -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors flex items-center justify-between">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded bg-primary-fixed/50 text-primary flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-[18px]">south_west</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Pago en efectivo</span>
+<span class="text-label-sm font-label-sm bg-primary/10 text-primary px-1.5 py-0.2 rounded font-medium">Asentado</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant mt-0.5">13/10/2026 · Mostrador central · Recibió: Mariana</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-headline-sm font-bold text-primary block tracking-tight">-$ 5.000</span>
+<span class="text-label-sm font-label-sm text-outline">Saldo: $ 15.000</span>
+</div>
+</article>
+<!-- Movimiento 2: Fiado facturas (+$15.600) -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors flex items-center justify-between">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded bg-error-container text-error flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-body-md font-body-md font-semibold text-on-surface">2 docenas de facturas</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant mt-0.5">12/10/2026 · Surtidas con pastelera y dulce · Vale #182</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-headline-sm font-bold text-secondary block tracking-tight">+$ 15.600</span>
+<span class="text-label-sm font-label-sm text-outline">Saldo: $ 20.000</span>
+</div>
+</article>
+<!-- Movimiento 3: Pago transferencia MP (-$4.400) -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors flex items-center justify-between">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded bg-primary-fixed/50 text-primary flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Transferencia alias MP</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant mt-0.5">06/10/2026 · Comprobante #941029</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-headline-sm font-bold text-primary block tracking-tight">-$ 4.400</span>
+<span class="text-label-sm font-label-sm text-outline">Saldo: $ 4.400</span>
+</div>
+</article>
+<!-- Movimiento 4: Pan y medialunas (+$4.400) -->
+<article class="p-3.5 hover:bg-surface-container-low transition-colors flex items-center justify-between">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded bg-error-container text-error flex items-center justify-center mt-0.5">
+<span class="material-symbols-outlined text-[18px]">local_cafe</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-body-md font-body-md font-semibold text-on-surface">Pan flauta y 6 medialunas</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant mt-0.5">05/10/2026 · Mañana (Turno 1)</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-body-lg font-headline-sm font-bold text-secondary block tracking-tight">+$ 4.400</span>
+<span class="text-label-sm font-label-sm text-outline">Saldo: $ 8.800</span>
+</div>
+</article>
+</div>
+<!-- Cuaderno Footer / WhatsApp Reminder Action -->
+<div class="p-3 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+<span class="text-label-md font-label-md text-on-surface-variant">¿Necesitás recordarle el saldo?</span>
+<button class="inline-flex items-center gap-1 text-label-md font-label-md font-bold text-primary-container hover:text-primary active:opacity-75 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Mandale el resumen</span>
+</button>
+</div>
+</section>
+<!-- QUICK VOUCHER BANNER / BARRIO NOTE -->
+<div class="p-3 rounded-lg border border-dashed border-outline-variant bg-surface-container flex items-center justify-between text-on-surface-variant text-label-md font-label-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">edit_note</span>
+<span>Anotaciones sincronizadas en la nube de Mostry</span>
+</div>
+<button class="text-primary font-semibold hover:underline" type="button">Ver vales</button>
+</div>
+</main>
+<!-- BOTTOM NAVIGATION BAR (from Shared Components JSON - 64px docked full-width) -->
+<!-- Active state: "Más" tab (as this represents Negocio > Libreta de fiados) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin py-space-xs bg-surface-container-lowest border-t border-outline-variant h-16">
+<!-- Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs active:scale-95 transition-transform duration-100 w-16" href="#">
+<span class="material-symbols-outlined text-[22px]">home</span>
+<span class="text-[11px] leading-3 mt-1">Inicio</span>
+</a>
+<!-- Pedidos (con badge 3) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs active:scale-95 transition-transform duration-100 relative w-16" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[22px]">receipt_long</span>
+<span class="absolute -top-1 -right-2 bg-secondary text-surface-container-lowest text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-surface-container-lowest">
+          3
+        </span>
+</div>
+<span class="text-[11px] leading-3 mt-1">Pedidos</span>
+</a>
+<!-- Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs active:scale-95 transition-transform duration-100 w-16" href="#">
+<span class="material-symbols-outlined text-[22px]">point_of_sale</span>
+<span class="text-[11px] leading-3 mt-1">Caja</span>
+</a>
+<!-- Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-sm py-space-xs active:scale-95 transition-transform duration-100 w-16" href="#">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+<span class="text-[11px] leading-3 mt-1">Productos</span>
+</a>
+<!-- Más (Active: Libreta de fiados / Gestión) -->
+<a class="flex flex-col items-center justify-center text-primary font-label-sm font-bold py-space-xs active:scale-95 transition-transform duration-100 relative w-16" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary absolute -bottom-1"></span>
+</div>
+<span class="text-[11px] leading-3 mt-1 text-primary">Más</span>
+</a>
+</nav>
+</body></html>

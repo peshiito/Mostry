@@ -1,0 +1,5 @@
+.ok {
+  color: var(--ok);
+  font-size: var(--t-sm);
+  font-weight: 600;
+}

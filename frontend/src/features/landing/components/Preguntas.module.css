@@ -1,0 +1,24 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--e-3);
+  align-items: start;
+}
+.pregunta {
+  border: var(--borde);
+  border-radius: 12px;
+  background: var(--papel);
+}
+.resumen {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: var(--e-3) var(--e-5);
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  cursor: pointer;
+}
+.respuesta {
+  padding: 0 var(--e-5) var(--e-4);
+  color: var(--texto-2);
+}

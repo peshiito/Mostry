@@ -1,0 +1,8 @@
+.acciones {
+  display: grid;
+  gap: var(--e-2);
+}
+.cancelar {
+  justify-self: center;
+  color: var(--ladrillo);
+}

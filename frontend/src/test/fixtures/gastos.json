@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "tipo": "gasto",
+    "monto": 320000,
+    "medio": "efectivo",
+    "fecha": "2026-10-05T14:04:46.000Z",
+    "detalle": "Harina 25 kg",
+    "proveedorId": 1,
+    "proveedor": "Molino Cañuelas"
+  }
+]

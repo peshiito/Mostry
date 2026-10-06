@@ -1,0 +1,23 @@
+meta {
+  name: Registrar pago
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{api}}/admin/tiendas/1/pagos
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenAdmin}}
+  Cookie: {{cookieAdmin}}
+}
+
+body:json {
+  {
+    "monto": 1000000,
+    "pagadoEn": "2026-10-04"
+  }
+}

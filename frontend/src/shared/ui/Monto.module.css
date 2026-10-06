@@ -1,0 +1,42 @@
+.monto {
+  color: var(--carbon);
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 2px;
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.signo {
+  font-size: 0.6em;
+  margin-top: 0.12em;
+}
+.sm {
+  font-size: var(--t-lg);
+}
+.md {
+  font-size: var(--t-xl);
+}
+.lg {
+  font-size: var(--t-3xl);
+}
+.xl {
+  font-size: var(--t-4xl);
+}
+.verde {
+  color: var(--verde);
+}
+.ladrillo {
+  color: var(--ladrillo);
+}
+.ok {
+  color: var(--ok);
+}
+.tachado {
+  color: var(--texto-3);
+  font-weight: 500;
+  text-decoration: line-through;
+}

@@ -3,7 +3,7 @@ import type { Auto, Creado, Fecha, Hora, Timestamps } from './comunes.js';
 type DeTienda = { id: Auto<number>; tiendaId: number };
 
 export type CategoriasTabla = DeTienda &
-  Timestamps & { nombre: string; orden: Auto<number> };
+  Timestamps & { nombre: string; orden: Auto<number>; activa: Auto<boolean> };
 
 export type ProductosTabla = DeTienda &
   Timestamps & {

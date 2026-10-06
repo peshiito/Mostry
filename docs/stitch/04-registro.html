@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mostry - Creá tu tienda</title>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#f7f3ec",
+            "inverse-surface": "#31302c",
+            "surface-container-high": "#ebe8e1",
+            "surface": "#fdf9f2",
+            "secondary-fixed": "#ffdad2",
+            "on-primary-fixed": "#002019",
+            "tertiary": "#4c3400",
+            "primary-container": "#0e5a4a",
+            "on-secondary": "#ffffff",
+            "error": "#ba1a1a",
+            "surface-bright": "#fdf9f2",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed-dim": "#ffb4a2",
+            "tertiary-container": "#694a00",
+            "on-background": "#1c1c18",
+            "primary-fixed": "#acf0db",
+            "surface-variant": "#e6e2db",
+            "primary-fixed-dim": "#90d4bf",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#271900",
+            "background": "#fdf9f2",
+            "tertiary-fixed-dim": "#fabc41",
+            "primary": "#004134",
+            "secondary": "#a7391e",
+            "on-primary": "#ffffff",
+            "inverse-primary": "#90d4bf",
+            "inverse-on-surface": "#f4f0e9",
+            "surface-dim": "#dddad3",
+            "surface-container": "#f1ede6",
+            "on-secondary-fixed": "#3c0700",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "surface-container-highest": "#e6e2db",
+            "on-error": "#ffffff",
+            "outline-variant": "#bfc9c4",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed-variant": "#862208",
+            "secondary-container": "#fd7958",
+            "on-primary-fixed-variant": "#005141",
+            "tertiary-fixed": "#ffdea8",
+            "surface-tint": "#246959",
+            "on-secondary-container": "#6e1500",
+            "on-tertiary-container": "#f5b73c",
+            "outline": "#6f7975",
+            "on-surface-variant": "#3f4945",
+            "on-surface": "#1c1c18",
+            "on-primary-container": "#8ccfbb",
+            "error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "gutter": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "label-md": [
+              "Work Sans"
+            ],
+            "headline-sm": [
+              "Rubik"
+            ],
+            "headline-md": [
+              "Rubik"
+            ],
+            "body-lg": [
+              "Work Sans"
+            ],
+            "body-md": [
+              "Work Sans"
+            ],
+            "label-sm": [
+              "Work Sans"
+            ],
+            "headline-lg": [
+              "Rubik"
+            ]
+          },
+          "fontSize": {
+            "label-md": [
+              "12px",
+              {
+                "lineHeight": "16px",
+                "letterSpacing": "0.04em",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-sm": [
+              "20px",
+              {
+                "lineHeight": "28px",
+                "fontWeight": "600"
+              }
+            ],
+            "headline-md": [
+              "24px",
+              {
+                "lineHeight": "32px",
+                "fontWeight": "700"
+              }
+            ],
+            "body-lg": [
+              "16px",
+              {
+                "lineHeight": "24px",
+                "fontWeight": "400"
+              }
+            ],
+            "body-md": [
+              "14px",
+              {
+                "lineHeight": "20px",
+                "fontWeight": "400"
+              }
+            ],
+            "label-sm": [
+              "11px",
+              {
+                "lineHeight": "14px",
+                "letterSpacing": "0.05em",
+                "fontWeight": "700"
+              }
+            ],
+            "headline-lg": [
+              "32px",
+              {
+                "lineHeight": "40px",
+                "fontWeight": "700"
+              }
+            ]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-full flex flex-col justify-between selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="w-full max-w-md mx-auto min-h-full flex flex-col px-space-md py-space-md sm:py-space-lg">
+<!-- 1. Cabecera sobria -->
+<header class="flex items-center justify-between w-full pb-space-md">
+<button aria-label="Volver" class="inline-flex items-center justify-center w-10 h-10 -ml-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary-container lowercase">mostry</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider -mt-1">Vidriera de barrio</span>
+</div>
+<div class="w-10"></div>
+</header>
+<!-- 2. Encabezado principal -->
+<main class="flex-1 flex flex-col">
+<div class="mt-space-sm mb-space-lg text-left">
+<h1 class="font-headline-md text-headline-md text-primary-container tracking-tight">Creá tu tienda</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+          Empezá a mostrar tus productos y recibir pedidos directo por WhatsApp.
+        </p>
+</div>
+<!-- 3. Formulario de registro -->
+<form class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-md flex flex-col gap-space-md" onsubmit="event.preventDefault();">
+<!-- Campo 1: Email -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="email">Correo electrónico</label>
+<div class="relative">
+<input class="w-full h-11 px-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" id="email" name="email" placeholder="nombre@tucorreo.com" type="email"/>
+</div>
+</div>
+<!-- Campo 2: Contraseña -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="password">Contraseña</label>
+<div class="relative flex items-center">
+<input class="w-full h-11 pl-3 pr-11 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" id="password" name="password" placeholder="Elegí tu contraseña" type="password" value="ClaveSegura2026"/>
+<button aria-label="Mostrar contraseña" class="absolute right-0 top-0 h-11 w-11 flex items-center justify-center text-outline hover:text-on-surface transition-colors" id="toggle-password" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="visibility" id="password-icon">visibility</span>
+</button>
+</div>
+<!-- Medidor de seguridad de contraseña -->
+<div class="flex flex-col gap-1 mt-1">
+<div class="grid grid-cols-4 gap-1.5 w-full">
+<span class="h-1 rounded-full bg-primary-container"></span>
+<span class="h-1 rounded-full bg-primary-container"></span>
+<span class="h-1 rounded-full bg-primary-container"></span>
+<span class="h-1 rounded-full bg-surface-container-highest"></span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm">
+<span>Mínimo 10 caracteres</span>
+<span class="text-primary-container font-semibold">Segura</span>
+</div>
+</div>
+</div>
+<!-- Campo 3: Nombre del negocio -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="store_name">Nombre del negocio</label>
+<input class="w-full h-11 px-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" id="store_name" name="store_name" placeholder="Ej. Panadería San Cayetano" type="text" value="La Espiga"/>
+</div>
+<!-- Campo 4: Tu link (subdominio Mostry) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface" for="store_slug">Tu link en Mostry</label>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-primary-container font-semibold">
+<span class="material-symbols-outlined text-[15px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              Disponible
+            </span>
+</div>
+<div class="flex items-stretch rounded-lg border border-outline-variant bg-surface-container-lowest focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container overflow-hidden transition-colors">
+<input class="w-full h-11 px-3 bg-transparent border-0 font-body-md text-body-md text-on-surface placeholder:text-outline focus:ring-0 focus:outline-none" id="store_slug" name="store_slug" placeholder="tu-comercio" type="text" value="laespiga"/>
+<span class="inline-flex items-center px-3 bg-surface-container border-l border-outline-variant text-on-surface-variant font-label-md text-label-md select-none">
+              .mostry.com.ar
+            </span>
+</div>
+</div>
+<!-- Checkbox de términos y condiciones -->
+<div class="pt-space-xs flex items-start gap-2.5">
+<div class="flex items-center h-5 mt-0.5">
+<input checked="" class="w-4 h-4 rounded text-primary-container border-outline-variant focus:ring-primary-container focus:ring-offset-0 cursor-pointer" id="terms" name="terms" type="checkbox"/>
+</div>
+<label class="font-body-md text-body-md text-on-surface leading-snug cursor-pointer" for="terms">
+            Acepto los <a class="underline text-on-surface font-semibold hover:text-primary-container" href="#">Términos y condiciones</a> y la <a class="underline text-on-surface font-semibold hover:text-primary-container" href="#">Política de privacidad</a> de Mostry.
+          </label>
+</div>
+<!-- Botón principal de acción -->
+<button class="w-full h-12 mt-space-xs rounded-lg bg-secondary-container hover:brightness-105 active:brightness-95 text-on-secondary-container font-label-md text-label-md font-bold tracking-wide uppercase flex items-center justify-center transition-all" type="submit">
+          Crear mi tienda
+        </button>
+</form>
+</main>
+<!-- 4. Pie del formulario -->
+<footer class="mt-space-lg mb-space-sm flex flex-col items-center gap-space-sm text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+        ¿Ya tenés cuenta? 
+        <a class="font-semibold text-primary-container hover:underline ml-1" href="#">Ingresá</a>
+</p>
+<div class="w-12 h-px bg-outline-variant my-space-xs"></div>
+<p class="font-label-sm text-label-sm text-outline tracking-wider">
+        Mostry · 2026 · Hecho para comercios de barrio
+      </p>
+</footer>
+</div>
+<script>
+    const passwordInput = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const passwordIcon = document.getElementById('password-icon');
+
+    togglePasswordBtn.addEventListener('click', () => {
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+      passwordIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+      togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    });
+
+    const storeNameInput = document.getElementById('store_name');
+    const storeSlugInput = document.getElementById('store_slug');
+
+    storeNameInput.addEventListener('input', (e) => {
+      const sanitized = e.target.value
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+      if (sanitized) {
+        storeSlugInput.value = sanitized;
+      }
+    });
+  </script>
+</body></html>

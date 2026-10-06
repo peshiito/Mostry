@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { appConCuenta } from '../../../test/appConCuenta.js';
-import { codigoTotp } from '../../../test/sesionHttp.js';
+import { CLAVE } from '../../../test/flujoAuth.js';
 
 describe('alias de cobro (acción sensible)', () => {
   let ctx: Awaited<ReturnType<typeof appConCuenta>>;
@@ -10,15 +10,17 @@ describe('alias de cobro (acción sensible)', () => {
     ctx = await appConCuenta();
   });
 
-  it('sin un TOTP válido no se cambia', async () => {
-    await ctx.panel.put('/tienda/cobro', { ...datos, codigoTotp: '000000' }).expect(400);
-    await ctx.panel.put('/tienda/cobro', datos).expect(400);
-    expect((await ctx.panel.get('/tienda/config')).body.alias).toBeNull();
+  it('sin la contraseña correcta no se cambia', async () => {
+    await ctx.panel
+      .put('/panel/tienda/cobro', { ...datos, clave: 'no-es-la-clave' })
+      .expect(400);
+    await ctx.panel.put('/panel/tienda/cobro', datos).expect(400);
+    expect((await ctx.panel.get('/panel/tienda/config')).body.alias).toBeNull();
   });
 
-  it('con TOTP se cambia (en minúscula) y se avisa por email a la dueña', async () => {
+  it('con la contraseña se cambia (en minúscula) y se avisa por email a la dueña', async () => {
     const res = await ctx.panel
-      .put('/tienda/cobro', { ...datos, codigoTotp: codigoTotp(ctx.cuenta.secreto) })
+      .put('/panel/tienda/cobro', { ...datos, clave: CLAVE })
       .expect(200);
     expect(res.body).toEqual({ alias: 'dona.rosa.mp', titularAlias: 'Rosa Gómez' });
     const aviso = ctx.correo.enviados.at(-1);
@@ -31,8 +33,15 @@ describe('alias de cobro (acción sensible)', () => {
   it('valida el formato del alias', async () => {
     for (const alias of ['corto', 'con espacios aca', 'a'.repeat(21), 'ñandú.pagos']) {
       await ctx.panel
-        .put('/tienda/cobro', { ...datos, alias, codigoTotp: '123456' })
+        .put('/panel/tienda/cobro', { ...datos, alias, clave: CLAVE })
         .expect(400);
     }
+  });
+
+  it('5 contraseñas equivocadas frenan a la cuenta (429)', async () => {
+    const mal = { ...datos, clave: 'no-es-la-clave' };
+    for (let i = 0; i < 5; i++)
+      await ctx.panel.put('/panel/tienda/cobro', mal).expect(400);
+    await ctx.panel.put('/panel/tienda/cobro', { ...datos, clave: CLAVE }).expect(429);
   });
 });

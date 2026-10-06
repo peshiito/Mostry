@@ -7,11 +7,16 @@ export const porEmail = (req: Request) =>
     .trim()
     .toLowerCase()}`;
 
+// Por cuenta: va DESPUÉS de requerirSesion (frena a quien prueba claves con una
+// cookie robada aunque vaya cambiando de IP).
+export const porUsuario = (req: Request) =>
+  `usuario:${req.sesion?.usuarioId ?? 'anonimo'}`;
+
 // Límite de requests por ventana. Sin clave, cuenta por IP.
 export function limite(
   minutos: number,
   maximo: number,
-  clave?: typeof porEmail,
+  clave?: (req: Request) => string,
 ): RequestHandler {
   return rateLimit({
     windowMs: minutos * 60 * 1000,

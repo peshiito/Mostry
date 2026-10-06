@@ -1,0 +1,20 @@
+.promo {
+  display: grid;
+  gap: var(--e-2);
+}
+.cabeza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2);
+}
+.titulo {
+  font-size: var(--t-xl);
+}
+.vigencia {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.vencida {
+  opacity: 0.65;
+}

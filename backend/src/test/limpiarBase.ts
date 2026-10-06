@@ -1,7 +1,8 @@
 import { sql } from 'kysely';
 import { db } from '../shared/db/db.js';
+import { vaciarBucketDeTest } from './bucket.js';
 
-// Vacía todas las tablas de la base de test (no toca el esquema).
+// Vacía todas las tablas de la base de test (no toca el esquema) y el bucket de test.
 export async function limpiarBase(): Promise<void> {
   await db.connection().execute(async (conexion) => {
     const { rows } = await sql<{ tabla: string }>`
@@ -13,4 +14,5 @@ export async function limpiarBase(): Promise<void> {
       await sql`TRUNCATE TABLE ${sql.table(tabla)}`.execute(conexion);
     await sql`SET FOREIGN_KEY_CHECKS = 1`.execute(conexion);
   });
+  await vaciarBucketDeTest();
 }

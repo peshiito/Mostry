@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="es-AR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>La Espiga · Detalle Torta Rogel</title>
+<!-- Google Fonts: Rubik + Work Sans & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Play CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#0e5a4a',
+            'primary-dark': '#093b31',
+            'coral': '#ff7a59',
+            'coral-hover': '#f06b49',
+            'bakery-bg': '#fdf9f2',
+            'bakery-card': '#ffffff',
+            'bakery-border': '#e5dece',
+            'bakery-text': '#1f2937',
+            'bakery-muted': '#6b7280'
+          },
+          fontFamily: {
+            rubik: ['Rubik', 'sans-serif'],
+            sans: ['Work Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background-color: #fdf9f2;
+      color: #1f2937;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-rubik {
+      font-family: 'Rubik', sans-serif;
+    }
+  </style>
+</head>
+<body class="w-full min-h-screen bg-bakery-bg text-bakery-text flex flex-col pb-28 selection:bg-primary selection:text-white">
+<!-- Sticky Top App Bar -->
+<header class="sticky top-0 z-30 w-full bg-[#0e5a4a] text-white px-4 py-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-2.5">
+<a aria-label="Volver a la tienda" class="w-9 h-9 rounded-lg bg-[#093b31]/60 flex items-center justify-center text-white hover:bg-[#093b31] transition-colors" href="javascript:history.back()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<line x1="19" x2="5" y1="12" y2="12"></line>
+<polyline points="12 19 5 12 12 5"></polyline>
+</svg>
+</a>
+<div class="leading-tight">
+<div class="text-[11px] uppercase tracking-wider text-[#a3d9c9] font-medium font-rubik">Panadería &amp; Confitería</div>
+<div class="text-sm font-bold font-rubik tracking-tight text-white flex items-center gap-1.5">
+<span>La Espiga</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-[#34d399]"></span>
+</div>
+</div>
+</div>
+<!-- Carrito con indicador -->
+<a aria-label="Carrito de compras" class="relative w-9 h-9 rounded-lg bg-[#093b31]/60 flex items-center justify-center text-white hover:bg-[#093b31] transition-colors" href="javascript:void(0)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-2z"></path>
+<line x1="3" x2="21" y1="6" y2="6"></line>
+<path d="M16 10a4 4 0 0 1-8 0"></path>
+</svg>
+<span class="absolute -top-1 -right-1 bg-[#ff7a59] text-white text-[10px] font-bold font-rubik w-4 h-4 rounded-full flex items-center justify-center leading-none">2</span>
+</a>
+</header>
+<!-- Main Content -->
+<main class="w-full flex-1 flex flex-col">
+<!-- Top banner / Hero Image with badge & carousel indicators -->
+<div class="relative w-full aspect-square bg-[#eae4d7] overflow-hidden">
+<img alt="Torta Rogel artesanal de La Espiga" class="w-full h-full object-cover block" src="https://lh3.googleusercontent.com/aida/AEtjO1USzjDhK6xWheCtTFavX3HymBel_Pt1OTlJ6jB3qq6X325M6RQU1Y5QFyts_kkKA5rwAXmoLazwZqUyYEgA0G8hhEPYj3TZmvdRYBUchQWYZq_s2tiyzGq4QPTLv_ignjsfCltHlzeOUvjDdFdOrtQsdkIFbLbo8N4rZC8jxk8xrAciY79RrXRMYXc3Nq495d0-Ky1BHGwMaZ-YecK76mSW4h61Awbq_0Lzvs2RHahrUPEh0j9GSS2vrPA"/>
+<!-- Badge sobre la foto: Categoría -->
+<div class="absolute top-3 left-3 bg-[#0e5a4a] text-white text-[11px] font-bold uppercase tracking-wider font-rubik px-2.5 py-1 rounded">
+        Tortas por encargo
+      </div>
+<!-- Indicador de fotos (puntitos de carrusel) -->
+<div class="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1.5">
+<span class="w-5 h-2 rounded-full bg-[#0e5a4a]"></span>
+<span class="w-2 h-2 rounded-full bg-white/80 border border-[#0e5a4a]/20"></span>
+<span class="w-2 h-2 rounded-full bg-white/80 border border-[#0e5a4a]/20"></span>
+</div>
+</div>
+<!-- Contenedor de información del producto -->
+<div class="w-full px-4 py-4 flex flex-col gap-4">
+<!-- Callout card: Etiqueta aviso encargo con 48 hs -->
+<div class="bg-[#fff5ee] border border-[#fcdac9] rounded-lg p-3 flex items-start gap-2.5">
+<svg class="w-5 h-5 text-[#ff7a59] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<div class="text-xs text-[#7c2d12] leading-snug">
+<span class="font-bold font-rubik uppercase tracking-wide text-[#ff7a59]">Por encargo</span>
+<span class="text-[#7c2d12]"> · Pedila con 48 h de anticipación para que el maestro pastelero hornee tu Rogel a punto.</span>
+</div>
+</div>
+<!-- Product main card: Nombre y Precio estilo etiqueta de góndola -->
+<div class="bg-white border border-[#e5dece] rounded-xl p-4 flex flex-col gap-3 shadow-sm">
+<div>
+<span class="text-[11px] font-semibold text-[#0e5a4a] uppercase tracking-wider">Elaboración propia diaria</span>
+<h1 class="text-2xl font-bold font-rubik text-[#1f2937] leading-tight mt-0.5">Torta rogel</h1>
+<p class="text-xs text-[#6b7280] mt-0.5">Peso estimado aprox. 1,6 kg · Tamaño familiar</p>
+</div>
+<!-- Etiqueta de precio grande de mostrador / góndola -->
+<div class="pt-3 border-t border-[#f2ece1] flex items-baseline justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#6b7280] font-rubik">Precio final</span>
+<div class="text-right">
+<div class="text-3xl font-extrabold font-rubik text-[#0e5a4a] tracking-tight">
+              $ 28.000
+            </div>
+<div class="text-[11px] text-[#6b7280]">por unidad entera</div>
+</div>
+</div>
+</div>
+<!-- Description card: Descripción artesanal & checklist -->
+<div class="bg-white border border-[#e5dece] rounded-xl p-4 shadow-sm">
+<h2 class="text-xs font-bold font-rubik uppercase tracking-wider text-[#6b7280] mb-1.5">Descripción</h2>
+<p class="text-sm text-[#374151] leading-relaxed">
+          Hojaldre crocante, dulce de leche y merengue italiano. Para 12 porciones.
+        </p>
+<!-- Detalles de elaboración de mostrador -->
+<div class="mt-3 pt-3 border-t border-[#f2ece1] grid grid-cols-2 gap-2 text-xs">
+<div class="flex items-center gap-1.5 text-[#4b5563]">
+<svg class="w-4 h-4 text-[#0e5a4a]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span>12 porciones</span>
+</div>
+<div class="flex items-center gap-1.5 text-[#4b5563]">
+<svg class="w-4 h-4 text-[#0e5a4a]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span>8 capas crocantes</span>
+</div>
+<div class="flex items-center gap-1.5 text-[#4b5563]">
+<svg class="w-4 h-4 text-[#0e5a4a]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span>Dulce de leche repostero</span>
+</div>
+<div class="flex items-center gap-1.5 text-[#4b5563]">
+<svg class="w-4 h-4 text-[#0e5a4a]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+<span>Merengue sopleteado</span>
+</div>
+</div>
+</div>
+<!-- Pickup & delivery card: Información de retiro en mostrador -->
+<div class="bg-white border border-[#e5dece] rounded-xl p-4 flex items-start gap-3 shadow-sm">
+<div class="w-8 h-8 rounded-lg bg-[#eaf3ef] flex items-center justify-center text-[#0e5a4a] shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+</div>
+<div class="text-xs text-[#4b5563] leading-relaxed">
+<div class="font-bold text-[#1f2937] font-rubik text-[13px]">Retiro en mostrador o envío</div>
+<div>Av. San Martín 1234, Barrio Norte. Coordinás el horario exacto al completar tu pedido.</div>
+</div>
+</div>
+<!-- Footer legal y contexto local 2026 -->
+<footer class="mt-2 text-center text-xs text-[#6b7280] space-y-1.5 pb-2">
+<div class="font-medium text-[#4b5563]">Panadería La Espiga · Barrio Norte</div>
+<div>Lun a sáb 7:00 a 13:00 y 16:30 a 20:30 · Dom cerrado</div>
+<div class="text-[11px] text-[#9ca3af] pt-1">Hecho con Mostry · © 2026 Mostry. Todos los derechos reservados.</div>
+</footer>
+</div>
+</main>
+<!-- Fixed bottom bar: Selector - 1 + y botón coral -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#e5dece] px-4 py-3 shadow-[0_-2px_10px_rgba(0,0,0,0.04)] flex items-center gap-3">
+<!-- Selector de cantidad − 1 + -->
+<div class="flex items-center border border-[#e5dece] rounded-xl bg-[#fdf9f2] h-12 shrink-0">
+<button aria-label="Disminuir cantidad" class="w-10 h-full flex items-center justify-center text-lg font-bold text-[#0e5a4a] hover:bg-[#e5dece]/50 active:scale-95 transition-all" type="button">
+        −
+      </button>
+<span class="w-8 text-center font-bold font-rubik text-base text-[#1f2937]">
+        1
+      </span>
+<button aria-label="Aumentar cantidad" class="w-10 h-full flex items-center justify-center text-lg font-bold text-[#0e5a4a] hover:bg-[#e5dece]/50 active:scale-95 transition-all" type="button">
+        +
+      </button>
+</div>
+<!-- Botón coral Agregar al carrito -->
+<button class="flex-1 h-12 bg-[#ff7a59] hover:bg-[#f06b49] text-white font-bold font-rubik text-base rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]" type="button">
+<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-2z"></path>
+<line x1="3" x2="21" y1="6" y2="6"></line>
+<path d="M16 10a4 4 0 0 1-8 0"></path>
+</svg>
+<span>Agregar al carrito</span>
+</button>
+</div>
+</body></html>

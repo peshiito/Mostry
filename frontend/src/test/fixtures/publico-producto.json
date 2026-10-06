@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "nombre": "Medialuna de manteca",
+  "descripcion": "Hojaldrada, con almíbar.",
+  "precio": 35000,
+  "categoriaId": 1,
+  "destacado": true,
+  "disponible": true,
+  "aceptaEncargo": false,
+  "fotos": []
+}

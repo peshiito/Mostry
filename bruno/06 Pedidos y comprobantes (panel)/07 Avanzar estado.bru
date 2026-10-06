@@ -1,0 +1,22 @@
+meta {
+  name: Avanzar estado
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{api}}/panel/pedidos/{{pedidoId}}/estado
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "estado": "en_preparacion"
+  }
+}

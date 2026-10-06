@@ -1,0 +1,50 @@
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-height: var(--toque);
+  padding: 0 var(--e-4);
+  border: 1px solid transparent;
+  border-radius: var(--radio);
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--transicion),
+    transform var(--dur-toque) var(--ease-out);
+}
+.boton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+.boton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Coral con texto carbón: 7.6:1. Nunca texto blanco sobre coral (2.6:1). */
+.principal {
+  background: var(--coral);
+  color: var(--sobre-coral);
+}
+.principal:hover:not(:disabled) {
+  background: var(--coral-presionado);
+}
+.verde {
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.secundario {
+  background: var(--papel);
+  border-color: var(--linea-fuerte);
+  color: var(--carbon);
+}
+.texto {
+  background: transparent;
+  color: var(--verde);
+  padding: 0 var(--e-2);
+}
+.peligro {
+  background: var(--ladrillo);
+  color: var(--sobre-ladrillo);
+}

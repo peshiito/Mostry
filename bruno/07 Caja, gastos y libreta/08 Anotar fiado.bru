@@ -1,0 +1,24 @@
+meta {
+  name: Anotar fiado
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{api}}/panel/libreta/clientes/1/movimientos
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "tipo": "deuda",
+    "monto": 500000,
+    "detalle": "Docena y media"
+  }
+}

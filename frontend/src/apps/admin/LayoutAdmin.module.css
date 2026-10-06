@@ -1,0 +1,63 @@
+.admin {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  min-height: 100dvh;
+}
+.lateral {
+  display: grid;
+  align-content: start;
+  gap: var(--e-5);
+  padding: var(--e-4);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+.logo {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radio);
+  background: var(--lona);
+}
+.nombre {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+  font-weight: 700;
+}
+.chip {
+  padding: 0 6px;
+  border-radius: var(--radio-chico);
+  background: var(--tinte-sobre-verde);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.nav {
+  display: grid;
+  gap: 4px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: var(--toque);
+  padding: 0 var(--e-3);
+  border-radius: var(--radio);
+  color: var(--sobre-verde);
+  font-weight: 600;
+  text-decoration: none;
+}
+.item[aria-current='page'] {
+  background: var(--tinte-sobre-verde);
+}
+.contenido {
+  min-width: 0;
+}
+.tema {
+  margin-top: auto;
+}

@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "categoriaId": 1,
+  "nombre": "Medialuna de manteca",
+  "descripcion": "Hojaldrada, con almíbar.",
+  "precio": 35000,
+  "stock": 119,
+  "stockReservado": 8,
+  "stockMinimo": 24,
+  "agotado": false,
+  "destacado": true,
+  "activo": true,
+  "aceptaEncargo": false,
+  "creadoEn": "2026-10-03T13:15:37.000Z",
+  "actualizadoEn": "2026-10-05T14:04:59.000Z",
+  "stockDisponible": 111,
+  "stockBajo": false
+}

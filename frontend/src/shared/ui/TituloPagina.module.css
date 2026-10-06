@@ -1,0 +1,25 @@
+.cabeza {
+  display: grid;
+  gap: var(--e-1);
+}
+.migas {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}
+.fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-3);
+}
+.titulo {
+  font-size: var(--t-2xl);
+  font-weight: 700;
+}
+.accion {
+  margin-left: auto;
+}
+.bajada {
+  color: var(--texto-2);
+}

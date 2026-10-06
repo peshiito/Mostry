@@ -1,0 +1,39 @@
+.barra {
+  animation: subir 380ms var(--ease-hoja);
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 10;
+  padding: var(--e-3) var(--e-4) calc(var(--e-3) + env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+.boton {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  max-width: calc(var(--ancho-app) - 2 * var(--e-4));
+  min-height: 60px;
+  margin: 0 auto;
+  padding: 0 var(--e-4);
+  border-radius: var(--radio);
+  background: var(--coral);
+  color: var(--sobre-coral);
+  box-shadow: var(--sombra-flotante);
+  text-decoration: none;
+}
+.textos {
+  flex: 1;
+  display: grid;
+  line-height: 1.25;
+}
+.titulo {
+  font-weight: 700;
+}
+.detalle {
+  font-size: var(--t-sm);
+}
+@keyframes subir {
+  from {
+    transform: translateY(110%);
+  }
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Detalle (con link de WhatsApp)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{api}}/panel/pedidos/{{pedidoId}}
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

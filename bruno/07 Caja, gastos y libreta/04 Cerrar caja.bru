@@ -1,0 +1,22 @@
+meta {
+  name: Cerrar caja
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{api}}/panel/caja/cerrar
+  body: json
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}
+
+body:json {
+  {
+    "montoContado": 1050000
+  }
+}

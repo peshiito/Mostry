@@ -1,8 +1,9 @@
+import type { TiendaId } from '../../../shared/db/tiendaId.js';
 import { enviarSinFallar } from '../../../shared/email/enviarSinFallar.js';
 import type { Mailer } from '../../../shared/email/mailer.js';
 import { AppError } from '../../../shared/errors/AppError.js';
 import { usuariosRepo } from '../../auth/repositorios/usuarios.repository.js';
-import { verificarTotp } from '../../auth/servicios/totp.service.js';
+import { verificarClave } from '../../../shared/crypto/claves.js';
 import type { DatosCobro } from '../schemas.js';
 import { tiendaConfigRepo } from '../tiendaConfig.repository.js';
 
@@ -12,16 +13,16 @@ const aviso = (alias: string, titular: string) => ({
 });
 
 // Acción sensible: si alguien cambia el alias, la plata va a otra cuenta.
-// Por eso pide TOTP y avisa por email a los dueños.
+// Por eso pide la contraseña de nuevo y avisa por email a los dueños.
 export async function cambiarCobro(
-  tiendaId: number,
+  tiendaId: TiendaId,
   usuarioId: number,
-  { alias, titularAlias, codigoTotp }: DatosCobro,
+  { alias, titularAlias, clave }: DatosCobro,
   mailer: Mailer,
 ) {
   const usuario = await usuariosRepo.buscarPorId(usuarioId);
-  if (!usuario || !(await verificarTotp(usuario, codigoTotp))) {
-    throw new AppError(400, 'codigo_invalido', 'El código de la app no es correcto.');
+  if (!usuario || !(await verificarClave(usuario.hashClave, clave))) {
+    throw new AppError(400, 'clave_incorrecta', 'La contraseña no es correcta.');
   }
   await tiendaConfigRepo.actualizar(tiendaId, { alias, titularAlias });
   for (const { email } of await tiendaConfigRepo.emailsDeDuenos(tiendaId)) {

@@ -1,0 +1,17 @@
+.form {
+  display: grid;
+  gap: var(--e-4);
+  margin: 0;
+  padding: var(--e-4);
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.titulo {
+  float: left;
+  width: 100%;
+  padding: 0;
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+}

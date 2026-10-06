@@ -1,14 +1,15 @@
+import type { TiendaId } from '../../shared/db/tiendaId.js';
 import { db } from '../../shared/db/db.js';
 import type { Ejecutor } from '../../shared/db/ejecutor.js';
 
 export const miembrosRepo = {
-  crear: (tiendaId: number, usuarioId: number, ej: Ejecutor = db) =>
+  crear: (tiendaId: TiendaId, usuarioId: number, ej: Ejecutor = db) =>
     ej
       .insertInto('miembrosTienda')
       .values({ tiendaId, usuarioId, rol: 'dueno' })
       .execute(),
 
-  async esMiembro(tiendaId: number, usuarioId: number): Promise<boolean> {
+  async esMiembro(tiendaId: TiendaId, usuarioId: number): Promise<boolean> {
     const fila = await db
       .selectFrom('miembrosTienda')
       .select('rol')

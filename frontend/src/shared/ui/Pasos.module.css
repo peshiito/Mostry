@@ -1,0 +1,28 @@
+.pasos {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: var(--e-2);
+}
+.paso {
+  display: grid;
+  gap: 6px;
+  color: var(--texto-3);
+  font-size: var(--t-xs);
+  font-weight: 600;
+}
+.barra {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--linea);
+}
+.hecho .barra,
+.actual .barra {
+  background: var(--verde);
+}
+.actual {
+  color: var(--verde);
+}
+.hecho {
+  color: var(--texto-2);
+}

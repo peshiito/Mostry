@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mostry - Panel de Gestión</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Rubik & Work Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#31302c",
+            "tertiary": "#4c3400",
+            "on-secondary-fixed": "#3c0700",
+            "surface-tint": "#246959",
+            "surface-dim": "#dddad3",
+            "on-primary-fixed-variant": "#005141",
+            "surface-container-low": "#f7f3ec",
+            "on-primary-fixed": "#002019",
+            "inverse-on-surface": "#f4f0e9",
+            "error-container": "#ffdad6",
+            "surface-variant": "#e6e2db",
+            "on-tertiary-container": "#f5b73c",
+            "surface-container-high": "#ebe8e1",
+            "primary-fixed": "#acf0db",
+            "on-error-container": "#93000a",
+            "secondary": "#a7391e",
+            "primary": "#004134",
+            "error": "#ba1a1a",
+            "surface-container": "#f1ede6",
+            "primary-container": "#0e5a4a",
+            "on-secondary-container": "#6e1500",
+            "outline-variant": "#bfc9c4",
+            "secondary-container": "#fd7958",
+            "on-secondary-fixed-variant": "#862208",
+            "primary-fixed-dim": "#90d4bf",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#fdf9f2",
+            "secondary-fixed": "#ffdad2",
+            "tertiary-container": "#694a00",
+            "surface-container-highest": "#e6e2db",
+            "on-tertiary": "#ffffff",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#ffb4a2",
+            "on-primary-container": "#8ccfbb",
+            "tertiary-fixed": "#ffdea8",
+            "background": "#fdf9f2",
+            "on-tertiary-fixed": "#271900",
+            "on-surface-variant": "#3f4945",
+            "on-primary": "#ffffff",
+            "on-surface": "#1c1c18",
+            "surface": "#fdf9f2",
+            "on-background": "#1c1c18",
+            "inverse-primary": "#90d4bf",
+            "tertiary-fixed-dim": "#fabc41",
+            "outline": "#6f7975",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "gutter": "1rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Work Sans"],
+            "body-md": ["Work Sans"],
+            "headline-sm": ["Rubik"],
+            "headline-lg": ["Rubik"],
+            "label-md": ["Work Sans"],
+            "headline-md": ["Rubik"],
+            "body-lg": ["Work Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-full bg-background text-on-background antialiased flex flex-col font-body-md text-body-md select-none">
+<!-- TOP APP BAR -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin h-14 bg-primary text-on-primary">
+<div class="flex items-center space-x-2.5">
+<div class="w-8 h-8 rounded-lg bg-primary-container border border-on-primary-container/20 flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-lg" data-icon="storefront">storefront</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center space-x-1.5">
+<span class="font-headline-sm text-headline-sm text-on-primary font-bold tracking-tight leading-none">La Espiga</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-primary-container/90 tracking-wider">PANEL DE GESTIÓN</span>
+</div>
+</div>
+<div class="flex items-center">
+<button aria-label="Notificaciones" class="relative w-10 h-10 rounded-lg flex items-center justify-center text-on-primary hover:bg-primary-container active:opacity-80 transition-opacity" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+</div>
+</header>
+<!-- CONTENIDO PRINCIPAL SCROLLEABLE -->
+<main class="flex-1 w-full max-w-md mx-auto pt-16 pb-24 px-margin flex flex-col gap-5">
+<!-- TARJETA DESTACADA: VIDRIERA ONLINE -->
+<section class="mt-2 bg-surface-container-lowest border border-surface-variant rounded-xl p-4 flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-surface-tint"></div>
+<span class="font-label-md text-label-md text-surface-tint">Vidriera activa</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-md bg-surface-container text-on-surface-variant border border-surface-variant">ONLINE</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline tracking-wider">TU TIENDA DIGITAL</span>
+<div class="flex items-center gap-1.5 mt-0.5 text-primary-container font-headline-sm text-headline-sm tracking-tight break-all">
+<span class="material-symbols-outlined text-lg text-outline" data-icon="link">link</span>
+<span class="font-semibold text-[17px] leading-snug">laespiga.mostry.com.ar</span>
+</div>
+</div>
+<div class="pt-2 border-t border-surface-container flex items-center gap-2">
+<a class="flex-1 h-10 px-3 rounded-lg border border-primary-container bg-surface-container-lowest text-primary-container font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-container-low active:opacity-80 transition-colors" href="#">
+<span>Ver mi tienda</span>
+<span class="material-symbols-outlined text-base" data-icon="open_in_new">open_in_new</span>
+</a>
+<button class="h-10 px-3.5 rounded-lg border border-surface-variant bg-surface-container-low text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 hover:bg-surface-variant active:opacity-80 transition-colors" onclick="navigator.clipboard?.writeText('https://laespiga.mostry.com.ar')" type="button">
+<span class="material-symbols-outlined text-base text-on-surface-variant" data-icon="content_copy">content_copy</span>
+<span>Copiá el link</span>
+</button>
+</div>
+</section>
+<!-- GRUPO 1: NEGOCIO -->
+<section class="flex flex-col gap-1.5">
+<h2 class="px-1 font-label-sm text-label-sm text-outline tracking-wider">NEGOCIO</h2>
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl divide-y divide-surface-variant overflow-hidden">
+<!-- Ítem 1 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="calendar_today">calendar_today</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Encargos</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Pedidos programados y señas</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+<!-- Ítem 2 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="menu_book">menu_book</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Libreta</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Cuentas corrientes de clientes y fiados</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+<!-- Ítem 3 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Gastos</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Registro diario de compras y egresos</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+<!-- Ítem 4 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Proveedores</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Contactos de harina, bolsas y fletes</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+<!-- Ítem 5 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="sell">sell</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Promociones</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Pizarra de ofertas y descuentos del día</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- GRUPO 2: MI TIENDA -->
+<section class="flex flex-col gap-1.5">
+<h2 class="px-1 font-label-sm text-label-sm text-outline tracking-wider">MI TIENDA</h2>
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl divide-y divide-surface-variant overflow-hidden">
+<!-- Ítem 1 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="store">store</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Datos y apariencia</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Nombre, logo, dirección y portada</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+<!-- Ítem 2 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="schedule">schedule</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Horarios</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Turnos de atención y pausas de vidriera</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+<!-- Ítem 3 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Cobros y envíos</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Alias de Mercado Pago, efectivo y flete</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- GRUPO 3: CUENTA -->
+<section class="flex flex-col gap-1.5">
+<h2 class="px-1 font-label-sm text-label-sm text-outline tracking-wider">CUENTA</h2>
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl divide-y divide-surface-variant overflow-hidden">
+<!-- Ítem 1 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="credit_card">credit_card</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Suscripción</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Plan Mostry Barrio · Al día</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+<!-- Ítem 2 -->
+<a class="flex items-center justify-between p-3.5 hover:bg-surface-container-low active:bg-surface-container transition-colors" href="#">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container border border-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="manage_accounts">manage_accounts</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Mi cuenta</span>
+<span class="font-body-md text-[13px] text-on-surface-variant leading-tight">Email, seguridad 2FA y teléfono de acceso</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- FOOTER SUTIL -->
+<div class="mt-4 pt-4 flex flex-col items-center justify-center gap-3 text-center border-t border-surface-variant/80">
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors active:opacity-75" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Cerrar sesión</span>
+</button>
+<p class="font-label-sm text-[12px] text-outline tracking-normal">
+        Mostry v2.4.1 (2026) · Hecho para comercios de barrio
+      </p>
+</div>
+</main>
+<!-- BOTTOM NAVIGATION BAR (5 Destinos exactos del JSON, 'Más' activa) -->
+<nav aria-label="Navegación principal" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 px-space-xs bg-surface-container-lowest border-t border-surface-variant">
+<!-- Destino 1: Inicio -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 flex-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm mt-0.5">Inicio</span>
+</a>
+<!-- Destino 2: Pedidos con Badge -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 flex-1 active:scale-95 transition-transform relative" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-2xl" data-icon="receipt_long">receipt_long</span>
+<span class="absolute -top-1 -right-2 bg-secondary text-on-secondary text-[10px] font-bold rounded-full h-4 min-w-[16px] px-1 flex items-center justify-center leading-none">
+          3
+        </span>
+</div>
+<span class="font-label-sm text-label-sm mt-0.5">Pedidos</span>
+</a>
+<!-- Destino 3: Caja -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 flex-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="point_of_sale">point_of_sale</span>
+<span class="font-label-sm text-label-sm mt-0.5">Caja</span>
+</a>
+<!-- Destino 4: Productos -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 flex-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm mt-0.5">Productos</span>
+</a>
+<!-- Destino 5: Más (ACTIVO) -->
+<a class="flex flex-col items-center justify-center text-primary-container font-semibold py-1 flex-1 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-2xl text-primary-container fill-icon" data-icon="menu">menu</span>
+<span class="font-label-sm text-label-sm mt-0.5 text-primary-container font-bold">Más</span>
+</a>
+</nav>
+</body></html>

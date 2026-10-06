@@ -1,0 +1,16 @@
+meta {
+  name: Caja actual
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{api}}/panel/caja
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

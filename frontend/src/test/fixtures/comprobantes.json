@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "tipo": "pago",
+    "estado": "pendiente",
+    "archivoTipo": "pdf",
+    "monto": null,
+    "fechaOperacion": null,
+    "titular": null,
+    "numeroOperacion": null,
+    "motivoRechazo": null,
+    "aprobadoEn": null,
+    "rechazadoEn": null,
+    "archivoBorradoEn": null,
+    "creadoEn": "2026-10-05T14:02:18.000Z",
+    "archivoDisponible": true
+  }
+]

@@ -1,0 +1,29 @@
+.pagina {
+  justify-items: center;
+  text-align: center;
+  padding-top: var(--e-6);
+}
+.icono {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.titulo {
+  font-size: var(--t-2xl);
+}
+.texto {
+  color: var(--texto-2);
+}
+.resumen {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 600;
+}
+.numero {
+  font-family: var(--fuente-titulo);
+}

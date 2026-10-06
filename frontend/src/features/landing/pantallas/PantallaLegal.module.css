@@ -1,0 +1,8 @@
+.seccion {
+  display: grid;
+  gap: var(--e-2);
+  line-height: 1.6;
+}
+.titulo {
+  font-size: var(--t-xl);
+}

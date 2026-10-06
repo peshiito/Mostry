@@ -2,11 +2,12 @@ import express from 'express';
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
 import { ORIGEN_ADMIN, ORIGEN_TIENDA } from '../../test/origenes.js';
+import { comoTiendaId } from '../db/tiendaId.js';
 import { manejarErrores } from './manejarErrores.js';
 import { resolverTienda, type BuscarTiendaPorSlug } from './resolverTienda.js';
 
 const buscar: BuscarTiendaPorSlug = async (slug) =>
-  slug === 'heladeria' ? { id: 7, slug } : undefined;
+  slug === 'heladeria' ? { id: comoTiendaId(7), slug } : undefined;
 
 const app = express();
 app.get('/tienda', resolverTienda(buscar), (req, res) => {

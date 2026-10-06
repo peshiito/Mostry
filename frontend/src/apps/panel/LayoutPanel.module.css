@@ -1,0 +1,4 @@
+.panel {
+  min-height: 100dvh;
+  padding-bottom: calc(var(--alto-nav) + var(--e-5) + env(safe-area-inset-bottom));
+}

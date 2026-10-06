@@ -1,0 +1,36 @@
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: 64px;
+  padding: var(--e-3) var(--e-4);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--radio);
+  background: var(--papel);
+  cursor: pointer;
+}
+.opcion:has(:checked) {
+  border: 2px solid var(--verde);
+  background: var(--verde-claro);
+}
+.radio {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  accent-color: var(--verde);
+}
+.textos {
+  flex: 1;
+  display: grid;
+}
+.titulo {
+  font-weight: 600;
+}
+.detalle {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.fin {
+  font-weight: 700;
+  white-space: nowrap;
+}

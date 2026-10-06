@@ -1,0 +1,16 @@
+meta {
+  name: Comprobantes del pedido
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{api}}/panel/pedidos/{{pedidoId}}/comprobantes
+  body: none
+  auth: none
+}
+
+headers {
+  Origin: {{origenTienda}}
+  Cookie: {{cookie}}
+}

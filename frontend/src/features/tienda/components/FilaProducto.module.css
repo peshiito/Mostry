@@ -1,0 +1,52 @@
+.fila {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+  border-bottom: var(--borde);
+}
+.fila:last-child {
+  border-bottom: 0;
+}
+.link {
+  flex: 1;
+  display: flex;
+  gap: var(--e-3);
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+.foto {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radio-chico);
+  object-fit: cover;
+}
+.textos {
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+  min-width: 0;
+}
+.nombre {
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  font-size: var(--t-lg);
+}
+.desc {
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.agotado .foto {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+.agotado .nombre {
+  color: var(--texto-3);
+  text-decoration: line-through;
+}
