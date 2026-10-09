@@ -1,0 +1,25 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--e-4);
+}
+.titulo {
+  margin-bottom: var(--e-2);
+  font-size: var(--t-sm);
+}
+.lista {
+  display: grid;
+  gap: var(--e-2);
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-size: var(--t-sm);
+}
+.item[data-tono='ok'] svg {
+  color: var(--ok);
+}
+.item[data-tono='nunca'] svg {
+  color: var(--ladrillo);
+}

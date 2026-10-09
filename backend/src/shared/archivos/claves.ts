@@ -21,3 +21,6 @@ export const clavesDeFoto = (base: string): ClavesFoto => ({
 
 export const claveLogo = (tiendaId: TiendaId) =>
   `${prefijoTienda(tiendaId)}logo/${randomUUID()}.webp`;
+
+export const claveCapturaReporte = (tiendaId: TiendaId, reporteId: number) =>
+  `${prefijoTienda(tiendaId)}reportes/${reporteId}/${randomUUID()}.webp`;

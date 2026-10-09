@@ -1,7 +1,8 @@
+import type { TiendaId } from '../../../shared/db/tiendaId.js';
 import { db } from '../../../shared/db/db.js';
 
 export const adminDetalleRepo = {
-  duenos: (tiendaId: number) =>
+  duenos: (tiendaId: TiendaId) =>
     db
       .selectFrom('miembrosTienda')
       .innerJoin('usuarios', 'usuarios.id', 'miembrosTienda.usuarioId')
@@ -15,21 +16,18 @@ export const adminDetalleRepo = {
       .where('miembrosTienda.tiendaId', '=', tiendaId)
       .execute(),
 
-  async conteos(tiendaId: number) {
-    const contar = (tabla: 'productos' | 'pedidos') =>
-      db
-        .selectFrom(tabla)
-        .select((eb) => eb.fn.countAll<number>().as('n'))
-        .where('tiendaId', '=', tiendaId)
-        .executeTakeFirstOrThrow();
-    const [productos, pedidos] = await Promise.all([
-      contar('productos'),
-      contar('pedidos'),
-    ]);
-    return { productos: Number(productos.n), pedidos: Number(pedidos.n) };
+  // Cuántos productos cargó (uso de la herramienta). Los pedidos NO: son datos
+  // del negocio del comercio.
+  async conteos(tiendaId: TiendaId) {
+    const productos = await db
+      .selectFrom('productos')
+      .select((eb) => eb.fn.countAll<number>().as('n'))
+      .where('tiendaId', '=', tiendaId)
+      .executeTakeFirstOrThrow();
+    return { productos: Number(productos.n) };
   },
 
-  pagos: (tiendaId: number) =>
+  pagos: (tiendaId: TiendaId) =>
     db
       .selectFrom('pagosSuscripcion')
       .innerJoin('usuarios', 'usuarios.id', 'pagosSuscripcion.registradoPor')

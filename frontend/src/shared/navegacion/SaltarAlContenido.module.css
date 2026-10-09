@@ -1,0 +1,18 @@
+.saltar {
+  position: fixed;
+  top: var(--e-2);
+  left: var(--e-2);
+  z-index: 100;
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--radio);
+  background: var(--carbon);
+  color: var(--lona);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--dur-corta) var(--ease-out);
+}
+.saltar:focus-visible {
+  transform: none;
+  box-shadow: var(--foco);
+}

@@ -1,0 +1,43 @@
+.franja {
+  display: grid;
+  gap: var(--e-2);
+  padding: var(--e-3) var(--e-4);
+  border: 1px solid var(--mostaza-borde);
+  border-radius: var(--radio);
+  background: var(--mostaza-claro);
+}
+.titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  color: var(--mostaza-texto);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.cuenta {
+  font-variant-numeric: tabular-nums;
+}
+.lista {
+  display: grid;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: var(--toque);
+  border-top: 1px solid var(--mostaza-borde);
+}
+.item:first-child {
+  border-top: 0;
+}
+.nombre {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--carbon);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

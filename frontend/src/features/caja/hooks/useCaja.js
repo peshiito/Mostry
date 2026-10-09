@@ -1,5 +1,6 @@
 import { useAccion } from '../../../shared/api/useAccion.js';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
+import { MENSAJES_CAJA, unirMovimientos } from '../lib/movimientos.js';
 import { panel } from '../../panelBase/panelApi.js';
 
 const hora = (iso) =>
@@ -12,11 +13,6 @@ const hora = (iso) =>
 // Caja de hoy (GET /panel/caja: null si todavía no se abrió) y las transferencias
 // del día, que entran aunque la caja esté cerrada (6.4).
 
-const MENSAJES_CAJA = {
-  abrir: 'Caja abierta',
-  cerrar: 'Caja cerrada',
-  movimientos: 'Movimiento anotado',
-};
 export function useCaja() {
   const caja = useConsulta('/panel/caja');
   const resumen = useConsulta('/panel/caja/resumen');
@@ -30,7 +26,7 @@ export function useCaja() {
     { exito: (_, ruta) => MENSAJES_CAJA[ruta] ?? 'Listo' },
   );
   const c = caja.datos;
-  const movs = (c?.movimientos ?? resumen.datos?.movimientos ?? []).map((m) => ({
+  const movs = unirMovimientos(c?.movimientos, resumen.datos?.movimientos).map((m) => ({
     ...m,
     hora: hora(m.fecha),
   }));
@@ -50,6 +46,9 @@ export function useCaja() {
     caja: datos,
     esperado: c?.esperado ?? 0,
     cargando: caja.cargando,
+    // Un error de carga no es "caja sin abrir": la pantalla lo muestra aparte.
+    errorCarga: caja.error ?? resumen.error,
+    recargar: () => (caja.recargar(), resumen.recargar()),
     abrir: (montoApertura) => accion.ejecutar('abrir', { montoApertura }),
     cerrar: (montoContado) => accion.ejecutar('cerrar', { montoContado }),
     registrar: (m) =>

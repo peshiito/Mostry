@@ -29,6 +29,7 @@
   line-height: 1.4;
 }
 .cerrar {
+  position: relative;
   display: grid;
   flex: none;
   place-items: center;
@@ -43,6 +44,11 @@
   transition:
     background-color var(--dur-toque) ease,
     transform var(--dur-toque) ease-out;
+}
+.cerrar::after {
+  content: '';
+  position: absolute;
+  inset: -8px; /* área tocable de 44 px */
 }
 .cerrar:active {
   transform: scale(0.92);

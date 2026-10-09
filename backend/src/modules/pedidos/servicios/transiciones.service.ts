@@ -6,6 +6,7 @@ import { AppError } from '../../../shared/errors/AppError.js';
 import { registrarMovimiento } from '../../caja/servicios/registrarMovimiento.js';
 import { pedidosRepo, type Pedido } from '../repositorios/pedidos.repository.js';
 import { TRANSICIONES_MANUALES, type EstadoManual } from './estados.js';
+import { restoACobrar } from './montos.js';
 import { pedidoNoEncontrado, verPedido } from './panelPedidos.service.js';
 
 const invalida = (desde: EstadoPedido, hacia: EstadoPedido) =>
@@ -38,7 +39,7 @@ export async function avanzarPedido(
     const p = await pedidosRepo.bloquear(tx, tiendaId, id);
     if (!p) throw pedidoNoEncontrado();
     validar(p, hacia);
-    const resto = p.total - p.sena;
+    const resto = restoACobrar(p);
     if (hacia === 'entregado' && p.tipo === 'encargo' && resto > 0) {
       if (!medioCobro)
         throw new AppError(

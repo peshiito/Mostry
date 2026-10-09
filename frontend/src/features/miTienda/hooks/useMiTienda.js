@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useAccion } from '../../../shared/api/useAccion.js';
-import { panel } from '../../panelBase/panelApi.js';
+
 import { usePanel } from '../../panelBase/PanelContexto.jsx';
+import { usePanelApi } from '../../panelBase/BasePanel.jsx';
 
 const CAMPOS = [
   'nombre',
@@ -26,8 +27,9 @@ const NUMEROS = [
   'senaPorcentaje',
 ];
 
-// Configuración de la tienda (PATCH /panel/tienda/config): solo se mandan los cambios.
+// Configuración de la tienda (PATCH /tienda/config): solo se mandan los cambios.
 export function useMiTienda() {
+  const panel = usePanelApi();
   const { tienda, setTienda } = usePanel();
   const [t, setT] = useState(tienda);
   const [guardado, setGuardado] = useState(false);

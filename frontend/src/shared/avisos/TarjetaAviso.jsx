@@ -3,6 +3,7 @@ import { Icono } from '../ui/Icono.jsx';
 import { cerrarAviso } from './avisos.js';
 import p from './PartesAviso.module.css';
 import { estiloAviso } from './pila.js';
+import { TextosAviso } from './TextosAviso.jsx';
 import css from './TarjetaAviso.module.css';
 import { useDeslizar } from './useDeslizar.js';
 import { useTemporizador } from './useTemporizador.js';
@@ -46,12 +47,7 @@ export function TarjetaAviso({ aviso, indice, desplazo, altoFrente, abierta, onM
         <span className={p.icono} data-tipo={aviso.tipo}>
           <Icono nombre={ICONO[aviso.tipo]} tamano={20} />
         </span>
-        <div className={p.textos}>
-          <p className={p.titulo}>{aviso.titulo}</p>
-          {aviso.descripcion ? (
-            <p className={p.descripcion}>{aviso.descripcion}</p>
-          ) : null}
-        </div>
+        <TextosAviso aviso={aviso} />
         <button
           type="button"
           className={p.cerrar}

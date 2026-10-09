@@ -360,4 +360,25 @@ Detalle de cada punto en `docs/etapa-1-refinamiento.md`. Todo lo no listado acá
 - **Panel con los colores de la tienda** (decisión de Pedro, Etapa 11; pisa la sección 8): la paleta elegida se aplica a la vidriera y al panel. El panel muestra el logo de la tienda (o el de Mostry si no tiene).
 - **Logos normalizados:** al subirlo se recorta el borde vacío y se centra en un cuadrado de 512 px; en pantalla va entero (sin recortes) dentro de un círculo del mismo tamaño para todas las tiendas.
 - **Avisos y movimiento:** avisos flotantes propios al estilo Sonner (`shared/avisos`), animaciones con transform/opacity y curvas fuertes (tokens `--ease-*`), y selector de hora propio con ruedas en lugar del reloj del navegador.
+- **Etapa 14 (refinar el frontend):**
+  - **Textos neutros** en la vidriera para todos los rubros (nada de "recién horneado").
+  - **Fechas** siempre con el selector propio (`shared/ui/SelectorFecha`), nunca `type="date"`.
+  - **Carga por pantalla:** cada pantalla del panel, admin, cuenta y compra baja recién al abrirla (`cargarPantalla`); `src/shared` va en un solo chunk (`compartido`).
+  - **Script del tema en línea**, autorizado en la CSP por su hash sha256 (`config/temaEnLinea.js`). El servidor de producción tiene que usar `encabezados.config.js` tal cual.
+  - **PWA:** el panel es instalable (`vite-plugin-pwa`) y el service worker se registra solo desde el panel. Guarda únicamente la app; **la API y las fotos nunca se cachean**. Cuando hay versión nueva, avisa con "Actualizar" en lugar de recargar sola. Los íconos salen de `scripts/iconos.sh`.
+  - **Sin conexión:** franja fija en todas las zonas. Los GET iguales que están en vuelo se comparten, sin caché de datos.
+- **Admin y soporte (decisión de Pedro, después de la Etapa 14):**
+  - **Ingreso:** desde el "Ingresar" de la landing. Si la cuenta es admin, va a `admin.mostry.com.ar` con su sesión aparte.
+  - **Privacidad:** el admin ve solo suscripción, estado y fechas. Nunca ve ventas, caja, gastos, fiados ni datos de compradores.
+  - **WhatsApp a cada tienda:** con plantillas editables desde el dashboard (se guardan en la base): vencimiento de la prueba, próximo vencimiento, encuesta y personalizado. Cada mensaje se puede editar antes de mandarlo con `wa.me`, sin API. Las tiendas que vencen en 1 o 2 días aparecen arriba.
+  - **Reportes del comercio:** texto más captura opcional (jpg/png, 5 MB, en el bucket privado). Llegan al dashboard con estado (nuevo, en curso, resuelto) y tienen un botón para avisar por WhatsApp a `VITE_WHATSAPP_MOSTRY`.
+  - **Modo soporte con permiso:** el comerciante da acceso por 1 hora. Con eso el admin edita solo catálogo, categorías, fotos, horarios y config de la tienda. Todo queda registrado y el comerciante lo ve.
+  - **Cómo quedó (Etapa 14.5):**
+    - **Migraciones:** `0034` (plantillas_mensaje), `0035` (reportes), `0036` (accesos_soporte) y `0037` (registro_soporte).
+    - **Ingreso desde la landing:** `POST /auth/login` con Origin del sitio devuelve `destino`: `admin`, o la lista de tiendas del usuario.
+    - **Modo soporte:** `/admin/soporte/:tiendaId/*` monta solo catálogo, horarios y `tienda/config` sin alias, más el logo. `accesoSoporte` exige el permiso vigente y `registrarSoporte` anota cada cambio antes de responder.
+    - **Frontend:** reusa las pantallas del panel con el contexto `BasePanel` (`{ api, rutas, soporte }`).
+    - **Capturas de reportes:** el barrido de huérfanos las cuenta como archivos en uso, y se borran al resolver el reporte.
+- **Horarios:** cada día puede estar Cerrado, Con horario o "Las 24 horas". "24 horas" se guarda como 00:00–24:00; si la tienda sigue abierta todo el día siguiente, `cierraA` es `null` ("Abierto las 24 horas").
 - **Modo oscuro en todas las zonas:** "Automático" (sigue al dispositivo), "Claro" u "Oscuro"; se guarda por navegador. Botón en cada header y selector en Panel → Más → Apariencia. Los colores de la tienda se aclaran a un tono pastel con texto oscuro. Todo color sale de `tokens.css` (sin hex sueltos) y cada par texto/fondo cumple 4.5:1 en los dos modos.
+- **Tests de punta a punta (Etapa 13):** carpeta `e2e/` con su propio `package.json` (Playwright). Levantan su propia API (puerto 3100, base `mostry_e2e`) y su propio frontend (5273); los mails van a Mailpit. Se corren con `npm test` desde `e2e/`.

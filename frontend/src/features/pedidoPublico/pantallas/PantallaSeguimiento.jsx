@@ -1,3 +1,4 @@
+import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { useParams } from 'react-router';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
@@ -22,7 +23,7 @@ export function PantallaSeguimiento() {
   if (cargando) return <Esqueleto filas={5} />;
   if (!pedido)
     return (
-      <Estado icono="search" titulo="No encontramos ese pedido">
+      <Estado nivel={1} icono="search" titulo="No encontramos ese pedido">
         Revisá que el link esté completo.
       </Estado>
     );
@@ -53,7 +54,7 @@ export function PantallaSeguimiento() {
           </Boton>
         ) : null}
         <DetallePedido pedido={pedido} />
-        <Boton icono="chat" href={`https://wa.me/${tienda.whatsapp}`}>
+        <Boton icono="chat" href={linkWhatsapp(tienda.whatsapp) ?? undefined}>
           Escribirle a {tienda.nombre} por WhatsApp
         </Boton>
       </Pagina>

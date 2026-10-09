@@ -33,7 +33,14 @@ export function PantallaProducto() {
   return (
     <>
       <HeaderTienda volver="/catalogo" titulo={producto.nombre} />
-      <img src={producto.fotoGrande} alt={producto.nombre} className={css.foto} />
+      <img
+        src={producto.fotoGrande}
+        srcSet={producto.fotoSrcset}
+        sizes="(max-width: 480px) 100vw, 480px"
+        alt={producto.nombre}
+        className={css.foto}
+        fetchPriority="high"
+      />
       <Pagina espacio="sm" className={css.cuerpo}>
         {producto.aceptaEncargo ? (
           <Aviso tipo="alerta" titulo="Por encargo" icono="schedule">

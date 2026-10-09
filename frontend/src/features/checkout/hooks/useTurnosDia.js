@@ -5,15 +5,17 @@ import { turnosDelDia } from '../lib/agenda.js';
 // y días cerrados); acá se parten en turnos de 30 min respetando la anticipación.
 export function useTurnosDia(dia, anticipacionHoras) {
   const fecha = dia ? dia.toLocaleDateString('sv-SE') : null;
-  const { datos, cargando } = useConsulta(
+  const { datos, cargando, error, recargar } = useConsulta(
     fecha ? `/publico/encargos/disponibilidad?fecha=${fecha}` : null,
   );
-  if (!dia || !datos) return { turnos: [], cargando, motivo: null };
-  if (!datos.disponible) return { turnos: [], cargando, motivo: datos.motivo };
+  // Un error no es "sin turnos": el comprador ve que falló y puede reintentar.
+  const base = { turnos: [], cargando, error, recargar };
+  if (!dia || !datos) return { ...base, motivo: null };
+  if (!datos.disponible) return { ...base, motivo: datos.motivo };
   const tramos = { [dia.getDay()]: datos.tramos.map((t) => [t.abre, t.cierra]) };
   return {
+    ...base,
     turnos: turnosDelDia(dia, tramos, [], anticipacionHoras),
-    cargando,
     motivo: null,
   };
 }

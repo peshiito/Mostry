@@ -1,16 +1,22 @@
 import { useAccion } from '../../../shared/api/useAccion.js';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
-import { panel } from '../../panelBase/panelApi.js';
+import { useBasePanel, usePanelApi } from '../../panelBase/BasePanel.jsx';
 
-// Categorías: alta, orden (se mandan todos los ids) y baja (/panel/categorias).
+// Categorías: alta, orden (se mandan todos los ids) y baja (/categorias).
 export function useCategoriasPanel() {
-  const { datos, cargando, recargar, setDatos } = useConsulta('/panel/categorias');
+  const panel = usePanelApi();
+  const base = useBasePanel();
+  const { datos, cargando, recargar, setDatos } = useConsulta(`${base.api}/categorias`);
   const cats = (datos ?? []).map((c) => ({ ...c, cantidad: c.productosActivos }));
   // El segundo argumento de ejecutar() es el texto del aviso (sin texto, no avisa).
   const accion = useAccion(
+    // Si falla (por ejemplo, el nuevo orden), se vuelve a lo que dice la base.
     async (fn) => {
-      await fn();
-      recargar();
+      try {
+        await fn();
+      } finally {
+        recargar();
+      }
     },
     { exito: (_, _fn, texto) => texto },
   );

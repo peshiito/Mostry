@@ -11,7 +11,8 @@ describe('migración 0032 (sin 2FA)', { timeout: 60_000 }, () => {
 
   it('borra las sesiones a medio camino y conserva las completas', async () => {
     const migrador = crearMigrador(db);
-    expect((await migrador.migrateDown()).error).toBeUndefined();
+    // Hasta justo antes de la 0032 (después hay otras migraciones).
+    expect((await migrador.migrateTo('0031_avisos_suscripcion')).error).toBeUndefined();
     try {
       await sql`INSERT INTO usuarios (email, hash_clave, nombre)
         VALUES ('a@test.com', 'x', 'A')`.execute(db);
@@ -23,7 +24,7 @@ describe('migración 0032 (sin 2FA)', { timeout: 60_000 }, () => {
       await sesion('falta_configurar_totp', 'b'.repeat(64)).execute(db);
       await sesion('completa', 'c'.repeat(64)).execute(db);
     } finally {
-      expect((await migrador.migrateUp()).error).toBeUndefined();
+      expect((await migrador.migrateToLatest()).error).toBeUndefined();
     }
     const quedan = await db.selectFrom('sesiones').select('hashToken').execute();
     expect(quedan.map((s) => s.hashToken)).toEqual(['c'.repeat(64)]);

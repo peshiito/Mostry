@@ -7,6 +7,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
 }
 
 body {
@@ -41,4 +43,9 @@ a {
 :focus-visible {
   outline: none;
   box-shadow: var(--foco);
+}
+
+/* El título que recibe el foco al navegar no muestra el anillo si se llegó con el mouse. */
+[tabindex='-1']:focus:not(:focus-visible) {
+  box-shadow: none;
 }

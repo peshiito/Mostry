@@ -1,18 +1,31 @@
 import { AppError } from '../../../shared/errors/AppError.js';
 import { resumenSuscripcion } from '../../tiendas/servicios/estadoSuscripcion.js';
+import { tiendasRepo } from '../../tiendas/tiendas.repository.js';
 import { adminDetalleRepo } from '../repositorios/adminDetalle.repository.js';
-import { adminTiendasRepo } from '../repositorios/adminTiendas.repository.js';
+import { adminFichaRepo } from '../repositorios/adminFicha.repository.js';
+import { soporteRepo } from '../../soporte/soporte.repository.js';
 
 export const tiendaNoEncontrada = () =>
   new AppError(404, 'tienda_no_encontrada', 'No existe esa tienda.');
 
 export async function detalleTienda(id: number) {
-  const tienda = await adminTiendasRepo.buscarPorId(id);
-  if (!tienda) throw tiendaNoEncontrada();
-  const [duenos, conteos, pagos] = await Promise.all([
-    adminDetalleRepo.duenos(id),
-    adminDetalleRepo.conteos(id),
-    adminDetalleRepo.pagos(id),
+  const tiendaId = await tiendasRepo.verificarId(id);
+  const tienda = tiendaId && (await adminFichaRepo.buscar(tiendaId));
+  if (!tiendaId || !tienda) throw tiendaNoEncontrada();
+  const [duenos, conteos, pagos, acceso] = await Promise.all([
+    adminDetalleRepo.duenos(tiendaId),
+    adminDetalleRepo.conteos(tiendaId),
+    adminDetalleRepo.pagos(tiendaId),
+    soporteRepo.vigente(tiendaId),
   ]);
-  return { tienda, suscripcion: resumenSuscripcion(tienda), duenos, conteos, pagos };
+  // soporte: si el comercio dio permiso para ayudarlo, hasta cuándo.
+  const soporte = acceso ? { venceEn: acceso.venceEn } : null;
+  return {
+    tienda,
+    suscripcion: resumenSuscripcion(tienda),
+    duenos,
+    conteos,
+    pagos,
+    soporte,
+  };
 }

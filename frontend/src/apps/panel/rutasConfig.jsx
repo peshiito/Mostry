@@ -1,19 +1,32 @@
 import { Route } from 'react-router';
-import { PantallaCuenta } from '../../features/cuentaPanel/PantallaCuenta.jsx';
-import { PantallaMas } from '../../features/mas/PantallaMas.jsx';
-import { PantallaCobros } from '../../features/miTienda/pantallas/PantallaCobros.jsx';
-import { PantallaHorarios } from '../../features/miTienda/pantallas/PantallaHorarios.jsx';
-import { PantallaMiTienda } from '../../features/miTienda/pantallas/PantallaMiTienda.jsx';
-import { PantallaSuscripcion } from '../../features/suscripcion/pantallas/PantallaSuscripcion.jsx';
+import { cargarPantalla } from '../../shared/lib/cargarPantalla.js';
 
-// Rutas de configuración y cuenta del panel (relativas a /panel).
+// Cada pantalla es su propio archivo y se descarga recién al abrirla.
+const archivos = import.meta.glob([
+  '../../features/{cuentaPanel,mas}/Pantalla*.jsx',
+  '../../features/{miTienda,suscripcion,reportes,soporte}/pantallas/Pantalla*.jsx',
+]);
+const pantalla = (archivo) => {
+  const importar = archivos[`../../features/${archivo}.jsx`];
+  if (!importar) throw new Error(`No existe la pantalla ${archivo}`);
+  return cargarPantalla(importar, archivo.split('/').pop());
+};
+
+const rutas = [
+  ['mas', 'mas/PantallaMas'],
+  ['tienda', 'miTienda/pantallas/PantallaMiTienda'],
+  ['horarios', 'miTienda/pantallas/PantallaHorarios'],
+  ['cobros', 'miTienda/pantallas/PantallaCobros'],
+  ['suscripcion', 'suscripcion/pantallas/PantallaSuscripcion'],
+  ['cuenta', 'cuentaPanel/PantallaCuenta'],
+  ['reportar', 'reportes/pantallas/PantallaReportar'],
+  ['reportes', 'reportes/pantallas/PantallaMisReportes'],
+  ['soporte', 'soporte/pantallas/PantallaSoporte'],
+].map(([path, archivo]) => ({ path, Pantalla: pantalla(archivo) }));
+
+// Rutas de configuración, cuenta y ayuda del panel (relativas a /panel).
 export function rutasConfig() {
-  return [
-    <Route key="ma" path="mas" element={<PantallaMas />} />,
-    <Route key="ti" path="tienda" element={<PantallaMiTienda />} />,
-    <Route key="ho" path="horarios" element={<PantallaHorarios />} />,
-    <Route key="co" path="cobros" element={<PantallaCobros />} />,
-    <Route key="su" path="suscripcion" element={<PantallaSuscripcion />} />,
-    <Route key="cu" path="cuenta" element={<PantallaCuenta />} />,
-  ];
+  return rutas.map(({ path, Pantalla }) => (
+    <Route key={path} path={path} element={<Pantalla />} />
+  ));
 }

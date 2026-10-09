@@ -1,0 +1,69 @@
+.local {
+  --c: var(--c-base);
+  display: grid;
+  justify-items: center;
+  gap: var(--e-2);
+  min-width: 136px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--texto-2);
+  font: inherit;
+  cursor: pointer;
+}
+/* Rayas del color de la tienda (--c, que en oscuro se aclara) y festón con máscara. */
+.toldo {
+  width: 100%;
+  height: 58px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--c) 0 16px,
+    var(--marca-crema) 16px 32px
+  );
+  mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - 9px) no-repeat,
+    radial-gradient(circle at 8px 0, #000 8.5px, transparent 9px) bottom / 16px 9px
+      repeat-x;
+  transform-origin: top;
+  transform: scaleY(var(--baja, 0.82));
+  filter: saturate(var(--saturacion, 0.6));
+  transition:
+    transform var(--dur-media) var(--ease-out),
+    filter var(--dur-media) ease;
+}
+.fachada {
+  display: grid;
+  gap: var(--e-2);
+  justify-items: center;
+  width: 88%;
+  margin-top: -6px;
+  padding: var(--e-2) var(--e-2) 0;
+  border: 1px solid var(--linea);
+  border-bottom: 0;
+  background: var(--papel);
+}
+.cartel {
+  padding: 2px 8px;
+  border-radius: var(--radio-chico);
+  background: var(--c);
+  color: var(--sobre-tienda);
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.vidriera {
+  width: 100%;
+  height: 64px;
+  border: 1px solid var(--linea-fuerte);
+  border-bottom: 0;
+  background: var(--luz, var(--lona-oscura));
+  box-shadow: var(--brillo, none);
+  transition:
+    background-color var(--dur-media) ease,
+    box-shadow var(--dur-media) ease;
+}
+.rubro {
+  font-size: var(--t-xs);
+  font-weight: 600;
+}

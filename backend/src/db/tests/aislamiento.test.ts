@@ -1,3 +1,4 @@
+import type { TiendaId } from '../../shared/db/tiendaId.js';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { db } from '../../shared/db/db.js';
 import { crearPedido, crearProducto, crearTienda } from '../../test/fabricas.js';
@@ -6,8 +7,8 @@ import { limpiarBase } from '../../test/limpiarBase.js';
 // Las FK compuestas (tienda_id, id) impiden mezclar datos de dos tiendas,
 // aunque el código de la app tuviera un bug.
 describe('aislamiento entre tiendas en la base', () => {
-  let tiendaA: number;
-  let tiendaB: number;
+  let tiendaA: TiendaId;
+  let tiendaB: TiendaId;
 
   beforeEach(async () => {
     await limpiarBase();
@@ -24,7 +25,7 @@ describe('aislamiento entre tiendas en la base', () => {
       nombre: 'x',
       precioUnitario: 1,
     };
-    const insertar = (tiendaId: number) =>
+    const insertar = (tiendaId: TiendaId) =>
       db
         .insertInto('pedidoItems')
         .values({ ...item, tiendaId, cantidad: 1, subtotal: 1 })

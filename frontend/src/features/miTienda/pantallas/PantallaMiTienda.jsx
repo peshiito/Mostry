@@ -9,6 +9,7 @@ import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { DatosTienda } from '../components/DatosTienda.jsx';
 import { SelectorPaleta } from '../components/SelectorPaleta.jsx';
+import { useBasePanel } from '../../panelBase/BasePanel.jsx';
 import { useAjustesRapidos } from '../hooks/useAjustesRapidos.js';
 import { useMiTienda } from '../hooks/useMiTienda.js';
 
@@ -16,6 +17,7 @@ import { useMiTienda } from '../hooks/useMiTienda.js';
 export function PantallaMiTienda() {
   const m = useMiTienda();
   const { tienda, pausa, logo } = useAjustesRapidos();
+  const { soporte } = useBasePanel();
   return (
     <Pagina as="form" onSubmit={m.guardar}>
       <TituloPagina migas="Mi tienda" titulo="Datos y apariencia" />
@@ -36,14 +38,17 @@ export function PantallaMiTienda() {
           onCambio={(paleta) => m.setT({ ...m.t, paleta })}
         />
       </Tarjeta>
-      <Tarjeta tono={tienda.pausada ? 'mostaza' : undefined}>
-        <Interruptor
-          etiqueta="Pausar tienda"
-          ayuda="Tus clientes ven la tienda cerrada y no pueden pedir."
-          activo={tienda.pausada}
-          onCambio={(v) => pausa.ejecutar(v)}
-        />
-      </Tarjeta>
+      {/* Pausar es una decisión del comercio: en el modo soporte no aparece. */}
+      {soporte ? null : (
+        <Tarjeta tono={tienda.pausada ? 'mostaza' : undefined}>
+          <Interruptor
+            etiqueta="Pausar tienda"
+            ayuda="Tus clientes ven la tienda cerrada y no pueden pedir."
+            activo={tienda.pausada}
+            onCambio={(v) => pausa.ejecutar(v)}
+          />
+        </Tarjeta>
+      )}
       {m.guardado ? <Aviso tipo="ok" titulo="Cambios guardados" /> : null}
       <Boton
         type="submit"

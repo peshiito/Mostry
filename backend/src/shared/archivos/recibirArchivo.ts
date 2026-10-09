@@ -2,7 +2,7 @@ import type { RequestHandler } from 'express';
 import multer from 'multer';
 import { AppError } from '../errors/AppError.js';
 
-export const MAX_BYTES = 5 * 1024 * 1024;
+const MAX_BYTES = 5 * 1024 * 1024;
 
 const subida = multer({
   storage: multer.memoryStorage(),

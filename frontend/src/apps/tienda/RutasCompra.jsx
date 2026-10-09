@@ -1,9 +1,26 @@
 import { Route } from 'react-router';
-import { PantallaCheckout } from '../../features/checkout/pantallas/PantallaCheckout.jsx';
-import { PantallaEncargo } from '../../features/checkout/pantallas/PantallaEncargo.jsx';
-import { PantallaComprobanteEnviado } from '../../features/pedidoPublico/pantallas/PantallaComprobanteEnviado.jsx';
-import { PantallaPago } from '../../features/pedidoPublico/pantallas/PantallaPago.jsx';
-import { PantallaSeguimiento } from '../../features/pedidoPublico/pantallas/PantallaSeguimiento.jsx';
+import { cargarPantalla } from '../../shared/lib/cargarPantalla.js';
+
+const PantallaCheckout = cargarPantalla(
+  () => import('../../features/checkout/pantallas/PantallaCheckout.jsx'),
+  'PantallaCheckout',
+);
+const PantallaEncargo = cargarPantalla(
+  () => import('../../features/checkout/pantallas/PantallaEncargo.jsx'),
+  'PantallaEncargo',
+);
+const PantallaComprobanteEnviado = cargarPantalla(
+  () => import('../../features/pedidoPublico/pantallas/PantallaComprobanteEnviado.jsx'),
+  'PantallaComprobanteEnviado',
+);
+const PantallaPago = cargarPantalla(
+  () => import('../../features/pedidoPublico/pantallas/PantallaPago.jsx'),
+  'PantallaPago',
+);
+const PantallaSeguimiento = cargarPantalla(
+  () => import('../../features/pedidoPublico/pantallas/PantallaSeguimiento.jsx'),
+  'PantallaSeguimiento',
+);
 
 // Checkout (solo con la tienda abierta), pago y seguimiento (siempre: decisión 19).
 export function RutasCompra({ cerrada }) {

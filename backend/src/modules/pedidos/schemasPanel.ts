@@ -1,18 +1,6 @@
 import { z } from 'zod';
+import { ESTADOS_PEDIDO as ESTADOS } from '../../shared/db/tipos/pedidos.js';
 import { TRANSICIONES_MANUALES, type EstadoManual } from './servicios/estados.js';
-
-const ESTADOS = [
-  'pendiente_pago',
-  'comprobante_enviado',
-  'pago_aprobado',
-  'pendiente_confirmacion',
-  'confirmado',
-  'en_preparacion',
-  'en_camino',
-  'listo_retirar',
-  'entregado',
-  'cancelado',
-] as const;
 
 export const esquemaId = z.coerce.number().int().positive();
 

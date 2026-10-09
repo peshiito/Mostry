@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
+import { hoyLargo } from '../../../shared/lib/fechas.js';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
@@ -15,24 +17,19 @@ import { ListaMovimientos } from '../components/ListaMovimientos.jsx';
 import { TarjetaEfectivo } from '../components/TarjetaEfectivo.jsx';
 import { useCaja } from '../hooks/useCaja.js';
 
-const hoy = () =>
-  new Date().toLocaleDateString('es-AR', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-  });
-
 // Caja del día (Stitch 34 y 35).
 export function PantallaCaja() {
-  const { caja, esperado, abrir, registrar, cargando, accion } = useCaja();
+  const { caja, esperado, abrir, registrar, cargando, accion, errorCarga, recargar } =
+    useCaja();
   const { soloLectura } = useSuscripcion();
   const [tipo, setTipo] = useState(null);
   if (cargando) return <Esqueleto filas={4} alto={96} />;
+  if (errorCarga) return <ErrorCarga que="la caja" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina
         titulo="Caja"
-        bajada={hoy()}
+        bajada={hoyLargo()}
         accion={<Link to="/panel/caja/resumen">Resumen</Link>}
       />
       <AvisoError error={accion.error} />
@@ -48,7 +45,11 @@ export function PantallaCaja() {
       ) : (
         <AbrirCaja onAbrir={abrir} deshabilitado={soloLectura} />
       )}
-      <Seccion titulo={caja.abierta ? 'Movimientos de hoy' : 'Transferencias de hoy'}>
+      <Seccion
+        titulo={
+          caja.abierta || caja.cerrada ? 'Movimientos de hoy' : 'Transferencias de hoy'
+        }
+      >
         <ListaMovimientos movimientos={caja.movimientos} />
       </Seccion>
       {caja.abierta && !soloLectura ? (

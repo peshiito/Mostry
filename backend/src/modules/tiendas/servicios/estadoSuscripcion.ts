@@ -1,7 +1,7 @@
 import type { EstadoTienda } from '../../../shared/db/tipos/tiendas.js';
 
 const DIA_MS = 24 * 60 * 60 * 1000;
-export const DIAS_GRACIA = 3;
+const DIAS_GRACIA = 3;
 const DIAS_AVISO = 3;
 // MySQL redondea DATETIME al segundo: sin tolerancia, "10 días" podía mostrarse como 11.
 const TOLERANCIA_MS = 60 * 1000;

@@ -1,3 +1,4 @@
+import type { TiendaId } from '../../shared/db/tiendaId.js';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { db } from '../../shared/db/db.js';
 import { crearPedido, crearProducto, crearTienda } from '../../test/fabricas.js';
@@ -6,7 +7,7 @@ import { limpiarBase } from '../../test/limpiarBase.js';
 const CHECK = /check constraint/i;
 
 describe('restricciones CHECK y tipos', () => {
-  let tiendaId: number;
+  let tiendaId: TiendaId;
 
   beforeEach(async () => {
     await limpiarBase();

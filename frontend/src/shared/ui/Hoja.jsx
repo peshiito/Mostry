@@ -18,7 +18,9 @@ export function Hoja({ abierta, onCerrar, titulo, subtitulo, children, ancha }) 
     <dialog
       ref={ref}
       className={`${css.hoja} ${mov.hoja} ${ancha ? css.ancha : ''}`}
-      onClose={onCerrar}
+      // Solo su propio cierre: React propaga el "close" de una hoja interna
+      // (por ejemplo, el calendario dentro de un modal) y cerraría las dos.
+      onClose={(e) => e.target === ref.current && onCerrar()}
       onClick={(e) => e.target === ref.current && onCerrar()}
       aria-labelledby={idTitulo}
     >

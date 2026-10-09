@@ -35,3 +35,11 @@ export function haceCuanto(iso, ahora = Date.now()) {
   const h = Math.round(min / 60);
   return h < 24 ? `hace ${h} h` : h < 48 ? 'ayer' : fechaCorta(iso);
 }
+
+// "martes, 6 de octubre" (para títulos de pantalla).
+export const hoyLargo = () =>
+  new Date().toLocaleDateString('es-AR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  });

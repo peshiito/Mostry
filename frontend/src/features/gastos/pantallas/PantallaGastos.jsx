@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Chips } from '../../../shared/ui/Chips.jsx';
@@ -18,9 +19,10 @@ const FILTROS = [
 
 // Gastos del mes (Stitch 38).
 export function PantallaGastos() {
-  const { gastos, total, cargando } = useGastos();
+  const { gastos, total, cargando, errorCarga, recargar } = useGastos();
   const [filtro, setFiltro] = useState('todos');
   const visibles = gastos.filter((g) => filtro === 'todos' || g.tipo === filtro);
+  if (errorCarga) return <ErrorCarga que="tus gastos" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina

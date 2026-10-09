@@ -1,14 +1,14 @@
+import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
-import { NoEncontrada } from '../../../shared/ui/NoEncontrada.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../../shared/ui/Seccion.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
+import { CargaCliente } from '../components/CargaCliente.jsx';
 import { HistorialFiado } from '../components/HistorialFiado.jsx';
 import { HojaFiado } from '../components/HojaFiado.jsx';
 import { useClienteFiado } from '../hooks/useLibreta.js';
@@ -17,10 +17,10 @@ import css from './PantallaClienteFiado.module.css';
 // Ficha de un cliente de la libreta (Stitch 43).
 export function PantallaClienteFiado() {
   const { id } = useParams();
-  const { cliente, movimientos, saldo, anotar, cargando } = useClienteFiado(id);
+  const { cliente, movimientos, saldo, anotar, cargando, error, recargar } =
+    useClienteFiado(id);
   const [tipo, setTipo] = useState(null);
-  if (cargando) return <Esqueleto filas={3} alto={96} />;
-  if (!cliente) return <NoEncontrada volver="/panel/libreta" />;
+  if (cargando || !cliente) return <CargaCliente error={error} onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina
@@ -30,7 +30,7 @@ export function PantallaClienteFiado() {
           <Boton
             tamano="sm"
             icono="chat"
-            href={cliente.telefono ? `https://wa.me/${cliente.telefono}` : undefined}
+            href={linkWhatsapp(cliente.telefono) ?? undefined}
           >
             WhatsApp
           </Boton>

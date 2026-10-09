@@ -1,7 +1,14 @@
 /* Tamaños y estado cargando del botón. */
 .sm {
+  position: relative;
   min-height: 36px;
   font-size: var(--t-sm);
+}
+/* Se ve chico, pero el área que se puede tocar mide 44 px de alto. */
+.sm::after {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
 }
 .lg {
   min-height: 52px;
@@ -21,5 +28,12 @@
 @keyframes girar {
   to {
     transform: rotate(360deg);
+  }
+}
+/* Con "reducir movimiento" la ruedita gira lento en vez de parpadear
+   (la regla global deja las animaciones en 0,01 ms). */
+@media (prefers-reduced-motion: reduce) {
+  .ruedita {
+    animation-duration: 2s !important;
   }
 }

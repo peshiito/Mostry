@@ -4,7 +4,13 @@ import css from './Campo.module.css';
 export function Selector({ c, opciones, ...props }) {
   return (
     <div className={`${css.caja} ${c.invalido ? css.invalida : ''}`}>
-      <select id={c.id} aria-describedby={c.describedBy} className={css.input} {...props}>
+      <select
+        id={c.id}
+        aria-describedby={c.describedBy}
+        aria-invalid={c.invalido || undefined}
+        className={css.input}
+        {...props}
+      >
         {opciones.map((o) => (
           <option key={o.valor} value={o.valor}>
             {o.texto}

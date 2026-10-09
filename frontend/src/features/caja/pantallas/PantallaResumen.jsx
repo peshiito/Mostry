@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { fechaCorta } from '../../../shared/lib/fechas.js';
 import { plata } from '../../../shared/lib/plata.js';
@@ -21,8 +22,9 @@ const textoDif = (d) =>
 // Resumen y ganancia real del período (Stitch 37).
 export function PantallaResumen() {
   const [periodo, setPeriodo] = useState('Mes');
-  const { resumen, porDia, cajas, cargando } = useResumen(periodo);
+  const { resumen, porDia, cajas, cargando, errorCarga, recargar } = useResumen(periodo);
   const dias = Object.keys(porDia).sort();
+  if (errorCarga) return <ErrorCarga que="el resumen" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina migas="Caja" titulo="Resumen y ganancia" />

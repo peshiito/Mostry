@@ -1,11 +1,17 @@
 .bloque {
   padding: var(--e-7) var(--e-4);
   border-top: var(--borde);
+  /* Debajo del hero: no se dibuja hasta acercarse (primer pintado más rápido). */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 .papel {
   background: var(--papel);
 }
 .interior {
+  transition:
+    opacity var(--dur-larga) var(--ease-out),
+    transform var(--dur-larga) var(--ease-out);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--e-5);
@@ -29,7 +35,12 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.interior[data-visible='false'] {
+  opacity: 0;
+  transform: translateY(24px);
+}
 .titulo {
+  text-wrap: balance;
   font-size: clamp(1.75rem, 4.5vw, 2.5rem);
   font-weight: 800;
   letter-spacing: -0.02em;

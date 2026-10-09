@@ -25,7 +25,7 @@ const CAMPOS = {
   direccion: 'direccion',
   linkMaps: 'linkMaps',
 };
-export const camposCheckout = (c) =>
+const camposCheckout = (c) =>
   Object.fromEntries(Object.entries(c).map(([k, v]) => [CAMPOS[k] ?? k, v]));
 
 export function useCrearPedido() {

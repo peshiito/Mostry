@@ -2,7 +2,7 @@
 // (credentials: 'include'): nunca guardamos tokens en el navegador (sección 7).
 const BASE = import.meta.env.VITE_API_URL ?? 'http://api.mostry.localhost:3000';
 
-export class ErrorApi extends Error {
+class ErrorApi extends Error {
   constructor(status, error = {}) {
     super(error.mensaje ?? 'Algo salió mal. Probá de nuevo en un rato.');
     this.status = status;

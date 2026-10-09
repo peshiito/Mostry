@@ -9,7 +9,7 @@
   background: var(--lona-oscura);
 }
 .opcion {
-  min-height: 40px;
+  min-height: var(--toque);
   border: 0;
   border-radius: 6px;
   background: transparent;

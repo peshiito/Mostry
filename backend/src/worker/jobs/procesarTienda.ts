@@ -1,3 +1,4 @@
+import { comoTiendaId } from '../../shared/db/tiendaId.js';
 import { db } from '../../shared/db/db.js';
 import { esDuplicado } from '../../shared/db/esDuplicado.js';
 import type { EstadoTienda } from '../../shared/db/tipos/tiendas.js';
@@ -18,6 +19,7 @@ type Pago = { alias: string; titular: string; monto: number };
 
 // Una tienda: guarda su estado y, si corresponde, le avisa (una vez por vencimiento).
 export async function procesarTienda(t: Tienda, mailer: Mailer, pago: Pago, ahora: Date) {
+  const tiendaId = comoTiendaId(t.id); // leído de la base (el worker recorre todas)
   const r = resumenSuscripcion(t, ahora);
   let actualizada = false;
   if (r.estado !== t.estado) {
@@ -36,7 +38,7 @@ export async function procesarTienda(t: Tienda, mailer: Mailer, pago: Pago, ahor
   try {
     await db
       .insertInto('avisosSuscripcion')
-      .values({ tiendaId: t.id, tipo, vence: r.venceEl })
+      .values({ tiendaId, tipo, vence: r.venceEl })
       .execute();
   } catch (err) {
     if (esDuplicado(err, 'uq_avisos')) return { actualizada, avisada: false }; // ya se avisó
@@ -44,11 +46,11 @@ export async function procesarTienda(t: Tienda, mailer: Mailer, pago: Pago, ahor
   }
   // Se marca ANTES de mandar (dos workers no mandan dos veces) y, si no le llegó
   // a nadie, se desmarca para reintentarlo en la próxima corrida.
-  if (await enviarAviso(mailer, { tiendaId: t.id, ...textoAviso(tipo, t.nombre, pago) }))
+  if (await enviarAviso(mailer, { tiendaId, ...textoAviso(tipo, t.nombre, pago) }))
     return { actualizada, avisada: true };
   await db
     .deleteFrom('avisosSuscripcion')
-    .where('tiendaId', '=', t.id)
+    .where('tiendaId', '=', tiendaId)
     .where('tipo', '=', tipo)
     .where('vence', '=', r.venceEl)
     .execute();

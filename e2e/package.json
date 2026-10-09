@@ -1,0 +1,19 @@
+{
+  "name": "mostry-e2e",
+  "private": true,
+  "type": "module",
+  "description": "Tests de punta a punta (Etapa 13): recorridos completos en un navegador real.",
+  "scripts": {
+    "test": "playwright test",
+    "test:ver": "playwright test --headed",
+    "reporte": "playwright show-report"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "mysql2": "^3.24.5"
+  }
+}

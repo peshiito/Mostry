@@ -1,3 +1,4 @@
+import { esLinkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { accionPrincipal } from '../lib/acciones.js';
 import css from './AccionesPedido.module.css';
@@ -20,7 +21,11 @@ export function AccionesPedido({ pedido, onAvanzar, onCancelar, soloLectura, env
           {accion.texto}
         </Boton>
       ) : null}
-      <Boton icono="chat" anchoCompleto href={pedido.whatsapp}>
+      <Boton
+        icono="chat"
+        anchoCompleto
+        href={esLinkWhatsapp(pedido.whatsapp) ?? undefined}
+      >
         Avisar por WhatsApp
       </Boton>
       {!cerrado && !soloLectura ? (

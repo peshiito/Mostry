@@ -44,6 +44,6 @@ describe('admin: suspender y reactivar', () => {
       motivoSuspension: 'Spam',
     });
     expect(body.duenos).toHaveLength(1);
-    expect(body.conteos).toEqual({ productos: 0, pedidos: 0 });
+    expect(body.conteos).toEqual({ productos: 0 });
   });
 });

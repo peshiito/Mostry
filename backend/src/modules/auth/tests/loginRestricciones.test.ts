@@ -17,12 +17,12 @@ describe('login: restricciones', () => {
     app = crearApp({ pingDb: async () => {}, mailer: correo.mailer });
   });
 
-  it('no deja entrar a una tienda ajena ni desde el sitio', async () => {
+  it('no deja entrar a una tienda ajena; sin Origin de Mostry, tampoco', async () => {
     const email = await registrarYVerificar(app, correo, 'dona-rosa');
     await registrarYVerificar(app, correo, 'heladeria');
     await login(app, 'heladeria', email).expect(401);
-    const desdeSitio = request(app).post('/auth/login').set('Origin', ORIGEN_SITIO);
-    await desdeSitio.send({ email, clave: CLAVE }).expect(400);
+    const sinOrigen = request(app).post('/auth/login').set('Origin', 'https://otro.com');
+    await sinOrigen.send({ email, clave: CLAVE }).expect(403);
   });
 
   it('pide verificar el email antes de entrar', async () => {

@@ -1,7 +1,6 @@
 import type { TiendaId } from '../../shared/db/tiendaId.js';
-import type { Updateable } from 'kysely';
 import { db } from '../../shared/db/db.js';
-import type { TiendasTabla } from '../../shared/db/tipos/tiendas.js';
+import type { DatosConfig } from './schemas.js';
 
 const columnasConfig = [
   'id',
@@ -34,8 +33,14 @@ export const tiendaConfigRepo = {
       .where('id', '=', tiendaId)
       .executeTakeFirstOrThrow(),
 
-  actualizar: (tiendaId: TiendaId, cambios: Updateable<TiendasTabla>) =>
+  // Solo lo que se edita en "Mi tienda" o la pausa: estado, plan y alias
+  // de cobro no se pueden tocar por acá (el tipo lo impide).
+  actualizar: (tiendaId: TiendaId, cambios: DatosConfig | { pausada: boolean }) =>
     db.updateTable('tiendas').set(cambios).where('id', '=', tiendaId).execute(),
+
+  // Acción sensible: la llama solo cambiarCobro, después de pedir la contraseña.
+  cambiarCobro: (tiendaId: TiendaId, cobro: { alias: string; titularAlias: string }) =>
+    db.updateTable('tiendas').set(cobro).where('id', '=', tiendaId).execute(),
 
   suscripcion: (tiendaId: TiendaId) =>
     db

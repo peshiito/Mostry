@@ -7,7 +7,12 @@ const hoy = () => new Date().toLocaleDateString('sv-SE');
 
 // Promociones (/panel/promociones) con estado calculado: vigente, programada o vencida.
 export function usePromociones() {
-  const { datos, cargando, recargar } = useConsulta('/panel/promociones');
+  const {
+    datos,
+    cargando,
+    error: errorCarga,
+    recargar,
+  } = useConsulta('/panel/promociones');
   // El segundo argumento de ejecutar() es el texto del aviso (sin texto, no avisa).
   const accion = useAccion(
     async (fn) => {
@@ -43,5 +48,13 @@ export function usePromociones() {
         }),
       'Promoción creada',
     );
-  return { promos, cargando, alternar, agregar, error: accion.error };
+  return {
+    promos,
+    cargando,
+    errorCarga,
+    recargar,
+    alternar,
+    agregar,
+    error: accion.error,
+  };
 }

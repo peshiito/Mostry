@@ -1,13 +1,15 @@
 import { AreaTexto, Campo, Entrada } from '../../../shared/ui/Campo.jsx';
 import { Selector } from '../../../shared/ui/Selector.jsx';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
+import { useBasePanel } from '../../panelBase/BasePanel.jsx';
 import { CamposStock } from './CamposStock.jsx';
 import css from './CamposProducto.module.css';
 
 // Nombre, descripción, precio, categoría, stock y aviso de stock mínimo.
 export function CamposProducto({ form, errores, onCambio }) {
   const set = (k) => (e) => onCambio({ ...form, [k]: e.target.value });
-  const lista = useConsulta('/panel/categorias').datos ?? [];
+  const { api } = useBasePanel();
+  const lista = useConsulta(`${api}/categorias`).datos ?? [];
   const cats = [
     { valor: '', texto: 'Sin categoría' },
     ...lista.map((c) => ({ valor: String(c.id), texto: c.nombre })),

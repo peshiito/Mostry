@@ -2,19 +2,29 @@
   display: grid;
   gap: var(--e-2);
 }
+/* El brillo es una franja que se desliza (transform): no repinta el bloque
+   en cada cuadro, importante en celulares de gama baja mientras carga. */
 .bloque {
+  position: relative;
+  overflow: hidden;
   border-radius: var(--radio);
-  background: linear-gradient(
-    90deg,
-    var(--lona-oscura),
-    var(--papel),
-    var(--lona-oscura)
-  );
-  background-size: 200% 100%;
+  background: var(--lona-oscura);
+}
+.bloque::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--papel), transparent);
+  transform: translateX(-100%);
   animation: brillo 1.4s ease-in-out infinite;
 }
 @keyframes brillo {
   to {
-    background-position: -200% 0;
+    transform: translateX(100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bloque::after {
+    display: none;
   }
 }

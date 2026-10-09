@@ -51,7 +51,11 @@ export const comprobantesRepo = {
     tx: Ejecutor,
     tiendaId: TiendaId,
     id: number,
-    cambios: Updateable<ComprobantesTabla>,
+    // Nunca la tienda, el pedido, el tipo ni el archivo de un comprobante.
+    cambios: Omit<
+      Updateable<ComprobantesTabla>,
+      'id' | 'tiendaId' | 'pedidoId' | 'tipo' | 'archivoClave'
+    >,
   ) =>
     tx
       .updateTable('comprobantes')

@@ -1,5 +1,8 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router';
+import { Esqueleto } from '../../shared/ui/Esqueleto.jsx';
 import { PanelProveedor, usePanel } from '../../features/panelBase/PanelContexto.jsx';
+import { BannerSoporte } from '../../features/soporte/components/BannerSoporte.jsx';
 import { BannerSuscripcion } from '../../features/suscripcion/components/BannerSuscripcion.jsx';
 import { propsPaleta } from '../../shared/lib/paletas.js';
 import { HeaderPanel } from './HeaderPanel.jsx';
@@ -22,7 +25,11 @@ function MarcoPanel() {
     <div className={css.panel} {...propsPaleta(tienda.paleta)}>
       <HeaderPanel />
       <BannerSuscripcion />
-      <Outlet />
+      <BannerSoporte />
+      {/* Cada pantalla baja cuando se abre: header y pestañas quedan fijos. */}
+      <Suspense fallback={<Esqueleto filas={5} />}>
+        <Outlet />
+      </Suspense>
       <NavPanel />
     </div>
   );

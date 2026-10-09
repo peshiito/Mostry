@@ -1,6 +1,4 @@
-import type { Auto, Creado, Timestamps } from './comunes.js';
-
-type DeTienda = { id: Auto<number>; tiendaId: number };
+import type { Auto, Creado, DeTienda, Timestamps } from './comunes.js';
 
 export type ClientesLibretaTabla = DeTienda &
   Timestamps & { nombre: string; telefono: string | null; activo: Auto<boolean> };

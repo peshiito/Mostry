@@ -12,7 +12,8 @@ export function useTemporizador(id, duracion, pausado) {
     return () => document.removeEventListener('visibilitychange', cambio);
   }, []);
   useEffect(() => {
-    if (pausado || oculta) return undefined;
+    // Infinity: aviso fijo (setTimeout lo tomaría como 0 y lo cerraría al toque).
+    if (pausado || oculta || !Number.isFinite(restante.current)) return undefined;
     const inicio = Date.now();
     const reloj = setTimeout(() => cerrarAviso(id), restante.current);
     return () => {

@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
@@ -9,8 +10,9 @@ import { usePromociones } from '../hooks/usePromociones.js';
 
 // Promociones de la vidriera (Stitch 33).
 export function PantallaPromociones() {
-  const { promos, alternar, agregar, error } = usePromociones();
+  const { promos, alternar, agregar, error, errorCarga, recargar } = usePromociones();
   const [abierta, setAbierta] = useState(false);
+  if (errorCarga) return <ErrorCarga que="tus promociones" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina

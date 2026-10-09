@@ -1,3 +1,4 @@
+import { SelectorFecha } from '../../../shared/ui/SelectorFecha.jsx';
 import { Campo, Entrada } from '../../../shared/ui/Campo.jsx';
 import css from './FormAprobacion.module.css';
 
@@ -19,7 +20,14 @@ export function FormAprobacion({ datos, errores, onCambio }) {
         )}
       </Campo>
       <Campo etiqueta="Fecha de la operación" error={errores.fecha}>
-        {(c) => <Entrada c={c} type="date" value={datos.fecha} onChange={set('fecha')} />}
+        {(c) => (
+          <SelectorFecha
+            c={c}
+            etiqueta="Fecha de la operación"
+            valor={datos.fecha}
+            onCambio={(fecha) => onCambio({ ...datos, fecha })}
+          />
+        )}
       </Campo>
       <Campo etiqueta="Titular que pagó" error={errores.titular}>
         {(c) => <Entrada c={c} value={datos.titular} onChange={set('titular')} />}

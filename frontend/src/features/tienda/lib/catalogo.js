@@ -7,16 +7,20 @@ const ICONOS = [
   [/salad|sandw|empanada/i, 'lunch_dining'],
 ];
 
-export const iconoCategoria = (nombre) =>
+const iconoCategoria = (nombre) =>
   ICONOS.find(([re]) => re.test(nombre))?.[1] ?? 'storefront';
 
 const SIN_FOTO = '/sin-foto.svg';
+const srcset = (f) =>
+  f?.chica && f?.grande ? `${f.chica} 400w, ${f.grande} 1200w` : undefined;
 
 export const adaptarProducto = (p) => ({
   ...p,
   descripcion: p.descripcion ?? '',
   foto: (p.foto ?? p.fotos?.[0])?.chica ?? SIN_FOTO,
   fotoGrande: (p.fotos?.[0] ?? p.foto)?.grande ?? SIN_FOTO,
+  // El navegador elige la variante según la pantalla (400 o 1200 px de lado).
+  fotoSrcset: srcset(p.fotos?.[0] ?? p.foto),
   agotado: !p.disponible,
   stock: p.disponible ? 99 : 0,
 });

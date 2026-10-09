@@ -1,0 +1,41 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--e-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: grid;
+  align-content: start;
+  gap: var(--e-2);
+}
+/* Solo la parte de arriba de la pantalla, dentro del marco del celular. */
+.recorte {
+  aspect-ratio: 390 / 420;
+  overflow: hidden;
+  margin-bottom: var(--e-2);
+  border: 8px solid var(--marco-celular);
+  border-bottom: 0;
+  border-radius: 28px 28px 0 0;
+  background: var(--papel);
+  box-shadow: 0 0 0 1px var(--borde-celular);
+  mask-image: linear-gradient(#000 78%, transparent);
+  transition: transform var(--dur-media) var(--ease-out);
+}
+.recorte img {
+  width: 100%;
+  height: auto;
+}
+@media (hover: hover) and (pointer: fine) {
+  .item:hover .recorte {
+    transform: translateY(-4px);
+  }
+}
+.titulo {
+  font-size: var(--t-xl);
+}
+.detalle {
+  color: var(--texto-2);
+}

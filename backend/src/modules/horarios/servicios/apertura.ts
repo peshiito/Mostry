@@ -7,7 +7,7 @@ export type ProximaApertura = { fecha: string; hora: string };
 
 // Contrato con el frontend: cada estado trae solo lo que tiene sentido.
 export type EstadoApertura =
-  | { abierta: true; cierraA: string }
+  | { abierta: true; cierraA: string | null } // null: abierta las 24 horas
   | { abierta: false; motivo: 'pausada'; proximaApertura: null }
   | {
       abierta: false;

@@ -1,8 +1,9 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { useTurnosDia } from '../hooks/useTurnosDia.js';
 import { turnosDelDia } from '../lib/agenda.js';
-import { Calendario } from './Calendario.jsx';
+import { Calendario } from '../../../shared/ui/Calendario.jsx';
 import { Turnos } from './Turnos.jsx';
 
 // Calendario + horarios. Los días se estiman con los horarios de la tienda
@@ -10,7 +11,21 @@ import { Turnos } from './Turnos.jsx';
 export function ElegirTurno({ tienda, turno, onTurno }) {
   const [dia, setDia] = useState(null);
   const { tramos, anticipacionEncargoHoras } = tienda;
-  const { turnos, motivo, cargando } = useTurnosDia(dia, anticipacionEncargoHoras);
+  const {
+    turnos,
+    motivo,
+    cargando,
+    error: errorCarga,
+    recargar,
+  } = useTurnosDia(dia, anticipacionEncargoHoras);
+  if (errorCarga)
+    return (
+      <ErrorCarga
+        que="los horarios disponibles"
+        onReintentar={recargar}
+        conPagina={false}
+      />
+    );
   return (
     <>
       <Tarjeta>

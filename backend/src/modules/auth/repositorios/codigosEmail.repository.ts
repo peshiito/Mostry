@@ -3,7 +3,7 @@ import { db } from '../../../shared/db/db.js';
 import type { CodigosEmailTabla } from '../../../shared/db/tipos/usuarios.js';
 
 type Proposito = CodigosEmailTabla['proposito'];
-export const MAX_INTENTOS = 5;
+const MAX_INTENTOS = 5;
 
 export const codigosEmailRepo = {
   // Un código nuevo anula los anteriores del mismo propósito.

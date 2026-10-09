@@ -21,15 +21,26 @@ export default tseslint.config(
   },
   {
     // Solo el repositorio de tiendas, el worker (recorre todas las tiendas con
-    // ids leídos de la base) y los tests pueden fabricar un TiendaId.
+    // ids leídos de la base), el seed (ids recién insertados) y los tests
+    // pueden fabricar un TiendaId.
     files: ['src/**/*.ts'],
     ignores: [
       'src/modules/tiendas/tiendas.repository.ts',
+      'src/shared/db/tiendaId.ts',
       'src/worker/**',
+      'src/db/seed/**',
       'src/**/*.test.ts',
       'src/test/**',
     ],
     rules: {
+      // Tampoco se fabrica con un cast: `x as TiendaId` saltea la verificación.
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "TSAsExpression > TSTypeReference[typeName.name='TiendaId']",
+          message: 'No castees a TiendaId: pedíselo al repositorio de tiendas.',
+        },
+      ],
       'no-restricted-imports': [
         'error',
         {

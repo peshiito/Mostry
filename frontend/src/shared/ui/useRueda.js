@@ -1,6 +1,6 @@
 import { useEffect, useImperativeHandle, useRef } from 'react';
 
-export const ALTO = 44; // alto de cada opción (área táctil mínima)
+const ALTO = 44; // alto de cada opción (área táctil mínima)
 
 // Lógica de una rueda: ubicarse al abrir, avisar el valor cuando frena,
 // ir a una opción (tocándola o con el teclado) y leer lo que está en el centro.

@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { plural } from '../../../shared/lib/texto.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
@@ -14,12 +15,13 @@ import { useLibreta } from '../hooks/useLibreta.js';
 
 // Libreta de fiados (Stitch 42).
 export function PantallaLibreta() {
-  const { clientes, totalDeuda, conDeuda, crear } = useLibreta();
+  const { clientes, totalDeuda, conDeuda, crear, errorCarga, recargar } = useLibreta();
   const [abierta, setAbierta] = useState(false);
   const [q, setQ] = useState('');
   const visibles = clientes.filter((c) =>
     c.nombre.toLowerCase().includes(q.toLowerCase()),
   );
+  if (errorCarga) return <ErrorCarga que="la libreta" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina migas="Negocio" titulo="Libreta" />

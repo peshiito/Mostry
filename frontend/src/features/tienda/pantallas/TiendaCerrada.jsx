@@ -1,3 +1,4 @@
+import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { LogoTienda } from '../../../shared/ui/LogoTienda.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
@@ -19,11 +20,13 @@ export function TiendaCerrada() {
       <p className={css.texto}>Volvé a visitarnos pronto.</p>
       <Tarjeta className={css.datos}>
         <p className={css.nombre}>{tienda.nombre}</p>
-        <p>{tienda.direccion}</p>
+        {tienda.direccion ? <p>{tienda.direccion}</p> : null}
       </Tarjeta>
-      <Boton icono="chat" href={`https://wa.me/${tienda.whatsapp}`}>
-        Consultar por WhatsApp
-      </Boton>
+      {linkWhatsapp(tienda.whatsapp) ? (
+        <Boton icono="chat" href={linkWhatsapp(tienda.whatsapp)}>
+          Consultar por WhatsApp
+        </Boton>
+      ) : null}
     </Pagina>
   );
 }

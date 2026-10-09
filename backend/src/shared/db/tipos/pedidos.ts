@@ -1,18 +1,19 @@
-import type { Auto, Creado, Timestamps } from './comunes.js';
+import type { Auto, Creado, DeTienda, Timestamps } from './comunes.js';
 
-type DeTienda = { id: Auto<number>; tiendaId: number };
-
-export type EstadoPedido =
-  | 'pendiente_pago'
-  | 'comprobante_enviado'
-  | 'pago_aprobado'
-  | 'pendiente_confirmacion'
-  | 'confirmado'
-  | 'en_preparacion'
-  | 'en_camino'
-  | 'listo_retirar'
-  | 'entregado'
-  | 'cancelado';
+// Única lista de estados: el tipo y los esquemas Zod salen de acá.
+export const ESTADOS_PEDIDO = [
+  'pendiente_pago',
+  'comprobante_enviado',
+  'pago_aprobado',
+  'pendiente_confirmacion',
+  'confirmado',
+  'en_preparacion',
+  'en_camino',
+  'listo_retirar',
+  'entregado',
+  'cancelado',
+] as const;
+export type EstadoPedido = (typeof ESTADOS_PEDIDO)[number];
 
 export type PedidosTabla = DeTienda &
   Timestamps & {

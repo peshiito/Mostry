@@ -8,12 +8,16 @@
     />
     <meta name="theme-color" content="#0E5A4A" />
     <meta name="color-scheme" content="light dark" />
-    <script src="/tema-inicial.js"></script>
     <meta
       name="description"
       content="Tienda online y gestión para comercios de barrio."
     />
+    <!-- Abre la conexión con la API mientras baja el JS (la sesión va en cookie). -->
+    <link rel="preconnect" href="%VITE_API_URL%" crossorigin="use-credentials" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/iconos/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Mostry" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <title>Mostry</title>
   </head>
   <body>

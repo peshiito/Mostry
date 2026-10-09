@@ -1,3 +1,4 @@
+import { SelectorFecha } from '../../../shared/ui/SelectorFecha.jsx';
 import { useState } from 'react';
 import { fechaCorta } from '../../../shared/lib/fechas.js';
 import { aCentavos } from '../../../shared/lib/plata.js';
@@ -32,11 +33,11 @@ export function ModalPago({ abierta, onCerrar, tienda, onRegistrar }) {
       </Campo>
       <Campo etiqueta="Fecha del pago">
         {(c) => (
-          <Entrada
+          <SelectorFecha
             c={c}
-            type="date"
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
+            etiqueta="Fecha del pago"
+            valor={fecha}
+            onCambio={setFecha}
           />
         )}
       </Campo>

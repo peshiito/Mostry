@@ -1,10 +1,6 @@
 .pagina {
   padding-bottom: 96px;
 }
-.desactivar {
-  justify-self: center;
-  color: var(--ladrillo);
-}
 .barra {
   position: fixed;
   inset: auto 0 calc(var(--alto-nav) + env(safe-area-inset-bottom));

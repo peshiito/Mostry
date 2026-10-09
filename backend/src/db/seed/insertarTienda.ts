@@ -1,10 +1,11 @@
 import type { Kysely } from 'kysely';
+import { comoTiendaId, type TiendaId } from '../../shared/db/tiendaId.js';
 import type { Database } from '../../shared/db/tipos/index.js';
 import { idInsertado, type Tx } from './insertar.js';
 import { insertarAgenda } from './insertarAgenda.js';
 import type { DatosSeed } from './tipos.js';
 
-async function insertarCatalogo(tx: Tx, tiendaId: number, datos: DatosSeed) {
+async function insertarCatalogo(tx: Tx, tiendaId: TiendaId, datos: DatosSeed) {
   for (const [orden, cat] of datos.categorias.entries()) {
     const categoriaId = idInsertado(
       await tx
@@ -34,8 +35,10 @@ export async function insertarTienda(
         })
         .executeTakeFirstOrThrow(),
     );
-    const tiendaId = idInsertado(
-      await tx.insertInto('tiendas').values(datos.tienda).executeTakeFirstOrThrow(),
+    const tiendaId = comoTiendaId(
+      idInsertado(
+        await tx.insertInto('tiendas').values(datos.tienda).executeTakeFirstOrThrow(),
+      ),
     );
     await tx
       .insertInto('miembrosTienda')

@@ -10,6 +10,7 @@ import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { ModalPago } from '../components/ModalPago.jsx';
 import { ModalSuspender } from '../components/ModalSuspender.jsx';
+import { TarjetaSoporte } from '../components/TarjetaSoporte.jsx';
 import { TarjetasDetalle } from '../components/TarjetasDetalle.jsx';
 import { ESTADOS_TIENDA } from '../estados.js';
 import { useTiendaAdmin } from '../hooks/useTiendasAdmin.js';
@@ -46,6 +47,7 @@ export function PantallaTiendaAdmin() {
       />
       <AvisoError error={a.accion.error} />
       <TarjetasDetalle tienda={t} />
+      <TarjetaSoporte tienda={t} />
       <ModalPago
         abierta={modal === 'pago'}
         tienda={t}

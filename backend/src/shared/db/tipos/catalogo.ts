@@ -1,6 +1,4 @@
-import type { Auto, Creado, Fecha, Hora, Timestamps } from './comunes.js';
-
-type DeTienda = { id: Auto<number>; tiendaId: number };
+import type { Auto, Creado, DeTienda, Fecha, Hora, Timestamps } from './comunes.js';
 
 export type CategoriasTabla = DeTienda &
   Timestamps & { nombre: string; orden: Auto<number>; activa: Auto<boolean> };

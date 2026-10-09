@@ -1,3 +1,4 @@
+import { tiendaDelPanel } from '../../../shared/http/contextoPanel.js';
 import type { RequestHandler } from 'express';
 import { esquemaToken } from '../../pedidos/schemas.js';
 import { esquemaAprobacion, esquemaId, esquemaRechazo } from '../schemas.js';
@@ -10,19 +11,25 @@ const ids = (params: Record<string, string>) =>
   [esquemaId.parse(params.id), esquemaId.parse(params.cid)] as const;
 
 const listar: RequestHandler = async (req, res) => {
-  res.json(await listarComprobantes(req.tienda!.id, esquemaId.parse(req.params.id)));
+  res.json(await listarComprobantes(tiendaDelPanel(req), esquemaId.parse(req.params.id)));
 };
 
 const archivo: RequestHandler = async (req, res) => {
   const [pedidoId, id] = ids(req.params as Record<string, string>);
-  res.json(await verArchivo(req.tienda!.id, pedidoId, id));
+  res.json(await verArchivo(tiendaDelPanel(req), pedidoId, id));
 };
 
 const aprobar: RequestHandler = async (req, res) => {
   const [pedidoId, id] = ids(req.params as Record<string, string>);
   const datos = esquemaAprobacion.parse(req.body);
   res.json(
-    await aprobarComprobante(req.tienda!.id, pedidoId, id, req.sesion!.usuarioId, datos),
+    await aprobarComprobante(
+      tiendaDelPanel(req),
+      pedidoId,
+      id,
+      req.sesion!.usuarioId,
+      datos,
+    ),
   );
 };
 
@@ -31,7 +38,7 @@ const rechazar: RequestHandler = async (req, res) => {
   const { motivo } = esquemaRechazo.parse(req.body);
   res.json(
     await rechazarComprobante(
-      req.tienda!.id,
+      tiendaDelPanel(req),
       pedidoId,
       id,
       req.sesion!.usuarioId,

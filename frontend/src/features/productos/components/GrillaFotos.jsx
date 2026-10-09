@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { BotonIcono } from '../../../shared/ui/BotonIcono.jsx';
 import { Icono } from '../../../shared/ui/Icono.jsx';
@@ -12,6 +13,8 @@ export function GrillaFotos({ productoId }) {
     e.target.value = '';
     if (archivo) f.agregar(archivo);
   };
+  if (f.errorCarga)
+    return <ErrorCarga que="las fotos" onReintentar={f.recargar} conPagina={false} />;
   return (
     <>
       <AvisoError error={f.error} />

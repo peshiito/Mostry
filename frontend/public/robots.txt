@@ -1,0 +1,4 @@
+# Tiendas y sitio públicos; el panel de cada comercio no se indexa.
+User-agent: *
+Disallow: /panel
+Allow: /

@@ -5,12 +5,13 @@ import { PantallaRegistro } from '../../features/cuenta/pantallas/PantallaRegist
 import { PantallaVerificarEmail } from '../../features/cuenta/pantallas/PantallaVerificarEmail.jsx';
 import { PantallaLanding } from '../../features/landing/pantallas/PantallaLanding.jsx';
 import { PantallaLegal } from '../../features/landing/pantallas/PantallaLegal.jsx';
+import { rutasCuenta } from '../cuenta/rutasCuenta.jsx';
 import { NoEncontrada } from '../../shared/ui/NoEncontrada.jsx';
 
 const Indice = import.meta.env.DEV ? lazy(() => import('./IndicePantallas.jsx')) : null;
 
-// Zona sitio (mostry.com.ar): presentación, registro y verificación del email.
-// El ingreso se hace desde cada tienda (la API no permite login en el sitio).
+// Zona sitio (mostry.com.ar): presentación, registro, verificación del email e
+// ingreso (el admin va a su dashboard y cada comerciante a su panel).
 export default function AppSitio() {
   return (
     <Routes>
@@ -18,7 +19,8 @@ export default function AppSitio() {
       <Route path="legal" element={<PantallaLegal />} />
       <Route path="registro" element={<PantallaRegistro />} />
       <Route path="verificar" element={<PantallaVerificarEmail />} />
-      <Route path="ingresar" element={<PantallaElegirTienda />} />
+      {rutasCuenta('', false, true)}
+      <Route path="ingresar/tienda" element={<PantallaElegirTienda />} />
       {Indice ? <Route path="pantallas" element={<Indice />} /> : null}
       <Route path="*" element={<NoEncontrada />} />
     </Routes>

@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Estado } from '../../../shared/ui/Estado.jsx';
@@ -9,9 +10,10 @@ import { useEncargos } from '../hooks/useEncargos.js';
 
 // Agenda de encargos (Stitch 41). Los encargos no tocan el stock (6.2).
 export function PantallaEncargos() {
-  const { delDia, conEncargos, cambiar, error } = useEncargos();
+  const { delDia, conEncargos, cambiar, error, errorCarga, recargar } = useEncargos();
   const [dia, setDia] = useState(() => new Date().toLocaleDateString('sv-SE'));
   const lista = delDia(dia);
+  if (errorCarga) return <ErrorCarga que="tus encargos" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina

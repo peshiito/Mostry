@@ -11,8 +11,16 @@
     justify-content: space-between;
     gap: var(--e-2);
   }
+  /* Marca y tema en la primera fila; las secciones, en una fila deslizable. */
   .nav {
     display: flex;
-    flex-wrap: wrap;
+    flex: 1 0 100%;
+    order: 3;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav > * {
+    flex: none;
   }
 }

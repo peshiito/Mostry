@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { plata } from '../../../shared/lib/plata.js';
 import { Avatar } from '../../../shared/ui/Avatar.jsx';
@@ -12,8 +13,9 @@ import { useGastos } from '../hooks/useGastos.js';
 
 // Proveedores con lo comprado en el mes (Stitch 40).
 export function PantallaProveedores() {
-  const { proveedores, crearProveedor } = useGastos();
+  const { proveedores, crearProveedor, errorCarga, recargar } = useGastos();
   const [abierta, setAbierta] = useState(false);
+  if (errorCarga) return <ErrorCarga que="tus proveedores" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina migas="Gastos" titulo="Proveedores" />

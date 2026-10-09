@@ -1,3 +1,4 @@
+import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { linkMapsSeguro } from '../../../shared/lib/linkSeguro.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Icono } from '../../../shared/ui/Icono.jsx';
@@ -14,7 +15,11 @@ export function DatosCliente({ pedido: p }) {
           <p className={css.etiqueta}>Cliente</p>
           <p className={css.nombre}>{p.cliente}</p>
         </div>
-        <Boton tamano="sm" icono="chat" href={`https://wa.me/${p.clienteWhatsapp}`}>
+        <Boton
+          tamano="sm"
+          icono="chat"
+          href={linkWhatsapp(p.clienteWhatsapp) ?? undefined}
+        >
           WhatsApp
         </Boton>
       </div>

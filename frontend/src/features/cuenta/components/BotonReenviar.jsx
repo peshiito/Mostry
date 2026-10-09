@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 
 // "Reenviar código" con espera de 45 segundos (y rate limit en la API).
+// La espera vuelve a arrancar solo si el reenvío salió bien (onReenviar → true).
 export function BotonReenviar({ onReenviar }) {
   const [espera, setEspera] = useState(45);
   useEffect(() => {
@@ -13,9 +14,8 @@ export function BotonReenviar({ onReenviar }) {
     <Boton
       variante="texto"
       disabled={espera > 0}
-      onClick={() => {
-        onReenviar?.();
-        setEspera(45);
+      onClick={async () => {
+        if (await onReenviar?.()) setEspera(45);
       }}
     >
       {espera

@@ -1,0 +1,29 @@
+.franja {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-2) var(--e-4);
+  border-bottom: 1px solid var(--mostaza-borde);
+  background: var(--mostaza-claro);
+  color: var(--mostaza-texto);
+}
+.texto {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  font-size: var(--t-sm);
+}
+.texto span {
+  font-variant-numeric: tabular-nums;
+}
+.salir {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+  padding: 0 var(--e-3);
+  color: var(--mostaza-texto);
+  font-weight: 700;
+}

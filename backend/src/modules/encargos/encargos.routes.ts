@@ -1,3 +1,4 @@
+import { tiendaDelPanel } from '../../shared/http/contextoPanel.js';
 import { Router, type RequestHandler } from 'express';
 import { z } from 'zod';
 import { enArgentina, inicioDiaAr } from '../../shared/utils/horaArgentina.js';
@@ -24,7 +25,7 @@ const calendario: RequestHandler = async (req, res) => {
   const { desde, hasta } = periodo.parse(req.query);
   res.json(
     await encargosEntre(
-      req.tienda!.id,
+      tiendaDelPanel(req),
       inicioDiaAr(desde),
       new Date(inicioDiaAr(hasta).getTime() + DIA_MS),
     ),

@@ -1,0 +1,19 @@
+.tarjeta {
+  display: grid;
+  gap: var(--e-3);
+}
+.titulo {
+  font-size: var(--t-md);
+}
+.texto {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.texto strong {
+  color: var(--carbon);
+}
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}

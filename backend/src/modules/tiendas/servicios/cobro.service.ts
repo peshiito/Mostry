@@ -24,7 +24,7 @@ export async function cambiarCobro(
   if (!usuario || !(await verificarClave(usuario.hashClave, clave))) {
     throw new AppError(400, 'clave_incorrecta', 'La contraseña no es correcta.');
   }
-  await tiendaConfigRepo.actualizar(tiendaId, { alias, titularAlias });
+  await tiendaConfigRepo.cambiarCobro(tiendaId, { alias, titularAlias });
   for (const { email } of await tiendaConfigRepo.emailsDeDuenos(tiendaId)) {
     await enviarSinFallar(mailer, { para: email, ...aviso(alias, titularAlias) });
   }

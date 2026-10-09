@@ -9,6 +9,9 @@ import { StrictMode, Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
 import { Avisos } from './shared/avisos/Avisos.jsx';
+import { FocoAlNavegar } from './shared/navegacion/FocoAlNavegar.jsx';
+import { SinConexion } from './shared/red/SinConexion.jsx';
+import { SaltarAlContenido } from './shared/navegacion/SaltarAlContenido.jsx';
 import { ZONA_ACTUAL } from './shared/lib/zonaActual.js';
 import { Esqueleto } from './shared/ui/Esqueleto.jsx';
 
@@ -25,6 +28,9 @@ const App = APPS[zona];
 createRoot(document.getElementById('raiz')).render(
   <StrictMode>
     <BrowserRouter>
+      <SaltarAlContenido />
+      <SinConexion />
+      <FocoAlNavegar />
       <Suspense fallback={<Esqueleto filas={6} />}>
         <App slug={slug} />
       </Suspense>

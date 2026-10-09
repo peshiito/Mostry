@@ -1,4 +1,4 @@
-import type { Auto, Creado, Fecha, Timestamps } from './comunes.js';
+import type { Auto, ColTienda, Creado, Fecha, Timestamps } from './comunes.js';
 
 export type EstadoTienda = 'prueba' | 'activa' | 'gracia' | 'suspendida';
 
@@ -31,14 +31,14 @@ export type TiendasTabla = Timestamps & {
 };
 
 export type MiembrosTiendaTabla = Creado & {
-  tiendaId: number;
+  tiendaId: ColTienda;
   usuarioId: number;
   rol: Auto<'dueno' | 'empleado'>;
 };
 
 export type PagosSuscripcionTabla = Creado & {
   id: Auto<number>;
-  tiendaId: number;
+  tiendaId: ColTienda;
   monto: number;
   pagadoEn: Fecha;
   periodoDesde: Date;

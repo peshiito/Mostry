@@ -1,0 +1,4 @@
+.cuerpo {
+  display: grid;
+  gap: var(--e-4);
+}

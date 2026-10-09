@@ -27,5 +27,7 @@ export function useResumen(periodo) {
     porDia,
     cajas: (historial.datos ?? []).filter((c) => c.cerradaEn),
     cargando: r.cargando,
+    errorCarga: r.error ?? historial.error,
+    recargar: () => (r.recargar(), historial.recargar()),
   };
 }

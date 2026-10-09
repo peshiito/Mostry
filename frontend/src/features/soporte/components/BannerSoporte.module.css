@@ -1,0 +1,16 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--toque);
+  padding: var(--e-2) var(--e-4);
+  border-bottom: 1px solid var(--mostaza-borde);
+  background: var(--mostaza-claro);
+  color: var(--mostaza-texto);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+.banner span {
+  flex: 1;
+}

@@ -9,7 +9,7 @@ import { LayoutCuenta } from '../components/LayoutCuenta.jsx';
 import { limpiarSlug } from '../lib/slug.js';
 import css from './Cuenta.module.css';
 
-// En el sitio no se inicia sesión: cada comerciante entra desde su tienda.
+// Alternativa al ingreso de la landing: ir directo al panel con el link de la tienda.
 export function PantallaElegirTienda() {
   const [slug, setSlug] = useState('');
   const ir = (e) => {
@@ -17,7 +17,7 @@ export function PantallaElegirTienda() {
     if (slug.length >= 3) window.location.assign(urlTienda(slug, '/panel/ingresar'));
   };
   return (
-    <LayoutCuenta volver="/">
+    <LayoutCuenta volver="/ingresar">
       <TituloPagina
         titulo="Ingresá a tu panel"
         bajada="Escribí el link de tu tienda y te llevamos."

@@ -1,3 +1,4 @@
+import { tiendaDelPanel } from '../../../shared/http/contextoPanel.js';
 import type { RequestHandler } from 'express';
 import { db } from '../../../shared/db/db.js';
 import {
@@ -16,17 +17,21 @@ import { registrarMovimiento } from '../servicios/registrarMovimiento.js';
 import { resumenPeriodo } from '../servicios/resumen.service.js';
 
 const actual: RequestHandler = async (req, res) => {
-  res.json(await verCajaActual(req.tienda!.id));
+  res.json(await verCajaActual(tiendaDelPanel(req)));
 };
 
 const abrir: RequestHandler = async (req, res) => {
   res
     .status(201)
-    .json(await abrirCaja(req.tienda!.id, esquemaAbrir.parse(req.body).montoApertura));
+    .json(
+      await abrirCaja(tiendaDelPanel(req), esquemaAbrir.parse(req.body).montoApertura),
+    );
 };
 
 const cerrar: RequestHandler = async (req, res) => {
-  res.json(await cerrarCaja(req.tienda!.id, esquemaCerrar.parse(req.body).montoContado));
+  res.json(
+    await cerrarCaja(tiendaDelPanel(req), esquemaCerrar.parse(req.body).montoContado),
+  );
 };
 
 const movimiento: RequestHandler = async (req, res) => {
@@ -34,18 +39,18 @@ const movimiento: RequestHandler = async (req, res) => {
   await db
     .transaction()
     .execute((tx) =>
-      registrarMovimiento(tx, req.tienda!.id, { ...datos, origen: 'manual' }),
+      registrarMovimiento(tx, tiendaDelPanel(req), { ...datos, origen: 'manual' }),
     );
-  res.status(201).json(await verCajaActual(req.tienda!.id));
+  res.status(201).json(await verCajaActual(tiendaDelPanel(req)));
 };
 
 const resumen: RequestHandler = async (req, res) => {
   const { desde, hasta } = esquemaPeriodo.parse(req.query);
-  res.json(await resumenPeriodo(req.tienda!.id, desde, hasta));
+  res.json(await resumenPeriodo(tiendaDelPanel(req), desde, hasta));
 };
 
 const historial: RequestHandler = async (req, res) => {
-  res.json(await historialCajas(req.tienda!.id));
+  res.json(await historialCajas(tiendaDelPanel(req)));
 };
 
 export const cajaController = { actual, abrir, cerrar, movimiento, resumen, historial };

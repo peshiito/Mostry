@@ -1,4 +1,6 @@
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router';
+import { Esqueleto } from '../../shared/ui/Esqueleto.jsx';
 import { BotonTema } from '../../shared/tema/BotonTema.jsx';
 import { Icono } from '../../shared/ui/Icono.jsx';
 import { LogoMostry } from '../../shared/ui/LogoMostry.jsx';
@@ -21,6 +23,12 @@ export function LayoutAdmin() {
           <NavLink to="/" end className={css.item}>
             <Icono nombre="storefront" /> Tiendas
           </NavLink>
+          <NavLink to="/reportes" className={css.item}>
+            <Icono nombre="support_agent" /> Reportes
+          </NavLink>
+          <NavLink to="/mensajes" className={css.item}>
+            <Icono nombre="chat" /> Mensajes
+          </NavLink>
           <NavLink to="/metricas" className={css.item}>
             <Icono nombre="bar_chart" /> Métricas
           </NavLink>
@@ -29,9 +37,11 @@ export function LayoutAdmin() {
           <BotonTema tono="sobreVerde" />
         </div>
       </aside>
-      <main className={css.contenido}>
-        <Outlet />
-      </main>
+      <div className={css.contenido}>
+        <Suspense fallback={<Esqueleto filas={5} />}>
+          <Outlet />
+        </Suspense>
+      </div>
     </div>
   );
 }

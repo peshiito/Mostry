@@ -2,15 +2,7 @@
 // Las horas se piensan en hora argentina; el servidor vuelve a validar todo.
 const MS_HORA = 3600 * 1000;
 
-export function diasDelMes(anio, mes) {
-  const primero = new Date(anio, mes, 1);
-  const cantidad = new Date(anio, mes + 1, 0).getDate();
-  const blancos = (primero.getDay() + 6) % 7; // semana que arranca el lunes
-  return [
-    ...Array.from({ length: blancos }, () => null),
-    ...Array.from({ length: cantidad }, (_, i) => new Date(anio, mes, i + 1)),
-  ];
-}
+export { diasDelMes } from '../../../shared/lib/mes.js';
 
 // tramos: { [diaSemana 0-6]: [['07:00','13:00'], ...] } · feriados: ['2026-10-12']
 export function turnosDelDia(

@@ -30,15 +30,14 @@ function proxima(p) {
 }
 
 export function adaptarTienda(t, slug) {
+  // Suspendida: la API manda solo lo mínimo para "Cerrada temporalmente".
+  if (!t.disponible) {
+    const { nombre, frase, logoUrl, paleta } = t;
+    return { estado: 'suspendida', tienda: { slug, nombre, frase, logoUrl, paleta } };
+  }
   const tramos = tramosPorDia(t.horarios);
   const a = t.apertura;
-  const estado = !t.disponible
-    ? 'suspendida'
-    : a.abierta
-      ? 'abierta'
-      : a.motivo === 'pausada'
-        ? 'pausada'
-        : 'cerrada';
+  const estado = a.abierta ? 'abierta' : a.motivo === 'pausada' ? 'pausada' : 'cerrada';
   const promo = t.promociones[0];
   return {
     estado,

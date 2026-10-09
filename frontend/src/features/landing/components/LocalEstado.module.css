@@ -1,0 +1,30 @@
+/* Estado del local: el elegido baja el toldo, toma color y prende la vidriera.
+   Va en un archivo aparte y se comunica con Local.module.css por variables. */
+.estado {
+  scroll-snap-align: center;
+  transition: transform var(--dur-toque) var(--ease-out);
+}
+.estado:active {
+  transform: scale(0.97);
+}
+.estado[aria-selected='true'] {
+  --baja: 1;
+  --saturacion: 1;
+  --luz: var(--a);
+  --brillo: 0 -6px 18px color-mix(in srgb, var(--a) 55%, transparent);
+  color: var(--carbon);
+}
+@media (hover: hover) and (pointer: fine) {
+  .estado:hover {
+    --baja: 0.94;
+    --saturacion: 0.85;
+  }
+}
+.estado:focus-visible {
+  outline: none;
+  border-radius: var(--radio);
+  box-shadow: var(--foco);
+}
+:global(:root[data-tema='oscuro']) .estado {
+  --c: color-mix(in oklab, var(--c-base) 48%, white);
+}

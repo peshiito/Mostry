@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { fechaCorta } from '../../../shared/lib/fechas.js';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
@@ -13,13 +14,14 @@ import css from './PantallaNotas.module.css';
 
 // Notas sueltas del negocio (Stitch 44). Se pueden borrar (decisión de la Etapa 4).
 export function PantallaNotas() {
-  const { notas, agregar, borrar, error } = useNotas();
+  const { notas, agregar, borrar, error, errorCarga, recargar } = useNotas();
   const [texto, setTexto] = useState('');
   async function guardar(e) {
     e.preventDefault();
     if (!texto.trim()) return;
     if ((await agregar(texto.trim())).ok) setTexto('');
   }
+  if (errorCarga) return <ErrorCarga que="tus notas" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina migas="Negocio" titulo="Libreta" />

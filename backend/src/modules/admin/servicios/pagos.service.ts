@@ -1,3 +1,4 @@
+import { tiendasRepo } from '../../tiendas/tiendas.repository.js';
 import { db } from '../../../shared/db/db.js';
 import { logger } from '../../../shared/logger.js';
 import { adminEstadoRepo } from '../repositorios/adminEstado.repository.js';
@@ -9,7 +10,9 @@ const DIA_MS = 24 * 60 * 60 * 1000;
 
 // El plan se extiende 30 días desde max(prueba_hasta, plan_hasta, ahora):
 // si paga antes de que venza, no pierde los días que le quedaban.
-export async function registrarPago(tiendaId: number, adminId: number, datos: DatosPago) {
+export async function registrarPago(id: number, adminId: number, datos: DatosPago) {
+  const tiendaId = await tiendasRepo.verificarId(id);
+  if (!tiendaId) throw tiendaNoEncontrada();
   const resultado = await db.transaction().execute(async (tx) => {
     const fechas = await adminEstadoRepo.fechasBloqueando(tx, tiendaId);
     if (!fechas) throw tiendaNoEncontrada();

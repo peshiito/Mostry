@@ -1,3 +1,4 @@
+import { SelectorFecha } from '../../../shared/ui/SelectorFecha.jsx';
 import { useState } from 'react';
 import { fechaCorta } from '../../../shared/lib/fechas.js';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
@@ -38,11 +39,11 @@ export function Feriados({ feriados, onAgregar, onQuitar, error }) {
       ) : null}
       <Campo etiqueta="Agregar día cerrado">
         {(c) => (
-          <Entrada
+          <SelectorFecha
             c={c}
-            type="date"
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
+            etiqueta="Agregar día cerrado"
+            valor={fecha}
+            onCambio={setFecha}
           />
         )}
       </Campo>

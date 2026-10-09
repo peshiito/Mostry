@@ -1,3 +1,4 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { aCentavos } from '../../../shared/lib/plata.js';
@@ -12,7 +13,7 @@ import { useGastos } from '../hooks/useGastos.js';
 
 // Cargar gasto (Stitch 39). Si es efectivo, sale de la caja de hoy (genera egreso).
 export function PantallaGastoNuevo() {
-  const { proveedores, crearGasto } = useGastos();
+  const { proveedores, crearGasto, errorCarga, recargar } = useGastos();
   const navegar = useNavigate();
   const [g, setG] = useState({
     tipo: 'gasto',
@@ -31,6 +32,7 @@ export function PantallaGastoNuevo() {
     if (Object.keys(err).length) return;
     if ((await crearGasto.ejecutar(g)).ok) navegar('/panel/gastos');
   }
+  if (errorCarga) return <ErrorCarga que="tus proveedores" onReintentar={recargar} />;
   return (
     <Pagina as="form" onSubmit={guardar} noValidate>
       <TituloPagina migas="Gastos" titulo="Cargar gasto" />

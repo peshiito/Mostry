@@ -1,9 +1,9 @@
 import { FilaTienda } from './FilaTienda.jsx';
 import css from './TablaTiendas.module.css';
 
-const COLUMNAS = ['Tienda', 'Email del dueño', 'Estado', 'Vence', 'Alta'];
+const COLUMNAS = ['Tienda', 'Email del dueño', 'Estado', 'Vence', 'Alta', 'Contacto'];
 
-export function TablaTiendas({ tiendas }) {
+export function TablaTiendas({ tiendas, onWhatsapp }) {
   return (
     <div className={css.marco}>
       <table className={css.tabla}>
@@ -18,7 +18,7 @@ export function TablaTiendas({ tiendas }) {
         </thead>
         <tbody>
           {tiendas.map((t) => (
-            <FilaTienda key={t.id} tienda={t} />
+            <FilaTienda key={t.id} tienda={t} onWhatsapp={onWhatsapp} />
           ))}
         </tbody>
       </table>

@@ -29,18 +29,21 @@ export function cerrarAviso(id) {
   }, 260);
 }
 
-function crear(tipo, titulo, { descripcion, duracion } = {}) {
+// `duracion: Infinity` lo deja fijo hasta que lo cierren; `accion`: { texto, alHacer }.
+function crear(tipo, titulo, { descripcion, duracion, accion } = {}) {
   const aviso = {
     id: proximoId++,
     tipo,
     titulo,
     descripcion,
+    accion,
     duracion: duracion ?? DURACION[tipo],
   };
   lista = [aviso, ...lista];
-  // Los que quedan muy atrás en la pila salen solos.
+  // Los que quedan muy atrás en la pila salen solos (los fijos, como
+  // "Hay una versión nueva", se quedan hasta que los cierren).
   lista
-    .filter((a) => !a.saliendo)
+    .filter((a) => !a.saliendo && Number.isFinite(a.duracion))
     .slice(MAXIMO)
     .forEach((a) => cerrarAviso(a.id));
   emitir();

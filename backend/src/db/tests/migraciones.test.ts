@@ -13,7 +13,7 @@ async function contarTablas(): Promise<number> {
   return Number(rows[0]?.n);
 }
 
-// Bajar y subir las 26 migraciones lleva varios segundos: si se cortara a la
+// Bajar y subir todas las migraciones lleva varios segundos: si se cortara a la
 // mitad, dejaría la base de test sin tablas y rompería todos los demás tests.
 describe('migraciones', { timeout: 120_000 }, () => {
   // Base vacía: datos que dejó otro test (por ejemplo, dos categorías con el mismo
@@ -28,16 +28,16 @@ describe('migraciones', { timeout: 120_000 }, () => {
 
     const subida = await migrador.migrateToLatest();
     expect(subida.error).toBeUndefined();
-    expect(subida.results).toHaveLength(32);
-    expect(await contarTablas()).toBe(24);
+    expect(subida.results).toHaveLength(37);
+    expect(await contarTablas()).toBe(28);
   });
 
   it('cada migración se puede bajar y volver a subir de a una', async () => {
     const migrador = crearMigrador(db);
-    for (let i = 0; i < 32; i++)
+    for (let i = 0; i < 37; i++)
       expect((await migrador.migrateDown()).error).toBeUndefined();
-    for (let i = 0; i < 32; i++)
+    for (let i = 0; i < 37; i++)
       expect((await migrador.migrateUp()).error).toBeUndefined();
-    expect(await contarTablas()).toBe(24);
+    expect(await contarTablas()).toBe(28);
   });
 });

@@ -1,3 +1,5 @@
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
+import { NoEncontrada } from '../../../shared/ui/NoEncontrada.jsx';
 import { useParams } from 'react-router';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
@@ -12,12 +14,17 @@ import { GrillaFotos } from '../components/GrillaFotos.jsx';
 import { OpcionesProducto } from '../components/OpcionesProducto.jsx';
 import { useEditarProducto } from '../hooks/useEditarProducto.js';
 import css from './PantallaProductoEditar.module.css';
+import { useBasePanel } from '../../panelBase/BasePanel.jsx';
 
 // Crear o editar un producto (Stitch 31).
 export function PantallaProductoEditar() {
+  const { rutas } = useBasePanel();
   const { id } = useParams();
   const e = useEditarProducto(id);
   if (e.cargando) return <Esqueleto filas={5} alto={96} />;
+  // Nunca un formulario vacío con el título "Editar": guardar pisaría el producto.
+  if (e.errorCarga?.status === 404) return <NoEncontrada volver={`${rutas}/productos`} />;
+  if (e.errorCarga) return <ErrorCarga que="el producto" onReintentar={e.recargar} />;
   return (
     <Pagina as="form" onSubmit={e.guardar} noValidate className={css.pagina}>
       <TituloPagina

@@ -1,3 +1,4 @@
+import { SelectorFecha } from '../../../shared/ui/SelectorFecha.jsx';
 import { useState } from 'react';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { AreaTexto, Campo, Entrada } from '../../../shared/ui/Campo.jsx';
@@ -29,10 +30,24 @@ export function HojaPromo({ abierta, onCerrar, onGuardar }) {
       </Campo>
       <div className={css.fechas}>
         <Campo etiqueta="Desde">
-          {(c) => <Entrada c={c} type="date" value={p.desde} onChange={set('desde')} />}
+          {(c) => (
+            <SelectorFecha
+              c={c}
+              etiqueta="Desde"
+              valor={p.desde}
+              onCambio={(desde) => setP({ ...p, desde })}
+            />
+          )}
         </Campo>
         <Campo etiqueta="Hasta" error={error}>
-          {(c) => <Entrada c={c} type="date" value={p.hasta} onChange={set('hasta')} />}
+          {(c) => (
+            <SelectorFecha
+              c={c}
+              etiqueta="Hasta"
+              valor={p.hasta}
+              onCambio={(hasta) => setP({ ...p, hasta })}
+            />
+          )}
         </Campo>
       </div>
       <div className={css.previa} aria-label="Vista previa">

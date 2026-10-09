@@ -9,6 +9,8 @@ import { rutasHorarios } from './horarios/horarios.routes.js';
 import { rutasLibreta } from './libreta/libreta.routes.js';
 import { rutasPedidosPanel } from './pedidos/pedidos.routes.js';
 import { rutasPromociones } from './promociones/promociones.routes.js';
+import { rutasReportes } from './reportes/reportes.routes.js';
+import { rutasSoportePanel } from './soporte/soporte.routes.js';
 import { accesoPanel } from './tiendas/middlewares/accesoPanel.js';
 import { rutasTienda } from './tiendas/tiendas.routes.js';
 
@@ -27,5 +29,7 @@ export function rutasPanel(mailer: Mailer): Router {
   r.use(rutasGastos());
   r.use(rutasEncargosPanel());
   r.use(rutasLibreta());
+  r.use(rutasReportes());
+  r.use(rutasSoportePanel());
   return r;
 }

@@ -4,7 +4,12 @@ import { panel } from '../../panelBase/panelApi.js';
 
 // Libreta de fiados (/panel/libreta). El saldo lo calcula la API (sección 5).
 export function useLibreta() {
-  const { datos, cargando, recargar } = useConsulta('/panel/libreta/clientes');
+  const {
+    datos,
+    cargando,
+    error: errorCarga,
+    recargar,
+  } = useConsulta('/panel/libreta/clientes');
   const clientes = datos ?? [];
   const crear = useAccion(
     async (d) => {
@@ -17,6 +22,8 @@ export function useLibreta() {
     { exito: 'Cliente agregado a la libreta' },
   );
   return {
+    errorCarga,
+    recargar,
     clientes,
     totalDeuda: clientes.reduce((s, c) => s + Math.max(c.saldo, 0), 0),
     conDeuda: clientes.filter((c) => c.saldo > 0).length,
@@ -27,7 +34,7 @@ export function useLibreta() {
 
 // Un cliente con sus movimientos. Un pago entra a la caja (efectivo o transferencia).
 export function useClienteFiado(id) {
-  const { datos, cargando, setDatos } = useConsulta(
+  const { datos, cargando, error, recargar, setDatos } = useConsulta(
     `/panel/libreta/clientes/${Number(id) || 0}`,
   );
   const anotar = useAccion(
@@ -44,6 +51,8 @@ export function useClienteFiado(id) {
   );
   return {
     cliente: datos,
+    error,
+    recargar,
     movimientos: datos?.movimientos ?? [],
     saldo: datos?.saldo ?? 0,
     cargando,

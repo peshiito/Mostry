@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { api } from './cliente.js';
+import { getCompartido } from './getCompartido.js';
 
 // GET a la API con estados de carga y error. `ruta` null = no consultar todavía.
 // "cargando" se deriva: la última respuesta no corresponde a la consulta actual.
@@ -10,7 +10,7 @@ export function useConsulta(ruta) {
   useEffect(() => {
     if (!clave) return undefined;
     const control = new AbortController();
-    api(ruta, { senal: control.signal })
+    getCompartido(ruta, control.signal)
       .then((datos) => setRes({ clave, datos, error: null }))
       .catch((error) => {
         if (error.name !== 'AbortError') setRes({ clave, datos: null, error });

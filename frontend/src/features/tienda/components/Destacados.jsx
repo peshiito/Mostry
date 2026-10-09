@@ -10,8 +10,8 @@ export function Destacados({ productos }) {
     <section aria-labelledby="destacados" className={css.seccion}>
       <SeccionTitulo
         id="destacados"
-        titulo="Salido del horno"
-        bajada="Los que más salen cada mañana"
+        titulo="Lo más pedido"
+        bajada="Los favoritos de la casa"
         accion={<Link to="/catalogo">Ver todos</Link>}
       />
       <ul className={css.carrusel}>

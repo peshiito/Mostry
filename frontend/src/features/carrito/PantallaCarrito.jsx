@@ -20,6 +20,7 @@ export function PantallaCarrito() {
       <Pagina>
         {items.length === 0 ? (
           <Estado
+            nivel={1}
             icono="shopping_bag"
             titulo="Tu carrito está vacío"
             accion={<Boton to="/catalogo">Ver productos</Boton>}

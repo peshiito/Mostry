@@ -8,7 +8,7 @@ export function ItemCarrito({ item }) {
   const { cambiar } = useCarrito();
   return (
     <li className={css.item}>
-      <img src={item.foto} alt="" className={css.foto} />
+      <img src={item.foto} alt="" className={css.foto} decoding="async" />
       <div className={css.cuerpo}>
         <div className={css.cabeza}>
           <h2 className={css.nombre}>{item.nombre}</h2>

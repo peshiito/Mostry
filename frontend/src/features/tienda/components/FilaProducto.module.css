@@ -4,6 +4,9 @@
   gap: var(--e-3);
   padding: var(--e-3) var(--e-4);
   border-bottom: var(--borde);
+  /* Catálogos largos: el navegador no dibuja las filas fuera de pantalla. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 97px;
 }
 .fila:last-child {
   border-bottom: 0;

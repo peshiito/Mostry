@@ -1,10 +1,16 @@
+import { useAparecer } from '../useAparecer.js';
 import css from './BloqueLanding.module.css';
 
-// Sección de la landing: cinta, título, bajada y contenido.
-export function BloqueLanding({ cinta, titulo, bajada, centrado, fondo, children }) {
+// Sección de la landing: cinta, título, bajada y contenido. Aparece al llegar con el scroll.
+export function BloqueLanding({ cinta, titulo, bajada, centrado, fondo, id, children }) {
+  const [ref, visible] = useAparecer();
   return (
-    <section className={`${css.bloque} ${fondo ? css[fondo] : ''}`}>
-      <div className={`${css.interior} ${centrado ? css.centrado : ''}`}>
+    <section id={id} className={`${css.bloque} ${fondo ? css[fondo] : ''}`}>
+      <div
+        ref={ref}
+        data-visible={visible}
+        className={`${css.interior} ${centrado ? css.centrado : ''}`}
+      >
         <div className={css.cabeza}>
           {cinta ? <p className={css.cinta}>{cinta}</p> : null}
           <h2 className={css.titulo}>{titulo}</h2>

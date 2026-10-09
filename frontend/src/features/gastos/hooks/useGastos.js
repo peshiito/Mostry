@@ -44,6 +44,8 @@ export function useGastos() {
     proveedores,
     total,
     cargando: g.cargando || p.cargando,
+    errorCarga: g.error ?? p.error,
+    recargar: () => (g.recargar(), p.recargar()),
     crearGasto,
     crearProveedor,
   };

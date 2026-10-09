@@ -10,7 +10,7 @@ export type FiltrosRepo = {
 };
 
 // Base filtrada de productos de UNA tienda (para listar y contar).
-export function consultaProductos(tiendaId: TiendaId, f: FiltrosRepo) {
+function consultaProductos(tiendaId: TiendaId, f: FiltrosRepo) {
   let q = db.selectFrom('productos').where('tiendaId', '=', tiendaId);
   if (f.activos !== undefined) q = q.where('activo', '=', f.activos);
   if (f.buscar) q = q.where('nombre', 'like', patronContiene(f.buscar));

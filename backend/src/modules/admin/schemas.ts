@@ -12,6 +12,8 @@ export const esquemaListado = z.strictObject({
   buscar: z.string().trim().max(100).optional(),
   estado: z.enum(ESTADOS).optional(),
   pagina: z.coerce.number().int().min(1).max(1000).default(1),
+  // "1": solo las que vencen en 2 días o menos (o ya están en gracia).
+  porVencer: z.literal('1').optional(),
 });
 
 export const esquemaPago = z.strictObject({

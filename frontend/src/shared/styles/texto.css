@@ -19,6 +19,11 @@ h4 {
   font-family: var(--fuente-titulo);
   line-height: 1.15;
   letter-spacing: -0.01em;
+  text-wrap: balance; /* sin una palabra sola colgando en la última línea */
+}
+
+p {
+  text-wrap: pretty;
 }
 
 ul,

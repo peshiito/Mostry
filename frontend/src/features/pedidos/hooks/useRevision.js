@@ -5,6 +5,7 @@ import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { aCentavos } from '../../../shared/lib/plata.js';
 import { panel } from '../../panelBase/panelApi.js';
 import { validarAprobacion } from '../lib/validarAprobacion.js';
+import { useAbrirComprobante } from './useAbrirComprobante.js';
 
 const VACIO = { monto: '', fecha: '', titular: '', operacion: '' };
 
@@ -40,14 +41,10 @@ export function useRevision(pedido) {
   async function rechazar(motivo) {
     if ((await accion.ejecutar('rechazar', { motivo })).ok) volver();
   }
-  // URL firmada de 5 minutos: se pide recién al tocar "Abrir" (sección 7).
-  const abrir = async () =>
-    window.open(
-      (await panel.get(`${ruta}/${comprobante.id}/archivo`)).url,
-      '_blank',
-      'noopener',
-    );
+  const archivo = useAbrirComprobante(ruta, comprobante?.id);
+  const abrir = () => archivo.ejecutar();
   return {
+    errorArchivo: archivo.error,
     datos,
     setDatos,
     errores,

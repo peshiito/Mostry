@@ -19,6 +19,9 @@ export function PantallaVerificarEmail() {
   const [codigo, setCodigo] = useState('');
   const [listo, setListo] = useState(false);
   const verificar = useAccion(() => cuentaApi.verificarEmail(email, codigo));
+  const reenvio = useAccion(() => cuentaApi.reenviarVerificacion(email), {
+    exito: 'Te mandamos otro código',
+  });
   const enviar = async (e) => {
     e.preventDefault();
     if ((await verificar.ejecutar()).ok) setListo(true);
@@ -30,7 +33,7 @@ export function PantallaVerificarEmail() {
         <CabeceraIcono icono="mail" titulo="Revisá tu email">
           Te mandamos un código de 6 dígitos. Vence en 10 minutos.
         </CabeceraIcono>
-        <AvisoError error={verificar.error} />
+        <AvisoError error={verificar.error ?? reenvio.error} />
         <Campo etiqueta="Email">
           {(c) => (
             <Entrada
@@ -57,9 +60,7 @@ export function PantallaVerificarEmail() {
           Verificar
         </Boton>
         <div className={css.links}>
-          <BotonReenviar
-            onReenviar={() => cuentaApi.reenviarVerificacion(email).catch(() => {})}
-          />
+          <BotonReenviar onReenviar={async () => (await reenvio.ejecutar()).ok} />
         </div>
       </form>
     </LayoutCuenta>

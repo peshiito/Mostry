@@ -7,9 +7,12 @@ const enDias = (n) => new Date(Date.now() + n * 864e5).toLocaleDateString('sv-SE
 
 // Encargos de los próximos 7 días (GET /panel/encargos), agrupados por día.
 export function useEncargos() {
-  const { datos, cargando, recargar } = useConsulta(
-    `/panel/encargos?desde=${enDias(0)}&hasta=${enDias(6)}`,
-  );
+  const {
+    datos,
+    cargando,
+    error: errorCarga,
+    recargar,
+  } = useConsulta(`/panel/encargos?desde=${enDias(0)}&hasta=${enDias(6)}`);
   const encargos = (datos ?? []).map((e) => ({
     ...e,
     fecha: e.fechaEncargo,
@@ -28,6 +31,8 @@ export function useEncargos() {
     conEncargos: new Set(encargos.map((e) => dia(e.fecha))),
     cambiar: accion.ejecutar,
     cargando,
+    errorCarga,
+    recargar,
     error: accion.error,
   };
 }

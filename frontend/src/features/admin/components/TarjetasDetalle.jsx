@@ -23,7 +23,6 @@ export function TarjetasDetalle({ tienda: t }) {
         <Tarjeta>
           <Ticket>
             <TicketFila concepto="Productos" monto={t.productos ?? 0} />
-            <TicketFila concepto="Pedidos" monto={t.pedidos ?? 0} />
           </Ticket>
         </Tarjeta>
       </Seccion>

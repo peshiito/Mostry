@@ -1,0 +1,65 @@
+.cuadra {
+  display: grid;
+  gap: var(--e-6);
+}
+/* La calle: los locales uno al lado del otro sobre la vereda. En el celular
+   se desliza de costado. */
+.calle {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(136px, 1fr);
+  gap: var(--e-3);
+  padding: var(--e-2) var(--e-1) 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-bottom: 10px solid var(--lona-oscura);
+  box-shadow: 0 1px 0 var(--linea-fuerte);
+}
+.calle::-webkit-scrollbar {
+  display: none;
+}
+.vista {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: var(--e-5);
+}
+.ficha {
+  display: grid;
+  gap: var(--e-1);
+  max-width: 420px;
+  animation: entrar var(--dur-larga) var(--ease-out) both;
+}
+.rubro {
+  color: var(--verde);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nombre {
+  font-size: var(--t-3xl);
+}
+.dominio {
+  color: var(--texto-2);
+  font-family: var(--fuente-mono);
+  font-size: var(--t-sm);
+}
+.uso {
+  margin-top: var(--e-2);
+  font-size: var(--t-lg);
+}
+@media (min-width: 760px) {
+  .vista {
+    grid-template-columns: auto minmax(0, 420px);
+    justify-content: center;
+    gap: var(--e-7);
+  }
+}
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

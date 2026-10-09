@@ -29,6 +29,7 @@
   --sobre-coral: #1b1b1b;
   --sobre-mostaza: #1b1b1b;
   --sobre-ladrillo: #ffffff;
+  --sobre-tienda: #ffffff; /* texto sobre el color de una tienda */
 
   /* Superficies y texto */
   --lona: #f7f3ec; /* fondo de página */
@@ -47,6 +48,8 @@
   --tinte-boton: rgb(0 0 0 / 0.05);
   --sombra-aviso: 0 6px 20px rgb(27 27 27 / 0.1);
   --fondo-logo: #ffffff;
+  --marco-celular: #1b1b1b; /* el celular es negro en los dos modos */
+  --borde-celular: transparent;
 
   /* Tipografía */
   --fuente-titulo: 'Rubik Variable', 'Rubik', system-ui, sans-serif;
@@ -93,6 +96,7 @@
   --dur-toque: 140ms;
   --dur-corta: 200ms;
   --dur-media: 280ms;
+  --dur-larga: 600ms; /* llegadas de secciones con el scroll */
 }
 
 /* Modo oscuro (sección 8): verde #5CC7A5 sobre #0F1714. No es invertir colores:
@@ -121,6 +125,7 @@
   --ok-claro: #14301f;
   --ok-borde: #2e5c40;
   --sobre-ladrillo: #1b1b1b;
+  --sobre-tienda: #0f1714;
 
   --lona: #0f1714;
   --lona-oscura: #16201c;
@@ -141,6 +146,8 @@
   --sombra-aviso: 0 8px 24px rgb(0 0 0 / 0.45);
   --foco: 0 0 0 3px rgb(92 199 165 / 0.45);
   --fondo-logo: #f4f1ea;
+  --marco-celular: #050807;
+  --borde-celular: #3d4e47;
 }
 
 /* Colores de cada tienda (vidriera y panel). La tienda pone --paleta y

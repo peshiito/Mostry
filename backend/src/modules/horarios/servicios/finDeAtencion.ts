@@ -5,13 +5,14 @@ const FIN_DEL_DIA = 24 * 60;
 
 // Hasta qué hora atiende sin cortar, uniendo tramos pegados (09–13 y 13–18 →
 // 18:00) y, si llega a las 24:00, siguiendo con el tramo de las 00:00 del día
-// siguiente (si no es feriado).
+// siguiente (si no es feriado). null: atiende también todo el día siguiente
+// (tienda abierta las 24 horas), así que no hay una hora de cierre que mostrar.
 export function finDeAtencion(
   agenda: Agenda,
   diaSemana: number,
   desde: number,
   fechaSiguiente: string,
-) {
+): string | null {
   const delDia = (dia: number) =>
     agenda.tramos
       .filter((t) => t.diaSemana === dia)
@@ -25,5 +26,6 @@ export function finDeAtencion(
   let finManiana = 0;
   for (const t of delDia((diaSemana + 1) % 7))
     if (t.abre <= finManiana && t.cierra > finManiana) finManiana = t.cierra;
+  if (finManiana >= FIN_DEL_DIA) return null;
   return aHora(finManiana > 0 ? finManiana : fin);
 }

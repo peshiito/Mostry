@@ -13,5 +13,6 @@ export const requerirMiembro: RequestHandler = async (req, _res, next) => {
   ) {
     throw new AppError(403, 'sin_acceso', 'No tenés acceso a esta tienda.');
   }
+  req.panel = { tiendaId: tienda.id, usuarioId: sesion.usuarioId };
   next();
 };

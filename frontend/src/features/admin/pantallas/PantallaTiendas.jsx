@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { Buscador } from '../../../shared/ui/Buscador.jsx';
 import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
 import { Paginador } from '../../../shared/ui/Paginador.jsx';
 import { Chips } from '../../../shared/ui/Chips.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
+import { HojaWhatsapp } from '../components/HojaWhatsapp.jsx';
 import { Kpis } from '../components/Kpis.jsx';
+import { PorVencer } from '../components/PorVencer.jsx';
 import { TablaTiendas } from '../components/TablaTiendas.jsx';
 import { ESTADOS_TIENDA } from '../estados.js';
 import { useTiendasAdmin } from '../hooks/useTiendasAdmin.js';
@@ -12,6 +15,7 @@ import { useTiendasAdmin } from '../hooks/useTiendasAdmin.js';
 // Lista de tiendas del admin (Stitch 54).
 export function PantallaTiendas() {
   const a = useTiendasAdmin();
+  const [escribirA, setEscribirA] = useState(null);
   const opciones = [
     { valor: 'todas', texto: 'Todas', cuenta: a.total },
     ...Object.entries(ESTADOS_TIENDA).map(([v, e]) => ({
@@ -23,6 +27,7 @@ export function PantallaTiendas() {
   return (
     <Pagina ancho="completo">
       <TituloPagina migas="Administración" titulo="Tiendas" />
+      <PorVencer onWhatsapp={setEscribirA} />
       <Kpis
         items={[
           { etiqueta: 'Total de tiendas', valor: a.total },
@@ -46,8 +51,13 @@ export function PantallaTiendas() {
         valor={a.estado}
         onCambio={a.setEstado}
       />
-      {a.cargando ? <Esqueleto filas={4} /> : <TablaTiendas tiendas={a.tiendas} />}
+      {a.cargando ? (
+        <Esqueleto filas={4} />
+      ) : (
+        <TablaTiendas tiendas={a.tiendas} onWhatsapp={setEscribirA} />
+      )}
       <Paginador pagina={a.pagina} paginas={a.paginas} onCambio={a.setPagina} />
+      <HojaWhatsapp tienda={escribirA} onCerrar={() => setEscribirA(null)} />
     </Pagina>
   );
 }

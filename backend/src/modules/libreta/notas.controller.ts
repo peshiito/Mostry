@@ -1,3 +1,4 @@
+import { tiendaDelPanel } from '../../shared/http/contextoPanel.js';
 import type { RequestHandler } from 'express';
 import { AppError } from '../../shared/errors/AppError.js';
 import * as e from './libreta.schemas.js';
@@ -7,15 +8,18 @@ const notaNoEncontrada = () =>
   new AppError(404, 'nota_no_encontrada', 'No encontramos esa nota.');
 
 export const notas: RequestHandler = async (req, res) => {
-  res.json(await notasRepo.listar(req.tienda!.id));
+  res.json(await notasRepo.listar(tiendaDelPanel(req)));
 };
 export const crearNota: RequestHandler = async (req, res) => {
-  const id = await notasRepo.crear(req.tienda!.id, e.esquemaNota.parse(req.body).texto);
+  const id = await notasRepo.crear(
+    tiendaDelPanel(req),
+    e.esquemaNota.parse(req.body).texto,
+  );
   res.status(201).json({ id });
 };
 export const editarNota: RequestHandler = async (req, res) => {
   const ok = await notasRepo.editar(
-    req.tienda!.id,
+    tiendaDelPanel(req),
     e.esquemaId.parse(req.params.id),
     e.esquemaNota.parse(req.body).texto,
   );
@@ -23,7 +27,7 @@ export const editarNota: RequestHandler = async (req, res) => {
   res.status(204).end();
 };
 export const borrarNota: RequestHandler = async (req, res) => {
-  if (!(await notasRepo.borrar(req.tienda!.id, e.esquemaId.parse(req.params.id))))
+  if (!(await notasRepo.borrar(tiendaDelPanel(req), e.esquemaId.parse(req.params.id))))
     throw notaNoEncontrada();
   res.status(204).end();
 };

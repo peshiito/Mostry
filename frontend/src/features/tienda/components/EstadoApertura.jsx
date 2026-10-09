@@ -1,8 +1,9 @@
 import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { useTienda } from '../hooks/useTienda.js';
+import { textoAbierta } from '../lib/textoApertura.js';
 
 const TEXTO = {
-  abierta: (t) => `Abierto · cierra a las ${t.cierraA}`,
+  abierta: (t) => textoAbierta(t.cierraA),
   cerrada: (t) => `Cerrado · abre ${t.abreProximo}`,
   pausada: () => 'Pausada',
   suspendida: () => 'Cerrada',

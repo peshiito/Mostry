@@ -13,3 +13,10 @@
   font-size: var(--t-sm);
   font-weight: 500;
 }
+.nombre {
+  font-size: var(--t-md);
+}
+.nota {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

@@ -4,19 +4,6 @@
   gap: var(--e-3);
   margin: 0;
 }
-.celular {
-  width: min(320px, 100%);
-  max-height: 560px;
-  overflow: hidden;
-  border: 10px solid var(--carbon);
-  border-radius: 36px;
-  background: var(--papel);
-  box-shadow: var(--sombra-flotante);
-}
-.celular img {
-  width: 100%;
-  height: auto;
-}
 .pie {
   color: var(--texto-2);
   font-family: var(--fuente-mono);

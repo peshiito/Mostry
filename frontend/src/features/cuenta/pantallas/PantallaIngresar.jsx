@@ -5,20 +5,27 @@ import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Campo, Entrada } from '../../../shared/ui/Campo.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { CampoClave } from '../components/CampoClave.jsx';
+import { ElegirEntreTiendas } from '../components/ElegirEntreTiendas.jsx';
+import { PieIngreso } from '../components/PieIngreso.jsx';
 import { LayoutCuenta } from '../components/LayoutCuenta.jsx';
 import { useIngreso } from '../hooks/useIngreso.js';
 import css from './Cuenta.module.css';
 
-// Paso 1 del ingreso (Stitch 08), desde la tienda (/panel) o el admin.
+const TITULO = {
+  admin: 'Admin de Mostry',
+  sitio: 'Ingresá a Mostry',
+  panel: 'Ingresá a tu panel',
+};
+
+// Ingreso (Stitch 08) desde la landing, la tienda (/panel) o el admin.
 // El error nunca dice si el email existe (sección 7).
-export function PantallaIngresar({ base = '/panel', admin }) {
+export function PantallaIngresar({ base = '/panel', admin, sitio }) {
   const i = useIngreso(base);
+  const zona = admin ? 'admin' : sitio ? 'sitio' : 'panel';
+  if (i.tiendas) return <ElegirEntreTiendas tiendas={i.tiendas} />;
   return (
-    <LayoutCuenta>
-      <TituloPagina
-        titulo={admin ? 'Admin de Mostry' : 'Ingresá a tu panel'}
-        bajada="Con tu email y tu contraseña."
-      />
+    <LayoutCuenta volver={sitio ? '/' : undefined}>
+      <TituloPagina titulo={TITULO[zona]} bajada="Con tu email y tu contraseña." />
       <form className={css.form} onSubmit={i.ingresar} noValidate>
         <AvisoError error={i.accion.error} />
         {i.accion.error?.codigo === 'email_sin_verificar' ? (
@@ -51,11 +58,7 @@ export function PantallaIngresar({ base = '/panel', admin }) {
           Ingresar
         </Boton>
       </form>
-      {admin ? null : (
-        <p className={css.alternativa}>
-          ¿Todavía no tenés tienda? <a href={urlSitio('/registro')}>Creala gratis</a>
-        </p>
-      )}
+      <PieIngreso admin={admin} sitio={sitio} />
     </LayoutCuenta>
   );
 }

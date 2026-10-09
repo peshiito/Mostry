@@ -1,20 +1,14 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 
-export const Carrito = createContext(null);
+import { leerCarrito } from './lib/carritoGuardado.js';
 
-function leer(clave) {
-  try {
-    return JSON.parse(sessionStorage.getItem(clave)) ?? [];
-  } catch {
-    return [];
-  }
-}
+export const Carrito = createContext(null);
 
 // Carrito por tienda en sessionStorage (no es dato sensible; el servidor
 // recalcula precios y total en el checkout, sección 6.1).
 export function CarritoProveedor({ slug, children }) {
   const clave = `carrito:${slug}`;
-  const [items, setItems] = useState(() => leer(clave));
+  const [items, setItems] = useState(() => leerCarrito(clave));
   useEffect(() => {
     try {
       sessionStorage.setItem(clave, JSON.stringify(items));

@@ -1,5 +1,16 @@
+import type { ExpressionBuilder } from 'kysely';
 import { db } from '../../../shared/db/db.js';
+import type { Database } from '../../../shared/db/tipos/index.js';
 import { patronContiene } from '../../../shared/db/escaparLike.js';
+
+// Dato de contacto del dueño de la tienda (para el email y el saludo de WhatsApp).
+const dueno = (eb: ExpressionBuilder<Database, 'tiendas'>) =>
+  eb
+    .selectFrom('miembrosTienda')
+    .innerJoin('usuarios', 'usuarios.id', 'miembrosTienda.usuarioId')
+    .whereRef('miembrosTienda.tiendaId', '=', 'tiendas.id')
+    .where('miembrosTienda.rol', '=', 'dueno')
+    .limit(1);
 
 // Plataforma: el admin ve todas las tiendas. Pensado para el piloto (≤ 500).
 export const adminTiendasRepo = {
@@ -15,17 +26,12 @@ export const adminTiendasRepo = {
         'tiendas.planHasta',
         'tiendas.suspendidaManual',
         'tiendas.creadoEn',
+        'tiendas.whatsapp',
       ])
-      .select((eb) =>
-        eb
-          .selectFrom('miembrosTienda')
-          .innerJoin('usuarios', 'usuarios.id', 'miembrosTienda.usuarioId')
-          .select('usuarios.email')
-          .whereRef('miembrosTienda.tiendaId', '=', 'tiendas.id')
-          .where('miembrosTienda.rol', '=', 'dueno')
-          .limit(1)
-          .as('emailDueno'),
-      )
+      .select((eb) => [
+        dueno(eb).select('usuarios.email').as('emailDueno'),
+        dueno(eb).select('usuarios.nombre').as('nombreDueno'),
+      ])
       .orderBy('tiendas.creadoEn', 'desc')
       .limit(500);
     if (buscar) {
@@ -46,7 +52,4 @@ export const adminTiendasRepo = {
     }
     return q.execute();
   },
-
-  buscarPorId: (id: number) =>
-    db.selectFrom('tiendas').selectAll().where('id', '=', id).executeTakeFirst(),
 };

@@ -7,34 +7,7 @@ import { Lista } from '../../shared/ui/Lista.jsx';
 import { Pagina } from '../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../shared/ui/Seccion.jsx';
 import { TituloPagina } from '../../shared/ui/TituloPagina.jsx';
-
-const GRUPOS = [
-  [
-    'Negocio',
-    [
-      ['Encargos', 'cake', 'encargos'],
-      ['Libreta', 'menu_book', 'libreta'],
-      ['Gastos', 'payments', 'gastos'],
-      ['Proveedores', 'local_shipping', 'proveedores'],
-      ['Promociones', 'sell', 'promociones'],
-    ],
-  ],
-  [
-    'Mi tienda',
-    [
-      ['Datos y apariencia', 'storefront', 'tienda'],
-      ['Horarios', 'schedule', 'horarios'],
-      ['Cobros y envíos', 'account_balance', 'cobros'],
-    ],
-  ],
-  [
-    'Cuenta',
-    [
-      ['Suscripción', 'receipt_long', 'suscripcion'],
-      ['Mi cuenta', 'person', 'cuenta'],
-    ],
-  ],
-];
+import { GRUPOS } from './grupos.js';
 
 // Menú "Más" del panel (Stitch 29).
 export function PantallaMas() {

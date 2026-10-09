@@ -8,6 +8,7 @@ import type {
 import type * as C from './catalogo.js';
 import type * as L from './libreta.js';
 import type * as P from './pedidos.js';
+import type * as X from './plataforma.js';
 import type * as T from './tiendas.js';
 import type * as U from './usuarios.js';
 
@@ -37,4 +38,8 @@ export interface Database {
   notas: L.NotasTabla;
   archivosPorBorrar: ArchivosPorBorrarTabla;
   avisosSuscripcion: AvisosSuscripcionTabla;
+  plantillasMensaje: X.PlantillasMensajeTabla;
+  reportes: X.ReportesTabla;
+  accesosSoporte: X.AccesosSoporteTabla;
+  registroSoporte: X.RegistroSoporteTabla;
 }

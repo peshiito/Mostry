@@ -1,0 +1,37 @@
+/* Marco del celular: proporción de un 390 × 844 real, recortado abajo. */
+.celular {
+  position: relative;
+  aspect-ratio: 390 / 760;
+  overflow: hidden;
+  border: 10px solid var(--marco-celular);
+  border-radius: 38px;
+  background: var(--papel);
+  box-shadow:
+    0 0 0 1px var(--borde-celular),
+    var(--sombra-flotante);
+}
+.md {
+  width: 300px;
+  max-width: 100%;
+}
+.sm {
+  width: 240px;
+  max-width: 100%;
+  border-width: 8px;
+  border-radius: 30px;
+}
+.pantalla {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity var(--dur-media) var(--ease-out),
+    transform var(--dur-larga) var(--ease-out);
+}
+.pantalla[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+}

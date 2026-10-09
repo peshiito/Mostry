@@ -1,0 +1,22 @@
+/* Botón de texto dentro del aviso: chico a la vista, 44 px para el dedo. */
+.accion {
+  position: relative;
+  justify-self: start;
+  margin-top: var(--e-1);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--verde);
+  font: inherit;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+.accion::after {
+  content: '';
+  position: absolute;
+  inset: -12px -8px;
+}
+.accion:hover {
+  text-decoration: underline;
+}

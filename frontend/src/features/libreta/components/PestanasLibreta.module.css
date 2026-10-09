@@ -10,7 +10,7 @@
 .pestana {
   display: grid;
   place-items: center;
-  min-height: 40px;
+  min-height: var(--toque);
   border-radius: 6px;
   color: var(--texto-2);
   font-weight: 600;

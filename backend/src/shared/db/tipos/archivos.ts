@@ -1,4 +1,4 @@
-import type { Auto, Creado } from './comunes.js';
+import type { Auto, ColTienda, Creado } from './comunes.js';
 
 export type ArchivosPorBorrarTabla = Creado & {
   id: Auto<number>;
@@ -11,7 +11,7 @@ export type ArchivosPorBorrarTabla = Creado & {
 
 export type AvisosSuscripcionTabla = {
   id: Auto<number>;
-  tiendaId: number;
+  tiendaId: ColTienda;
   tipo: 'prueba_3_dias' | 'prueba_1_dia' | 'gracia' | 'suspendida';
   vence: Date;
   enviadoEn: Auto<Date>;

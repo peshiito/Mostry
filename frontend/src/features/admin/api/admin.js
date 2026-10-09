@@ -17,6 +17,12 @@ export const adaptarTiendaAdmin = (t, extra = {}) => ({
   duena: extra.duenos?.[0]?.nombre ?? '',
   email: t.emailDueno ?? extra.duenos?.[0]?.email ?? '',
   productos: extra.conteos?.productos,
-  pedidos: extra.conteos?.pedidos,
   pagos: extra.pagos ?? [],
+  // Del detalle: para el WhatsApp (saludo y vencimiento) y el modo soporte.
+  ...(extra.duenos && { nombreDueno: extra.duenos[0]?.nombre ?? null }),
+  ...(extra.suscripcion && {
+    venceEl: extra.suscripcion.venceEl,
+    diasRestantes: extra.suscripcion.diasRestantes,
+  }),
+  soporte: extra.soporte ?? null,
 });

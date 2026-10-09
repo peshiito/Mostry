@@ -45,8 +45,3 @@
   color: var(--ladrillo);
   font-weight: 600;
 }
-.numero {
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
-  text-align: right;
-}

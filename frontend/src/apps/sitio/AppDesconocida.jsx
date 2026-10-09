@@ -11,6 +11,7 @@ export default function AppDesconocida() {
     <Pagina>
       <LogoMostry />
       <Estado
+        nivel={1}
         icono="storefront"
         titulo="Esta tienda no existe"
         accion={

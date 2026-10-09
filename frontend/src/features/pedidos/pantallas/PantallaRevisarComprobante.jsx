@@ -35,7 +35,7 @@ export function PantallaRevisarComprobante() {
         Fijate en tu cuenta que la plata haya entrado antes de aprobar.
       </Aviso>
       <VerComprobante comprobante={r.comprobante} onAbrir={r.abrir} />
-      <AvisoError error={r.accion.error} />
+      <AvisoError error={r.accion.error ?? r.errorArchivo} />
       <FormAprobacion datos={r.datos} errores={r.errores} onCambio={r.setDatos} />
       <Boton
         variante="principal"

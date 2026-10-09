@@ -26,7 +26,7 @@ export function PantallaInicio() {
       <Pagina>
         {estado === 'cerrada' ? (
           <Aviso tipo="alerta" titulo="Ahora solo tomamos encargos" icono="schedule">
-            El local está cerrado. Podés encargar tortas y pastelería para otro día.
+            El local está cerrado. Podés hacer un encargo para otro día.
           </Aviso>
         ) : (
           <PromoGondola promo={tienda.promo} />
@@ -34,7 +34,7 @@ export function PantallaInicio() {
         {cargando || error ? espera : <AccesosCategorias categorias={categorias} />}
         <Destacados productos={destacados} />
         <section aria-labelledby="todo" className={css.seccion}>
-          <SeccionTitulo id="todo" titulo="Todo el mostrador" bajada="Hecho hoy" />
+          <SeccionTitulo id="todo" titulo="Todo el mostrador" bajada="Todo lo que hay" />
           <ul className={css.lista}>
             {productos.map((p) => (
               <FilaProducto key={p.id} producto={p} />

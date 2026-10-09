@@ -1,18 +1,22 @@
+import { Celular } from './Celular.jsx';
 import css from './MockupTienda.module.css';
 
-// Celular con una tienda real hecha con Mostry (captura de La Espiga).
+// Celular con una tienda hecha con Mostry (La Espiga, comercio de ejemplo).
 export function MockupTienda() {
   return (
     <figure className={css.mockup}>
-      <div className={css.celular}>
-        <img
-          src="/landing/tienda.webp"
-          alt="Tienda de la facturería La Espiga hecha con Mostry"
-          width="390"
-          height="760"
-        />
-      </div>
-      <figcaption className={css.pie}>Ejemplo: laespiga.mostry.com.ar</figcaption>
+      <Celular
+        prioridad
+        imagenes={[
+          {
+            src: '/landing/cuadra/espiga.webp',
+            alt: 'Tienda de la facturería La Espiga hecha con Mostry',
+          },
+        ]}
+      />
+      <figcaption className={css.pie} translate="no">
+        la-espiga.mostry.com.ar
+      </figcaption>
     </figure>
   );
 }

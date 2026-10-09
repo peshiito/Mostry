@@ -1,3 +1,4 @@
+import { tiendaDelPanel } from '../../shared/http/contextoPanel.js';
 import { Router, type RequestHandler } from 'express';
 import {
   esquemaEditarPromocion,
@@ -11,17 +12,23 @@ import {
 } from './promociones.service.js';
 
 const listar: RequestHandler = async (req, res) => {
-  res.json(await listarPromociones(req.tienda!.id));
+  res.json(await listarPromociones(tiendaDelPanel(req)));
 };
 const crear: RequestHandler = async (req, res) => {
   res
     .status(201)
-    .json(await crearPromocion(req.tienda!.id, esquemaNuevaPromocion.parse(req.body)));
+    .json(
+      await crearPromocion(tiendaDelPanel(req), esquemaNuevaPromocion.parse(req.body)),
+    );
 };
 const editar: RequestHandler = async (req, res) => {
   const id = esquemaId.parse(req.params.id);
   res.json(
-    await editarPromocion(req.tienda!.id, id, esquemaEditarPromocion.parse(req.body)),
+    await editarPromocion(
+      tiendaDelPanel(req),
+      id,
+      esquemaEditarPromocion.parse(req.body),
+    ),
   );
 };
 

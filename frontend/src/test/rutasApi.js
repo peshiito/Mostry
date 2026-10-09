@@ -3,7 +3,7 @@ const f = import.meta.glob('./fixtures/*.json', { eager: true, import: 'default'
 const r = (nombre) => f[`./fixtures/${nombre}.json`];
 
 // [método, patrón de la ruta, fixture]. El primero que coincide gana.
-export const RESPUESTAS = [
+const RESPUESTAS = [
   ['GET', /^\/publico\/tienda$/, 'publico-tienda'],
   ['GET', /^\/publico\/categorias$/, 'publico-categorias'],
   ['GET', /^\/publico\/productos$/, 'publico-productos'],

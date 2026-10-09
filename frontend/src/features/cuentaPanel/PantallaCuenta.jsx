@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useAccion } from '../../shared/api/useAccion.js';
+import { AvisoError } from '../../shared/ui/AvisoError.jsx';
 import { Boton } from '../../shared/ui/Boton.jsx';
 import { Pagina } from '../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../shared/ui/Seccion.jsx';
@@ -14,9 +16,10 @@ export function PantallaCuenta() {
   const { usuario } = useSesion();
   const navegar = useNavigate();
   const [cambiando, setCambiando] = useState(false);
+  // Solo se sale si la API cerró la sesión: si no, la cookie seguiría viva.
+  const cierre = useAccion(cuentaApi.salir);
   async function salir() {
-    await cuentaApi.salir().catch(() => {});
-    navegar('/panel/ingresar', { replace: true });
+    if ((await cierre.ejecutar()).ok) navegar('/panel/ingresar', { replace: true });
   }
   return (
     <Pagina>
@@ -27,9 +30,11 @@ export function PantallaCuenta() {
           onCambiarClave={() => setCambiando(true)}
         />
       </Seccion>
+      <AvisoError error={cierre.error} />
       <Boton
         variante="principal"
         tamano="lg"
+        cargando={cierre.enviando}
         icono="logout"
         anchoCompleto
         onClick={salir}

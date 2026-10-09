@@ -10,7 +10,13 @@ export function FilaProducto({ producto }) {
   return (
     <li className={`${css.fila} ${agotado ? css.agotado : ''}`}>
       <Link to={`/producto/${producto.id}`} className={css.link}>
-        <img src={producto.foto} alt="" className={css.foto} loading="lazy" />
+        <img
+          src={producto.foto}
+          alt=""
+          className={css.foto}
+          loading="lazy"
+          decoding="async"
+        />
         <span className={css.textos}>
           <span className={css.nombre}>{producto.nombre}</span>
           {agotado ? (

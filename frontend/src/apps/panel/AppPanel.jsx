@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import { PantallaInicioPanel } from '../../features/panelInicio/pantallas/PantallaInicioPanel.jsx';
 import { RequiereSesion } from '../../features/sesion/RequiereSesion.jsx';
+import { registrarPwa } from '../../shared/pwa/registrarPwa.js';
 import { NoEncontrada } from '../../shared/ui/NoEncontrada.jsx';
 import { rutasCuenta } from '../cuenta/rutasCuenta.jsx';
 import { LayoutPanel } from './LayoutPanel.jsx';
@@ -10,6 +12,9 @@ import { rutasPanel } from './rutasPanel.jsx';
 // Panel del comerciante (<slug>.mostry.com.ar/panel). Mobile first, instalable.
 // Las rutas son relativas a /panel (AppTienda monta este componente en /panel/*).
 export default function AppPanel() {
+  useEffect(() => {
+    registrarPwa();
+  }, []);
   return (
     <Routes>
       {rutasCuenta('/panel', false)}

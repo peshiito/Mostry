@@ -9,7 +9,13 @@ export function TarjetaProducto({ producto }) {
   return (
     <article className={css.tarjeta}>
       <Link to={`/producto/${producto.id}`} className={css.link}>
-        <img src={producto.foto} alt="" className={css.foto} loading="lazy" />
+        <img
+          src={producto.foto}
+          alt=""
+          className={css.foto}
+          loading="lazy"
+          decoding="async"
+        />
         <h3 className={css.nombre}>{producto.nombre}</h3>
         <p className={css.desc}>{producto.descripcion}</p>
       </Link>

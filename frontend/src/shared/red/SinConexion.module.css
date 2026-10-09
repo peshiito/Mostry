@@ -1,0 +1,26 @@
+/* El contenedor queda siempre montado para que el lector de pantalla anuncie el cambio. */
+.contenedor {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+.franja {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  margin: 0;
+  padding: var(--e-2) var(--e-4);
+  padding-top: max(var(--e-2), env(safe-area-inset-top));
+  background: var(--mostaza-claro);
+  border-bottom: 1px solid var(--mostaza-borde);
+  color: var(--mostaza-texto);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  animation: bajar var(--dur-corta) var(--ease-out);
+}
+@keyframes bajar {
+  from {
+    transform: translateY(-100%);
+  }
+}

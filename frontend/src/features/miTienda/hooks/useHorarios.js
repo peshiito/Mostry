@@ -1,31 +1,30 @@
 import { useState } from 'react';
 import { useAccion } from '../../../shared/api/useAccion.js';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
-import { panel } from '../../panelBase/panelApi.js';
+
 import { tramosPorDia } from '../../tienda/lib/adaptar.js';
-import { errorTramos } from '../lib/tramos.js';
+import { NOMBRES_DIAS, errorTramos } from '../lib/tramos.js';
+import { useBasePanel, usePanelApi } from '../../panelBase/BasePanel.jsx';
 
-const NOMBRES = [
-  'Domingo',
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes',
-  'Sábado',
-];
-
-// Horarios (PUT /panel/horarios con la semana entera) y feriados (/panel/feriados).
+// Horarios (PUT /horarios con la semana entera) y feriados (/feriados).
 export function useHorarios() {
-  const h = useConsulta('/panel/horarios');
-  const f = useConsulta('/panel/feriados');
+  const panel = usePanelApi();
+  const { api } = useBasePanel();
+  const h = useConsulta(`${api}/horarios`);
+  const f = useConsulta(`${api}/feriados`);
   const [editados, setEditados] = useState(null);
   const base = tramosPorDia(h.datos ?? []);
   const dias =
     editados ??
-    [1, 2, 3, 4, 5, 6, 0].map((d) => ({ d, nombre: NOMBRES[d], tramos: base[d] ?? [] }));
+    [1, 2, 3, 4, 5, 6, 0].map((d) => ({
+      d,
+      nombre: NOMBRES_DIAS[d],
+      tramos: base[d] ?? [],
+    }));
   const cambiarDia = (d, tramos) =>
     setEditados(dias.map((x) => (x.d === d ? { ...x, tramos } : x)));
+  // Mismo horario para toda la semana (atajo "Abrimos las 24 horas").
+  const cambiarTodos = (tramos) => setEditados(dias.map((x) => ({ ...x, tramos })));
   const errores = Object.fromEntries(dias.map((x) => [x.d, errorTramos(x.tramos)]));
   const guardar = useAccion(
     async () => {
@@ -48,8 +47,12 @@ export function useHorarios() {
   return {
     dias,
     cambiarDia,
+    cambiarTodos,
     errores,
     cargando: h.cargando,
+    // Si falló la carga NO se puede editar: guardar borraría los horarios reales.
+    errorCarga: h.error ?? f.error,
+    recargar: () => (h.recargar(), f.recargar()),
     guardar,
     feriados: f.datos ?? [],
     agregarFeriado: (fecha, motivo) =>
