@@ -1,0 +1,31 @@
+# SOLO para probar la versión de producción en tu máquina, sin gastar un peso.
+# Agrega Caddy con https (certificados locales, hace de Cloudflare) y conecta la
+# API y el worker con RustFS y Mailpit de desarrollo (en vez de R2 y Resend).
+#   docker compose up -d     (los servicios de desarrollo tienen que estar arriba)
+#   docker compose -f docker-compose.prod.yml -f docker-compose.prueba-prod.yml \
+#     --env-file .env.prueba-prod up -d --build
+# Después: https://mostry.localhost (el navegador avisa del certificado local).
+services:
+  api:
+    networks: [default, desarrollo]
+  worker:
+    networks: [default, desarrollo]
+  web:
+    networks: [default]
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["127.0.0.1:443:443"]
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_datos:/data
+    networks: [default, desarrollo]
+    depends_on: [api, web]
+
+networks:
+  desarrollo:
+    name: mostry_default
+    external: true
+
+volumes:
+  caddy_datos:

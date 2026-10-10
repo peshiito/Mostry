@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-e2e
+coverage
+.env
+.env.*
+*.log
+src/Logos/*.png

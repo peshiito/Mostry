@@ -11,7 +11,8 @@ const MENSUALES = 6;
 const FECHA = /(\d{4}-\d{2}-\d{2})\.sql\.gz$/;
 
 // Cada entorno en su carpeta: staging nunca pisa ni poda los backups de producción.
-export const prefijoBackups = () => `backups/${config.NODE_ENV}/`;
+export const prefijoBackups = () =>
+  `backups/${config.BACKUP_ENTORNO ?? config.NODE_ENV}/`;
 
 // Retención (decisión 42): los últimos 14 días + el del día 1 de los últimos 6
 // meses. Y SIEMPRE los últimos 14 archivos: si hubo días sin backup, no se borran

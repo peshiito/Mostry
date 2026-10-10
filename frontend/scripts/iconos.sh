@@ -1,35 +1,33 @@
 #!/usr/bin/env bash
-# Genera los íconos de la app instalable (PWA) desde public/favicon.svg.
+# Genera los íconos de la app instalable (PWA) desde el toldo oficial vectorial
+# (src/Logos/LogoMostryToldo.svg): el toldo de noche sobre el fondo oscuro del logo.
 # Uso (desde frontend/, también en fish): bash scripts/iconos.sh
 # Requiere rsvg-convert (paquete librsvg). Volver a correrlo si cambia el logo.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-# Sobre el fondo lona, las rayas crema del toldo van un tono más tostado para
-# que se lean; las rayas se estiran medio punto para tapar la costura con los festones.
-LOGO=$(sed -e 's/<svg[^>]*>//' -e 's#</svg>##' -e 's/#F7F3EC/#E3D7C1/g' \
-  -e 's/height="17"/height="17.5"/g' public/favicon.svg)
-FONDO='#F7F3EC' # lona
+TOLDO=$(sed -e 's/<svg[^>]*>//' -e 's#</svg>##' src/Logos/LogoMostryToldo.svg)
+FONDO='#0D1411'
 SALIDA=public/iconos
 
-# $1 nombre, $2 lado en px, $3 escala del logo (de 48 px), $4 radio de las esquinas
+# $1 nombre, $2 lado en px, $3 qué parte del ancho ocupa el toldo, $4 radio de las esquinas
 generar() {
-  local lado=512 escala=$3
-  # El logo ocupa x 0..48 e y 4..42: lo centramos en el cuadrado de 512.
-  local x y
-  x=$(awk "BEGIN{print (512 - 48 * $escala) / 2}")
-  y=$(awk "BEGIN{print 256 - 23 * $escala}")
+  # El toldo mide 621×278: se centra en un cuadrado de 1000×1000.
+  local escala x y
+  escala=$(awk "BEGIN{print 1000 * $3 / 621}")
+  x=$(awk "BEGIN{print (1000 - 621 * $escala) / 2}")
+  y=$(awk "BEGIN{print (1000 - 278 * $escala) / 2}")
   cat <<SVG | rsvg-convert -w "$2" -h "$2" -o "$SALIDA/$1.png"
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 $lado $lado">
-  <rect width="$lado" height="$lado" rx="$4" fill="$FONDO"/>
-  <g transform="translate($x $y) scale($escala)">$LOGO</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <rect width="1000" height="1000" rx="$4" fill="$FONDO"/>
+  <g transform="translate($x $y) scale($escala)">$TOLDO</g>
 </svg>
 SVG
   echo "$SALIDA/$1.png"
 }
 
-generar icono-192 192 7 96
-generar icono-512 512 7 96
-# Maskable: Android recorta un círculo; el logo entra en la zona segura (80 %).
-generar icono-maskable-512 512 5.5 0
+generar icono-192 192 0.8 200
+generar icono-512 512 0.8 200
+# Maskable: Android recorta un círculo; el toldo entra en la zona segura (80 %).
+generar icono-maskable-512 512 0.6 0
 # iOS redondea solo: va cuadrado y sin transparencia.
-generar apple-touch-icon 180 6.5 0
+generar apple-touch-icon 180 0.74 0

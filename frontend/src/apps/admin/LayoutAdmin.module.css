@@ -25,9 +25,8 @@
   background: var(--lona);
 }
 .nombre {
-  font-family: var(--fuente-titulo);
-  font-size: var(--t-xl);
-  font-weight: 700;
+  display: inline-flex; /* la palabra del logo, en curvas */
+  line-height: 0;
 }
 .chip {
   padding: 0 6px;

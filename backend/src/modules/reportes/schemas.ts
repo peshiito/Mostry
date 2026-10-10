@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { ESTADOS_REPORTE } from '../../shared/db/tipos/plataforma.js';
 
 // Secciones del panel donde puede pasar un problema (las elige el comercio).
-export const PANTALLAS = [
+const PANTALLAS = [
   'inicio',
   'pedidos',
   'productos',

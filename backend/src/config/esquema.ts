@@ -38,6 +38,12 @@ export const esquemaEnv = z
     S3_BUCKET_BACKUPS: texto,
     BACKUP_DUMP_CMD: texto.default('mysqldump -h {host} -P {puerto}'),
     BACKUP_MYSQL_CMD: texto.default('mysql -h {host} -P {puerto}'),
+    // Carpeta de los backups en el bucket (staging y produccion corren las dos con
+    // NODE_ENV=production: así nunca se pisan ni se podan entre sí).
+    BACKUP_ENTORNO: z
+      .string()
+      .regex(/^[a-z0-9-]+$/)
+      .optional(),
     MOSTRY_ALIAS: texto,
     MOSTRY_TITULAR: texto,
     PRECIO_MENSUAL: z.coerce.number().int().positive(),
@@ -48,6 +54,9 @@ export const esquemaEnv = z
   .refine((c) => c.NODE_ENV !== 'production' || c.TRUST_PROXY > 0, {
     message:
       'En producción TRUST_PROXY tiene que ser > 0 (si no, el rate limit por IP no sirve)',
+  })
+  .refine((c) => c.NODE_ENV !== 'production' || c.BACKUP_ENTORNO, {
+    message: 'En producción falta BACKUP_ENTORNO (staging o produccion)',
   })
   .refine((c) => c.NODE_ENV !== 'test' || c.DB_NOMBRE_TEST, {
     message: 'Para correr tests falta DB_NOMBRE_TEST',

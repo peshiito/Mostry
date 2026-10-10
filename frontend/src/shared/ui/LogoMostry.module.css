@@ -1,15 +1,14 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: var(--e-2);
-  color: var(--marca-verde);
+  color: var(--logo-texto);
+  line-height: 0;
 }
-.texto {
-  font-family: var(--fuente-titulo);
-  font-size: var(--t-xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
+/* Sobre fondos oscuros o verdes: los colores del logo oficial, sin borde. */
 .claro {
-  color: var(--sobre-verde);
+  --logo-lona: var(--logo-noche-lona);
+  --logo-raya: var(--logo-noche-raya);
+  --logo-borde: transparent;
+  --logo-barra: var(--logo-noche-barra);
+  color: var(--logo-noche-lona);
 }

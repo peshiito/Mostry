@@ -12,7 +12,7 @@ const formato = new Intl.DateTimeFormat('en-CA', {
   hourCycle: 'h23',
 });
 
-export type DiaSemana = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+type DiaSemana = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 export type MomentoLocal = { fecha: string; diaSemana: DiaSemana; minutos: number };
 
 // Un instante UTC visto en Argentina: fecha 'YYYY-MM-DD', día (0 = domingo) y

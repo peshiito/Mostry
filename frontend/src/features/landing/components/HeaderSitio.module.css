@@ -30,9 +30,8 @@
   background: var(--lona);
 }
 .nombre {
-  font-family: var(--fuente-titulo);
-  font-size: var(--t-2xl);
-  font-weight: 700;
+  display: inline-flex; /* la palabra del logo, en curvas */
+  line-height: 0;
 }
 .ingresar {
   display: inline-flex;

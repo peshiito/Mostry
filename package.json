@@ -1,0 +1,16 @@
+{
+  "name": "mostry",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Atajos para levantar Mostry en local, hacer backups y restaurarlos.",
+  "scripts": {
+    "dev": "bash scripts/local.sh",
+    "local": "bash scripts/local.sh",
+    "local:todo": "bash scripts/local.sh --demo",
+    "backup": "bash scripts/backup.sh",
+    "restaurar": "bash scripts/restaurar.sh"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

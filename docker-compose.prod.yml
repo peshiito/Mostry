@@ -1,0 +1,66 @@
+# Mostry en producción: API, worker, frontend y MySQL, todo en Docker.
+# Es la receta que se lleva a Railway (Etapa 0) o a Coolify (Etapa 1).
+# Uso: docker compose -f docker-compose.prod.yml --env-file .env.produccion up -d --build
+# Las fotos van a Cloudflare R2 y los mails a Resend (variables S3_* y SMTP_*).
+name: mostry-prod
+
+x-api-env: &api-env
+  env_file: ${ARCHIVO_ENV:-.env.produccion}
+  environment:
+    NODE_ENV: production
+    DB_HOST: mysql
+    DB_PUERTO: "3306"
+    # La clave root de MySQL es SOLO del servicio mysql: la API y el worker usan
+    # DB_CLAVE (usuario con permisos acotados). Se vacía para que no les llegue.
+    MYSQL_ROOT_PASSWORD: ""
+
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NOMBRE}
+      MYSQL_USER: ${DB_USUARIO}
+      MYSQL_PASSWORD: ${DB_CLAVE}
+      TZ: UTC
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci", "--default-time-zone=+00:00"]
+    volumes:
+      - mysql_prod:/var/lib/mysql
+      - ./docker/mysql/init-prod:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  api:
+    build: { context: ./backend, target: api }
+    restart: unless-stopped
+    <<: *api-env
+    depends_on:
+      mysql: { condition: service_healthy }
+
+  worker:
+    build: { context: ./backend, target: worker }
+    restart: unless-stopped
+    <<: *api-env
+    depends_on:
+      mysql: { condition: service_healthy }
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        VITE_DOMINIO_BASE: ${DOMINIO_BASE}
+        VITE_API_URL: ${VITE_API_URL}
+        VITE_ORIGEN_ARCHIVOS: ${VITE_ORIGEN_ARCHIVOS}
+        VITE_WHATSAPP_MOSTRY: ${VITE_WHATSAPP_MOSTRY}
+    restart: unless-stopped
+    environment:
+      # La CSP del servidor del frontend necesita saber a qué API y a qué R2 conectar.
+      VITE_API_URL: ${VITE_API_URL}
+      VITE_ORIGEN_ARCHIVOS: ${VITE_ORIGEN_ARCHIVOS}
+
+volumes:
+  mysql_prod:

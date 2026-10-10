@@ -1,6 +1,6 @@
 import type { Response } from 'express';
 
-export type CampoInvalido = { campo: string; mensaje: string };
+type CampoInvalido = { campo: string; mensaje: string };
 type Extra = { campos?: CampoInvalido[]; detalle?: Record<string, unknown> };
 
 // Formato único de error para toda la API.

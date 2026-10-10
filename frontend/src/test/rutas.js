@@ -1,6 +1,6 @@
 // Pantallas por zona (las usan el test de humo y el índice de desarrollo).
 // La tienda de ejemplo es la del seed (dona-rosa); el token es de un pedido grabado.
-const TOKEN = 'O1CpZ46aNa7fi_JoYNYDAZHma3vzdfsO6AzpH_RAJvE';
+const TOKEN = 'O1CpZ46aNa7fi_JoYNYDAZHma3vzdfsO6AzpH_RAJvE'; // gitleaks:allow (token de prueba)
 
 export const RUTAS = {
   sitio: ['/', '/legal', '/registro', '/verificar', '/ingresar'],

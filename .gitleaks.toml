@@ -1,0 +1,8 @@
+# Configuración de gitleaks (escaneo de secretos). Solo se permiten los textos de
+# ejemplo de las plantillas: cualquier otra clave que aparezca es un problema real.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Valores de ejemplo de las plantillas .env*.example (no son secretos)"
+regexes = ['''cambiame-por-un-secreto-largo''', '''prueba-local-de-produccion-no-es-un-secreto-real''']

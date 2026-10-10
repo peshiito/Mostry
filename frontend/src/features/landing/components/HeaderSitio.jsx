@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { BotonTema } from '../../../shared/tema/BotonTema.jsx';
 import { LogoMostry } from '../../../shared/ui/LogoMostry.jsx';
+import { PalabraMostry } from '../../../shared/ui/logo/PalabraMostry.jsx';
 import { Toldo } from '../../../shared/ui/Toldo.jsx';
 import sec from './HeaderSecciones.module.css';
 import css from './HeaderSitio.module.css';
@@ -20,9 +21,11 @@ export function HeaderSitio() {
         <div className={css.interior}>
           <Link to="/" className={css.marca} aria-label="Mostry, inicio">
             <span className={css.logo}>
-              <LogoMostry conTexto={false} tamano={30} />
+              <LogoMostry conTexto={false} tamano={34} />
             </span>
-            <span className={css.nombre}>mostry</span>
+            <span className={css.nombre}>
+              <PalabraMostry alto={26} />
+            </span>
           </Link>
           <nav aria-label="Secciones" className={sec.secciones}>
             {SECCIONES.map(([href, texto]) => (

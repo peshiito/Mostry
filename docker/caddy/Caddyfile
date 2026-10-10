@@ -1,0 +1,18 @@
+# Proxy https de la prueba de producción local (hace el papel de Cloudflare).
+# local_certs: Caddy firma sus propios certificados (el navegador avisa una vez).
+{
+	local_certs
+}
+
+api.mostry.localhost {
+	reverse_proxy api:3000
+}
+
+# Fotos públicas (en producción las sirve el dominio público de R2).
+archivos.mostry.localhost {
+	reverse_proxy rustfs:9000
+}
+
+mostry.localhost, *.mostry.localhost {
+	reverse_proxy web:8080
+}

@@ -9,15 +9,22 @@ import { urlSitio } from '../../shared/lib/urls.js';
 export default function AppDesconocida() {
   return (
     <Pagina>
-      <LogoMostry />
+      <a href={urlSitio('/')} aria-label="Ir al inicio de Mostry">
+        <LogoMostry />
+      </a>
       <Estado
         nivel={1}
         icono="storefront"
         titulo="Esta tienda no existe"
         accion={
-          <Boton variante="principal" tamano="lg" href={urlSitio('/registro')}>
-            Crear mi tienda
-          </Boton>
+          <>
+            <Boton variante="principal" tamano="lg" to={urlSitio('/registro')}>
+              Crear mi tienda
+            </Boton>
+            <Boton variante="texto" icono="arrow_back" to={urlSitio('/')}>
+              Conocer Mostry
+            </Boton>
+          </>
         }
       >
         Revisá que el link esté bien escrito. ¿Querés tener la tuya?

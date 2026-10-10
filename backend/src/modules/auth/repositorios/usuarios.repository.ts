@@ -39,5 +39,3 @@ export const usuariosRepo = {
   cambiarClave: (id: number, hashClave: string) =>
     db.updateTable('usuarios').set({ hashClave }).where('id', '=', id).execute(),
 };
-
-export type Usuario = NonNullable<Awaited<ReturnType<typeof usuariosRepo.buscarPorId>>>;

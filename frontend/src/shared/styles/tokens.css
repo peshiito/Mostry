@@ -7,6 +7,16 @@
   --verde-claro: #e3efe9;
   --marca-verde: #0e5a4a; /* el logo de Mostry: nunca toma el color de la tienda */
   --marca-crema: #f7f3ec;
+  /* Logo oficial (src/Logos). "Noche": como el PNG, para fondos oscuros. Sobre
+     fondo claro la lona crema lleva un borde verde para que el toldo se lea. */
+  --logo-noche-lona: #f4efe8;
+  --logo-noche-raya: #7fb9a6;
+  --logo-noche-barra: #ff8a6a;
+  --logo-lona: #f7f3ec;
+  --logo-raya: #0e5a4a;
+  --logo-borde: #0e5a4a;
+  --logo-barra: #ff7a59;
+  --logo-texto: #0e5a4a;
   --coral: #ff7a59; /* SOLO el botón principal, con texto carbón */
   --coral-presionado: #f2643f;
   --coral-claro: #ffe6de;
@@ -104,6 +114,11 @@
    y los colores de marca se aclaran. Todos los pares texto/fondo ≥ 4.5:1. */
 :root[data-tema='oscuro'] {
   color-scheme: dark;
+  --logo-lona: var(--logo-noche-lona);
+  --logo-raya: var(--logo-noche-raya);
+  --logo-borde: transparent;
+  --logo-barra: var(--logo-noche-barra);
+  --logo-texto: var(--logo-noche-lona);
   --marca-verde: #5cc7a5;
   --marca-crema: #e9e4d8;
   --verde: #5cc7a5;

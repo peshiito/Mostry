@@ -15,5 +15,3 @@ export const config = {
   // Los tests nunca tocan la base de desarrollo.
   nombreBase: datos.NODE_ENV === 'test' ? datos.DB_NOMBRE_TEST! : datos.DB_NOMBRE,
 };
-
-export type Config = typeof config;

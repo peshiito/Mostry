@@ -78,9 +78,9 @@ cancelado tiene fecha y un comprobante aprobado guarda los datos del pago.
 
 ## Pendientes para producción (Etapa 16)
 
-1. **Encabezados del frontend en el servidor real:** copiar `frontend/encabezados.config.js` a la config del servidor que sirva el build (y cambiar `VITE_ORIGEN_ARCHIVOS` por el dominio público de R2).
-2. **`TRUST_PROXY`** en Railway y en el VPS: sin eso, los límites por IP ven siempre la IP del proxy (la config ya lo exige en producción).
-3. **HTTPS y HSTS** en Cloudflare (las cookies `__Host-` ya exigen HTTPS).
+1. ~~**Encabezados del frontend en el servidor real:**~~ ✅ **Resuelto en la Etapa 15.** `frontend/servidor/servir.js` manda los mismos encabezados de `encabezados.config.js` (con el hash del script del tema). Queda poner `VITE_ORIGEN_ARCHIVOS` con el dominio público de R2.
+2. **`TRUST_PROXY`** en Railway y en el VPS. La config lo exige en producción y está documentado en `.env.produccion.example` (`2` con Cloudflare + Railway).
+3. **HTTPS y HSTS** en Cloudflare (las cookies `__Host-` ya exigen HTTPS). Está en la checklist de `docs/produccion.md`.
 
 ## Cómo repetir las pruebas (fish)
 

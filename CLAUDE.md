@@ -379,6 +379,21 @@ Detalle de cada punto en `docs/etapa-1-refinamiento.md`. Todo lo no listado acá
     - **Modo soporte:** `/admin/soporte/:tiendaId/*` monta solo catálogo, horarios y `tienda/config` sin alias, más el logo. `accesoSoporte` exige el permiso vigente y `registrarSoporte` anota cada cambio antes de responder.
     - **Frontend:** reusa las pantallas del panel con el contexto `BasePanel` (`{ api, rutas, soporte }`).
     - **Capturas de reportes:** el barrido de huérfanos las cuenta como archivos en uso, y se borran al resolver el reporte.
+- **Logo oficial vectorizado** (a partir de los PNG de Pedro en `frontend/src/Logos/`):
+  - **Archivos:** `logoMostry.svg` (toldo + palabra) y `LogoMostryToldo.svg`. Cada uno tiene una versión "de noche", igual al PNG, y una `-claro`, con borde verde para fondos claros.
+  - **En la app:** `shared/ui/logo/` (`Toldo`, `PalabraMostry`, `formas.js`), con colores desde los tokens `--logo-*`. En modo oscuro y sobre fondos verdes usa la paleta del PNG.
+  - **Favicon e íconos de la PWA:** el toldo de noche sobre `#0D1411`, generados con `scripts/iconos.sh`.
 - **Horarios:** cada día puede estar Cerrado, Con horario o "Las 24 horas". "24 horas" se guarda como 00:00–24:00; si la tienda sigue abierta todo el día siguiente, `cierraA` es `null` ("Abierto las 24 horas").
+- **Etapa 15 (cierre, versión 1.0.0):**
+  - **Organización:** una sola carpeta con ramas: `main` es la estable, la que va a producción, y `desarrollo` es la de trabajo. Las ideas de mejora van en ramas propias. Los datos se respaldan en `../Mostry-Backup`, que es una carpeta de datos, no de código. Local y producción difieren solo en su `.env`; las claves reales de producción van en el panel de Railway.
+  - **Local:** `npm run local:todo` (en la raíz) borra la base, carga el seed y la demo (`npm run db:demo`) y arranca todo. `npm run local` arranca sin borrar nada.
+  - **Backups:** `npm run backup` / `npm run restaurar`. El script de restaurar verifica el dump y el conteo de filas, y por defecto restaura en `mostry_restaurada`. El worker guarda los suyos en `backups/<BACKUP_ENTORNO>/` (`BACKUP_ENTORNO` es obligatoria en producción).
+  - **Producción:**
+    - `backend/Dockerfile` con dos destinos: `api`, y `worker` con `mysqldump`.
+    - `frontend/Dockerfile`, que sirve los archivos con `servidor/servir.js` y los encabezados de `encabezados.config.js`.
+    - `docker-compose.prod.yml` y las plantillas `.env.produccion.example`.
+    - El admin real se crea con `npm run admin:crear:prod`.
+    - Para probar la versión de producción en local: `docker-compose.prueba-prod.yml`, con Caddy en https.
+    - La guía completa está en `docs/produccion.md`.
 - **Modo oscuro en todas las zonas:** "Automático" (sigue al dispositivo), "Claro" u "Oscuro"; se guarda por navegador. Botón en cada header y selector en Panel → Más → Apariencia. Los colores de la tienda se aclaran a un tono pastel con texto oscuro. Todo color sale de `tokens.css` (sin hex sueltos) y cada par texto/fondo cumple 4.5:1 en los dos modos.
 - **Tests de punta a punta (Etapa 13):** carpeta `e2e/` con su propio `package.json` (Playwright). Levantan su propia API (puerto 3100, base `mostry_e2e`) y su propio frontend (5273); los mails van a Mailpit. Se corren con `npm test` desde `e2e/`.

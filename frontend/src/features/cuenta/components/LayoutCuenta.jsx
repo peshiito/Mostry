@@ -1,8 +1,8 @@
 import { BotonTema } from '../../../shared/tema/BotonTema.jsx';
 import { BotonIcono } from '../../../shared/ui/BotonIcono.jsx';
-import { LogoMostry } from '../../../shared/ui/LogoMostry.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import css from './LayoutCuenta.module.css';
+import { LogoInicio } from './LogoInicio.jsx';
 
 // Marco de las pantallas de cuenta: logo arriba, tarjeta centrada y pie.
 export function LayoutCuenta({ volver, extra, children }) {
@@ -14,7 +14,7 @@ export function LayoutCuenta({ volver, extra, children }) {
         ) : (
           <span />
         )}
-        <LogoMostry />
+        <LogoInicio />
         {extra ?? <BotonTema tono="borde" />}
       </header>
       <Pagina className={css.pagina}>{children}</Pagina>

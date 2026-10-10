@@ -3,7 +3,7 @@ import { finDeAtencion } from './finDeAtencion.js';
 
 export type Tramo = { diaSemana: number; abre: string; cierra: string };
 export type Agenda = { tramos: Tramo[]; feriados: Set<string>; pausada: boolean };
-export type ProximaApertura = { fecha: string; hora: string };
+type ProximaApertura = { fecha: string; hora: string };
 
 // Contrato con el frontend: cada estado trae solo lo que tiene sentido.
 export type EstadoApertura =

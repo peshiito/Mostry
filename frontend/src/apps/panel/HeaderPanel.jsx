@@ -14,7 +14,7 @@ export function HeaderPanel() {
         <LogoTienda url={tienda.logoUrl} tamano={40} borde="claro" />
       ) : (
         <span className={css.logo}>
-          <LogoMostry conTexto={false} tamano={28} />
+          <LogoMostry conTexto={false} tamano={32} />
         </span>
       )}
       <div className={css.textos}>

@@ -4,6 +4,7 @@ import { Esqueleto } from '../../shared/ui/Esqueleto.jsx';
 import { BotonTema } from '../../shared/tema/BotonTema.jsx';
 import { Icono } from '../../shared/ui/Icono.jsx';
 import { LogoMostry } from '../../shared/ui/LogoMostry.jsx';
+import { PalabraMostry } from '../../shared/ui/logo/PalabraMostry.jsx';
 import css from './LayoutAdmin.module.css';
 import cel from './LayoutAdminCelular.module.css';
 
@@ -14,9 +15,11 @@ export function LayoutAdmin() {
       <aside className={`${css.lateral} ${cel.lateral}`}>
         <div className={css.marca}>
           <span className={css.logo}>
-            <LogoMostry conTexto={false} tamano={26} />
+            <LogoMostry conTexto={false} tamano={30} />
           </span>
-          <span className={css.nombre}>mostry</span>
+          <span className={css.nombre}>
+            <PalabraMostry alto={22} />
+          </span>
           <span className={css.chip}>Admin</span>
         </div>
         <nav aria-label="Administración" className={`${css.nav} ${cel.nav}`}>
