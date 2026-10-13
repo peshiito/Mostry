@@ -9,7 +9,7 @@ export function TarjetaEfectivo({ caja, esperado }) {
   return (
     <Tarjeta className={css.tarjeta}>
       <span className={css.etiqueta}>Efectivo en caja</span>
-      <Monto centavos={esperado} tamano="xl" />
+      <Monto animado centavos={esperado} tamano="xl" />
       <Ticket>
         <TicketFila concepto="Apertura" monto={plata(caja.apertura)} />
         <TicketFila

@@ -11,11 +11,7 @@ export function ReporteEnviado({ reporte }) {
   const link = avisoReporte({ ...reporte, tienda: tienda.nombre });
   return (
     <>
-      <Estado
-        icono="check_circle"
-        titulo={`Reporte #${reporte.numero} enviado`}
-        nivel={1}
-      >
+      <Estado logro titulo={`Reporte #${reporte.numero} enviado`} nivel={1}>
         Lo vemos lo antes posible. La respuesta te aparece en Mis reportes.
       </Estado>
       {reporte.capturaFallo ? (

@@ -7,9 +7,17 @@
   background: var(--papel);
   color: var(--carbon);
   text-decoration: none;
+  transition:
+    border-color var(--dur-toque) ease,
+    transform var(--dur-toque) var(--ease-out);
 }
-.tarjeta:hover {
-  border-color: var(--verde);
+.tarjeta:active {
+  transform: scale(0.98);
+}
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta:hover {
+    border-color: var(--verde);
+  }
 }
 .cabeza {
   display: flex;

@@ -5,11 +5,12 @@ import { BotonIcono } from '../../../shared/ui/BotonIcono.jsx';
 import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { ESTADOS_TIENDA } from '../estados.js';
 import css from './TablaTiendas.module.css';
+import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
 
-export function FilaTienda({ tienda: t, onWhatsapp }) {
+export function FilaTienda({ i, tienda: t, onWhatsapp }) {
   const est = ESTADOS_TIENDA[t.estado];
   return (
-    <tr>
+    <ItemAnimado as="tr" i={i}>
       <td>
         <Link to={`/tiendas/${t.id}`} className={css.nombre}>
           {t.nombre}
@@ -35,6 +36,6 @@ export function FilaTienda({ tienda: t, onWhatsapp }) {
           onClick={() => onWhatsapp(t)}
         />
       </td>
-    </tr>
+    </ItemAnimado>
   );
 }

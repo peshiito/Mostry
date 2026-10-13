@@ -7,7 +7,7 @@ export function TarjetaVentas({ ventas, pedidos }) {
   return (
     <Tarjeta className={css.tarjeta}>
       <span className={css.etiqueta}>Ventas de hoy</span>
-      <Monto centavos={ventas} tamano="xl" />
+      <Monto animado centavos={ventas} tamano="xl" />
       <span className={css.detalle}>{plural(pedidos, 'pedido', 'pedidos')}</span>
     </Tarjeta>
   );

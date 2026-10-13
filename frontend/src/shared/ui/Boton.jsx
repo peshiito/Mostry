@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Icono } from './Icono.jsx';
+import { ContenidoBoton } from './ContenidoBoton.jsx';
 import base from './Boton.module.css';
 import extras from './BotonExtras.module.css';
 
@@ -13,6 +13,8 @@ export function Boton({
   iconoFin,
   anchoCompleto,
   cargando,
+  textoCargando,
+  textoHecho,
   to,
   href,
   className = '',
@@ -24,16 +26,11 @@ export function Boton({
     css[variante],
     css[tamano],
     anchoCompleto ? css.ancho : '',
+    cargando ? css.cargando : '',
     className,
   ].join(' ');
-  const contenido = (
-    <>
-      {cargando ? <span className={css.ruedita} aria-hidden="true" /> : null}
-      {!cargando && icono ? <Icono nombre={icono} tamano={20} /> : null}
-      <span>{children}</span>
-      {iconoFin ? <Icono nombre={iconoFin} tamano={20} /> : null}
-    </>
-  );
+  const props = { icono, iconoFin, cargando, textoCargando, textoHecho };
+  const contenido = <ContenidoBoton {...props}>{children}</ContenidoBoton>;
   if (href) {
     return (
       <a
@@ -58,9 +55,9 @@ export function Boton({
     <button
       type="button"
       className={clases}
+      {...resto}
       disabled={cargando || resto.disabled}
       aria-busy={cargando || undefined}
-      {...resto}
     >
       {contenido}
     </button>

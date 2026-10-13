@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
 import { NoEncontrada } from '../../../shared/ui/NoEncontrada.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
@@ -21,8 +21,9 @@ export function PantallaPedido() {
   const p = usePedidoPanel(id);
   const { soloLectura } = useSuscripcion();
   const [hoja, setHoja] = useState(null);
-  if (p.cargando) return <Esqueleto filas={5} alto={96} />;
-  if (!p.pedido) return <NoEncontrada volver="/panel/pedidos" />;
+  if (p.cargando) return <EsqueletoDetalle />;
+  if (!p.pedido)
+    return <NoEncontrada zona="panel" volver="/panel/pedidos" consulta={p} />;
   const { pedido } = p;
   const resto = pedido.total - pedido.sena;
   function avanzar(estado) {

@@ -1,6 +1,6 @@
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoLista } from '../../../shared/ui/esqueletos/index.js';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -12,8 +12,9 @@ import css from './PantallaMensajes.module.css';
 // Plantillas de WhatsApp para escribirle a cada comercio (Etapa 14.5, parte C).
 export function PantallaMensajes() {
   const p = usePlantillas();
-  if (p.cargando && !p.plantillas.length) return <Esqueleto filas={4} />;
-  if (p.error) return <ErrorCarga que="las plantillas" onReintentar={p.recargar} />;
+  if (p.cargando && !p.plantillas.length) return <EsqueletoLista monto={false} />;
+  if (p.error)
+    return <ErrorCarga error={p.error} que="las plantillas" onReintentar={p.recargar} />;
   return (
     <Pagina ancho="completo">
       <TituloPagina

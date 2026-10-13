@@ -17,6 +17,8 @@ export function useCatalogo() {
 }
 
 export function useProducto(id) {
-  const { datos, cargando, error } = useConsulta(`/publico/productos/${Number(id) || 0}`);
-  return { producto: datos ? adaptarProducto(datos) : null, cargando, error };
+  const { datos, cargando, error, recargar } = useConsulta(
+    `/publico/productos/${Number(id) || 0}`,
+  );
+  return { producto: datos ? adaptarProducto(datos) : null, cargando, error, recargar };
 }

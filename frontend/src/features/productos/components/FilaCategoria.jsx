@@ -1,11 +1,21 @@
 import { plural } from '../../../shared/lib/texto.js';
 import { BotonIcono } from '../../../shared/ui/BotonIcono.jsx';
 import css from './FilaCategoria.module.css';
+import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 // Categoría con flechas para ordenar (accesible, sin arrastrar) y botón para quitarla.
-export function FilaCategoria({ cat, primera, ultima, onSubir, onBajar, onQuitar }) {
+export function FilaCategoria({
+  ref,
+  i,
+  cat,
+  primera,
+  ultima,
+  onSubir,
+  onBajar,
+  onQuitar,
+}) {
   return (
-    <li className={css.fila}>
+    <ItemAnimado ref={ref} i={i} className={css.fila}>
       <div className={css.orden}>
         <BotonIcono
           icono="chevron_left"
@@ -27,6 +37,6 @@ export function FilaCategoria({ cat, primera, ultima, onSubir, onBajar, onQuitar
         </span>
       </div>
       <BotonIcono icono="delete" etiqueta={`Quitar ${cat.nombre}`} onClick={onQuitar} />
-    </li>
+    </ItemAnimado>
   );
 }

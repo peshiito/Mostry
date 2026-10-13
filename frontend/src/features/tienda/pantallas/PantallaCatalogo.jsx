@@ -10,6 +10,7 @@ import { EstadoCatalogo } from '../components/EstadoCatalogo.jsx';
 import { HeaderTienda } from '../components/HeaderTienda.jsx';
 import { useCatalogo } from '../hooks/useCatalogo.js';
 import css from './Listado.module.css';
+import { ListaAnimada } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 const normal = (t) =>
   t
@@ -46,11 +47,11 @@ export function PantallaCatalogo() {
         />
         <EstadoCatalogo cargando={cargando} error={error} onReintentar={recargar} />
         {cargando || error ? null : visibles.length ? (
-          <ul className={css.lista}>
-            {visibles.map((p) => (
-              <FilaProducto key={p.id} producto={p} />
+          <ListaAnimada className={css.lista} key={categoria}>
+            {visibles.map((p, i) => (
+              <FilaProducto key={p.id} i={i} producto={p} />
             ))}
-          </ul>
+          </ListaAnimada>
         ) : (
           <div className={css.vacio}>
             <Estado icono="search" titulo={`No encontramos "${texto}"`}>

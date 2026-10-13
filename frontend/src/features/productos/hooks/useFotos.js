@@ -1,4 +1,5 @@
 import { useAccion } from '../../../shared/api/useAccion.js';
+import { useSubida } from '../../../shared/api/useSubida.js';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { useBasePanel, usePanelApi } from '../../panelBase/BasePanel.jsx';
 
@@ -12,9 +13,12 @@ export function useFotos(productoId) {
     error: errorCarga,
     recargar,
   } = useConsulta(ruta ? `${base.api}${ruta}` : null);
-  const subir = useAccion((archivo) => panel.subir(ruta, 'foto', archivo), {
-    exito: 'Foto agregada',
-  });
+  const subir = useSubida(
+    (alAvanzar, archivo) => panel.subir(ruta, 'foto', archivo, 'POST', alAvanzar),
+    {
+      exito: 'Foto agregada',
+    },
+  );
   const borrar = useAccion((fotoId) => panel.borrar(`${ruta}/${fotoId}`), {
     exito: 'Foto eliminada',
   });
@@ -26,5 +30,6 @@ export function useFotos(productoId) {
     quitar: async (fotoId) => (await borrar.ejecutar(fotoId)).ok && recargar(),
     error: subir.error ?? borrar.error,
     subiendo: subir.enviando,
+    progreso: subir.progreso,
   };
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Buscador } from '../../../shared/ui/Buscador.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoTabla } from '../../../shared/ui/esqueletos/index.js';
 import { Paginador } from '../../../shared/ui/Paginador.jsx';
 import { Chips } from '../../../shared/ui/Chips.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
@@ -52,7 +52,7 @@ export function PantallaTiendas() {
         onCambio={a.setEstado}
       />
       {a.cargando ? (
-        <Esqueleto filas={4} />
+        <EsqueletoTabla />
       ) : (
         <TablaTiendas tiendas={a.tiendas} onWhatsapp={setEscribirA} />
       )}

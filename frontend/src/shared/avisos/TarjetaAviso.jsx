@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { CheckDibujado } from '../movimiento/CheckDibujado.jsx';
 import { Icono } from '../ui/Icono.jsx';
 import { cerrarAviso } from './avisos.js';
 import p from './PartesAviso.module.css';
@@ -45,7 +46,11 @@ export function TarjetaAviso({ aviso, indice, desplazo, altoFrente, abierta, onM
     >
       <div ref={contenido} className={css.contenido}>
         <span className={p.icono} data-tipo={aviso.tipo}>
-          <Icono nombre={ICONO[aviso.tipo]} tamano={20} />
+          {aviso.tipo === 'exito' ? (
+            <CheckDibujado tamano={20} />
+          ) : (
+            <Icono nombre={ICONO[aviso.tipo]} tamano={20} />
+          )}
         </span>
         <TextosAviso aviso={aviso} />
         <button

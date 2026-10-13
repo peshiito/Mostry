@@ -1,3 +1,4 @@
+import { NumeroQueRueda } from '../movimiento/NumeroQueRueda.jsx';
 import { Icono } from './Icono.jsx';
 import css from './Cantidad.module.css';
 
@@ -15,7 +16,7 @@ export function Cantidad({ valor, onCambio, min = 1, max = 99, nombre = 'product
         <Icono nombre="remove" tamano={20} />
       </button>
       <output className={css.valor} aria-live="polite">
-        {valor}
+        <NumeroQueRueda valor={valor} />
       </output>
       <button
         type="button"

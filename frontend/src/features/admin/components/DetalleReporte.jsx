@@ -3,7 +3,7 @@ import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { AreaTexto, Campo } from '../../../shared/ui/Campo.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
 import { Segmentado } from '../../../shared/ui/Segmentado.jsx';
 import { useReporteAdmin } from '../hooks/useReporteAdmin.js';
 import { CuerpoReporte } from './CuerpoReporte.jsx';
@@ -18,8 +18,9 @@ const ESTADOS = [
 export function DetalleReporte({ id, onCambio }) {
   const d = useReporteAdmin(id, onCambio);
   const r = d.reporte;
-  if (d.error) return <ErrorCarga que="el reporte" onReintentar={d.recargar} />;
-  if (!r) return <Esqueleto filas={4} />;
+  if (d.error)
+    return <ErrorCarga error={d.error} que="el reporte" onReintentar={d.recargar} />;
+  if (!r) return <EsqueletoDetalle imagen bloques={1} />;
   const wa = linkWhatsapp(
     r.whatsapp,
     `Hola ${r.autor?.split(' ')[0] ?? ''}, soy Pedro de Mostry. Te escribo por tu reporte #${r.numero}: `,
@@ -49,6 +50,7 @@ export function DetalleReporte({ id, onCambio }) {
         <Boton
           variante="principal"
           cargando={d.accion.enviando}
+          textoCargando="Guardando…"
           onClick={() => d.accion.ejecutar()}
         >
           Guardar

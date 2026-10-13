@@ -32,7 +32,10 @@ export function PantallaGastoNuevo() {
     if (Object.keys(err).length) return;
     if ((await crearGasto.ejecutar(g)).ok) navegar('/panel/gastos');
   }
-  if (errorCarga) return <ErrorCarga que="tus proveedores" onReintentar={recargar} />;
+  if (errorCarga)
+    return (
+      <ErrorCarga error={errorCarga} que="tus proveedores" onReintentar={recargar} />
+    );
   return (
     <Pagina as="form" onSubmit={guardar} noValidate>
       <TituloPagina migas="Gastos" titulo="Cargar gasto" />
@@ -51,6 +54,7 @@ export function PantallaGastoNuevo() {
         tamano="lg"
         anchoCompleto
         cargando={crearGasto.enviando}
+        textoCargando="Guardando…"
       >
         Guardar gasto
       </Boton>

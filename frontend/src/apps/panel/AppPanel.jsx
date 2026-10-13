@@ -23,7 +23,7 @@ export default function AppPanel() {
           <Route index element={<PantallaInicioPanel />} />
           {rutasPanel()}
           {rutasConfig()}
-          <Route path="*" element={<NoEncontrada volver="/panel" />} />
+          <Route path="*" element={<NoEncontrada zona="panel" volver="/panel" />} />
         </Route>
       </Route>
     </Routes>

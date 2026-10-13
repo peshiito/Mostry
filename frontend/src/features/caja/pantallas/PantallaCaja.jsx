@@ -4,7 +4,7 @@ import { hoyLargo } from '../../../shared/lib/fechas.js';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoResumen } from '../../../shared/ui/esqueletos/index.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../../shared/ui/Seccion.jsx';
@@ -19,12 +19,12 @@ import { useCaja } from '../hooks/useCaja.js';
 
 // Caja del día (Stitch 34 y 35).
 export function PantallaCaja() {
-  const { caja, esperado, abrir, registrar, cargando, accion, errorCarga, recargar } =
-    useCaja();
+  const { caja, accion, ...c } = useCaja();
   const { soloLectura } = useSuscripcion();
   const [tipo, setTipo] = useState(null);
-  if (cargando) return <Esqueleto filas={4} alto={96} />;
-  if (errorCarga) return <ErrorCarga que="la caja" onReintentar={recargar} />;
+  if (c.cargando) return <EsqueletoResumen />;
+  if (c.errorCarga)
+    return <ErrorCarga error={c.errorCarga} que="la caja" onReintentar={c.recargar} />;
   return (
     <Pagina>
       <TituloPagina
@@ -39,11 +39,11 @@ export function PantallaCaja() {
         </Aviso>
       ) : caja.abierta ? (
         <>
-          <TarjetaEfectivo caja={caja} esperado={esperado} />
+          <TarjetaEfectivo caja={caja} esperado={c.esperado} />
           <AccionesCaja onElegir={setTipo} deshabilitado={soloLectura} />
         </>
       ) : (
-        <AbrirCaja onAbrir={abrir} deshabilitado={soloLectura} />
+        <AbrirCaja onAbrir={c.abrir} deshabilitado={soloLectura} />
       )}
       <Seccion
         titulo={
@@ -62,7 +62,7 @@ export function PantallaCaja() {
         tipo={tipo}
         onCerrar={() => setTipo(null)}
         onGuardar={async (m) => {
-          if ((await registrar(m)).ok) setTipo(null);
+          if ((await c.registrar(m)).ok) setTipo(null);
         }}
       />
     </Pagina>

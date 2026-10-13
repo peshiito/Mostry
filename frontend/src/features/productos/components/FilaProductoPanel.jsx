@@ -5,13 +5,14 @@ import { Miniatura } from '../../../shared/ui/Miniatura.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { useBasePanel } from '../../panelBase/BasePanel.jsx';
 import css from './FilaProductoPanel.module.css';
+import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 // Producto en la lista del panel: datos, alertas de stock y switch de visible.
-export function FilaProductoPanel({ producto: p, onActivo }) {
+export function FilaProductoPanel({ ref, i, producto: p, onActivo }) {
   const { rutas } = useBasePanel();
   const bajo = !p.aceptaEncargo && p.stock > 0 && p.stock <= p.stockMinimo;
   return (
-    <li className={css.fila}>
+    <ItemAnimado ref={ref} i={i} className={css.fila}>
       <Link to={`${rutas}/productos/${p.id}`} className={css.link}>
         <Miniatura src={p.foto} tamano={56} />
         <span className={css.textos}>
@@ -36,6 +37,6 @@ export function FilaProductoPanel({ producto: p, onActivo }) {
         activo={p.activo}
         onCambio={onActivo}
       />
-    </li>
+    </ItemAnimado>
   );
 }

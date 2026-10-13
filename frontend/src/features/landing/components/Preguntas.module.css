@@ -22,3 +22,36 @@
   padding: 0 var(--e-5) var(--e-4);
   color: var(--texto-2);
 }
+/* Abrir y cerrar con la altura animada (navegadores nuevos; en los demás abre
+   al instante). El "+" gira hasta ser una "×". */
+.pregunta {
+  interpolate-size: allow-keywords;
+}
+.pregunta::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 280ms var(--ease-out),
+    content-visibility 280ms allow-discrete;
+}
+.pregunta[open]::details-content {
+  block-size: auto;
+}
+.resumen::after {
+  content: '+';
+  margin-left: auto;
+  padding-left: var(--e-3);
+  color: var(--verde);
+  font-size: 1.4em;
+  line-height: 1;
+  transition: transform 220ms var(--ease-out);
+}
+.pregunta[open] .resumen::after {
+  transform: rotate(45deg);
+}
+.resumen::-webkit-details-marker {
+  display: none;
+}
+.resumen {
+  list-style: none;
+}

@@ -40,13 +40,22 @@
   height: 22px;
   border-radius: 50%;
   background: #fff;
-  transition: transform var(--transicion);
+  /* Un rebote mínimo al llegar, y la perilla se estira mientras apretás. */
+  transform-origin: left center;
+  transition: transform 260ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.input:active + .pista::after {
+  transform: scaleX(1.18);
 }
 .input:checked + .pista {
   background: var(--verde);
 }
 .input:checked + .pista::after {
   transform: translateX(20px);
+  transform-origin: right center;
+}
+.input:checked:active + .pista::after {
+  transform: translateX(20px) scaleX(1.18);
 }
 .input:focus-visible + .pista {
   box-shadow: var(--foco);

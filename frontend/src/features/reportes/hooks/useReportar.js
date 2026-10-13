@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAccion } from '../../../shared/api/useAccion.js';
+import { useSubida } from '../../../shared/api/useSubida.js';
 import { panel } from '../../panelBase/panelApi.js';
 
 // Manda el reporte y, si hay, la captura (dos pasos: la API recibe el archivo aparte).
@@ -9,13 +9,13 @@ export function useReportar() {
   const [descripcion, setDescripcion] = useState('');
   const [captura, setCaptura] = useState(null);
   const [enviado, setEnviado] = useState(null);
-  const accion = useAccion(
-    async () => {
+  const accion = useSubida(
+    async (alAvanzar) => {
       const r = await panel.post('/reportes', { pantalla, descripcion });
       let capturaFallo = false;
       if (captura) {
         await panel
-          .subir(`/reportes/${r.id}/captura`, 'captura', captura, 'PUT')
+          .subir(`/reportes/${r.id}/captura`, 'captura', captura, 'PUT', alAvanzar)
           .catch((e) => (capturaFallo = e?.message || true));
       }
       return { ...r, descripcion, capturaFallo };

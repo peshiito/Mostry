@@ -23,7 +23,8 @@ export function PantallaProductos() {
     useProductosPanel();
   const [cat, setCat] = useState('todo');
   const [q, setQ] = useState('');
-  if (error) return <ErrorCarga que="tus productos" onReintentar={recargar} />;
+  if (error)
+    return <ErrorCarga error={error} que="tus productos" onReintentar={recargar} />;
   const visibles = productos.filter(
     (p) =>
       (cat === 'todo' || String(p.categoriaId) === cat) &&
@@ -48,6 +49,7 @@ export function PantallaProductos() {
         onCambio={setCat}
       />
       <ListaProductosPanel
+        key={cat}
         cargando={cargando}
         visibles={visibles}
         hayProductos={productos.length > 0}

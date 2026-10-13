@@ -27,6 +27,7 @@ export function PantallaRegistro() {
           tamano="lg"
           anchoCompleto
           cargando={r.accion.enviando}
+          textoCargando="Creando tu tienda…"
         >
           Crear mi tienda
         </Boton>

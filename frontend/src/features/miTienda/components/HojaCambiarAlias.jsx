@@ -48,6 +48,7 @@ export function HojaCambiarAlias({ abierta, onCerrar, actual, accion }) {
         anchoCompleto
         disabled={!clave}
         cargando={accion.enviando}
+        textoCargando="Guardando…"
         onClick={guardar}
       >
         Guardar alias

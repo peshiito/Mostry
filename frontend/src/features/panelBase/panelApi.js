@@ -9,10 +9,10 @@ export function crearPanelApi(base) {
     put: (ruta, cuerpo) => api(`${base}${ruta}`, { metodo: 'PUT', cuerpo }),
     patch: (ruta, cuerpo) => api(`${base}${ruta}`, { metodo: 'PATCH', cuerpo }),
     borrar: (ruta) => api(`${base}${ruta}`, { metodo: 'DELETE' }),
-    subir: (ruta, campo, archivo, metodo = 'POST') => {
+    subir: (ruta, campo, archivo, metodo = 'POST', onProgreso) => {
       const datos = new FormData();
       datos.append(campo, archivo);
-      return api(`${base}${ruta}`, { metodo, archivo: datos });
+      return api(`${base}${ruta}`, { metodo, archivo: datos, onProgreso });
     },
   };
 }

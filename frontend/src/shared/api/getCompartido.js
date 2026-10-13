@@ -1,3 +1,4 @@
+import { iniciarTarea } from '../carga/progreso.js';
 import { api } from './cliente.js';
 
 // Si varios componentes piden la misma ruta a la vez, sale un solo pedido y todos
@@ -12,7 +13,8 @@ function pedidoCompartido(ruta) {
     const control = new AbortController();
     p = { usuarios: 0, control, promesa: api(ruta, { senal: control.signal }) };
     const soltar = () => enVuelo.get(ruta) === p && enVuelo.delete(ruta);
-    p.promesa.then(soltar, soltar);
+    const terminar = iniciarTarea(); // la barra de carga avanza con cada respuesta
+    p.promesa.then(soltar, soltar).finally(terminar);
     enVuelo.set(ruta, p);
   }
   return p;

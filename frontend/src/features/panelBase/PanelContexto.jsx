@@ -1,8 +1,7 @@
 import { createContext, useContext } from 'react';
 import { useConsulta } from '../../shared/api/useConsulta.js';
-import { Esqueleto } from '../../shared/ui/Esqueleto.jsx';
-import { Estado } from '../../shared/ui/Estado.jsx';
-import { Pagina } from '../../shared/ui/Pagina.jsx';
+import { EsqueletoPantalla } from '../../shared/ui/esqueletos/index.js';
+import { ErrorCarga } from '../../shared/ui/ErrorCarga.jsx';
 import { useBasePanel } from './BasePanel.jsx';
 
 const Panel = createContext(null);
@@ -13,14 +12,18 @@ export function PanelProveedor({ children }) {
   const { api, soporte } = useBasePanel();
   const config = useConsulta(`${api}/tienda/config`);
   const plan = useConsulta(soporte ? null : `${api}/tienda/suscripcion`);
-  if (config.cargando || plan.cargando) return <Esqueleto filas={6} />;
+  if (config.cargando || plan.cargando) return <EsqueletoPantalla />;
   if (config.error || plan.error) {
+    const reintentar = () => {
+      config.recargar();
+      if (!soporte) plan.recargar();
+    };
     return (
-      <Pagina>
-        <Estado error titulo="No pudimos cargar tu tienda">
-          {(config.error ?? plan.error).message}
-        </Estado>
-      </Pagina>
+      <ErrorCarga
+        error={config.error ?? plan.error}
+        que="tu tienda"
+        onReintentar={reintentar}
+      />
     );
   }
   const valor = {

@@ -5,6 +5,7 @@ import { PantallaCatalogo } from '../../features/tienda/pantallas/PantallaCatalo
 import { PantallaInicio } from '../../features/tienda/pantallas/PantallaInicio.jsx';
 import { PantallaProducto } from '../../features/tienda/pantallas/PantallaProducto.jsx';
 import { TiendaCerrada } from '../../features/tienda/pantallas/TiendaCerrada.jsx';
+import { TransicionRuta } from '../../shared/movimiento/TransicionRuta.jsx';
 import { NoEncontrada } from '../../shared/ui/NoEncontrada.jsx';
 import { RutasCompra } from './RutasCompra.jsx';
 
@@ -15,18 +16,20 @@ export function RutasPublicas() {
   const cerrada = estado === 'suspendida' || estado === 'pausada';
   return (
     <Routes>
-      {RutasCompra({ cerrada })}
-      {cerrada ? (
-        <Route path="*" element={<TiendaCerrada />} />
-      ) : (
-        <>
-          <Route index element={<PantallaInicio />} />
-          <Route path="catalogo" element={<PantallaCatalogo />} />
-          <Route path="producto/:id" element={<PantallaProducto />} />
-          <Route path="carrito" element={<PantallaCarrito />} />
-          <Route path="*" element={<NoEncontrada />} />
-        </>
-      )}
+      <Route element={<TransicionRuta soloFundido />}>
+        {RutasCompra({ cerrada })}
+        {cerrada ? (
+          <Route path="*" element={<TiendaCerrada />} />
+        ) : (
+          <>
+            <Route index element={<PantallaInicio />} />
+            <Route path="catalogo" element={<PantallaCatalogo />} />
+            <Route path="producto/:id" element={<PantallaProducto />} />
+            <Route path="carrito" element={<PantallaCarrito />} />
+            <Route path="*" element={<NoEncontrada zona="tienda" />} />
+          </>
+        )}
+      </Route>
     </Routes>
   );
 }

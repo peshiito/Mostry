@@ -48,3 +48,19 @@
     transform: scale(1.35);
   }
 }
+/* Una sacudida corta del ícono cuando cambia la insignia (rara vez: al comprar). */
+.quieto,
+.sacude {
+  display: grid;
+}
+.sacude {
+  animation: sacudir 420ms var(--ease-out);
+}
+@keyframes sacudir {
+  30% {
+    transform: rotate(-12deg) scale(1.1);
+  }
+  60% {
+    transform: rotate(8deg);
+  }
+}

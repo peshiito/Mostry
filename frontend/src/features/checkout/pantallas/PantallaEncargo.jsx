@@ -56,6 +56,7 @@ export function PantallaEncargo() {
           anchoCompleto
           disabled={!turno}
           cargando={pedido.enviando}
+          textoCargando="Confirmando…"
           onClick={confirmar}
         >
           Confirmar encargo

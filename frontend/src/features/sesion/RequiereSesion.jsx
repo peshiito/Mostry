@@ -1,23 +1,22 @@
 import { Navigate, Outlet } from 'react-router';
-import { Esqueleto } from '../../shared/ui/Esqueleto.jsx';
-import { Estado } from '../../shared/ui/Estado.jsx';
-import { Pagina } from '../../shared/ui/Pagina.jsx';
+import { EsqueletoPantalla } from '../../shared/ui/esqueletos/index.js';
+import { ErrorCarga } from '../../shared/ui/ErrorCarga.jsx';
 import { useSesion } from './useSesion.js';
+import { VigiaSesion } from './VigiaSesion.jsx';
 
 // Protege el panel y el admin: sin sesión completa, al ingreso.
 // La API también lo valida en cada request; esto es solo para la navegación.
 export function RequiereSesion({ ingreso, admin, children }) {
   const s = useSesion();
-  if (s.cargando) return <Esqueleto filas={6} />;
+  if (s.cargando) return <EsqueletoPantalla />;
   if (s.sinSesion) return <Navigate to={ingreso} replace />;
   if (s.error)
-    return (
-      <Pagina>
-        <Estado error titulo="No pudimos conectarnos">
-          Revisá que la API esté levantada y recargá.
-        </Estado>
-      </Pagina>
-    );
+    return <ErrorCarga error={s.error} que="tu sesión" onReintentar={s.recargar} />;
   if (admin && !s.usuario?.esAdmin) return <Navigate to={ingreso} replace />;
-  return children ?? <Outlet />;
+  return (
+    <>
+      <VigiaSesion ingreso={ingreso} />
+      {children ?? <Outlet />}
+    </>
+  );
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { Icono } from '../../../shared/ui/Icono.jsx';
 import css from './AccesosDia.module.css';
+import { Contador } from '../../../shared/movimiento/Contador.jsx';
 
 // Tres accesos rápidos: por aprobar, encargos de mañana y caja.
 export function AccesosDia({ porAprobar, encargosManana, cajaAbierta }) {
@@ -26,7 +27,11 @@ export function AccesosDia({ porAprobar, encargosManana, cajaAbierta }) {
         <li key={i.a}>
           <Link to={i.a} className={`${css.acceso} ${i.urgente ? css.urgente : ''}`}>
             <Icono nombre={i.icono} />
-            {i.n != null ? <span className={css.numero}>{i.n}</span> : null}
+            {i.n != null ? (
+              <span className={css.numero}>
+                <Contador valor={i.n} />
+              </span>
+            ) : null}
             <span className={css.texto}>{i.texto}</span>
           </Link>
         </li>

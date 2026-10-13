@@ -17,8 +17,9 @@ Sos el desarrollador principal de **Mostry**. Yo soy Pedro, el dueño del proyec
 4. **Nada de decisiones fuera de este documento sin preguntarme.** Si algo falta o se contradice, me lo planteás con tu propuesta y esperás.
 5. **Cuando me pases código para revisar, mandame archivos completos**, nunca fragmentos sueltos.
 6. **Cero secretos en el código.** Todo va en `.env`, con un `.env.example` documentado. `.env` va en `.gitignore`.
-7. **Git lo maneja Pedro** (init, commits, push). Claude no corre git: cada 1–2 etapas (o tras una pesada) sugiere que es hora de un commit y propone el mensaje en español.
+7. **Git lo maneja Pedro** (init, commits, push). Claude no corre git: cada 1–2 etapas (o tras una pesada) sugiere que es hora de un commit y propone el mensaje en español. **Excepción:** si Pedro pide explícitamente "hacelo vos", Claude lo hace, pero antes verifica que no haya ningún `.env` en lo agregado ni en el historial (`git log --all --oneline -- .env frontend/.env`).
 8. **Hablame en español rioplatense (voseo)**, corto y concreto.
+9. **Todo trabajo nuevo arranca en modo plan.** Cuando acordamos algo para hacer (una etapa, una mejora), Claude entra al modo plan, arma el plan y lo corregimos juntos. Recién cuando Pedro lo aprueba se pasa al modo automático para hacerlo.
 
 ---
 
@@ -27,7 +28,8 @@ Sos el desarrollador principal de **Mostry**. Yo soy Pedro, el dueño del proyec
 - **SO:** CachyOS (Arch Linux). Paquetes con `pacman` o `paru`/`yay`.
 - **Shell:** **fish**. La sintaxis bash (`VAR=$(...)`, `if/fi`, `export X=Y`) falla. Si me das comandos para pegar, que sean compatibles con fish o envolvelos en `bash -c '...'`.
 - **Terminal:** kitty. **Máquina:** i5-8350U, 16 GB RAM.
-- **Ruta sugerida del proyecto:** `~/Escritorio/Programacion/Mostry/`
+- **Ruta del proyecto:** `~/Escritorio/Programacion/Proyectos/Mostry/` (los backups de datos van al lado, en `~/Escritorio/Programacion/Proyectos/Mostry-Backup/`).
+- **Docker:** Docker Desktop (no comparte `/tmp`; ver sección 15).
 - **Repo:** `peshiito/mostry` en GitHub.
 - **Experiencia previa mía:** Express + TS (MVC), MySQL en Docker con phpMyAdmin, React + Vite + JSX sin Tailwind ni librerías de componentes. Mantené ese estilo.
 
@@ -328,18 +330,67 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 
 ---
 
-## 12. Tu primera acción
+## 12. Dónde estamos y cómo arrancar cada sesión
 
-1. Leé este documento entero.
-2. Hacé la **Etapa 1.0 – Preparación**: instalá los MCP y las skills generales (Context7, GitHub) y decime qué necesito instalar yo para las Etapas 1 a 3.
-3. Hacé la **Etapa 1 – Refinar la idea** y mandame el reporte.
-4. Frenate y esperá mi OK.
+**Estado (2026-10-13):**
+- Etapas 1 a 15 terminadas, más la Etapa 14.5 (admin, soporte, reportes, WhatsApp y 24 h).
+- **`v1.0.0`** está en `main` (tag subido a GitHub). **Se trabaja en la rama `desarrollo`.**
+- **Nada está publicado en internet.**
+- **La Etapa 16 (producción) está EN PAUSA hasta que Pedro lo decida.** Antes quiere recorrer el sistema con la demo y armar una **etapa de mejoras** con lo que vea.
+
+**Al empezar una sesión:**
+1. Leé este documento y el `README.md`.
+2. Fijate en qué rama estás (`git branch --show-current`).
+3. Preguntale a Pedro qué quiere ver o mejorar.
+4. No arranques nada nuevo sin su OK.
+
+**Comandos de todos los días** (desde la raíz; Pedro usa fish):
+
+| Para qué | Comando |
+|---|---|
+| Arrancar todo sin tocar los datos | `npm run dev` (igual que `npm run local`) |
+| Base de cero + seed + demo + arrancar | `npm run local:todo` (pide confirmación: borra la base local) |
+| Solo cargar la demo | `cd backend; and npm run db:demo` |
+| Backup / restaurar | `npm run backup` · `npm run restaurar -- <archivo.sql.gz>` |
+| Tests | `cd backend; and npm test` (~11 min) · `cd frontend; and npm test` · `cd e2e; and npm test` (~4 min) |
+| Lint (incluye el límite de 70 líneas, también en CSS) | `npm run lint` en `backend/` y `frontend/` |
+| Capturas de los estados (carga y error) | `cd e2e; and npx playwright test -c capturas.config.js` |
+| Probar la versión de producción en local | ver `docs/produccion.md` (Caddy en https) |
+
+**Direcciones locales:**
+- landing: `http://mostry.localhost:5173`;
+- tienda: `http://dona-rosa.mostry.localhost:5173`;
+- panel: `…/panel`;
+- admin: `http://admin.mostry.localhost:5173`;
+- API: `http://api.mostry.localhost:3000`;
+- Mailpit: `http://localhost:8025`;
+- phpMyAdmin: `http://localhost:8081`;
+- consola de RustFS: `http://localhost:9001`.
+
+`localhost:5173` sin subdominio redirige a la landing.
+
+**Cuentas de prueba** (clave = `SEED_CLAVE` del `.env`, por defecto `mostry-demo-2026`):
+- `admin@mostry.test` (admin);
+- `rosa@dona-rosa.test`: Doña Rosa, activa, con la demo completa;
+- `martin@heladeria.test`: Heladería, en prueba por vencer.
+
+**Pendientes abiertos (consultar con Pedro antes de tocar):**
+- Pasar el repo de GitHub a **privado**.
+- Rotar la clave de **Resend** antes de producción.
+- **Contador de pedidos en el detalle del admin:** se sacó por privacidad. ¿Lo quiere de vuelta?
+- **Tienda suspendida:** no puede mandar reportes ni dar acceso de soporte (el panel queda en solo lectura). ¿Está bien así?
+- **El banner "Mostry tiene acceso de soporte"** del panel se actualiza al recargar, no en vivo.
+- **Mejoras de tipos sugeridas** por la revisión:
+  - `req.panel` como unión discriminada miembro/soporte (hoy hay `req.soporte` aparte y el helper `miembroDelPanel`);
+  - columnas inmutables en `accesos_soporte` y `reportes`.
+- **`npm run local:todo`** se probó por partes, no completo sobre la base real de Pedro (su base está respaldada en `Mostry-Backup`).
+- **El logo de Mostry ya es el oficial**, vectorizado. Si Pedro pasa una versión nueva: `bash frontend/scripts/iconos.sh` regenera los íconos.
 
 ---
 
-## 13. Decisiones de la Etapa 1 (pisan lo anterior donde se contradiga)
+## 13. Decisiones tomadas en todas las etapas (pisan lo anterior donde se contradiga)
 
-Detalle de cada punto en `docs/etapa-1-refinamiento.md`. Todo lo no listado acá se aprobó tal cual la propuesta de ese archivo.
+Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md` (lo no listado acá se aprobó tal cual la propuesta de ese archivo). El resto se fue sumando etapa por etapa. Otros documentos: `docs/ataqueE12.md` (seguridad) y `docs/produccion.md` (producción).
 
 - **ORM:** Kysely + mysql2, migraciones `up`/`down` con el `Migrator` de Kysely.
 - **Emails:** nodemailer; Mailpit en local; Resend por SMTP en producción.
@@ -395,5 +446,87 @@ Detalle de cada punto en `docs/etapa-1-refinamiento.md`. Todo lo no listado acá
     - El admin real se crea con `npm run admin:crear:prod`.
     - Para probar la versión de producción en local: `docker-compose.prueba-prod.yml`, con Caddy en https.
     - La guía completa está en `docs/produccion.md`.
+- **Mejoras 1 (estados de carga y error, 2026-10-13):**
+  - **Errores por tipo:** `shared/errores/tipoError.js` y `textos.js` (sin conexión, servidor, mantenimiento, permiso, límite, sesión, no existe). `ErrorCarga` recibe `error`; `NoEncontrada` recibe `zona` y `consulta`, y solo dice "no existe" si la API respondió 404.
+  - **Red de seguridad:** `RedSeguridad` en `main.jsx` y en los layouts. Si falla la descarga de una pantalla, recarga una vez (versión nueva).
+  - **Sesión vencida:** `cliente.js` emite `mostry:sesion-vencida` y `VigiaSesion` lleva al ingreso, que después vuelve a la misma pantalla.
+  - **Carga real, sin ruedita:** barra mostaza arriba que avanza por tareas terminadas (`shared/carga`), subidas con XHR y porcentaje (`useSubida` + `BarraSubida`), esqueletos con forma (`shared/ui/esqueletos`) y `Boton textoCargando`.
+  - **Capturas para revisar:** `npx playwright test -c capturas.config.js` desde `e2e/`. Quedan en `~/.cache/mostry-capturas`.
+- **Mejoras 2 (animaciones, 2026-10-13):**
+  - **Motion 14** (`motion`, decisión de Pedro). Componentes `m.*` de `motion/react-m` dentro de `LazyMotion strict`. Las funciones (`domMax`) se bajan aparte, desde `src/movimientoDiferido/`. Ese archivo va **fuera de `src/shared`** a propósito: si no, cae en el bloque `compartido` y se baja al arrancar. Si no llegan, `data-sin-movimiento` muestra todo sin animar.
+  - **Piezas en `shared/movimiento/`:** `PastillaActiva` (fondo que se desliza en pestañas, chips, segmentado y menús), `TransicionRuta`, `ListaAnimada`/`ItemAnimado` (`reacomodar` solo en listas que cambian de a un ítem; las que se filtran cambian de `key`), `useContar`/`Contador`/`Monto animado`, `NumeroQueRueda`, `CheckDibujado` y `temaConTransicion`.
+  - **Reglas:**
+    - en el panel y la tienda, la transición entre pantallas es solo un fundido, porque tienen barras fijas adentro;
+    - un ítem hijo de `AnimatePresence` tiene que pasar su `ref` hasta el DOM;
+    - el e2e corre con `reducedMotion: 'reduce'` (las animaciones se prueban en `movimiento.spec.js`).
+  - **Peso:** +19 KB gz al arrancar y +32 KB gz después de mostrar la pantalla.
 - **Modo oscuro en todas las zonas:** "Automático" (sigue al dispositivo), "Claro" u "Oscuro"; se guarda por navegador. Botón en cada header y selector en Panel → Más → Apariencia. Los colores de la tienda se aclaran a un tono pastel con texto oscuro. Todo color sale de `tokens.css` (sin hex sueltos) y cada par texto/fondo cumple 4.5:1 en los dos modos.
 - **Tests de punta a punta (Etapa 13):** carpeta `e2e/` con su propio `package.json` (Playwright). Levantan su propia API (puerto 3100, base `mostry_e2e`) y su propio frontend (5273); los mails van a Mailpit. Se corren con `npm test` desde `e2e/`.
+
+---
+
+## 14. Mapa del código (lo que no es obvio)
+
+**Backend (`backend/src/`):**
+- **Aislamiento entre tiendas:**
+  - `TiendaId` es un tipo marcado (`shared/db/tiendaId.ts`). Solo se fabrica con `comoTiendaId` en `tiendas.repository.ts`, el seed, el worker y los tests; **ESLint prohíbe `as TiendaId`**.
+  - En las tablas va `ColTienda`, que no se puede actualizar.
+- **Cadena del panel** (`modules/panel.routes.ts` → `tiendas/middlewares/accesoPanel.ts`): `resolverTienda` (por el `Origin`) → `requerirSesion` → `requerirMiembro` → `bloquearSiSuspendida`.
+  - Las rutas leen la tienda con `tiendaDelPanel(req)` (`shared/http/contextoPanel.ts`).
+  - Leen al usuario miembro con `miembroDelPanel(req)` (`shared/http/miembroDelPanel.ts`), que en modo soporte da 403.
+- **Modo soporte:** `/admin/soporte/:tiendaId/*` (`modules/soporte/`). `accesoSoporte` llena `req.tienda`, `req.panel` y `req.soporte`. Solo monta catálogo, horarios y config sin alias.
+- **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
+- **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte.
+- **Base:**
+  - 37 migraciones en `db/migraciones/` (todas con `down`);
+  - seed en `db/seed/` (`npm run db:seed`);
+  - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
+- **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.
+- **Ayudantes de test** (`src/test/`): `appConCuenta`, `tiendaLista`, `crearCuentaCompleta`, `panel(app, slug, cookie)`, `crearAdminLogueado` (expone `cookie`, `get`, `post`, `put`, `patch`, `delete`), `soporteListo`, `limpiarBase`.
+- **Config:** Zod en `config/esquema.ts`. En producción exige `ORIGEN_PROTOCOLO=https`, `TRUST_PROXY>0` y `BACKUP_ENTORNO`.
+
+**Frontend (`frontend/src/`):**
+- **Zona por subdominio:** `shared/lib/zona.js` (sitio, tienda, admin o desconocida). `main.jsx` elige la app de `apps/`.
+- **Datos:**
+  - `shared/api/cliente.js` (fetch con cookie);
+  - `useConsulta` (GET, comparte los pedidos iguales en vuelo con `getCompartido`, sin caché);
+  - `useAccion` (escrituras, con el aviso de éxito).
+- **Avisos:** `avisar.exito/error/info` (`shared/avisos/`), con `{ duracion: Infinity, accion }` para avisos fijos.
+- **Panel reutilizable:** el contexto `features/panelBase/BasePanel.jsx` (`{ api, rutas, soporte }`). Los hooks usan `usePanelApi()` y `useBasePanel()`, así las mismas pantallas sirven en el modo soporte del admin.
+- **Rutas:** son tablas con carga diferida (`apps/panel/rutasPanel.jsx`, `rutasConfig.jsx`, `apps/admin/rutasSoporte.jsx`, con `cargarPantalla` + `import.meta.glob`).
+- **Visual:**
+  - logo oficial en `shared/ui/logo/` (`Toldo`, `PalabraMostry`, `formas.js`);
+  - tema claro u oscuro en `shared/tema/`;
+  - colores solo de `shared/styles/tokens.css`.
+- **Producción:**
+  - `servidor/servir.js` sirve `dist/` con los encabezados de `encabezados.config.js`;
+  - el script del tema va en línea, con su hash en la CSP (`config/temaEnLinea.js`).
+- **Lint:** `npm run lint` corre ESLint y `scripts/lineas.js` (70 líneas también en CSS; `tokens.css` es la excepción).
+
+**e2e (`e2e/`):**
+- API de prueba en el puerto 3100 (base `mostry_e2e`), frontend en el 5273 y build con preview en el 5274 (para la PWA).
+- Ayudantes en `apoyo/`: `ingresar`, `esperarAviso`, `ultimoCodigo` (Mailpit), `elegirHoy`, `vencerPrueba` y `registrarPago`.
+
+---
+
+## 15. Trampas conocidas del entorno (ya nos hicieron perder tiempo)
+
+- **Nunca correr dos suites a la vez.** El backend y el e2e comparten la base de test y los buckets `*-test`. Lo mismo vale para `db:demo` sobre `mostry_e2e` mientras corre algo. Si se pisan, fallan tests al azar.
+- **La suite del backend tarda unos 11 minutos.** Corriendo en segundo plano, vitest no muestra nada hasta el final: hay que esperar el resultado, no darla por colgada.
+- **El shell de las herramientas de Claude es zsh, no fish:**
+  - no separa una variable en palabras (para repetir un comando largo, usar una función);
+  - **`pkill -f` / `pgrep -f` pueden matar el propio shell** porque el patrón aparece en su línea de comandos. Matar por PID con un patrón anclado (`pgrep -f "^node servidor/servir.js"`).
+- **Docker Desktop:**
+  - no comparte `/tmp` (montar desde `~/.cache` o desde el proyecto);
+  - la red "host" no llega a tu máquina (usar `host-gateway` o la red `mostry_default` para llegar a `rustfs`, `mailpit` o `mysql`).
+- **Prettier alarga los archivos.** El límite de 70 líneas se controla **después** de correr Prettier.
+- **Vitest:** `beforeEach(() => mock.mockReset())` devuelve una función y Vitest la toma como limpieza. Usar llaves: `beforeEach(() => { mock.mockReset(); })`.
+- **Vite se reinicia** si cambian `vite.config.js` o un `.env`: si pasa con el e2e corriendo, fallan pruebas por "connection refused".
+- **Prueba de producción en local** (Caddy con certificado propio): Chrome no registra el service worker, y las URLs firmadas de los comprobantes apuntan a la red de Docker. En producción real no pasa.
+- **gitleaks** marca como "secreto" el texto de ejemplo de `.env.example` y el token de `frontend/src/test/rutas.js`. Están permitidos en `.gitleaks.toml` y con `// gitleaks:allow`.
+- **Herramientas que ya se usaron:**
+  - Lighthouse: `npx lighthouse@12` con `CHROME_PATH` apuntando al Chromium de Playwright, en `~/.cache/ms-playwright/`;
+  - OWASP ZAP: por Docker, con resultados en `~/.cache/mostry-zap`;
+  - Semgrep: `uvx semgrep scan --config p/javascript --config p/typescript --no-git-ignore …`;
+  - hadolint y gitleaks: por Docker.
+

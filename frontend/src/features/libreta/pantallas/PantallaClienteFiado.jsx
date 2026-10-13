@@ -39,6 +39,7 @@ export function PantallaClienteFiado() {
       <Tarjeta className={css.saldo}>
         <span>{saldo > 0 ? 'Debe' : 'Al día'}</span>
         <Monto
+          animado
           centavos={Math.max(saldo, 0)}
           tamano="xl"
           tono={saldo > 0 ? 'ladrillo' : 'ok'}

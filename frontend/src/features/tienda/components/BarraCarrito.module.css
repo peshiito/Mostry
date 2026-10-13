@@ -37,3 +37,13 @@
     transform: translateY(110%);
   }
 }
+/* Cada producto que sumás hace "saltar" la bolsa. */
+.bolsa {
+  display: grid;
+  animation: saltar 380ms var(--ease-out);
+}
+@keyframes saltar {
+  40% {
+    transform: translateY(-5px) scale(1.12);
+  }
+}

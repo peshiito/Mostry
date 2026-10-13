@@ -19,10 +19,18 @@
   font-weight: 500;
   cursor: pointer;
 }
+.chip {
+  transition:
+    color var(--dur-corta) ease,
+    border-color var(--dur-corta) ease;
+}
 .chip[aria-pressed='true'] {
-  background: var(--verde);
   border-color: var(--verde);
   color: var(--sobre-verde);
+}
+.fila .pastilla {
+  inset: -1px;
+  background: var(--verde);
 }
 .cuenta {
   min-width: 22px;

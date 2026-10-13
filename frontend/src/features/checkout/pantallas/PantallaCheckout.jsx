@@ -50,6 +50,7 @@ export function PantallaCheckout() {
           tamano="lg"
           anchoCompleto
           cargando={c.enviando}
+          textoCargando="Confirmando…"
         >
           {c.encargo ? 'Elegir día y hora' : 'Confirmar pedido'}
         </Boton>

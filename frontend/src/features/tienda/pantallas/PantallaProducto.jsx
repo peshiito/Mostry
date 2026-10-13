@@ -1,39 +1,31 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
-import { Estado } from '../../../shared/ui/Estado.jsx';
+import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { HeaderTienda } from '../components/HeaderTienda.jsx';
 import { BarraAgregar } from '../components/BarraAgregar.jsx';
+import { ProductoAusente } from '../components/ProductoAusente.jsx';
 import { useProducto } from '../hooks/useCatalogo.js';
 import { useTienda } from '../hooks/useTienda.js';
 import css from './PantallaProducto.module.css';
+import { ImagenSuave } from '../../../shared/ui/ImagenSuave.jsx';
 
 // Detalle de producto (Stitch 14).
 export function PantallaProducto() {
   const { id } = useParams();
-  const { producto, cargando } = useProducto(id);
+  const { producto, cargando, error, recargar } = useProducto(id);
   const { tienda } = useTienda();
   const [cantidad, setCantidad] = useState(1);
   const navegar = useNavigate();
-  if (cargando) return <Esqueleto filas={4} alto={120} />;
-  if (!producto) {
-    return (
-      <>
-        <HeaderTienda volver="/catalogo" />
-        <Estado icono="search" titulo="Ese producto ya no está">
-          Puede que lo hayan sacado del catálogo.
-        </Estado>
-      </>
-    );
-  }
+  if (cargando) return <EsqueletoDetalle imagen bloques={1} />;
+  if (!producto) return <ProductoAusente error={error} onReintentar={recargar} />;
   return (
     <>
       <HeaderTienda volver="/catalogo" titulo={producto.nombre} />
-      <img
+      <ImagenSuave
         src={producto.fotoGrande}
         srcSet={producto.fotoSrcset}
         sizes="(max-width: 480px) 100vw, 480px"

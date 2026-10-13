@@ -2,7 +2,7 @@ import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Chips } from '../../../shared/ui/Chips.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoFilas } from '../../../shared/ui/esqueletos/index.js';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Lista } from '../../../shared/ui/Lista.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
@@ -22,7 +22,8 @@ export function PantallaGastos() {
   const { gastos, total, cargando, errorCarga, recargar } = useGastos();
   const [filtro, setFiltro] = useState('todos');
   const visibles = gastos.filter((g) => filtro === 'todos' || g.tipo === filtro);
-  if (errorCarga) return <ErrorCarga que="tus gastos" onReintentar={recargar} />;
+  if (errorCarga)
+    return <ErrorCarga error={errorCarga} que="tus gastos" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina
@@ -54,7 +55,7 @@ export function PantallaGastos() {
         valor={filtro}
         onCambio={setFiltro}
       />
-      {cargando ? <Esqueleto filas={3} /> : null}
+      {cargando ? <EsqueletoFilas filas={3} /> : null}
       {!cargando && !visibles.length ? (
         <Estado icono="payments" titulo="Sin gastos este mes" />
       ) : null}

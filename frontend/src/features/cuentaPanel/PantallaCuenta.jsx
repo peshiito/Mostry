@@ -35,6 +35,7 @@ export function PantallaCuenta() {
         variante="principal"
         tamano="lg"
         cargando={cierre.enviando}
+        textoCargando="Cerrando sesión…"
         icono="logout"
         anchoCompleto
         onClick={salir}

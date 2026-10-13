@@ -10,6 +10,7 @@ import { HeaderTienda } from '../tienda/components/HeaderTienda.jsx';
 import { ItemCarrito } from './components/ItemCarrito.jsx';
 import { useCarrito } from './useCarrito.js';
 import css from './PantallaCarrito.module.css';
+import { ListaAnimada } from '../../shared/movimiento/ListaAnimada.jsx';
 
 // Carrito (Stitch 15). El total final lo calcula el servidor.
 export function PantallaCarrito() {
@@ -31,14 +32,14 @@ export function PantallaCarrito() {
               titulo="Tu pedido"
               bajada={`${unidades} ${unidades === 1 ? 'producto' : 'productos'}`}
             />
-            <ul className={css.lista}>
-              {items.map((i) => (
-                <ItemCarrito key={i.id} item={i} />
+            <ListaAnimada className={css.lista} reacomodar>
+              {items.map((item, i) => (
+                <ItemCarrito key={item.id} i={i} item={item} />
               ))}
-            </ul>
+            </ListaAnimada>
             <Tarjeta className={css.subtotal}>
               <span>Subtotal</span>
-              <Monto centavos={subtotal} tamano="md" />
+              <Monto animado centavos={subtotal} tamano="md" />
             </Tarjeta>
             <Aviso>El envío o retiro se elige en el paso siguiente.</Aviso>
             <Boton

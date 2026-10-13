@@ -25,6 +25,7 @@ export function HojaCobroResto({ abierta, onCerrar, resto, onConfirmar, enviando
         tamano="lg"
         anchoCompleto
         cargando={enviando}
+        textoCargando="Guardando…"
         onClick={() => onConfirmar(medio)}
       >
         Marcar entregado

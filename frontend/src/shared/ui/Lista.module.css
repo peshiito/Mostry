@@ -4,3 +4,10 @@
   border-radius: var(--radio);
   background: var(--papel);
 }
+/* Cada fila va envuelta (para animarla): el separador lo pone el envoltorio. */
+.item:not(:last-child) {
+  border-bottom: var(--borde);
+}
+.lista .item > * {
+  border-bottom: 0;
+}

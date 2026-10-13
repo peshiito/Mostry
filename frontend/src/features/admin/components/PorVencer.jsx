@@ -6,6 +6,7 @@ import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { adaptarTiendaAdmin } from '../api/admin.js';
 import { textoDias } from '../lib/mensaje.js';
 import css from './PorVencer.module.css';
+import { ItemAnimado, ListaAnimada } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 // Franja de arriba del dashboard: tiendas que vencen en 2 días o menos (o en
 // gracia), la más urgente primero, con su botón para escribirles.
@@ -13,16 +14,19 @@ export function PorVencer({ onWhatsapp }) {
   const { datos, error, recargar } = useConsulta('/admin/tiendas?porVencer=1');
   const tiendas = (datos?.tiendas ?? []).map((t) => adaptarTiendaAdmin(t));
   // Si no cargó, se dice: callar haría creer que no vence nadie.
-  if (error) return <ErrorCarga que="las tiendas por vencer" onReintentar={recargar} />;
+  if (error)
+    return (
+      <ErrorCarga error={error} que="las tiendas por vencer" onReintentar={recargar} />
+    );
   if (tiendas.length === 0) return null;
   return (
     <section className={css.franja} aria-labelledby="por-vencer">
       <h2 id="por-vencer" className={css.titulo}>
         Por vencer <span className={css.cuenta}>{tiendas.length}</span>
       </h2>
-      <ul className={css.lista}>
-        {tiendas.map((t) => (
-          <li key={t.id} className={css.item}>
+      <ListaAnimada className={css.lista}>
+        {tiendas.map((t, i) => (
+          <ItemAnimado key={t.id} i={i} className={css.item}>
             <Link to={`/tiendas/${t.id}`} className={css.nombre}>
               {t.nombre}
             </Link>
@@ -34,9 +38,9 @@ export function PorVencer({ onWhatsapp }) {
               etiqueta={`Mandar WhatsApp a ${t.nombre}`}
               onClick={() => onWhatsapp(t)}
             />
-          </li>
+          </ItemAnimado>
         ))}
-      </ul>
+      </ListaAnimada>
     </section>
   );
 }

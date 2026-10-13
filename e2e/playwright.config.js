@@ -13,6 +13,9 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     viewport: { width: 390, height: 844 }, // mobile first
+    // Las animaciones no cambian qué se ve: los recorridos van sin movimiento
+    // (las animaciones se prueban aparte, en movimiento.spec.js).
+    reducedMotion: 'reduce',
     locale: 'es-AR',
     timezoneId: 'America/Argentina/Buenos_Aires',
     trace: 'retain-on-failure',

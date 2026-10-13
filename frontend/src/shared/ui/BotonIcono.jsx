@@ -7,7 +7,10 @@ export function BotonIcono({ icono, etiqueta, to, insignia, tono = 'neutro', ...
   const clases = `${css.boton} ${css[tono]}`;
   const interior = (
     <>
-      <Icono nombre={icono} />
+      {/* Si cambia la insignia (agregaste algo al carrito), el ícono se sacude. */}
+      <span key={insignia ?? 0} className={insignia ? css.sacude : css.quieto}>
+        <Icono nombre={icono} />
+      </span>
       {insignia ? (
         <span key={insignia} className={css.insignia}>
           {insignia}

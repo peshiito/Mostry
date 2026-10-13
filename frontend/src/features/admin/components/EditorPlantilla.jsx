@@ -41,6 +41,7 @@ export function EditorPlantilla({ plantilla, datos, onGuardar, onRestaurar, envi
           variante="verde"
           disabled={!cambio || !texto.trim()}
           cargando={enviando}
+          textoCargando="Guardando…"
           onClick={() => onGuardar(texto)}
         >
           Guardar

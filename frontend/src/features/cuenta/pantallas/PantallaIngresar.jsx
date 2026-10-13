@@ -54,6 +54,7 @@ export function PantallaIngresar({ base = '/panel', admin, sitio }) {
           anchoCompleto
           iconoFin="arrow_forward"
           cargando={i.accion.enviando}
+          textoCargando="Ingresando…"
         >
           Ingresar
         </Boton>

@@ -17,10 +17,14 @@
 }
 .tocable {
   cursor: pointer;
-  transition: background-color var(--dur-toque) ease;
+  transition:
+    background-color var(--dur-toque) ease,
+    transform var(--dur-toque) var(--ease-out);
 }
+/* Al apretar, la fila se hunde apenas: se siente que la tocaste. */
 .tocable:active {
   background: var(--lona);
+  transform: scale(0.985);
 }
 @media (hover: hover) and (pointer: fine) {
   .tocable:hover {

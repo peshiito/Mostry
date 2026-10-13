@@ -8,7 +8,7 @@ export function ResumenGastos({ total, gastos, inversiones }) {
   return (
     <Tarjeta className={css.tarjeta}>
       <span className={css.etiqueta}>Gastaste este mes</span>
-      <Monto centavos={total} tamano="xl" />
+      <Monto animado centavos={total} tamano="xl" />
       <Ticket>
         <TicketFila concepto="Gastos (insumos, servicios)" monto={plata(gastos)} />
         <TicketFila concepto="Inversiones" monto={plata(inversiones)} />

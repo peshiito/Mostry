@@ -13,6 +13,20 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Cambio de tema: el círculo lo dibuja temaConTransicion.js, no el fundido de
+   fábrica del navegador. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Las funciones de Motion no llegaron: nada queda invisible ni corrido. */
+[data-sin-movimiento] [style*='opacity: 0'] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

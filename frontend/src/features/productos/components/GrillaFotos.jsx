@@ -1,6 +1,7 @@
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { BotonIcono } from '../../../shared/ui/BotonIcono.jsx';
+import { BarraSubida } from '../../../shared/ui/BarraSubida.jsx';
 import { Icono } from '../../../shared/ui/Icono.jsx';
 import { useFotos } from '../hooks/useFotos.js';
 import css from './GrillaFotos.module.css';
@@ -14,7 +15,14 @@ export function GrillaFotos({ productoId }) {
     if (archivo) f.agregar(archivo);
   };
   if (f.errorCarga)
-    return <ErrorCarga que="las fotos" onReintentar={f.recargar} conPagina={false} />;
+    return (
+      <ErrorCarga
+        error={f.errorCarga}
+        que="las fotos"
+        onReintentar={f.recargar}
+        conPagina={false}
+      />
+    );
   return (
     <>
       <AvisoError error={f.error} />
@@ -37,7 +45,11 @@ export function GrillaFotos({ productoId }) {
           <li>
             <label className={css.agregar}>
               <Icono nombre="add_a_photo" />
-              {f.subiendo ? 'Subiendo…' : 'Agregar foto'}
+              {f.subiendo ? (
+                <BarraSubida progreso={f.progreso ?? 0} compacta />
+              ) : (
+                'Agregar foto'
+              )}
               <input
                 type="file"
                 accept="image/jpeg,image/png"

@@ -1,0 +1,16 @@
+/* La pastilla viaja por encima de otras opciones: todo el contenido de cada
+   opción va en una capa más arriba, así nunca lo tapa al pasar. */
+.conPastilla {
+  position: relative;
+}
+.conPastilla > :not(.pastilla) {
+  position: relative;
+  z-index: 1;
+}
+.pastilla {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--verde-claro);
+}

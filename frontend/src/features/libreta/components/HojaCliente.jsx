@@ -42,6 +42,7 @@ export function HojaCliente({ abierta, onCerrar, accion }) {
         tamano="lg"
         anchoCompleto
         cargando={accion.enviando}
+        textoCargando="Guardando…"
         onClick={guardar}
       >
         Guardar cliente

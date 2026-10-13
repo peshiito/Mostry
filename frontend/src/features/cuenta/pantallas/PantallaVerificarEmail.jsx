@@ -55,6 +55,7 @@ export function PantallaVerificarEmail() {
           tamano="lg"
           anchoCompleto
           cargando={verificar.enviando}
+          textoCargando="Verificando…"
           disabled={codigo.length !== 6}
         >
           Verificar

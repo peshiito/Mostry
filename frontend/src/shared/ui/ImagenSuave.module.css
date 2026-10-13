@@ -1,0 +1,11 @@
+.imagen {
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 320ms ease-out,
+    transform 420ms var(--ease-out);
+}
+.lista {
+  opacity: 1;
+  transform: none;
+}

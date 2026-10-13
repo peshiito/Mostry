@@ -2,7 +2,7 @@ import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { fechaCorta } from '../../../shared/lib/fechas.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoLista } from '../../../shared/ui/esqueletos/index.js';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
@@ -10,12 +10,14 @@ import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { ESTADOS_REPORTE, nombrePantalla } from '../lib/pantallas.js';
 import css from './PantallaMisReportes.module.css';
+import { ItemAnimado, ListaAnimada } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 // Los reportes que mandó la tienda, con su estado y la respuesta de Mostry.
 export function PantallaMisReportes() {
   const { datos, cargando, error, recargar } = useConsulta('/panel/reportes');
-  if (cargando && !datos) return <Esqueleto filas={4} />;
-  if (error) return <ErrorCarga que="tus reportes" onReintentar={recargar} />;
+  if (cargando && !datos) return <EsqueletoLista monto={false} />;
+  if (error)
+    return <ErrorCarga error={error} que="tus reportes" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina migas="Ayuda" titulo="Mis reportes" />
@@ -27,11 +29,11 @@ export function PantallaMisReportes() {
           Si algo no anda, contanos y lo revisamos.
         </Estado>
       ) : (
-        <ul className={css.lista}>
-          {datos.map((r) => {
+        <ListaAnimada className={css.lista}>
+          {datos.map((r, i) => {
             const est = ESTADOS_REPORTE[r.estado];
             return (
-              <li key={r.id}>
+              <ItemAnimado key={r.id} i={i}>
                 <Tarjeta className={css.reporte}>
                   <div className={css.cabeza}>
                     <span className={css.numero}>
@@ -47,10 +49,10 @@ export function PantallaMisReportes() {
                     </p>
                   ) : null}
                 </Tarjeta>
-              </li>
+              </ItemAnimado>
             );
           })}
-        </ul>
+        </ListaAnimada>
       )}
     </Pagina>
   );

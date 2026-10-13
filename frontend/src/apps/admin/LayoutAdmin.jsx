@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router';
-import { Esqueleto } from '../../shared/ui/Esqueleto.jsx';
+import { TransicionRuta } from '../../shared/movimiento/TransicionRuta.jsx';
+import { RedSeguridad } from '../../shared/errores/RedSeguridad.jsx';
+import { EsqueletoLista } from '../../shared/ui/esqueletos/index.js';
 import { BotonTema } from '../../shared/tema/BotonTema.jsx';
-import { Icono } from '../../shared/ui/Icono.jsx';
 import { LogoMostry } from '../../shared/ui/LogoMostry.jsx';
 import { PalabraMostry } from '../../shared/ui/logo/PalabraMostry.jsx';
 import css from './LayoutAdmin.module.css';
+import { MenuAdmin } from './MenuAdmin.jsx';
 import cel from './LayoutAdminCelular.module.css';
 
 // Admin de Mostry (escritorio): barra lateral verde y contenido.
@@ -22,28 +23,17 @@ export function LayoutAdmin() {
           </span>
           <span className={css.chip}>Admin</span>
         </div>
-        <nav aria-label="Administración" className={`${css.nav} ${cel.nav}`}>
-          <NavLink to="/" end className={css.item}>
-            <Icono nombre="storefront" /> Tiendas
-          </NavLink>
-          <NavLink to="/reportes" className={css.item}>
-            <Icono nombre="support_agent" /> Reportes
-          </NavLink>
-          <NavLink to="/mensajes" className={css.item}>
-            <Icono nombre="chat" /> Mensajes
-          </NavLink>
-          <NavLink to="/metricas" className={css.item}>
-            <Icono nombre="bar_chart" /> Métricas
-          </NavLink>
-        </nav>
+        <MenuAdmin />
         <div className={css.tema}>
           <BotonTema tono="sobreVerde" />
         </div>
       </aside>
       <div className={css.contenido}>
-        <Suspense fallback={<Esqueleto filas={5} />}>
-          <Outlet />
-        </Suspense>
+        <RedSeguridad>
+          <Suspense fallback={<EsqueletoLista monto={false} />}>
+            <TransicionRuta />
+          </Suspense>
+        </RedSeguridad>
       </div>
     </div>
   );

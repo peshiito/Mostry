@@ -12,7 +12,10 @@ import { usePromociones } from '../hooks/usePromociones.js';
 export function PantallaPromociones() {
   const { promos, alternar, agregar, error, errorCarga, recargar } = usePromociones();
   const [abierta, setAbierta] = useState(false);
-  if (errorCarga) return <ErrorCarga que="tus promociones" onReintentar={recargar} />;
+  if (errorCarga)
+    return (
+      <ErrorCarga error={errorCarga} que="tus promociones" onReintentar={recargar} />
+    );
   return (
     <Pagina>
       <TituloPagina

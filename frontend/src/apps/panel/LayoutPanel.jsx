@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
-import { Outlet } from 'react-router';
-import { Esqueleto } from '../../shared/ui/Esqueleto.jsx';
+import { TransicionRuta } from '../../shared/movimiento/TransicionRuta.jsx';
+import { RedSeguridad } from '../../shared/errores/RedSeguridad.jsx';
+import { EsqueletoLista } from '../../shared/ui/esqueletos/index.js';
 import { PanelProveedor, usePanel } from '../../features/panelBase/PanelContexto.jsx';
 import { BannerSoporte } from '../../features/soporte/components/BannerSoporte.jsx';
 import { BannerSuscripcion } from '../../features/suscripcion/components/BannerSuscripcion.jsx';
 import { propsPaleta } from '../../shared/lib/paletas.js';
 import { HeaderPanel } from './HeaderPanel.jsx';
-import { NavPanel } from './NavPanel.jsx';
+import { NavPanel, ORDEN_PESTANAS } from './NavPanel.jsx';
 import css from './LayoutPanel.module.css';
 
 // Estructura del panel: header, banner del plan, contenido y pestañas.
@@ -27,9 +28,11 @@ function MarcoPanel() {
       <BannerSuscripcion />
       <BannerSoporte />
       {/* Cada pantalla baja cuando se abre: header y pestañas quedan fijos. */}
-      <Suspense fallback={<Esqueleto filas={5} />}>
-        <Outlet />
-      </Suspense>
+      <RedSeguridad inicio="/panel">
+        <Suspense fallback={<EsqueletoLista />}>
+          <TransicionRuta orden={ORDEN_PESTANAS} soloFundido />
+        </Suspense>
+      </RedSeguridad>
       <NavPanel />
     </div>
   );

@@ -13,7 +13,8 @@ export function PantallaEncargos() {
   const { delDia, conEncargos, cambiar, error, errorCarga, recargar } = useEncargos();
   const [dia, setDia] = useState(() => new Date().toLocaleDateString('sv-SE'));
   const lista = delDia(dia);
-  if (errorCarga) return <ErrorCarga que="tus encargos" onReintentar={recargar} />;
+  if (errorCarga)
+    return <ErrorCarga error={errorCarga} que="tus encargos" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina

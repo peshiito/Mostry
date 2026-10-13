@@ -28,7 +28,7 @@ export function PantallaMiTienda() {
           t={{ ...m.t, logoUrl: tienda.logoUrl }}
           onCambio={m.setT}
           onLogo={logo.ejecutar}
-          subiendoLogo={logo.enviando}
+          subiendoLogo={logo.enviando ? (logo.progreso ?? 0) : null}
           errores={m.errores}
         />
       </Tarjeta>
@@ -56,6 +56,8 @@ export function PantallaMiTienda() {
         tamano="lg"
         anchoCompleto
         cargando={m.accion.enviando}
+        textoCargando="Guardando…"
+        textoHecho={m.accion.hecho ? 'Guardado' : undefined}
       >
         Guardar cambios
       </Boton>

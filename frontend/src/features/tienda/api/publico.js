@@ -4,12 +4,13 @@ import { api } from '../../../shared/api/cliente.js';
 export const publicoApi = {
   crearPedido: (d) => api('/publico/pedidos', { metodo: 'POST', cuerpo: d }),
   disponibilidad: (fecha) => api(`/publico/encargos/disponibilidad?fecha=${fecha}`),
-  subirComprobante: (token, archivo) => {
+  subirComprobante: (token, archivo, onProgreso) => {
     const datos = new FormData();
     datos.append('comprobante', archivo);
     return api(`/publico/pedidos/${token}/comprobante`, {
       metodo: 'POST',
       archivo: datos,
+      onProgreso,
     });
   },
 };

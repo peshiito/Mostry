@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router';
+import { BarraSubida } from '../../../shared/ui/BarraSubida.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -19,10 +20,10 @@ export function PantallaPago() {
   const { token } = useParams();
   useVaciarAlLlegar();
   const { pedido, cargando } = usePedidoPublico(token);
-  const { subir, enviando, error } = useSubirComprobante();
+  const { subir, enviando, error, progreso } = useSubirComprobante();
   const [archivo, setArchivo] = useState(null);
   const navegar = useNavigate();
-  if (cargando) return <Esqueleto filas={5} />;
+  if (cargando) return <EsqueletoDetalle />;
   if (!pedido?.pago) return <Navigate to={`/pedido/${token}`} replace />;
   async function enviar() {
     if ((await subir(token, archivo)).ok) navegar(`/pedido/${token}/listo`);
@@ -45,12 +46,14 @@ export function PantallaPago() {
           <SubirComprobante archivo={archivo} onArchivo={setArchivo} />
         </Tarjeta>
         <AvisoError error={error} />
+        <BarraSubida progreso={progreso} />
         <Boton
           variante="principal"
           tamano="lg"
           anchoCompleto
           disabled={!archivo}
           cargando={enviando}
+          textoCargando="Enviando…"
           onClick={enviar}
         >
           Enviar comprobante

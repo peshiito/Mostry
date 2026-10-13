@@ -27,7 +27,7 @@ export function PantallaCerrarCaja() {
       <TituloPagina migas="Caja" titulo="Cierre de caja" />
       <Tarjeta className={css.esperado}>
         <span>Debería haber en efectivo</span>
-        <Monto centavos={esperado} tamano="lg" />
+        <Monto animado centavos={esperado} tamano="lg" />
       </Tarjeta>
       <Campo etiqueta="¿Cuánto contaste?" ayuda="Billetes y monedas del cajón.">
         {(k) => (
@@ -50,6 +50,7 @@ export function PantallaCerrarCaja() {
         anchoCompleto
         disabled={c === null}
         cargando={accion.enviando}
+        textoCargando="Cerrando la caja…"
         onClick={confirmar}
       >
         Cerrar caja

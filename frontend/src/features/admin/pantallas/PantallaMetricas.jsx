@@ -1,6 +1,7 @@
 import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { plata } from '../../../shared/lib/plata.js';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
+import { EsqueletoResumen } from '../../../shared/ui/esqueletos/index.js';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../../shared/ui/Seccion.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -10,9 +11,18 @@ import { TablaTiendas } from '../components/TablaTiendas.jsx';
 
 // Métricas básicas (Stitch 58): GET /admin/metricas + tiendas en gracia.
 export function PantallaMetricas() {
-  const m = useConsulta('/admin/metricas').datos;
+  const metricas = useConsulta('/admin/metricas');
+  const m = metricas.datos;
   const gracia = useConsulta('/admin/tiendas?estado=gracia').datos;
-  if (!m) return <Esqueleto filas={3} alto={96} />;
+  if (metricas.error)
+    return (
+      <ErrorCarga
+        error={metricas.error}
+        que="las métricas"
+        onReintentar={metricas.recargar}
+      />
+    );
+  if (!m) return <EsqueletoResumen numeros={4} filas={0} />;
   const e = m.tiendas.porEstado;
   return (
     <Pagina ancho="completo">

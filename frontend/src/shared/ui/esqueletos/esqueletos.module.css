@@ -1,0 +1,58 @@
+/* Formas de los esqueletos: copian el armado de las pantallas reales. */
+.caja {
+  display: grid;
+  gap: var(--e-3);
+  padding: var(--e-4);
+}
+.tarjeta {
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.fila {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: 64px;
+  padding: var(--e-3) var(--e-4);
+  border-bottom: var(--borde);
+}
+.fila:last-child {
+  border-bottom: 0;
+}
+.textos {
+  flex: 1;
+  display: grid;
+  gap: var(--e-2);
+}
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--e-3);
+}
+.numero {
+  display: grid;
+  gap: var(--e-2);
+  padding: var(--e-4);
+}
+.chips {
+  display: flex;
+  gap: var(--e-2);
+  overflow: hidden;
+}
+.columnas {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--e-4);
+  align-items: center;
+  padding: var(--e-3) var(--e-4);
+  border-bottom: var(--borde);
+}
+.cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: 56px;
+  padding: var(--e-2) var(--e-4);
+  border-bottom: var(--borde);
+}

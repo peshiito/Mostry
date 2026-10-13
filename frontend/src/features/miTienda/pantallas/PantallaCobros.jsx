@@ -30,6 +30,8 @@ export function PantallaCobros() {
         tamano="lg"
         anchoCompleto
         cargando={m.accion.enviando}
+        textoCargando="Guardando…"
+        textoHecho={m.accion.hecho ? 'Guardado' : undefined}
       >
         Guardar
       </Boton>

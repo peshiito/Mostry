@@ -30,6 +30,7 @@ export function PasoRecuperar({ paso, onSeguir, enviando, base }) {
         anchoCompleto
         iconoFin="arrow_forward"
         cargando={enviando}
+        textoCargando={['Enviando…', 'Verificando…', 'Guardando…'][paso - 1]}
         disabled={!valor}
       >
         {paso === 3 ? 'Guardar contraseña' : 'Seguir'}

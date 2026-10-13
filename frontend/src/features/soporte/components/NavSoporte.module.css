@@ -19,6 +19,5 @@
   white-space: nowrap;
 }
 .item[aria-current='page'] {
-  background: var(--verde-claro);
   color: var(--verde);
 }

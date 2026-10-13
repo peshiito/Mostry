@@ -10,7 +10,12 @@ export function TarjetaGanancia({ resumen: r }) {
   return (
     <Tarjeta className={css.tarjeta}>
       <span className={css.etiqueta}>Ganancia real</span>
-      <Monto centavos={r.gananciaReal ?? gananciaReal(r)} tamano="xl" tono="verde" />
+      <Monto
+        animado
+        centavos={r.gananciaReal ?? gananciaReal(r)}
+        tamano="xl"
+        tono="verde"
+      />
       <Ticket>
         <TicketFila concepto="Ingresos por ventas" monto={plata(r.ingresos)} />
         <TicketFila

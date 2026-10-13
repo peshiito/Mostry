@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { avisar } from '../avisos/avisos.js';
 import { erroresDeCampos } from './cliente.js';
 
@@ -9,6 +9,9 @@ export function useAccion(fn, { exito } = {}) {
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState(null);
   const [campos, setCampos] = useState({});
+  const [hecho, setHecho] = useState(false); // "Guardado ✓" en el botón, un momento
+  const timer = useRef(null);
+  useEffect(() => () => clearTimeout(timer.current), []);
   async function ejecutar(...args) {
     setEnviando(true);
     setError(null);
@@ -30,7 +33,10 @@ export function useAccion(fn, { exito } = {}) {
     } catch {
       /* el aviso es solo un adorno: nunca convierte un guardado en error */
     }
+    setHecho(true);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setHecho(false), 1400);
     return { ok: true, datos };
   }
-  return { ejecutar, enviando, error, campos, limpiar: () => setError(null) };
+  return { ejecutar, enviando, error, campos, hecho, limpiar: () => setError(null) };
 }

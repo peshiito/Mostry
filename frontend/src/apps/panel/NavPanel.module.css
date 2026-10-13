@@ -18,6 +18,8 @@
   font-size: var(--t-xs);
   font-weight: 600;
   text-decoration: none;
+  transition: color var(--dur-corta) ease;
+  -webkit-tap-highlight-color: transparent;
 }
 .pestana[aria-current='page'] {
   color: var(--verde);
@@ -29,18 +31,11 @@
   width: 56px;
   height: 30px;
   border-radius: var(--radio-redondo);
-  transition:
-    background-color var(--dur-corta) ease,
-    transform var(--dur-corta) var(--ease-out);
 }
-.pestana[aria-current='page'] .icono {
-  background: var(--verde-claro);
-}
-.pestana:active .icono {
-  transform: scale(0.92);
-}
-.insignia {
+/* Más específico que la capa de PastillaActiva: sigue flotando en la esquina. */
+.nav .icono .insignia {
   position: absolute;
+  z-index: 2;
   top: -6px;
   right: -12px;
   min-width: 18px;

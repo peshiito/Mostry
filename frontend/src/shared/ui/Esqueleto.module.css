@@ -1,7 +1,4 @@
-.lista {
-  display: grid;
-  gap: var(--e-2);
-}
+/* Bloque base de los esqueletos (esqueletos/Hueso.jsx). */
 /* El brillo es una franja que se desliza (transform): no repinta el bloque
    en cada cuadro, importante en celulares de gama baja mientras carga. */
 .bloque {

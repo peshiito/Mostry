@@ -1,0 +1,36 @@
+.subida {
+  display: grid;
+  gap: var(--e-1);
+}
+.texto {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  font-variant-numeric: tabular-nums;
+}
+.compacta .texto {
+  font-size: var(--t-xs);
+}
+.riel {
+  display: block;
+  overflow: hidden;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--lona-oscura);
+}
+.compacta .riel {
+  height: 4px;
+}
+.relleno {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--verde);
+  transform: scaleX(var(--avance));
+  transform-origin: left;
+  transition: transform var(--dur-corta) var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  .relleno {
+    transition: none;
+  }
+}

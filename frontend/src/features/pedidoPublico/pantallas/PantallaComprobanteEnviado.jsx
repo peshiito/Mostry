@@ -2,7 +2,7 @@ import { useParams } from 'react-router';
 import { plata } from '../../../shared/lib/plata.js';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
-import { Icono } from '../../../shared/ui/Icono.jsx';
+import { CheckDibujado } from '../../../shared/movimiento/CheckDibujado.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { HeaderTienda } from '../../tienda/components/HeaderTienda.jsx';
@@ -20,7 +20,7 @@ export function PantallaComprobanteEnviado() {
       <HeaderTienda volver={`/pedido/${token}`} titulo={tienda.nombre} />
       <Pagina className={css.pagina}>
         <span className={css.icono}>
-          <Icono nombre="hourglass_top" tamano={36} />
+          <CheckDibujado tamano={44} />
         </span>
         <h1 className={css.titulo}>Listo, {tienda.nombre} lo está revisando</h1>
         <p className={css.texto}>Te avisamos por WhatsApp cuando lo aprueben.</p>

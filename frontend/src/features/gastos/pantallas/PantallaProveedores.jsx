@@ -15,7 +15,10 @@ import { useGastos } from '../hooks/useGastos.js';
 export function PantallaProveedores() {
   const { proveedores, crearProveedor, errorCarga, recargar } = useGastos();
   const [abierta, setAbierta] = useState(false);
-  if (errorCarga) return <ErrorCarga que="tus proveedores" onReintentar={recargar} />;
+  if (errorCarga)
+    return (
+      <ErrorCarga error={errorCarga} que="tus proveedores" onReintentar={recargar} />
+    );
   return (
     <Pagina>
       <TituloPagina migas="Gastos" titulo="Proveedores" />

@@ -3,7 +3,7 @@ import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -15,8 +15,8 @@ import { useSoportePanel } from '../hooks/useSoportePanel.js';
 // ayudarlo, por cuánto tiempo, y ve todo lo que se cambió.
 export function PantallaSoporte() {
   const s = useSoportePanel();
-  if (s.cargando && !s.acceso && !s.registro.length) return <Esqueleto filas={4} />;
-  if (s.error) return <ErrorCarga que="el acceso de soporte" onReintentar={s.recargar} />;
+  if (s.cargando && !s.acceso && !s.registro.length) return <EsqueletoDetalle />;
+  if (s.error) return <ErrorCarga error={s.error} onReintentar={s.recargar} />;
   return (
     <Pagina>
       <TituloPagina
@@ -43,6 +43,7 @@ export function PantallaSoporte() {
           anchoCompleto
           icono="lock"
           cargando={s.accion.enviando}
+          textoCargando="Cortando el acceso…"
           onClick={s.cortar}
         >
           Cortar acceso ahora
@@ -54,6 +55,7 @@ export function PantallaSoporte() {
           anchoCompleto
           icono="lock_open"
           cargando={s.accion.enviando}
+          textoCargando="Dando acceso…"
           onClick={s.dar}
         >
           Dar acceso a Mostry por 1 hora

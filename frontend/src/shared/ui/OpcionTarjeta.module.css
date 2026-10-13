@@ -8,6 +8,13 @@
   border-radius: var(--radio);
   background: var(--papel);
   cursor: pointer;
+  transition:
+    background-color var(--dur-corta) ease,
+    border-color var(--dur-corta) ease,
+    transform var(--dur-toque) var(--ease-out);
+}
+.opcion:active {
+  transform: scale(0.98);
 }
 .opcion:has(:checked) {
   border: 2px solid var(--verde);

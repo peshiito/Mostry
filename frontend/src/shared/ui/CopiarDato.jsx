@@ -1,4 +1,6 @@
+import * as m from 'motion/react-m';
 import { useState } from 'react';
+import { RESORTES } from '../movimiento/resortes.js';
 import { avisar } from '../avisos/avisos.js';
 import { Icono } from './Icono.jsx';
 import css from './CopiarDato.module.css';
@@ -26,7 +28,15 @@ export function CopiarDato({ etiqueta, valor, textoACopiar, mono }) {
         <span className={`${css.valor} ${mono ? css.mono : ''}`}>{valor}</span>
       </div>
       <button type="button" className={css.boton} onClick={copiar}>
-        <Icono nombre={copiado ? 'check' : 'content_copy'} tamano={18} />
+        <m.span
+          key={copiado ? 'si' : 'no'}
+          className={css.icono}
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={RESORTES.festejo}
+        >
+          <Icono nombre={copiado ? 'check' : 'content_copy'} tamano={18} />
+        </m.span>
         <span aria-live="polite">{copiado ? 'Copiado' : 'Copiar'}</span>
       </button>
     </div>

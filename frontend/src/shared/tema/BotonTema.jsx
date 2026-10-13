@@ -1,3 +1,4 @@
+import { temaConTransicion } from '../movimiento/temaConTransicion.js';
 import { BotonIcono } from '../ui/BotonIcono.jsx';
 import { useTema } from './useTema.js';
 
@@ -16,7 +17,7 @@ export function BotonTema({ tono = 'neutro' }) {
       icono={c.icono}
       tono={tono}
       etiqueta={`Modo ${c.texto}. Cambiar a ${CICLO[c.siguiente].texto}`}
-      onClick={() => elegir(c.siguiente)}
+      onClick={(e) => temaConTransicion(e.currentTarget, () => elegir(c.siguiente))}
     />
   );
 }

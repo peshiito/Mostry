@@ -1,0 +1,23 @@
+/* Mostaza: se ve sobre el header verde del panel y sobre el fondo lona. */
+.barra {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 70;
+  height: 3px;
+  background: var(--mostaza);
+  transform: scaleX(var(--avance));
+  transform-origin: left;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--dur-media) var(--ease-out),
+    opacity var(--dur-corta) ease-out;
+}
+.visible {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .barra {
+    transition: opacity var(--dur-corta) ease-out;
+  }
+}

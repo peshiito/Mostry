@@ -15,6 +15,7 @@ export function AccionesPedido({ pedido, onAvanzar, onCancelar, soloLectura, env
           tamano="lg"
           anchoCompleto
           cargando={enviando}
+          textoCargando="Guardando…"
           to={accion.ruta}
           onClick={accion.siguiente ? () => onAvanzar(accion.siguiente) : undefined}
         >

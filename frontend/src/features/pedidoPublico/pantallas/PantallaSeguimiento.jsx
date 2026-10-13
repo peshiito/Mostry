@@ -2,7 +2,8 @@ import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { useParams } from 'react-router';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
@@ -18,14 +19,19 @@ import { usePedidoPublico } from '../hooks/usePedidoPublico.js';
 export function PantallaSeguimiento() {
   const { token } = useParams();
   useVaciarAlLlegar();
-  const { pedido, cargando } = usePedidoPublico(token);
+  const { pedido, cargando, error, recargar } = usePedidoPublico(token);
   const { tienda } = useTienda();
-  if (cargando) return <Esqueleto filas={5} />;
+  if (cargando) return <EsqueletoDetalle />;
+  // "No existe" solo si la API dijo 404: un corte o un error del servidor no.
+  if (error && error.status !== 404)
+    return <ErrorCarga error={error} que="tu pedido" onReintentar={recargar} />;
   if (!pedido)
     return (
-      <Estado nivel={1} icono="search" titulo="No encontramos ese pedido">
-        Revisá que el link esté completo.
-      </Estado>
+      <Pagina>
+        <Estado nivel={1} icono="search_off" titulo="No encontramos ese pedido">
+          Revisá que el link esté completo o pedile uno nuevo a la tienda.
+        </Estado>
+      </Pagina>
     );
   return (
     <>

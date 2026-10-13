@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Buscador } from '../../../shared/ui/Buscador.jsx';
 import { Chips } from '../../../shared/ui/Chips.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoFilas } from '../../../shared/ui/esqueletos/index.js';
 import { Paginador } from '../../../shared/ui/Paginador.jsx';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
@@ -10,6 +10,7 @@ import { PedidosVacio } from '../components/PedidosVacio.jsx';
 import { TarjetaPedido } from '../components/TarjetaPedido.jsx';
 import { usePedidosPanel } from '../hooks/usePedidosPanel.js';
 import css from './PantallaPedidos.module.css';
+import { ItemAnimado, ListaAnimada } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 // Lista de pedidos con filtros (Stitch 25 y 52 vacío).
 export function PantallaPedidos() {
@@ -26,7 +27,7 @@ export function PantallaPedidos() {
     <Pagina espacio="sm">
       <TituloPagina titulo="Pedidos" bajada="Pedidos y encargos de tu tienda" />
       {cargando ? (
-        <Esqueleto filas={4} alto={110} />
+        <EsqueletoFilas filas={4} />
       ) : total === 0 ? (
         <PedidosVacio />
       ) : (
@@ -43,13 +44,13 @@ export function PantallaPedidos() {
             onCambio={setFiltro}
           />
           {pedidos.length ? (
-            <ul className={css.lista}>
-              {pedidos.map((p) => (
-                <li key={p.id}>
+            <ListaAnimada className={css.lista} reacomodar key={filtro}>
+              {pedidos.map((p, i) => (
+                <ItemAnimado key={p.id} i={i}>
                   <TarjetaPedido pedido={p} />
-                </li>
+                </ItemAnimado>
               ))}
-            </ul>
+            </ListaAnimada>
           ) : (
             <Estado icono="check_circle" titulo="Nada por acá">
               No hay pedidos con este filtro.

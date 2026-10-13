@@ -3,16 +3,17 @@ import { Cantidad } from '../../../shared/ui/Cantidad.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { useCarrito } from '../useCarrito.js';
 import css from './ItemCarrito.module.css';
+import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
 
-export function ItemCarrito({ item }) {
+export function ItemCarrito({ ref, i, item }) {
   const { cambiar } = useCarrito();
   return (
-    <li className={css.item}>
+    <ItemAnimado ref={ref} i={i} className={css.item}>
       <img src={item.foto} alt="" className={css.foto} decoding="async" />
       <div className={css.cuerpo}>
         <div className={css.cabeza}>
           <h2 className={css.nombre}>{item.nombre}</h2>
-          <Monto centavos={item.precio * item.cantidad} tamano="sm" />
+          <Monto animado centavos={item.precio * item.cantidad} tamano="sm" />
         </div>
         <p className={css.desc}>{item.descripcion}</p>
         <div className={css.acciones}>
@@ -30,6 +31,6 @@ export function ItemCarrito({ item }) {
           </Boton>
         </div>
       </div>
-    </li>
+    </ItemAnimado>
   );
 }

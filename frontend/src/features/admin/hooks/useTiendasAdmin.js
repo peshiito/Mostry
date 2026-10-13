@@ -32,7 +32,9 @@ export function useTiendasAdmin() {
 
 // Detalle de una tienda + registrar pago, suspender y reactivar.
 export function useTiendaAdmin(id) {
-  const { datos, cargando, recargar } = useConsulta(`/admin/tiendas/${Number(id) || 0}`);
+  const { datos, cargando, error, recargar } = useConsulta(
+    `/admin/tiendas/${Number(id) || 0}`,
+  );
   // El segundo argumento de ejecutar() es el texto del aviso (sin texto, no avisa).
   const accion = useAccion(
     async (fn) => {
@@ -44,6 +46,8 @@ export function useTiendaAdmin(id) {
   return {
     tienda: datos ? adaptarTiendaAdmin(datos.tienda, datos) : null,
     cargando,
+    error,
+    recargar,
     accion,
     registrarPago: (d) =>
       accion.ejecutar(

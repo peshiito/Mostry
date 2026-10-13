@@ -4,7 +4,7 @@ import { plata } from '../../../shared/lib/plata.js';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -22,7 +22,7 @@ export function PantallaRevisarComprobante() {
   const { tienda } = usePanel();
   const r = useRevision(pedido);
   const [rechazando, setRechazando] = useState(false);
-  if (cargando || r.cargando) return <Esqueleto filas={4} alto={96} />;
+  if (cargando || r.cargando) return <EsqueletoDetalle imagen bloques={1} />;
   if (!pedido || !r.comprobante)
     return <Estado icono="check_circle" titulo="No hay comprobantes para revisar" />;
   return (
@@ -43,6 +43,7 @@ export function PantallaRevisarComprobante() {
         anchoCompleto
         icono="check"
         cargando={r.accion.enviando}
+        textoCargando="Aprobando…"
         onClick={r.aprobar}
       >
         Aprobar pago

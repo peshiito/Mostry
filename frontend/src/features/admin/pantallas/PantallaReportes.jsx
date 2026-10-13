@@ -3,7 +3,7 @@ import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { fechaCorta } from '../../../shared/lib/fechas.js';
 import { Chips } from '../../../shared/ui/Chips.jsx';
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoFilas } from '../../../shared/ui/esqueletos/index.js';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { Fila } from '../../../shared/ui/Fila.jsx';
@@ -37,8 +37,10 @@ export function PantallaReportes() {
         bajada="Problemas que te mandan las tiendas desde su panel."
       />
       <Chips etiqueta="Estado" opciones={opciones} valor={estado} onCambio={setEstado} />
-      {c.error ? <ErrorCarga que="los reportes" onReintentar={c.recargar} /> : null}
-      {c.cargando && !c.datos ? <Esqueleto filas={4} /> : null}
+      {c.error ? (
+        <ErrorCarga error={c.error} que="los reportes" onReintentar={c.recargar} />
+      ) : null}
+      {c.cargando && !c.datos ? <EsqueletoFilas filas={4} monto={false} /> : null}
       {c.datos && reportes.length === 0 ? (
         <Estado icono="support_agent" titulo="No hay reportes acá">
           Cuando una tienda reporte algo, aparece en esta lista.

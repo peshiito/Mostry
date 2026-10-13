@@ -1,8 +1,9 @@
 import { Campo, Entrada } from '../../../shared/ui/Campo.jsx';
+import { BarraSubida } from '../../../shared/ui/BarraSubida.jsx';
 import { LogoTienda } from '../../../shared/ui/LogoTienda.jsx';
 import css from './DatosTienda.module.css';
 
-// Logo (se sube al toque), nombre, frase, WhatsApp y dirección.
+// Logo (se sube al toque, `subiendoLogo` = progreso 0 a 1), nombre, frase, WhatsApp y dirección.
 export function DatosTienda({ t, onCambio, onLogo, subiendoLogo, errores = {} }) {
   const set = (k) => (e) => onCambio({ ...t, [k]: e.target.value });
   const elegir = (e) => {
@@ -14,7 +15,11 @@ export function DatosTienda({ t, onCambio, onLogo, subiendoLogo, errores = {} })
     <div className={css.datos}>
       <label className={css.logo}>
         <LogoTienda url={t.logoUrl} tamano={72} className={css.circulo} />
-        <span className={css.cambiar}>{subiendoLogo ? 'Subiendo…' : 'Cambiar logo'}</span>
+        {subiendoLogo == null ? (
+          <span className={css.cambiar}>Cambiar logo</span>
+        ) : (
+          <BarraSubida progreso={subiendoLogo} compacta />
+        )}
         <input
           type="file"
           accept="image/jpeg,image/png"

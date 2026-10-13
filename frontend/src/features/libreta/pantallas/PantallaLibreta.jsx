@@ -21,7 +21,8 @@ export function PantallaLibreta() {
   const visibles = clientes.filter((c) =>
     c.nombre.toLowerCase().includes(q.toLowerCase()),
   );
-  if (errorCarga) return <ErrorCarga que="la libreta" onReintentar={recargar} />;
+  if (errorCarga)
+    return <ErrorCarga error={errorCarga} que="la libreta" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina migas="Negocio" titulo="Libreta" />
@@ -30,7 +31,7 @@ export function PantallaLibreta() {
         <>
           <Tarjeta>
             <p>Te deben</p>
-            <Monto centavos={totalDeuda} tamano="xl" tono="ladrillo" />
+            <Monto animado centavos={totalDeuda} tamano="xl" tono="ladrillo" />
             <p>entre {plural(conDeuda, 'cliente', 'clientes')}</p>
           </Tarjeta>
           <Buscador valor={q} onCambio={setQ} placeholder="Buscar cliente" />

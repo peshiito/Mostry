@@ -11,6 +11,7 @@ import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { PestanasLibreta } from '../components/PestanasLibreta.jsx';
 import { useNotas } from '../hooks/useNotas.js';
 import css from './PantallaNotas.module.css';
+import { ItemAnimado, ListaAnimada } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 // Notas sueltas del negocio (Stitch 44). Se pueden borrar (decisión de la Etapa 4).
 export function PantallaNotas() {
@@ -21,7 +22,8 @@ export function PantallaNotas() {
     if (!texto.trim()) return;
     if ((await agregar(texto.trim())).ok) setTexto('');
   }
-  if (errorCarga) return <ErrorCarga que="tus notas" onReintentar={recargar} />;
+  if (errorCarga)
+    return <ErrorCarga error={errorCarga} que="tus notas" onReintentar={recargar} />;
   return (
     <Pagina>
       <TituloPagina migas="Negocio" titulo="Libreta" />
@@ -37,9 +39,9 @@ export function PantallaNotas() {
         </Boton>
       </Tarjeta>
       <AvisoError error={error} />
-      <ul className={css.notas}>
-        {notas.map((n) => (
-          <li key={n.id} className={css.nota}>
+      <ListaAnimada className={css.notas} reacomodar>
+        {notas.map((n, i) => (
+          <ItemAnimado key={n.id} i={i} className={css.nota}>
             <p>{n.texto}</p>
             <span className={css.fecha}>{fechaCorta(n.fecha)}</span>
             <BotonIcono
@@ -47,9 +49,9 @@ export function PantallaNotas() {
               etiqueta="Borrar nota"
               onClick={() => borrar(n.id)}
             />
-          </li>
+          </ItemAnimado>
         ))}
-      </ul>
+      </ListaAnimada>
     </Pagina>
   );
 }

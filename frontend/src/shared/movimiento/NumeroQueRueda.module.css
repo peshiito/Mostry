@@ -1,0 +1,7 @@
+.marco {
+  position: relative;
+  display: inline-grid;
+  justify-items: center;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+}

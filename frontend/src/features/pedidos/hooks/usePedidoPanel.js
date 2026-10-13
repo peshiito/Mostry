@@ -4,7 +4,7 @@ import { panel } from '../../panelBase/panelApi.js';
 
 // Detalle de un pedido + cambio de estado y cancelación (/panel/pedidos/:id).
 export function usePedidoPanel(id) {
-  const { datos, cargando, error, setDatos } = useConsulta(
+  const { datos, cargando, error, recargar, setDatos } = useConsulta(
     `/panel/pedidos/${Number(id) || 0}`,
   );
   const accion = useAccion(
@@ -29,6 +29,7 @@ export function usePedidoPanel(id) {
     pedido,
     cargando,
     error,
+    recargar,
     cambiarEstado: (estado, medioCobro) =>
       accion.ejecutar('estado', medioCobro ? { estado, medioCobro } : { estado }),
     cancelar: (motivo, devolucion) =>

@@ -1,0 +1,30 @@
+/* Al abrir el seguimiento, la línea verde se llena paso por paso. */
+.hecho::before {
+  transform-origin: top;
+  animation: llenar 260ms var(--ease-out) both;
+  animation-delay: calc(var(--i) * 90ms);
+}
+@keyframes llenar {
+  from {
+    transform: scaleY(0);
+  }
+}
+/* El paso actual "llama" dos veces con un anillo que se expande. */
+.actual .punto {
+  position: relative;
+}
+.actual .punto::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--mostaza);
+  border-radius: 50%;
+  animation: llamar 1.2s var(--ease-out) 2 both;
+  animation-delay: 400ms;
+}
+@keyframes llamar {
+  to {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}

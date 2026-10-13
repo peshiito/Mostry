@@ -36,6 +36,7 @@ export function HojaCambiarClave({ abierta, onCerrar }) {
             tamano="lg"
             anchoCompleto
             cargando={accion.enviando}
+            textoCargando="Guardando…"
             onClick={enviar}
           >
             Guardar contraseña

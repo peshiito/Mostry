@@ -8,6 +8,7 @@ import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { FilaCategoria } from '../components/FilaCategoria.jsx';
 import { useCategoriasPanel } from '../hooks/useCategoriasPanel.js';
 import css from './PantallaProductos.module.css';
+import { ListaAnimada } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 // Categorías del catálogo (Stitch 32).
 export function PantallaCategorias() {
@@ -28,10 +29,11 @@ export function PantallaCategorias() {
         bajada="El orden es el que ven tus clientes en la tienda."
       />
       <AvisoError error={errorApi} />
-      <ul className={css.lista}>
+      <ListaAnimada className={css.lista} reacomodar>
         {cats.map((c, i) => (
           <FilaCategoria
             key={c.id}
+            i={i}
             cat={c}
             primera={i === 0}
             ultima={i === cats.length - 1}
@@ -40,7 +42,7 @@ export function PantallaCategorias() {
             onQuitar={() => quitar(c.id)}
           />
         ))}
-      </ul>
+      </ListaAnimada>
       <Tarjeta as="form" onSubmit={enviar} noValidate>
         <Campo etiqueta="Nueva categoría" error={error}>
           {(c) => (

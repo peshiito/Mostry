@@ -40,7 +40,7 @@ export default function AppAdmin() {
           <Route path="metricas" element={<PantallaMetricas />} />
           <Route path="mensajes" element={<PantallaMensajes />} />
           <Route path="reportes" element={<PantallaReportes />} />
-          <Route path="*" element={<NoEncontrada />} />
+          <Route path="*" element={<NoEncontrada zona="admin" />} />
         </Route>
       </Route>
     </Routes>

@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoFormulario } from '../../../shared/ui/esqueletos/index.js';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../../shared/ui/Seccion.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
@@ -21,10 +21,14 @@ export function PantallaProductoEditar() {
   const { rutas } = useBasePanel();
   const { id } = useParams();
   const e = useEditarProducto(id);
-  if (e.cargando) return <Esqueleto filas={5} alto={96} />;
+  if (e.cargando) return <EsqueletoFormulario campos={5} />;
   // Nunca un formulario vacío con el título "Editar": guardar pisaría el producto.
-  if (e.errorCarga?.status === 404) return <NoEncontrada volver={`${rutas}/productos`} />;
-  if (e.errorCarga) return <ErrorCarga que="el producto" onReintentar={e.recargar} />;
+  if (e.errorCarga?.status === 404)
+    return <NoEncontrada zona="panel" volver={`${rutas}/productos`} />;
+  if (e.errorCarga)
+    return (
+      <ErrorCarga error={e.errorCarga} que="el producto" onReintentar={e.recargar} />
+    );
   return (
     <Pagina as="form" onSubmit={e.guardar} noValidate className={css.pagina}>
       <TituloPagina
@@ -50,6 +54,8 @@ export function PantallaProductoEditar() {
           tamano="lg"
           anchoCompleto
           cargando={e.accion.enviando}
+          textoCargando="Guardando…"
+          textoHecho={e.accion.hecho ? 'Guardado' : undefined}
         >
           Guardar
         </Boton>

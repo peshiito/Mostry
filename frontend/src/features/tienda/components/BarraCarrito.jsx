@@ -11,14 +11,16 @@ export function BarraCarrito() {
   return (
     <div className={css.barra}>
       <Link to="/carrito" className={css.boton}>
-        <Icono nombre="shopping_bag" />
+        <span key={unidades} className={css.bolsa}>
+          <Icono nombre="shopping_bag" />
+        </span>
         <span className={css.textos}>
           <span className={css.titulo}>Ver mi pedido</span>
           <span className={css.detalle}>
             {unidades} {unidades === 1 ? 'producto' : 'productos'}
           </span>
         </span>
-        <Monto centavos={subtotal} tamano="md" />
+        <Monto animado centavos={subtotal} tamano="md" />
         <Icono nombre="arrow_forward" />
       </Link>
     </div>

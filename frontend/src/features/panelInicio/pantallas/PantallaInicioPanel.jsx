@@ -1,6 +1,6 @@
 import { urlTienda } from '../../../shared/lib/urls.js';
 import { ZONA_ACTUAL } from '../../../shared/lib/zonaActual.js';
-import { Esqueleto } from '../../../shared/ui/Esqueleto.jsx';
+import { EsqueletoResumen } from '../../../shared/ui/esqueletos/index.js';
 import { useSesion } from '../../sesion/useSesion.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { CopiarDato } from '../../../shared/ui/CopiarDato.jsx';
@@ -29,7 +29,7 @@ export function PantallaInicioPanel() {
   const r = useResumenDia();
   const { soloLectura } = useSuscripcion();
   const usuarioNombre = useSesion().usuario?.nombre?.split(' ')[0];
-  if (r.cargando) return <Esqueleto filas={5} alto={88} />;
+  if (r.cargando) return <EsqueletoResumen />;
   return (
     <Pagina>
       {soloLectura ? <TarjetaPagar tono="ladrillo" /> : null}

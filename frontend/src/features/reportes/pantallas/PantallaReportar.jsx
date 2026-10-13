@@ -1,4 +1,5 @@
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
+import { BarraSubida } from '../../../shared/ui/BarraSubida.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -26,6 +27,7 @@ export function PantallaReportar() {
       />
       <AvisoError error={r.accion.error} />
       <CamposReporte r={r} />
+      <BarraSubida progreso={r.accion.progreso} />
       <Boton
         type="submit"
         variante="principal"
@@ -33,6 +35,7 @@ export function PantallaReportar() {
         anchoCompleto
         disabled={!listo}
         cargando={r.accion.enviando}
+        textoCargando="Enviando…"
       >
         Mandar reporte
       </Boton>

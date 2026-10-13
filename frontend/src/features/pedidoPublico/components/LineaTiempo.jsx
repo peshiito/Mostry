@@ -1,6 +1,7 @@
 import { ESTADOS, recorrido } from '../../../shared/lib/estadosPedido.js';
 import { Icono } from '../../../shared/ui/Icono.jsx';
 import css from './LineaTiempo.module.css';
+import mov from './LineaTiempoMovimiento.module.css';
 
 // Recorrido del pedido: hechos en verde, el actual en mostaza, los que faltan en gris.
 export function LineaTiempo({ pedido }) {
@@ -13,10 +14,11 @@ export function LineaTiempo({ pedido }) {
         return (
           <li
             key={p}
-            className={`${css.paso} ${css[estado]}`}
+            className={`${css.paso} ${css[estado]} ${mov[estado] ?? ''}`}
             aria-current={estado === 'actual' ? 'step' : undefined}
+            style={{ '--i': i }}
           >
-            <span className={css.punto} aria-hidden="true">
+            <span className={`${css.punto} ${mov.punto}`} aria-hidden="true">
               {estado === 'hecho' ? <Icono nombre="check" tamano={16} /> : null}
             </span>
             <span className={css.texto}>

@@ -3,14 +3,16 @@ import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { BotonAgregar } from './BotonAgregar.jsx';
 import css from './FilaProducto.module.css';
+import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
+import { ImagenSuave } from '../../../shared/ui/ImagenSuave.jsx';
 
 // Fila del catálogo: foto cuadrada, nombre, etiqueta, precio y acción.
-export function FilaProducto({ producto }) {
+export function FilaProducto({ ref, i, producto }) {
   const agotado = producto.agotado && !producto.aceptaEncargo;
   return (
-    <li className={`${css.fila} ${agotado ? css.agotado : ''}`}>
+    <ItemAnimado ref={ref} i={i} className={`${css.fila} ${agotado ? css.agotado : ''}`}>
       <Link to={`/producto/${producto.id}`} className={css.link}>
-        <img
+        <ImagenSuave
           src={producto.foto}
           alt=""
           className={css.foto}
@@ -38,6 +40,6 @@ export function FilaProducto({ producto }) {
         </span>
       </Link>
       <BotonAgregar producto={producto} conTexto />
-    </li>
+    </ItemAnimado>
   );
 }

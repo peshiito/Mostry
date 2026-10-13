@@ -21,6 +21,7 @@ export function ElegirTurno({ tienda, turno, onTurno }) {
   if (errorCarga)
     return (
       <ErrorCarga
+        error={errorCarga}
         que="los horarios disponibles"
         onReintentar={recargar}
         conPagina={false}
