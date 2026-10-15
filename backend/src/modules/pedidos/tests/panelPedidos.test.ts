@@ -31,11 +31,14 @@ describe('panel: pedidos', () => {
     ).body;
     expect(detalle.items).toEqual([
       {
+        id: expect.any(Number),
         productoId: t.productos.medialuna,
         nombre: 'Medialuna',
         precioUnitario: 35000,
         cantidad: 2,
         subtotal: 70000,
+        personalizacion: null,
+        tieneFoto: false, // la clave de la foto nunca sale (Encargos 2)
       },
     ]);
     expect(detalle.whatsapp).toMatch(/^https:\/\/wa\.me\/5491123456789\?text=/);

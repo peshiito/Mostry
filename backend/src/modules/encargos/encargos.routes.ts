@@ -6,6 +6,7 @@ import { cargarAgenda } from '../horarios/repositorios/agenda.repository.js';
 import { tiendaParaPedido } from '../pedidos/repositorios/tiendaParaPedido.repository.js';
 import { disponibilidadEncargo } from './disponibilidad.js';
 import { encargosEntre } from './encargos.repository.js';
+import { encargosDelDia } from './cupo.js';
 
 const DIA_MS = 24 * 60 * 60 * 1000;
 const enDias = (d: number) => enArgentina(new Date(Date.now() + d * DIA_MS)).fecha;
@@ -39,7 +40,12 @@ const disponibilidad: RequestHandler = async (req, res) => {
     cargarAgenda(req.tienda!.id),
     tiendaParaPedido(req.tienda!.id),
   ]);
-  res.json(disponibilidadEncargo(agenda, fecha, t.anticipacionEncargoHoras));
+  const d = disponibilidadEncargo(agenda, fecha, t.anticipacionEncargoHoras);
+  const lleno =
+    d.disponible &&
+    t.cupoEncargosDia !== null &&
+    (await encargosDelDia(req.tienda!.id, fecha)) >= t.cupoEncargosDia;
+  res.json(lleno ? { fecha, disponible: false, motivo: 'sin_cupo', tramos: [] } : d);
 };
 
 export function rutasEncargosPanel(): Router {

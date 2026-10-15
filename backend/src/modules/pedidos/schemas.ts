@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { esLinkMapsValido } from '../../shared/utils/linkMaps.js';
 import { normalizarWhatsapp } from '../../shared/utils/whatsapp.js';
+import { esquemaItem } from './schemaItem.js';
 
-const idBody = z.int().positive();
 const whatsapp = z
   .string()
   .max(30)
@@ -34,7 +34,7 @@ export const esquemaCheckout = z
       .transform((v) => new Date(v))
       .optional(),
     items: z
-      .array(z.strictObject({ productoId: idBody, cantidad: z.int().min(1).max(99) }))
+      .array(esquemaItem)
       .min(1)
       .max(50)
       .refine(

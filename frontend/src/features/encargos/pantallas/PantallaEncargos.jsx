@@ -4,6 +4,7 @@ import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
+import { PorAceptar } from '../components/PorAceptar.jsx';
 import { TarjetaEncargo } from '../components/TarjetaEncargo.jsx';
 import { TiraSemana } from '../components/TiraSemana.jsx';
 import { useEncargos } from '../hooks/useEncargos.js';
@@ -23,6 +24,7 @@ export function PantallaEncargos() {
         bajada="Pedidos programados con fecha y seña"
       />
       <AvisoError error={error} />
+      <PorAceptar />
       <TiraSemana
         desde={new Date()}
         elegido={dia}

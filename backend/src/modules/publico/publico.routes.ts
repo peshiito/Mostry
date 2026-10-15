@@ -3,6 +3,7 @@ import { limite } from '../../shared/http/rateLimit.js';
 import { resolverTienda } from '../../shared/middlewares/resolverTienda.js';
 import { rutasComprobantesPublico } from '../comprobantes/comprobantes.routes.js';
 import { rutasEncargosPublico } from '../encargos/encargos.routes.js';
+import { rutasFotosPublico } from '../encargos/fotos/fotos.routes.js';
 import { rutasPedidosPublico } from '../pedidos/pedidos.routes.js';
 import { tiendasRepo } from '../tiendas/tiendas.repository.js';
 import { pedidosPublicoController } from '../pedidos/controladores/pedidosPublico.controller.js';
@@ -28,6 +29,7 @@ export function rutasPublico(): Router {
   r.use(requerirTiendaDisponible);
   // Los comprobantes de pedidos ya hechos siguen andando aunque deje de vender online.
   r.use(rutasComprobantesPublico());
+  r.use(rutasFotosPublico()); // foto de referencia de un encargo ya hecho
   r.use(requerirVentaOnline);
   r.get('/categorias', c.categorias);
   r.get('/productos', c.productos);

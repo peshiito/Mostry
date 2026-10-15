@@ -1,5 +1,6 @@
 import type { ModoStock } from '../../../shared/db/tipos/catalogo.js';
 import { AppError } from '../../../shared/errors/AppError.js';
+import { personalizacionDelItem } from './personalizacion.js';
 
 export type ProductoParaPedido = {
   id: number;
@@ -9,8 +10,13 @@ export type ProductoParaPedido = {
   agotado: boolean;
   aceptaEncargo: boolean;
   modoStock: ModoStock;
+  pidePersonalizacion: boolean;
 };
-export type ItemPedido = { productoId: number; cantidad: number };
+export type ItemPedido = {
+  productoId: number;
+  cantidad: number;
+  personalizacion?: string;
+};
 
 // El servidor recalcula SIEMPRE precios y totales (CLAUDE.md 6.1): del
 // navegador solo se usan los ids y las cantidades.
@@ -20,7 +26,7 @@ export function armarItems(
   productos: ProductoParaPedido[],
 ) {
   const porId = new Map(productos.map((p) => [p.id, p]));
-  return pedidos.map(({ productoId, cantidad }) => {
+  return pedidos.map(({ productoId, cantidad, personalizacion }) => {
     const p = porId.get(productoId);
     if (!p || !p.activo)
       throw new AppError(
@@ -54,6 +60,7 @@ export function armarItems(
       precioUnitario: p.precio,
       cantidad,
       subtotal: p.precio * cantidad,
+      personalizacion: personalizacionDelItem(tipo, p, personalizacion),
       // Solo lo que se cuenta por unidades reserva stock (y solo al comprar al toque).
       reservo: tipo === 'inmediato' && p.modoStock === 'unidades',
     };

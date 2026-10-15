@@ -23,6 +23,7 @@ export type TiendasTabla = Timestamps & {
   plazoComprobanteHoras: Auto<number>;
   plazoSenaHoras: Auto<number>;
   anticipacionEncargoHoras: Auto<number>;
+  cupoEncargosDia: number | null; // máximo de encargos por día (0049)
   senaPorcentaje: Auto<number>;
   costoEnvio: Auto<number>;
   aceptaEnvio: Auto<boolean>;

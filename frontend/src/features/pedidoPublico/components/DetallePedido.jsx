@@ -12,6 +12,7 @@ export function DetallePedido({ pedido }) {
           <TicketFila
             key={i.id}
             concepto={`${i.cantidad} × ${i.nombre}`}
+            detalle={i.personalizacion ? `“${i.personalizacion}”` : undefined}
             monto={plata(i.precio * i.cantidad)}
           />
         ))}

@@ -10,6 +10,8 @@ type FilaProducto = {
   stockReservado: number;
   agotado: boolean;
   aceptaEncargo: boolean;
+  pidePersonalizacion: boolean;
+  indicacionPersonalizacion: string | null;
   modoStock: ModoStock;
   destacado: boolean;
   categoriaId: number | null;
@@ -36,6 +38,8 @@ export function presentarProductoPublico(p: FilaProducto, fotos: FilaFoto[]) {
     disponible: disponibleAhora(p),
     aceptaEncargo: p.aceptaEncargo,
     soloEncargo: p.modoStock === 'a_pedido',
+    pidePersonalizacion: p.pidePersonalizacion,
+    indicacionPersonalizacion: p.indicacionPersonalizacion,
     fotos: propias,
   };
 }

@@ -1,0 +1,9 @@
+.bloque {
+  display: grid;
+  gap: var(--e-3);
+}
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+}

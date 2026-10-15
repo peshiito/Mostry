@@ -17,6 +17,7 @@ const columnasConfig = [
   'plazoComprobanteHoras',
   'plazoSenaHoras',
   'anticipacionEncargoHoras',
+  'cupoEncargosDia',
   'senaPorcentaje',
   'costoEnvio',
   'aceptaEnvio',

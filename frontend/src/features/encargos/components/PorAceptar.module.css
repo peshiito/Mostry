@@ -1,0 +1,5 @@
+.bloque {
+  display: grid;
+  gap: var(--e-2);
+  border-color: var(--mostaza-borde);
+}

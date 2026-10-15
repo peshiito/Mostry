@@ -1,9 +1,9 @@
-// Estados del pedido (6.1 y decisión del encargo sin seña) con su texto y tono.
+// Estados del pedido (6.1, encargo sin seña y Encargos 2) con su texto y tono.
 export const ESTADOS = {
   pendiente_pago: { texto: 'Pendiente de pago', tono: 'mostaza' },
   comprobante_enviado: { texto: 'Comprobante enviado', tono: 'mostaza' },
   pago_aprobado: { texto: 'Pago aprobado', tono: 'ok' },
-  pendiente_confirmacion: { texto: 'Pendiente de confirmación', tono: 'mostaza' },
+  pendiente_confirmacion: { texto: 'Por aceptar', tono: 'mostaza' },
   confirmado: { texto: 'Confirmado', tono: 'ok' },
   en_preparacion: { texto: 'En preparación', tono: 'verde' },
   en_camino: { texto: 'En camino', tono: 'verde' },
@@ -15,9 +15,12 @@ export const ESTADOS = {
 // Recorrido que ve el comprador, según tipo de pedido y entrega.
 export function recorrido(pedido) {
   const final = pedido.entrega === 'envio' ? 'en_camino' : 'listo_retirar';
-  const inicio =
-    pedido.tipo === 'encargo' && !pedido.sena
-      ? ['pendiente_confirmacion', 'confirmado']
-      : ['pendiente_pago', 'comprobante_enviado', 'pago_aprobado'];
+  const pago = ['pendiente_pago', 'comprobante_enviado', 'pago_aprobado'];
+  // Encargos 2: todo encargo se acepta primero; con seña, después se paga.
+  let inicio = pago;
+  if (pedido.tipo === 'encargo')
+    inicio = pedido.sena
+      ? ['pendiente_confirmacion', ...pago]
+      : ['pendiente_confirmacion', 'confirmado'];
   return [...inicio, 'en_preparacion', final, 'entregado'];
 }

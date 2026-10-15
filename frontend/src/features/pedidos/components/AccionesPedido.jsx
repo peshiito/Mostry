@@ -1,6 +1,6 @@
 import { esLinkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
-import { accionPrincipal } from '../lib/acciones.js';
+import { accionPrincipal, porAceptar } from '../lib/acciones.js';
 import css from './AccionesPedido.module.css';
 
 // Botón coral con el próximo paso + avisar por WhatsApp (link armado por la API) + cancelar.
@@ -31,7 +31,7 @@ export function AccionesPedido({ pedido, onAvanzar, onCancelar, soloLectura, env
       </Boton>
       {!cerrado && !soloLectura ? (
         <Boton variante="texto" className={css.cancelar} onClick={onCancelar}>
-          Cancelar pedido
+          {porAceptar(pedido) ? 'Rechazar encargo' : 'Cancelar pedido'}
         </Boton>
       ) : null}
     </div>

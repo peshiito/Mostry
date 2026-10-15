@@ -2,8 +2,10 @@ import sharp from 'sharp';
 import type { TiendaId } from '../../../shared/db/tiendaId.js';
 import type { abrirParaDemo } from './abrirParaDemo.js';
 import { AL_DIA, type Escena } from './datosPedidos.js';
+import { ENCARGOS } from './datosEncargos.js';
 import { ESPECIALES } from './datosPedidosEspeciales.js';
-import { aprobar, comprar, idPedido, subirComprobante } from './pedidos.js';
+import { aprobar, idPedido } from './aprobar.js';
+import { comprar, subirComprobante } from './pedidos.js';
 import type { Sesion } from './sesion.js';
 
 type Ctx = {
@@ -25,7 +27,7 @@ export async function escenaPedidos({ rosa, tiendaId, producto, tienda }: Ctx) {
   // Captura de transferencia de ejemplo (la API la valida y la pasa a WebP).
   const fondo = { width: 600, height: 900, channels: 3 as const, background: '#e9f2ee' };
   const img = await sharp({ create: fondo }).png().toBuffer();
-  for (const e of [...AL_DIA, ...ESPECIALES]) await jugar(e);
+  for (const e of [...AL_DIA, ...ESPECIALES, ...ENCARGOS]) await jugar(e);
 
   async function jugar(e: Escena) {
     if (e.sinSena) await tienda.sinSena();

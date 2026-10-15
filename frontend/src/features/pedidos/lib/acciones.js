@@ -4,11 +4,11 @@ export function accionPrincipal(p) {
     case 'comprobante_enviado':
       return { texto: 'Revisar comprobante', ruta: `/panel/pedidos/${p.id}/comprobante` };
     case 'pendiente_confirmacion':
+      // Encargos 2: todo encargo se acepta (con seña, recién ahí se pide el pago).
       // Un pedido inmediato llega acá solo si un premio del Club lo dejó gratis.
-      return {
-        texto: p.tipo === 'encargo' ? 'Confirmar encargo' : 'Confirmar pedido',
-        siguiente: 'confirmado',
-      };
+      return p.tipo === 'encargo'
+        ? { texto: 'Aceptar encargo', siguiente: 'aceptar' }
+        : { texto: 'Confirmar pedido', siguiente: 'confirmado' };
     case 'pago_aprobado':
     case 'confirmado':
       return { texto: 'Pasar a preparación', siguiente: 'en_preparacion' };
@@ -23,3 +23,7 @@ export function accionPrincipal(p) {
       return null;
   }
 }
+
+// Encargo que espera que la tienda lo acepte (rechazarlo = cancelarlo con motivo).
+export const porAceptar = (p) =>
+  p.tipo === 'encargo' && p.estado === 'pendiente_confirmacion';

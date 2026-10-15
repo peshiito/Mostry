@@ -4,6 +4,7 @@ import type { Medio } from '../../../shared/db/tipos/caja.js';
 import { AppError } from '../../../shared/errors/AppError.js';
 import { registrarMovimiento } from '../../caja/servicios/registrarMovimiento.js';
 import { sumarSello } from '../../club/sellos/sumarSello.js';
+import { programarBorradoFotos } from '../../encargos/fotos/programarBorrado.js';
 import type { Pedido } from '../repositorios/pedidos.repository.js';
 import { restoACobrar } from './montos.js';
 
@@ -16,6 +17,7 @@ export async function alEntregar(
   p: Pedido,
   medioCobro?: Medio,
 ) {
+  await programarBorradoFotos(tx, tiendaId, p.id);
   const resto = restoACobrar(p);
   if (p.tipo === 'encargo' && resto > 0) {
     if (!medioCobro)

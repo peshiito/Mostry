@@ -29,6 +29,14 @@ export const donaRosaCatalogo: DatosSeed['categorias'] = [
         aceptaEncargo: true,
         destacado: true,
       }),
+      // Se personaliza (Encargos 2): el cliente cuenta cómo la quiere.
+      p('Torta de cumpleaños', 3500000, 0, {
+        descripcion: 'Bizcochuelo, relleno y decoración a elección. Para 15 porciones.',
+        modoStock: 'a_pedido',
+        aceptaEncargo: true,
+        pidePersonalizacion: true,
+        indicacionPersonalizacion: 'Contanos el texto, el sabor y el relleno',
+      }),
       p('Lemon pie', 2200000, 2, {
         descripcion: 'Para 8 porciones.',
         aceptaEncargo: true,

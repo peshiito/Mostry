@@ -1,4 +1,4 @@
-import type { Auto, Creado, DeTienda, Timestamps } from './comunes.js';
+import type { Auto, DeTienda, Timestamps } from './comunes.js';
 
 // Única lista de estados: el tipo y los esquemas Zod salen de acá.
 export const ESTADOS_PEDIDO = [
@@ -48,23 +48,9 @@ export type PedidoItemsTabla = DeTienda & {
   cantidad: number;
   subtotal: number;
   reservo: Auto<boolean>; // si reservó stock al comprarse (0038)
+  personalizacion: string | null; // cómo lo quiere el comprador (0048)
+  fotoClave: string | null; // foto de referencia, bucket privado
+  fotoBorrarEn: Date | null;
 };
 
-export type ComprobantesTabla = DeTienda &
-  Creado & {
-    pedidoId: number;
-    tipo: 'pago' | 'sena';
-    archivoClave: string | null;
-    archivoTipo: 'jpg' | 'png' | 'pdf';
-    estado: Auto<'pendiente' | 'aprobado' | 'rechazado'>;
-    monto: number | null;
-    fechaOperacion: Date | null;
-    titular: string | null;
-    numeroOperacion: string | null;
-    motivoRechazo: string | null;
-    revisadoPor: number | null;
-    aprobadoEn: Date | null;
-    rechazadoEn: Date | null;
-    archivoBorrarEn: Date | null;
-    archivoBorradoEn: Date | null;
-  };
+export type { ComprobantesTabla } from './comprobantes.js';

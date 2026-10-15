@@ -28,6 +28,8 @@ const columnas = [
   'stockReservado',
   'agotado',
   'aceptaEncargo',
+  'pidePersonalizacion',
+  'indicacionPersonalizacion',
   'modoStock',
   'destacado',
   'categoriaId',

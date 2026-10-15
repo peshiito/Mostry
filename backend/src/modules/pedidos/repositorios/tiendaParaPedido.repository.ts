@@ -17,6 +17,7 @@ export const tiendaParaPedido = (tiendaId: TiendaId) =>
       'plazoComprobanteHoras',
       'plazoSenaHoras',
       'anticipacionEncargoHoras',
+      'cupoEncargosDia',
       'senaPorcentaje',
       'usaEncargos',
     ])

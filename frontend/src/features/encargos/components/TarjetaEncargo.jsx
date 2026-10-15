@@ -4,15 +4,24 @@ import { plata } from '../../../shared/lib/plata.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
-import { accionPrincipal } from '../../pedidos/lib/acciones.js';
+import { accionPrincipal, porAceptar } from '../../pedidos/lib/acciones.js';
 import css from './TarjetaEncargo.module.css';
+
+function textoPlata(e) {
+  if (!e.sena) return `Total ${plata(e.total)} al retirar`;
+  if (porAceptar(e))
+    return `Seña de ${plata(e.sena)} al aceptarlo · Total ${plata(e.total)}`;
+  return `Seña ${plata(e.sena)} · Resta ${plata(e.total - e.sena)}`;
+}
 
 // Encargo del día: hora, detalle, cliente, seña y el próximo paso.
 export function TarjetaEncargo({ encargo: e, principal, onCambiar }) {
   const est = ESTADOS[e.estado];
   const accion = accionPrincipal(e);
-  // Entregar con resto o cancelar piden datos: se hacen desde el detalle del pedido.
-  const alDetalle = accion?.siguiente === 'entregado' && e.total > e.sena;
+  // Aceptar (hay que ver la personalización) y entregar con resto se hacen
+  // desde el detalle del pedido.
+  const aceptar = porAceptar(e);
+  const alDetalle = aceptar || (accion?.siguiente === 'entregado' && e.total > e.sena);
   return (
     <Tarjeta
       className={`${css.tarjeta} ${e.estado === 'pendiente_confirmacion' ? css.pendiente : ''}`}
@@ -25,11 +34,7 @@ export function TarjetaEncargo({ encargo: e, principal, onCambiar }) {
       <p className={css.cliente}>
         {e.cliente} · Pedido #{e.numero}
       </p>
-      <p className={css.plata}>
-        {e.sena
-          ? `Seña pagada ${plata(e.sena)} · Resta ${plata(e.total - e.sena)}`
-          : `Total ${plata(e.total)} al retirar`}
-      </p>
+      <p className={css.plata}>{textoPlata(e)}</p>
       {accion ? (
         <div className={css.acciones}>
           <Boton
@@ -42,11 +47,8 @@ export function TarjetaEncargo({ encargo: e, principal, onCambiar }) {
                 : () => onCambiar(e.id, accion.siguiente)
             }
           >
-            {accion.texto}
+            {aceptar ? 'Revisar y aceptar' : accion.texto}
           </Boton>
-          {e.estado === 'pendiente_confirmacion' ? (
-            <Boton to={`/panel/pedidos/${e.id}`}>Ver</Boton>
-          ) : null}
         </div>
       ) : null}
     </Tarjeta>

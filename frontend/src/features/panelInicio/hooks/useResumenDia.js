@@ -10,17 +10,21 @@ export function useResumenDia() {
   const resumen = useConsulta('/panel/caja/resumen');
   const caja = useConsulta('/panel/caja');
   const porAprobar = useConsulta('/panel/pedidos?estado=comprobante_enviado');
+  // Encargos 2: los encargos por aceptar también esperan a la tienda.
+  const porAceptar = useConsulta(
+    '/panel/pedidos?estado=pendiente_confirmacion&tipo=encargo',
+  );
   const manana = useConsulta(`/panel/encargos?desde=${dia(1)}&hasta=${dia(1)}`);
   const bajo = useConsulta('/panel/productos?stockBajo=true');
   const r = resumen.datos;
-  const consultas = [resumen, caja, porAprobar, manana, bajo];
+  const consultas = [resumen, caja, porAprobar, porAceptar, manana, bajo];
   return {
     cargando: consultas.some((c) => c.cargando),
     error: consultas.find((c) => c.error)?.error ?? null,
     nombreDuena: tienda.nombre,
     ventasHoy: r?.ingresos ?? 0,
     pedidosHoy: (r?.movimientos ?? []).filter((m) => m.origen === 'pedido').length,
-    porAprobar: porAprobar.datos?.total ?? 0,
+    porAprobar: (porAprobar.datos?.total ?? 0) + (porAceptar.datos?.total ?? 0),
     encargosManana: manana.datos?.length ?? 0,
     cajaAbierta: !!caja.datos && !caja.datos.cerradaEn,
     stockBajo: (bajo.datos?.productos ?? []).map((p) => ({

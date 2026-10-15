@@ -6,6 +6,7 @@ import { rutasClubPanel } from './club/programa/programa.routes.js';
 import { rutasSellosPanel } from './club/sellos/sellosPanel.routes.js';
 import { rutasComprobantesPanel } from './comprobantes/comprobantes.routes.js';
 import { rutasEncargosPanel } from './encargos/encargos.routes.js';
+import { rutasFotosPanel } from './encargos/fotos/fotos.routes.js';
 import { rutasGastos } from './gastos/gastos.routes.js';
 import { rutasHorarios } from './horarios/horarios.routes.js';
 import { rutasLibreta } from './libreta/libreta.routes.js';
@@ -29,6 +30,7 @@ export function rutasPanel(mailer: Mailer): Router {
   r.use(rutasPedidosPanel());
   r.use(rutasCaja());
   r.use(rutasComprobantesPanel());
+  r.use(rutasFotosPanel());
   // Lo que la tienda apagó en "Qué uso de Mostry" también se cierra acá.
   r.use(['/gastos', '/proveedores'], requiereModulo('usaGastos'));
   r.use(rutasGastos());

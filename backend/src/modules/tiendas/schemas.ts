@@ -35,6 +35,7 @@ export const esquemaConfig = z
     plazoComprobanteHoras: entero(1, 72),
     plazoSenaHoras: entero(1, 168),
     anticipacionEncargoHoras: entero(0, 720),
+    cupoEncargosDia: z.int().min(1).max(500).nullable().optional(), // null: sin límite
     senaPorcentaje: entero(0, 100),
     costoEnvio: entero(0, 100_000_000),
     aceptaEnvio: z.boolean().optional(),

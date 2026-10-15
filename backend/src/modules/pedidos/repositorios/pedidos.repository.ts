@@ -31,14 +31,26 @@ export const pedidosRepo = {
       .where('tokenSeguimiento', '=', token)
       .executeTakeFirst(),
 
-  items: (tiendaId: TiendaId, pedidoId: number, ej: Ejecutor = db) =>
-    ej
-      .selectFrom('pedidoItems')
-      .select(['productoId', 'nombre', 'precioUnitario', 'cantidad', 'subtotal'])
-      .where('tiendaId', '=', tiendaId)
-      .where('pedidoId', '=', pedidoId)
-      .orderBy('id')
-      .execute(),
+  // La clave de la foto no sale nunca: solo si hay foto (se ve con URL firmada).
+  items: async (tiendaId: TiendaId, pedidoId: number, ej: Ejecutor = db) =>
+    (
+      await ej
+        .selectFrom('pedidoItems')
+        .select([
+          'id',
+          'productoId',
+          'nombre',
+          'precioUnitario',
+          'cantidad',
+          'subtotal',
+          'personalizacion',
+          'fotoClave',
+        ])
+        .where('tiendaId', '=', tiendaId)
+        .where('pedidoId', '=', pedidoId)
+        .orderBy('id')
+        .execute()
+    ).map(({ fotoClave, ...i }) => ({ ...i, tieneFoto: fotoClave !== null })),
 
   // Para mover el stock (cancelar, aprobar): incluye si cada ítem reservó. No
   // se muestra nunca: es un dato interno.

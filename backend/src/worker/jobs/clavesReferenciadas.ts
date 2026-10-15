@@ -16,12 +16,20 @@ export async function clavesReferenciadas(bucket: TipoBucket) {
     // activar el freno.
     const filas = await db.selectFrom('comprobantes').select('archivoClave').execute();
     const reportes = await db.selectFrom('reportes').select('claveCaptura').execute();
+    // Fotos de referencia de encargos (Encargos 2).
+    const fotos = await db
+      .selectFrom('pedidoItems')
+      .select('fotoClave')
+      .where('fotoClave', 'is not', null)
+      .execute();
     const claves = [
       ...filas.map((f) => f.archivoClave),
       ...reportes.map((r) => r.claveCaptura),
+      ...fotos.map((f) => f.fotoClave),
     ];
     const usadas = new Set(claves.filter((c): c is string => c !== null));
-    return { total: filas.length + reportes.length, enUso: (c: string) => usadas.has(c) };
+    const total = filas.length + reportes.length + fotos.length;
+    return { total, enUso: (c: string) => usadas.has(c) };
   }
   const fotos = await db.selectFrom('productoFotos').select('clave').execute();
   const logos = await db

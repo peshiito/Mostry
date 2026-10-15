@@ -26,7 +26,13 @@ export function CarritoProveedor({ slug, children }) {
         const resto = prev.filter((i) => i.id !== producto.id);
         if (cantidad <= 0) return resto;
         const { id, nombre, precio, foto, descripcion, aceptaEncargo } = producto;
-        const item = { id, nombre, precio, foto, descripcion, aceptaEncargo, cantidad };
+        // Encargos 2: si se personaliza, el comprador lo cuenta al encargar.
+        const { pidePersonalizacion = false, indicacionPersonalizacion = null } =
+          producto;
+        const item = {
+          ...{ id, nombre, precio, foto, descripcion, aceptaEncargo, cantidad },
+          ...{ pidePersonalizacion, indicacionPersonalizacion },
+        };
         return actual ? prev.map((i) => (i.id === id ? item : i)) : [...prev, item];
       });
     const unidades = items.reduce((s, i) => s + i.cantidad, 0);

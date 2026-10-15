@@ -1,6 +1,7 @@
 import { Campo, Entrada } from '../../../shared/ui/Campo.jsx';
 import { Interruptor } from '../../../shared/ui/Interruptor.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
+import { CupoEncargos } from './CupoEncargos.jsx';
 import css from './EntregasYPlazos.module.css';
 
 // Retiro/envío con costo y zona, y plazos del comprobante, encargos y seña.
@@ -62,6 +63,7 @@ export function EntregasYPlazos({ t, onCambio }) {
         {num('anticipacionEncargoHoras', 'Anticipación mínima de encargos', 'h')}
         {num('senaPorcentaje', 'Seña de encargos (0 = sin seña)', '%')}
         {num('plazoSenaHoras', 'Tiempo para mandar la seña', 'h')}
+        <CupoEncargos t={t} onCambio={onCambio} />
       </Tarjeta>
     </>
   );

@@ -3,6 +3,7 @@ import { conLock } from './conLock.js';
 import { backupBase } from './jobs/backup.js';
 import { barrerHuerfanos } from './jobs/barrerHuerfanos.js';
 import { borrarComprobantesVencidos } from './jobs/borrarComprobantes.js';
+import { borrarFotosReferencia } from './jobs/borrarFotosReferencia.js';
 import { cancelarVencidos } from './jobs/cancelarVencidos.js';
 import { limpiarClub } from './jobs/limpiarClub.js';
 import { probarRestauracion } from './jobs/probarRestauracion.js';
@@ -22,6 +23,11 @@ export function crearTareas(mailer: Mailer) {
       nombre: 'borrar-comprobantes',
       cron: '*/15 * * * *',
       correr: () => conLock('borrar-comprobantes', () => borrarComprobantesVencidos()),
+    },
+    {
+      nombre: 'borrar-fotos-referencia',
+      cron: '*/15 * * * *',
+      correr: () => conLock('borrar-fotos-referencia', () => borrarFotosReferencia()),
     },
     {
       nombre: 'reintentar-borrados',

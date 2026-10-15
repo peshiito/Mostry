@@ -2,6 +2,8 @@ import { useAccion } from '../../../shared/api/useAccion.js';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { panel } from '../../panelBase/panelApi.js';
 
+const EXITOS = { cancelar: 'Pedido cancelado', aceptar: 'Encargo aceptado' };
+
 // Detalle de un pedido + cambio de estado y cancelación (/panel/pedidos/:id).
 export function usePedidoPanel(id) {
   const { datos, cargando, error, recargar, setDatos } = useConsulta(
@@ -10,8 +12,7 @@ export function usePedidoPanel(id) {
   const accion = useAccion(
     async (ruta, cuerpo) => setDatos(await panel.post(`/pedidos/${id}/${ruta}`, cuerpo)),
     {
-      exito: (_, ruta) =>
-        ruta === 'cancelar' ? 'Pedido cancelado' : 'Pedido actualizado',
+      exito: (_, ruta) => EXITOS[ruta] ?? 'Pedido actualizado',
     },
   );
   const pedido = datos
@@ -20,6 +21,7 @@ export function usePedidoPanel(id) {
         cliente: datos.clienteNombre,
         items: datos.items.map((i) => ({
           ...i,
+          itemId: i.id,
           id: i.productoId,
           precio: i.precioUnitario,
         })),
@@ -30,8 +32,11 @@ export function usePedidoPanel(id) {
     cargando,
     error,
     recargar,
+    // "aceptar" no es un estado: es la ruta que acepta un encargo (Encargos 2).
     cambiarEstado: (estado, medioCobro) =>
-      accion.ejecutar('estado', medioCobro ? { estado, medioCobro } : { estado }),
+      estado === 'aceptar'
+        ? accion.ejecutar('aceptar', {})
+        : accion.ejecutar('estado', medioCobro ? { estado, medioCobro } : { estado }),
     cancelar: (motivo, devolucion) =>
       accion.ejecutar('cancelar', devolucion ? { motivo, devolucion } : { motivo }),
     accion,

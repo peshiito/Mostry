@@ -6,6 +6,7 @@ import { AreaTexto, Campo } from '../../../shared/ui/Campo.jsx';
 import { Hoja } from '../../../shared/ui/Hoja.jsx';
 import { Segmentado } from '../../../shared/ui/Segmentado.jsx';
 import { MEDIOS } from '../../gastos/lib/opciones.js';
+import { porAceptar } from '../lib/acciones.js';
 
 const PAGADOS = [
   'pago_aprobado',
@@ -22,17 +23,14 @@ export function HojaCancelar({ abierta, onCerrar, pedido, onCancelar }) {
   const [error, setError] = useState('');
   const pagado =
     PAGADOS.includes(pedido.estado) && (pedido.sena > 0 || pedido.tipo === 'inmediato');
+  const verbo = porAceptar(pedido) ? 'Rechazar encargo' : 'Cancelar pedido';
   function confirmar() {
     if (motivo.trim().length < 3)
       return setError('Contale al cliente por qué se cancela.');
     onCancelar(motivo.trim(), pagado ? { medio } : undefined);
   }
   return (
-    <Hoja
-      abierta={abierta}
-      onCerrar={onCerrar}
-      titulo={`Cancelar pedido #${pedido.numero}`}
-    >
+    <Hoja abierta={abierta} onCerrar={onCerrar} titulo={`${verbo} #${pedido.numero}`}>
       <Campo etiqueta="Motivo (lo ve el cliente)" error={error}>
         {(c) => (
           <AreaTexto c={c} value={motivo} onChange={(e) => setMotivo(e.target.value)} />
@@ -53,7 +51,7 @@ export function HojaCancelar({ abierta, onCerrar, pedido, onCancelar }) {
         </>
       ) : null}
       <Boton variante="peligro" tamano="lg" anchoCompleto onClick={confirmar}>
-        Cancelar pedido
+        {verbo}
       </Boton>
     </Hoja>
   );

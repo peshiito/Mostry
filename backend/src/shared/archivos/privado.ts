@@ -23,14 +23,19 @@ export async function subirPrivado(
 }
 
 // URL firmada de 5 minutos (sección 7). Se fuerza la descarga ("attachment")
-// para que un PDF nunca se abra como página dentro de nuestro dominio.
-export function urlFirmada(clave: string, nombreDescarga: string): Promise<string> {
+// para que un PDF nunca se abra como página dentro de nuestro dominio. Las fotos
+// de referencia (WebP reprocesado por nosotros) se muestran ("inline").
+export function urlFirmada(
+  clave: string,
+  nombreDescarga: string,
+  mostrar = false,
+): Promise<string> {
   return getSignedUrl(
     s3,
     new GetObjectCommand({
       Bucket: config.S3_BUCKET_PRIVADO,
       Key: clave,
-      ResponseContentDisposition: `attachment; filename="${nombreDescarga.replace(/[^\w.-]/g, '_')}"`,
+      ResponseContentDisposition: `${mostrar ? 'inline' : 'attachment'}; filename="${nombreDescarga.replace(/[^\w.-]/g, '_')}"`,
     }),
     { expiresIn: VIGENCIA_URL_S },
   );

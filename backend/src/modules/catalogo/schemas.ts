@@ -26,6 +26,15 @@ const camposProducto = {
   categoriaId: idBody.nullable().optional(),
   destacado: z.boolean().optional(),
   aceptaEncargo: z.boolean().optional(),
+  // Encargos 2: el comprador dice cómo lo quiere (texto y foto de referencia).
+  pidePersonalizacion: z.boolean().optional(),
+  indicacionPersonalizacion: z
+    .string()
+    .trim()
+    .max(200)
+    .nullable()
+    .transform((v) => v || null)
+    .optional(),
   agotado: z.boolean().optional(),
   activo: z.boolean().optional(),
 };

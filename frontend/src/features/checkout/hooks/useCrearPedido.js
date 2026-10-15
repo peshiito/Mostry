@@ -5,7 +5,16 @@ import { publicoApi } from '../../tienda/api/publico.js';
 // Arma el cuerpo de POST /publico/pedidos. Del navegador salen ids y cantidades;
 // el servidor recalcula precios y total (6.1) y avisa si cambió algo.
 // `premio`: el premio del Club elegido; el descuento de acá es solo el esperado.
-export function armarPedido({ datos, entrega, items, costoEnvio, fechaEncargo, premio }) {
+// `personalizar`: { [productoId]: texto } de lo que se personaliza (Encargos 2).
+export function armarPedido({
+  datos,
+  entrega,
+  items,
+  costoEnvio,
+  fechaEncargo,
+  premio,
+  personalizar = {},
+}) {
   const subtotal = items.reduce((s, i) => s + i.precio * i.cantidad, 0);
   return {
     tipo: fechaEncargo ? 'encargo' : 'inmediato',
@@ -15,7 +24,13 @@ export function armarPedido({ datos, entrega, items, costoEnvio, fechaEncargo, p
     ...(entrega === 'envio' ? { direccion: datos.direccion.trim() } : {}),
     ...(datos.linkMaps ? { linkMaps: datos.linkMaps.trim() } : {}),
     ...(fechaEncargo ? { fechaEncargo } : {}),
-    items: items.map((i) => ({ productoId: i.id, cantidad: i.cantidad })),
+    items: items.map((i) => ({
+      productoId: i.id,
+      cantidad: i.cantidad,
+      ...(personalizar[i.id]?.trim()
+        ? { personalizacion: personalizar[i.id].trim() }
+        : {}),
+    })),
     ...(premio ? { premio: premio.compras } : {}),
     totalEsperado:
       subtotal -

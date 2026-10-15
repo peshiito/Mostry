@@ -18,6 +18,7 @@ const CAMPOS = [
   'plazoSenaHoras',
   'anticipacionEncargoHoras',
   'senaPorcentaje',
+  'cupoEncargosDia',
 ];
 const NUMEROS = [
   'costoEnvio',
@@ -26,6 +27,13 @@ const NUMEROS = [
   'anticipacionEncargoHoras',
   'senaPorcentaje',
 ];
+
+// El cupo de encargos vacío es "sin límite" (null).
+function valor(k, v) {
+  if (k === 'cupoEncargosDia')
+    return v === '' || v == null ? null : Math.round(Number(v));
+  return NUMEROS.includes(k) ? Math.round(Number(v)) : v;
+}
 
 // Configuración de la tienda (PATCH /tienda/config): solo se mandan los cambios.
 export function useMiTienda() {
@@ -40,7 +48,7 @@ export function useMiTienda() {
     e?.preventDefault();
     const cambios = {};
     for (const k of CAMPOS) {
-      const v = NUMEROS.includes(k) ? Math.round(Number(t[k])) : t[k];
+      const v = valor(k, t[k]);
       if (v !== tienda[k]) cambios[k] = v;
     }
     if (!Object.keys(cambios).length) return;

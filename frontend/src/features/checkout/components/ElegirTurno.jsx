@@ -42,7 +42,13 @@ export function ElegirTurno({ tienda, turno, onTurno }) {
         />
       </Tarjeta>
       <Tarjeta>
-        {motivo ? <p>Ese día no toman encargos. Elegí otro.</p> : null}
+        {motivo ? (
+          <p>
+            {motivo === 'sin_cupo'
+              ? 'Ese día ya no toman más encargos. Elegí otro.'
+              : 'Ese día no toman encargos. Elegí otro.'}
+          </p>
+        ) : null}
         {cargando ? <p>Buscando horarios…</p> : null}
         {!motivo && !cargando ? (
           <Turnos turnos={turnos} elegido={turno} onElegir={onTurno} />

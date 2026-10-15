@@ -13,4 +13,15 @@ export const publicoApi = {
       onProgreso,
     });
   },
+  // Encargos 2: foto de referencia de un ítem personalizado (privada).
+  subirFotoItem: (token, itemId, archivo, onProgreso) => {
+    const datos = new FormData();
+    datos.append('foto', archivo);
+    return api(`/publico/pedidos/${token}/items/${itemId}/foto`, {
+      metodo: 'POST',
+      archivo: datos,
+      onProgreso,
+    });
+  },
+  seguimiento: (token) => api(`/publico/pedidos/${token}`),
 };

@@ -4,6 +4,7 @@ import { AppError } from '../../../shared/errors/AppError.js';
 import type { Pedido } from '../repositorios/pedidos.repository.js';
 import { pedidosRepo } from '../repositorios/pedidos.repository.js';
 import { anularCanje } from '../../club/canjes/registrarCanje.js';
+import { programarBorradoFotos } from '../../encargos/fotos/programarBorrado.js';
 import { stockRepo } from '../repositorios/stock.repository.js';
 import { CON_RESERVA, CON_STOCK_DESCONTADO, ESTADOS_FINALES } from './estados.js';
 
@@ -43,6 +44,7 @@ export async function cancelarEnTx(
     .where('tiendaId', '=', tiendaId)
     .where('id', '=', p.id)
     .execute();
+  await programarBorradoFotos(tx, tiendaId, p.id);
   // Los comprobantes que quedaron sin revisar se borran a las 48 h (decisión 33),
   // aunque traigan la retención máxima de 30 días de la subida.
   await tx

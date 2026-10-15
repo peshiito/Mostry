@@ -11,6 +11,7 @@ import { LineaTiempo } from '../../pedidoPublico/components/LineaTiempo.jsx';
 import { useSuscripcion } from '../../suscripcion/hooks/useSuscripcion.js';
 import { AccionesPedido } from '../components/AccionesPedido.jsx';
 import { DatosCliente } from '../components/DatosCliente.jsx';
+import { FotosReferencia } from '../components/FotosReferencia.jsx';
 import { HojaCancelar } from '../components/HojaCancelar.jsx';
 import { HojaCobroResto } from '../components/HojaCobroResto.jsx';
 import { usePedidoPanel } from '../hooks/usePedidoPanel.js';
@@ -38,6 +39,7 @@ export function PantallaPedido() {
       <AvisoError error={p.accion.error} />
       <DatosCliente pedido={pedido} />
       <DetallePedido pedido={pedido} />
+      <FotosReferencia pedido={pedido} />
       {pedido.estado !== 'cancelado' ? (
         <Tarjeta>
           <LineaTiempo pedido={pedido} />

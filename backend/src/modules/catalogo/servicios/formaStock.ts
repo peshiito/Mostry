@@ -19,13 +19,21 @@ async function formaDeLaTienda(tiendaId: TiendaId): Promise<ModoStock> {
 export async function nuevoSegunForma(tiendaId: TiendaId, datos: DatosProducto) {
   const modoStock = datos.modoStock ?? (await formaDeLaTienda(tiendaId));
   const cuenta = modoStock === 'unidades';
+  // conEncargo va primero: lo calculado acá (forma y stock) no se pisa.
   return {
-    ...datos,
+    ...conEncargo(modoStock === 'a_pedido', datos),
     modoStock,
     stock: cuenta ? (datos.stock ?? 0) : 0,
     stockMinimo: cuenta ? (datos.stockMinimo ?? 0) : 0,
-    aceptaEncargo: modoStock === 'a_pedido' ? true : datos.aceptaEncargo,
   };
+}
+
+// Lo que se personaliza solo se encarga (CHECK de 0048): pedirla prende el
+// encargo, y apagar el encargo la apaga.
+function conEncargo<T extends CambiosProducto>(aPedido: boolean, d: T): T {
+  if (aPedido || d.pidePersonalizacion) return { ...d, aceptaEncargo: true };
+  if (d.aceptaEncargo === false) return { ...d, pidePersonalizacion: false };
+  return d;
 }
 
 // Edición: pasar a "a pedido" prende el encargo; apagar el encargo de algo que
@@ -39,5 +47,12 @@ export function cambiosSegunForma(actual: ModoStock, cambios: CambiosProducto) {
       'Lo que se hace a pedido tiene que poder encargarse.',
     );
   }
-  return cambios.modoStock === 'a_pedido' ? { ...cambios, aceptaEncargo: true } : cambios;
+  if (cambios.pidePersonalizacion && cambios.aceptaEncargo === false) {
+    throw new AppError(
+      409,
+      'personalizar_sin_encargo',
+      'Lo que se personaliza tiene que poder encargarse.',
+    );
+  }
+  return conEncargo(cambios.modoStock === 'a_pedido', cambios);
 }

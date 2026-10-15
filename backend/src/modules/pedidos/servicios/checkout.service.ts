@@ -12,6 +12,7 @@ import { armarItems } from './armarPedido.js';
 import { filaPedido } from './filaPedido.js';
 import { reservarItems } from './reservarItems.js';
 import { validarReglasCheckout } from './reglasCheckout.js';
+import { numerarPedido } from './numerarPedido.js';
 import { calcularTotales } from './totales.js';
 import { respuestaCheckout } from './respuestaCheckout.js';
 
@@ -25,9 +26,11 @@ export async function crearPedido(
 ) {
   const t = await tiendaParaPedido(tiendaId);
   validarReglasCheckout(t, await cargarAgenda(tiendaId, ahora), d, ahora);
-
   const pedido = await db.transaction().execute(async (tx) => {
     await bloquearSiHayPremio(tx, tiendaId, d); // antes de leer nada (prepararCanje.ts)
+    // Locks: premio, tienda (número), productos. Antes de toda lectura común:
+    // así el cupo de encargos cuenta lo último (ver encargos/cupo.ts).
+    const numero = await numerarPedido(tx, tiendaId, d, t);
     const productos = await repo.productos(
       tx,
       tiendaId,
@@ -43,8 +46,6 @@ export async function crearPedido(
         'La tienda todavía no cargó dónde recibir pagos.',
       );
     }
-    // Orden fijo de locks: primero la tienda (número), después los productos.
-    const numero = await repo.siguienteNumero(tx, tiendaId);
     // Los encargos no tocan el stock (se fabrican a pedido, sección 6.2).
     if (d.tipo === 'inmediato') await reservarItems(tx, tiendaId, items);
     const plazoHoras =

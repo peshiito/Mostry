@@ -1,6 +1,6 @@
 import { DIRECCION, PAGADO, type Escena } from './datosPedidos.js';
 
-// Entregados, uno cancelado y los dos encargos (con seña y sin seña).
+// Entregados y uno cancelado (los encargos están en datosEncargos.ts).
 export const ESPECIALES: Escena[] = [
   {
     lineas: [['Bola de fraile', 2]],
@@ -20,20 +20,5 @@ export const ESPECIALES: Escena[] = [
     nombre: 'Ramiro Paz',
     whatsapp: '11 4141-5151',
     pasos: ['cancelar'],
-  },
-  {
-    lineas: [['Lemon pie', 1]],
-    nombre: 'Valeria Luna',
-    whatsapp: '11 1212-3434',
-    encargoEnDias: [3, 11],
-    pasos: ['aceptar', ...PAGADO],
-  },
-  {
-    lineas: [['Rogel', 1]],
-    nombre: 'Familia Suárez',
-    whatsapp: '11 5656-7878',
-    encargoEnDias: [5, 17],
-    sinSena: true,
-    pasos: ['aceptar'],
   },
 ];

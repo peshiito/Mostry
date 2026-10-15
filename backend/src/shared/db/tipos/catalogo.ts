@@ -20,6 +20,8 @@ export type ProductosTabla = DeTienda &
     destacado: Auto<boolean>;
     activo: Auto<boolean>;
     aceptaEncargo: Auto<boolean>;
+    pidePersonalizacion: Auto<boolean>; // Encargos 2 (0048)
+    indicacionPersonalizacion: string | null;
   };
 
 export type ProductoFotosTabla = DeTienda &

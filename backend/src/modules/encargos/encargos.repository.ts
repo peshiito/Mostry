@@ -8,6 +8,7 @@ export async function encargosEntre(tiendaId: TiendaId, desde: Date, hasta: Date
     .select([
       'id',
       'numero',
+      'tipo', // el panel decide "aceptar" con el tipo (Encargos 2)
       'estado',
       'clienteNombre',
       'clienteWhatsapp',

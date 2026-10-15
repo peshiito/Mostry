@@ -18,6 +18,7 @@ export const checkoutRepo = {
         'agotado',
         'aceptaEncargo',
         'modoStock',
+        'pidePersonalizacion',
       ])
       .where('tiendaId', '=', tiendaId)
       .where('id', 'in', ids)

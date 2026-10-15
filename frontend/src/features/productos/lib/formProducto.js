@@ -9,6 +9,8 @@ export const FORM_NUEVO = {
   stock: '0',
   stockMinimo: '0',
   aceptaEncargo: false,
+  pidePersonalizacion: false,
+  indicacionPersonalizacion: '',
   destacado: false,
   activo: true,
 };
@@ -23,6 +25,8 @@ export const aFormulario = (p) => ({
   stock: String(p.stock),
   stockMinimo: String(p.stockMinimo),
   aceptaEncargo: p.aceptaEncargo,
+  pidePersonalizacion: p.pidePersonalizacion,
+  indicacionPersonalizacion: p.indicacionPersonalizacion ?? '',
   destacado: p.destacado,
   activo: p.activo,
 });
@@ -36,6 +40,10 @@ export function aCuerpo(f, original) {
     categoriaId: f.categoriaId ? Number(f.categoriaId) : null,
     modoStock: f.modoStock,
     aceptaEncargo: f.modoStock === 'a_pedido' || f.aceptaEncargo,
+    // Encargos 2: lo que se personaliza solo se encarga.
+    pidePersonalizacion:
+      (f.modoStock === 'a_pedido' || f.aceptaEncargo) && f.pidePersonalizacion,
+    indicacionPersonalizacion: f.indicacionPersonalizacion.trim() || null,
     destacado: f.destacado,
     activo: f.activo,
   };

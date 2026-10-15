@@ -1,7 +1,8 @@
 import { Interruptor } from '../../../shared/ui/Interruptor.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
+import { OpcionPersonalizar } from './OpcionPersonalizar.jsx';
 
-// Switches del producto: encargo, destacado y visible.
+// Switches del producto: encargo, personalización, destacado y visible.
 export function OpcionesProducto({ form, onCambio }) {
   const set = (k) => (v) => onCambio({ ...form, [k]: v });
   return (
@@ -15,6 +16,7 @@ export function OpcionesProducto({ form, onCambio }) {
           onCambio={set('aceptaEncargo')}
         />
       )}
+      <OpcionPersonalizar form={form} onCambio={onCambio} />
       <Interruptor
         etiqueta="Destacado en el inicio"
         activo={form.destacado}

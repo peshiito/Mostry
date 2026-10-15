@@ -1,8 +1,7 @@
-import { db } from '../../../shared/db/db.js';
-import type { TiendaId } from '../../../shared/db/tiendaId.js';
-import { sesion, type Sesion } from './sesion.js';
+import { sesion } from './sesion.js';
 
-export type Linea = [nombre: string, cantidad: number];
+// La personalización va solo en lo que la pide (Encargos 2).
+export type Linea = [nombre: string, cantidad: number, personalizacion?: string];
 type Cliente = { nombre: string; whatsapp: string; envio?: string; fechaEncargo?: Date };
 
 // Compra como un cliente desde la vidriera. Si el total no coincide, el servidor
@@ -21,7 +20,11 @@ export async function comprar(
     entrega: c.envio ? 'envio' : 'retiro',
     ...(c.envio && { direccion: c.envio }),
     ...(c.fechaEncargo && { fechaEncargo: c.fechaEncargo.toISOString() }),
-    items: lineas.map(([n, cantidad]) => ({ productoId: producto(n), cantidad })),
+    items: lineas.map(([n, cantidad, personalizacion]) => ({
+      productoId: producto(n),
+      cantidad,
+      ...(personalizacion && { personalizacion }),
+    })),
     totalEsperado: 0,
   };
   const r = await vidriera
@@ -38,33 +41,3 @@ export type Compra = Awaited<ReturnType<typeof comprar>>;
 // El comprador sube la captura de la transferencia desde su link de seguimiento.
 export const subirComprobante = (c: Compra, imagen: Buffer) =>
   c.vidriera.subir(`/publico/pedidos/${c.token}/comprobante`, 'comprobante', imagen);
-
-// La comerciante aprueba el comprobante con los datos de la transferencia.
-export async function aprobar(
-  rosa: Sesion,
-  tiendaId: TiendaId,
-  c: Compra,
-  titular: string,
-) {
-  const id = await idPedido(tiendaId, c.numero);
-  const [comp] = (await rosa.get(`/panel/pedidos/${id}/comprobantes`)) as {
-    id: number;
-  }[];
-  await rosa.post(`/panel/pedidos/${id}/comprobantes/${comp!.id}/aprobar`, {
-    monto: c.pago.monto,
-    fechaOperacion: new Date().toISOString(),
-    titular,
-    numeroOperacion: String(400_000_000 + c.numero), // inventado, pero siempre igual
-  });
-  return id;
-}
-
-export async function idPedido(tiendaId: TiendaId, numero: number) {
-  const p = await db
-    .selectFrom('pedidos')
-    .select('id')
-    .where('tiendaId', '=', tiendaId)
-    .where('numero', '=', numero)
-    .executeTakeFirstOrThrow();
-  return p.id;
-}

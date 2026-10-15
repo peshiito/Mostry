@@ -202,7 +202,8 @@ mostry/
 ### 6.2 Encargos
 
 - El cliente elige día y hora dentro del horario, respetando la anticipación mínima.
-- La seña es opcional y se configura como porcentaje: plazo de 24 h, mismo flujo de comprobante.
+- **Todo encargo entra "por aceptar"** (`pendiente_confirmacion`, Encargos 2). La tienda lo acepta o lo rechaza (rechazar es cancelar con motivo).
+- La seña es opcional y se configura como porcentaje. **Se pide recién al aceptar el encargo**: ahí arranca el plazo de 24 h, con el mismo flujo de comprobante.
 - El resto se cobra al entregar y se registra en la caja en ese momento.
 - **Los encargos no tocan el stock** (se fabrican a pedido).
 
@@ -393,6 +394,8 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **Mejoras 3 COMPLETA.** Suites: backend 373/373, frontend 129/129, e2e 74/74.
 - **Etapa "Lealtad"** (club de clientes con QR y sellos), arrancada el 2026-10-13. El plan completo está en **`docs/lealtad-plan.md`**: leelo entero antes de seguir.
   - **L1 a L5: HECHAS (2026-10-14), sin commitear.** Pedro pidió hacerlas de corrido (aprobé yo los planes de L3–L5, con su permiso). Migraciones `0043` a `0047`, `modules/club/{cuenta,qr,programa,sellos,canjes,historial}`, `features/{club,clubPanel}` y el escáner en `features/vender/`.
+- **Encargos 2 (2026-10-15):** aceptar antes de cobrar, personalización con foto y cupo por día. Detalle en §13.
+- **Cuentas de prueba en la base local** (cargadas a mano el 2026-10-15, clave `prueba12345`): `tienda@prueba.test` (tienda vacía `prueba`, en prueba gratis) y `cliente@prueba.test` (cliente del Club).
 - **En la base local:** el admin es `pedrotest@gmail.com` (clave `test12345`, cargada a mano). El seed sigue creando `admin@mostry.test`.
 - **Mails en local:** Resend con `onboarding@resend.dev` solo entrega a `pedrogbaez1@gmail.com`. Pasar a Mailpit está pendiente; Pedro dijo "lo vemos en el transcurso".
 
@@ -503,6 +506,18 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - **Historiales:** `GET /club/historial` (cliente, todas sus tiendas), `GET /panel/club/socios` y `/socios/:id` (la tienda: solo el nombre y lo comprado ahí; 404 si nunca le compró). El admin ve solo `club: { tiendasConClub, socios }` en métricas.
   - **Pendiente:** un pedido inmediato gratis queda en `pendiente_confirmacion` sin vencimiento (como un encargo sin seña): si el comercio no lo confirma ni lo cancela, la reserva de stock queda tomada.
   - **Borrar la cuenta del cliente** borra sus sellos y canjes y deja sus pedidos y ventas sin `cliente_id`. `sellos`, `canjes`, `premios_lealtad` y `programas_lealtad` están en `TABLAS_DE_TIENDA`.
+- **Encargos 2 (2026-10-15):**
+  - **Aceptar antes de cobrar:** el checkout deja todo encargo en `pendiente_confirmacion`, sin plazo. `POST /panel/pedidos/:id/aceptar` (`pedidos/servicios/aceptarEncargo.ts`) lo pasa a `pendiente_pago`, con el plazo de seña, o a `confirmado` si no hay seña. Un encargo con seña no se puede pasar a `confirmado` a mano. `cancelar-vencidos` también cancela los encargos que nadie aceptó cuando pasa su fecha (`pedidos/servicios/vencidos.ts`).
+  - **Personalización** (migración `0048`):
+    - en el producto: `pide_personalizacion` + `indicacion_personalizacion`, y un CHECK que exige `acepta_encargo`. Pedirla prende el encargo y apagar el encargo la apaga (`formaStock.ts`);
+    - en el ítem: `pedido_items.personalizacion`, obligatoria en un encargo de ese producto y prohibida en cualquier otro caso (`personalizacion.ts`);
+    - foto de referencia opcional: `POST /publico/pedidos/:token/items/:itemId/foto` (`encargos/fotos/`), solo mientras está por aceptar. Va en WebP al bucket privado y se ve con URL firmada (`GET /panel/pedidos/:id/items/:itemId/foto`). Se borra 7 días después de entregar o cancelar (90 como máximo) con el job `borrar-fotos-referencia`, y cuenta en el barrido de huérfanos y al eliminar una tienda.
+  - **Cupo por día** (migración `0049`): `tiendas.cupo_encargos_dia` (nulo = sin límite). El checkout numera el pedido (bloquea la tienda) **antes de cualquier lectura común**, así la foto de REPEATABLE READ se toma con el lock y el conteo ve todo lo confirmado (`encargos/cupo.ts`). No usa `FOR SHARE`, para no tomar locks de rango que se crucen entre tiendas. De diez encargos a la vez por el último lugar entra uno solo. La disponibilidad devuelve `motivo: 'sin_cupo'`.
+  - **Frontend:**
+    - panel: bloque "Por aceptar" en Encargos; Aceptar y Rechazar en el detalle, con la personalización y "Ver foto de referencia"; "Pide personalización" en el producto; "Máximo de encargos por día" en Mi tienda;
+    - vidriera: la personalización y la foto se cargan en el paso del encargo (`checkout/components/Personalizar.jsx`) y la foto se sube después de crear el pedido (`useConfirmarEncargo`). El seguimiento avisa "Esperando que … acepte tu encargo".
+  - **Las docenas son productos aparte** ("Docena surtida"): decisión de Pedro, no hay unidad de venta.
+  - **Quedaron afuera** (ideas de Pedro para más adelante): cargar desde el panel un encargo que llegó por WhatsApp y una anticipación distinta por producto.
 - **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
   - `unidades`: reserva y descuenta, como siempre;
   - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;
@@ -540,7 +555,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
 - **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte, club (cuentas de cliente, QR, programa, sellos, canjes e historiales).
 - **Base:**
-  - 47 migraciones en `db/migraciones/` (todas con `down`);
+  - 49 migraciones en `db/migraciones/` (todas con `down`);
   - seed en `db/seed/` (`npm run db:seed`);
   - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
 - **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.
