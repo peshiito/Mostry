@@ -1,0 +1,66 @@
+.tarjeta {
+  display: grid;
+  gap: var(--e-3);
+  padding: var(--e-4);
+  border-radius: var(--radio);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.cabeza {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-2);
+}
+.nombre {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+}
+.cuenta {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--sobre-verde-2);
+}
+.casillas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 40px);
+  gap: var(--e-2);
+  padding: 0;
+  list-style: none;
+}
+.casilla {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 2px dashed var(--sobre-verde-2);
+  border-radius: var(--radio-redondo);
+  font-size: var(--t-xs);
+  color: var(--sobre-verde-2);
+}
+.premio {
+  border-style: solid;
+  border-color: var(--sobre-verde);
+  color: var(--sobre-verde);
+}
+.llena {
+  border-style: solid;
+  border-color: var(--mostaza);
+  background: var(--mostaza);
+  color: var(--sobre-mostaza);
+}
+.premios {
+  display: grid;
+  gap: var(--e-1);
+  padding: 0;
+  list-style: none;
+  font-size: var(--t-sm);
+}
+.listo {
+  text-decoration: underline var(--mostaza) 2px;
+  text-underline-offset: 4px;
+}
+.pie {
+  font-size: var(--t-xs);
+  color: var(--sobre-verde-2);
+}

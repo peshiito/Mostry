@@ -1,21 +1,24 @@
-// Secciones del menú "Más": [título, [[texto, ícono, ruta bajo /panel]]].
+// Secciones del menú "Más": [título, [[texto, ícono, ruta bajo /panel, módulo?]]].
+// Con módulo, la fila solo aparece si la tienda lo usa ("Qué uso de Mostry").
 export const GRUPOS = [
   [
     'Negocio',
     [
-      ['Encargos', 'cake', 'encargos'],
-      ['Libreta', 'menu_book', 'libreta'],
-      ['Gastos', 'payments', 'gastos'],
-      ['Proveedores', 'local_shipping', 'proveedores'],
-      ['Promociones', 'sell', 'promociones'],
+      ['Encargos', 'cake', 'encargos', 'usaEncargos'],
+      ['Libreta', 'menu_book', 'libreta', 'usaLibreta'],
+      ['Gastos', 'payments', 'gastos', 'usaGastos'],
+      ['Proveedores', 'local_shipping', 'proveedores', 'usaGastos'],
+      ['Promociones', 'sell', 'promociones', 'vendeOnline'],
+      ['Club de clientes', 'loyalty', 'club'],
     ],
   ],
   [
     'Mi tienda',
     [
+      ['Qué uso de Mostry', 'tune', 'uso'],
       ['Datos y apariencia', 'storefront', 'tienda'],
       ['Horarios', 'schedule', 'horarios'],
-      ['Cobros y envíos', 'account_balance', 'cobros'],
+      ['Cobros y envíos', 'account_balance', 'cobros', 'vendeOnline'],
     ],
   ],
   [

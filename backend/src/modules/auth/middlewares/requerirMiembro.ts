@@ -13,6 +13,14 @@ export const requerirMiembro: RequestHandler = async (req, _res, next) => {
   ) {
     throw new AppError(403, 'sin_acceso', 'No tenés acceso a esta tienda.');
   }
+  // Entró con la clave temporal que le dio Mostry: primero elige una nueva.
+  if (sesion.debeCambiarClave) {
+    throw new AppError(
+      403,
+      'debe_cambiar_clave',
+      'Elegí una contraseña nueva para seguir.',
+    );
+  }
   req.panel = { tiendaId: tienda.id, usuarioId: sesion.usuarioId };
   next();
 };

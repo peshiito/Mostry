@@ -1,11 +1,16 @@
+import type { RegistroAdminTabla, TiendasEliminadasTabla } from './admin.js';
 import type { ArchivosPorBorrarTabla, AvisosSuscripcionTabla } from './archivos.js';
 import type {
   CajasTabla,
   GastosTabla,
   MovimientosCajaTabla,
   ProveedoresTabla,
+  VentaItemsTabla,
+  VentasTabla,
 } from './caja.js';
 import type * as C from './catalogo.js';
+import type * as K from './club.js';
+import type * as E from './lealtad.js';
 import type * as L from './libreta.js';
 import type * as P from './pedidos.js';
 import type * as X from './plataforma.js';
@@ -42,4 +47,16 @@ export interface Database {
   reportes: X.ReportesTabla;
   accesosSoporte: X.AccesosSoporteTabla;
   registroSoporte: X.RegistroSoporteTabla;
+  registroAdmin: RegistroAdminTabla;
+  tiendasEliminadas: TiendasEliminadasTabla;
+  ventas: VentasTabla;
+  ventaItems: VentaItemsTabla;
+  clientes: K.ClientesTabla;
+  sesionesClub: K.SesionesClubTabla;
+  codigosEmailClub: K.CodigosEmailClubTabla;
+  codigosClub: K.CodigosClubTabla;
+  programasLealtad: E.ProgramasLealtadTabla;
+  premiosLealtad: E.PremiosLealtadTabla;
+  sellos: E.SellosTabla;
+  canjes: E.CanjesTabla;
 }

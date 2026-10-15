@@ -7,10 +7,13 @@ import { Lista } from '../../shared/ui/Lista.jsx';
 import { Pagina } from '../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../shared/ui/Seccion.jsx';
 import { TituloPagina } from '../../shared/ui/TituloPagina.jsx';
+import { usePanel } from '../panelBase/PanelContexto.jsx';
 import { GRUPOS } from './grupos.js';
 
 // Menú "Más" del panel (Stitch 29).
 export function PantallaMas() {
+  const { tienda } = usePanel();
+  const usa = (modulo) => !modulo || tienda[modulo] !== false;
   return (
     <Pagina>
       <TituloPagina titulo="Más" />
@@ -18,15 +21,17 @@ export function PantallaMas() {
       {GRUPOS.map(([titulo, items]) => (
         <Seccion key={titulo} titulo={titulo}>
           <Lista>
-            {items.map(([texto, icono, ruta]) => (
-              <Fila
-                key={ruta}
-                to={`/panel/${ruta}`}
-                inicio={<Icono nombre={icono} />}
-                titulo={texto}
-                flecha
-              />
-            ))}
+            {items
+              .filter(([, , , modulo]) => usa(modulo))
+              .map(([texto, icono, ruta]) => (
+                <Fila
+                  key={ruta}
+                  to={`/panel/${ruta}`}
+                  inicio={<Icono nombre={icono} />}
+                  titulo={texto}
+                  flecha
+                />
+              ))}
           </Lista>
         </Seccion>
       ))}

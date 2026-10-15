@@ -4,7 +4,11 @@ export function accionPrincipal(p) {
     case 'comprobante_enviado':
       return { texto: 'Revisar comprobante', ruta: `/panel/pedidos/${p.id}/comprobante` };
     case 'pendiente_confirmacion':
-      return { texto: 'Confirmar encargo', siguiente: 'confirmado' };
+      // Un pedido inmediato llega acá solo si un premio del Club lo dejó gratis.
+      return {
+        texto: p.tipo === 'encargo' ? 'Confirmar encargo' : 'Confirmar pedido',
+        siguiente: 'confirmado',
+      };
     case 'pago_aprobado':
     case 'confirmado':
       return { texto: 'Pasar a preparación', siguiente: 'en_preparacion' };

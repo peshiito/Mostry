@@ -1,3 +1,4 @@
+import type { ModoStock } from '../../../shared/db/tipos/catalogo.js';
 import { AppError } from '../../../shared/errors/AppError.js';
 
 export type ProductoParaPedido = {
@@ -7,6 +8,7 @@ export type ProductoParaPedido = {
   activo: boolean;
   agotado: boolean;
   aceptaEncargo: boolean;
+  modoStock: ModoStock;
 };
 export type ItemPedido = { productoId: number; cantidad: number };
 
@@ -29,6 +31,15 @@ export function armarItems(
       );
     if (tipo === 'inmediato' && p.agotado)
       throw new AppError(409, 'sin_stock', `"${p.nombre}" está agotado.`, { productoId });
+    if (tipo === 'inmediato' && p.modoStock === 'a_pedido')
+      throw new AppError(
+        409,
+        'solo_encargo',
+        `"${p.nombre}" se hace a pedido: encargalo.`,
+        {
+          productoId,
+        },
+      );
     if (tipo === 'encargo' && !p.aceptaEncargo) {
       throw new AppError(
         409,
@@ -43,6 +54,8 @@ export function armarItems(
       precioUnitario: p.precio,
       cantidad,
       subtotal: p.precio * cantidad,
+      // Solo lo que se cuenta por unidades reserva stock (y solo al comprar al toque).
+      reservo: tipo === 'inmediato' && p.modoStock === 'unidades',
     };
   });
 }

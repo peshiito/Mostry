@@ -13,6 +13,7 @@ export const camposPanel = (p: Pedido) => ({
   linkMaps: p.linkMaps,
   fechaEncargo: p.fechaEncargo,
   subtotal: p.subtotal,
+  descuento: p.descuento,
   costoEnvio: p.costoEnvio,
   total: p.total,
   sena: p.sena,

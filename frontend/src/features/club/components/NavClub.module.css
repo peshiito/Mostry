@@ -1,0 +1,34 @@
+.nav {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-bottom: env(safe-area-inset-bottom);
+  border-top: var(--borde);
+  background: var(--papel);
+}
+.pestana {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: var(--alto-nav);
+  padding-top: var(--e-2);
+  color: var(--texto-2);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--dur-corta) ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.pestana[aria-current='page'] {
+  color: var(--verde);
+}
+.icono {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 30px;
+  border-radius: var(--radio-redondo);
+}

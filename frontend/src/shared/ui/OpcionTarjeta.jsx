@@ -1,6 +1,7 @@
 import css from './OpcionTarjeta.module.css';
 
-// Opción seleccionable grande (radio con forma de tarjeta).
+// Opción seleccionable grande (radio con forma de tarjeta). Con `multiple` es una
+// casilla: `elegido` es true/false y onElegir recibe el valor nuevo.
 export function OpcionTarjeta({
   nombre,
   valor,
@@ -9,15 +10,16 @@ export function OpcionTarjeta({
   titulo,
   detalle,
   fin,
+  multiple,
 }) {
   return (
     <label className={css.opcion}>
       <input
-        type="radio"
+        type={multiple ? 'checkbox' : 'radio'}
         name={nombre}
         value={valor}
-        checked={elegido === valor}
-        onChange={() => onElegir(valor)}
+        checked={multiple ? Boolean(elegido) : elegido === valor}
+        onChange={() => onElegir(multiple ? !elegido : valor)}
         className={css.radio}
       />
       <span className={css.textos}>

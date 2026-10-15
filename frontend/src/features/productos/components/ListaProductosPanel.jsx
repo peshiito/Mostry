@@ -27,6 +27,7 @@ export function ListaProductosPanel({ cargando, visibles, hayProductos, onAltern
           i={i}
           producto={p}
           onActivo={() => onAlternar(p.id, 'activo')}
+          onAgotado={() => onAlternar(p.id, 'agotado')}
         />
       ))}
     </ListaAnimada>

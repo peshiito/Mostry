@@ -37,7 +37,11 @@ export async function insertarTienda(
     );
     const tiendaId = comoTiendaId(
       idInsertado(
-        await tx.insertInto('tiendas').values(datos.tienda).executeTakeFirstOrThrow(),
+        await tx
+          .insertInto('tiendas')
+          // Las del seed ya están armadas: no muestran las preguntas del inicio.
+          .values({ configuradaEn: new Date(), ...datos.tienda })
+          .executeTakeFirstOrThrow(),
       ),
     );
     await tx

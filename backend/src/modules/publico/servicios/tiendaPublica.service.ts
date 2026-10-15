@@ -1,6 +1,7 @@
 import { urlPublica } from '../../../shared/archivos/almacenamiento.js';
 import type { TiendaId } from '../../../shared/db/tiendaId.js';
 import { AppError } from '../../../shared/errors/AppError.js';
+import { programaPublico } from '../../club/programa/programa.service.js';
 import { cargarAgenda } from '../../horarios/repositorios/agenda.repository.js';
 import { estadoApertura } from '../../horarios/servicios/apertura.js';
 import { tiendaPublicaRepo } from '../repositorios/tiendaPublica.repository.js';
@@ -26,6 +27,8 @@ export async function verTiendaPublica(tiendaId: TiendaId) {
   return {
     ...datos,
     disponible: true as const,
+    // Sin venta online, el frontend muestra la tarjeta de presentación.
+    vendeOnline: t.vendeOnline,
     whatsapp: t.whatsapp,
     direccion: t.direccion,
     entrega: {
@@ -41,5 +44,7 @@ export async function verTiendaPublica(tiendaId: TiendaId) {
     apertura: estadoApertura(agenda, ahora),
     horarios: agenda.tramos,
     promociones: await tiendaPublicaRepo.promocionesVigentes(tiendaId, ahora),
+    // El club sirve también en el local: va aunque no venda online.
+    club: await programaPublico(tiendaId, t.usaClub),
   };
 }

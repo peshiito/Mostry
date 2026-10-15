@@ -1,3 +1,4 @@
+import { clienteOpcional } from '../club/cuenta/clienteOpcional.js';
 import { Router } from 'express';
 import { limite } from '../../shared/http/rateLimit.js';
 import { pedidosPanelController as panel } from './controladores/pedidosPanel.controller.js';
@@ -17,6 +18,7 @@ export function rutasPedidosPanel(): Router {
 // las resuelve rutasPublico (el seguimiento por token se monta allá).
 export function rutasPedidosPublico(): Router {
   const r = Router();
-  r.post('/pedidos', limite(10, 10), publico.crear);
+  // Si el comprador entró al Club, el pedido queda a su nombre (Lealtad L3).
+  r.post('/pedidos', limite(10, 10), clienteOpcional(), publico.crear);
   return r;
 }

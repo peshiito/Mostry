@@ -43,6 +43,8 @@ export const esquemaCheckout = z
       ),
     // Lo que el comprador vio: si no coincide con lo recalculado, se le avisa.
     totalEsperado: z.int().min(0),
+    // Premio del Club a usar (el escalón, en compras). El descuento lo calcula el servidor.
+    premio: z.int().min(1).max(50).optional(),
   })
   .refine((d) => d.entrega === 'retiro' || d.direccion, {
     message: 'Falta la dirección',

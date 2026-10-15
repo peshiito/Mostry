@@ -22,8 +22,10 @@ export const donaRosaCatalogo: DatosSeed['categorias'] = [
   {
     nombre: 'Tortas',
     productos: [
+      // Se hace a pedido: solo se encarga (Mejoras 3).
       p('Rogel', 2800000, 0, {
         descripcion: 'Capas finas con dulce de leche y merengue italiano.',
+        modoStock: 'a_pedido',
         aceptaEncargo: true,
         destacado: true,
       }),
@@ -36,7 +38,8 @@ export const donaRosaCatalogo: DatosSeed['categorias'] = [
   {
     nombre: 'Panadería',
     productos: [
-      p('Pan francés (1 kg)', 250000, 30, { stockMinimo: 10 }),
+      // El pan no se cuenta: solo "hay / no hay".
+      p('Pan francés (1 kg)', 250000, 0, { modoStock: 'simple' }),
       // Producto desactivado: no aparece en la tienda pública.
       p('Chipá (½ kg)', 480000, 8, {
         descripcion: 'Con queso de verdad.',

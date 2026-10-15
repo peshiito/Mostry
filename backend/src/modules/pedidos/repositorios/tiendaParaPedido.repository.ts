@@ -18,6 +18,7 @@ export const tiendaParaPedido = (tiendaId: TiendaId) =>
       'plazoSenaHoras',
       'anticipacionEncargoHoras',
       'senaPorcentaje',
+      'usaEncargos',
     ])
     .where('id', '=', tiendaId)
     .executeTakeFirstOrThrow();

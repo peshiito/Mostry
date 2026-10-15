@@ -19,6 +19,7 @@ function consultaProductos(tiendaId: TiendaId, f: FiltrosRepo) {
   // Stock bajo: stock físico en o por debajo del mínimo (si hay mínimo cargado).
   if (f.stockBajo) {
     q = q
+      .where('modoStock', '=', 'unidades')
       .where('stockMinimo', '>', 0)
       .where((eb) => eb('stock', '<=', eb.ref('stockMinimo')));
   }

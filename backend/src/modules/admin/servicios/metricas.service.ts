@@ -19,14 +19,28 @@ export async function metricas() {
   const fechas = await metricasRepo.fechasDeTodas();
   for (const t of fechas) porEstado[estadoEfectivo(t, ahora)]++;
 
-  const [nuevas30d, pedidos30d, cobradoMes] = await Promise.all([
+  const desde = inicioDelMes();
+  const [nuevas30d, pedidos30d, activas, eliminadas, club] = await Promise.all([
     metricasRepo.tiendasNuevas(haceDias(30)),
     metricasRepo.pedidosDesde(haceDias(30)),
-    metricasRepo.cobradoDesde(inicioDelMes()),
+    metricasRepo.cobradoDesde(desde),
+    metricasRepo.eliminadas(),
+    metricasRepo.club(),
   ]);
+  const deEliminadas = eliminadas.flatMap((e) => e.pagos).filter((p) => p.fecha >= desde);
+  const cobradoMes = {
+    total: activas.total + deEliminadas.reduce((s, p) => s + p.monto, 0),
+    pagos: activas.pagos + deEliminadas.length,
+  };
   return {
-    tiendas: { total: fechas.length, porEstado, nuevas30d },
+    tiendas: {
+      total: fechas.length,
+      porEstado,
+      nuevas30d,
+      eliminadas: eliminadas.length,
+    },
     pedidos30d,
     cobradoMes,
+    club,
   };
 }

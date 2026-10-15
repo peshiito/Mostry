@@ -1,0 +1,28 @@
+.boton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--toque);
+  padding: 0 var(--e-3);
+  border: 1px solid transparent;
+  border-radius: var(--radio-redondo);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-corta) ease,
+    color var(--dur-corta) ease,
+    transform var(--dur-toque) var(--ease-out);
+}
+.boton:active {
+  transform: scale(0.95);
+}
+.si {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.no {
+  background: var(--ladrillo-claro);
+  color: var(--ladrillo);
+}

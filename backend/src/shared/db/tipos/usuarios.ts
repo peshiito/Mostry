@@ -10,6 +10,8 @@ export type UsuariosTabla = Timestamps & {
   esAdmin: Auto<boolean>;
   emailVerificadoEn: Date | null;
   activo: Auto<boolean>;
+  // Entró con una clave temporal del admin: tiene que elegir una nueva (0039).
+  debeCambiarClave: Auto<boolean>;
 };
 
 export type CodigosEmailTabla = Creado & {

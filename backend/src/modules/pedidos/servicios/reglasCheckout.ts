@@ -26,6 +26,9 @@ export function validarReglasCheckout(
       'tienda_pausada',
       'La tienda está pausada: no toma pedidos por ahora.',
     );
+  // "Qué uso de Mostry": si apagó los encargos, no se pueden pedir (Mejoras 3 A).
+  if (d.tipo === 'encargo' && !t.usaEncargos)
+    throw new AppError(409, 'sin_encargos', 'Esta tienda no toma encargos.');
   if (
     (d.entrega === 'envio' && !t.aceptaEnvio) ||
     (d.entrega === 'retiro' && !t.aceptaRetiro)

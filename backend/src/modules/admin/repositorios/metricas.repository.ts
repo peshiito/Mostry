@@ -29,4 +29,24 @@ export const metricasRepo = {
       .executeTakeFirstOrThrow();
     return { total: Number(fila.total ?? 0), pagos: Number(fila.pagos) };
   },
+
+  // Club Mostry: solo cantidades, nunca datos de nadie (Lealtad L5).
+  async club() {
+    const [tiendas, socios] = await Promise.all([
+      db
+        .selectFrom('tiendas')
+        .select((eb) => eb.fn.countAll<number>().as('n'))
+        .where('usaClub', '=', true)
+        .executeTakeFirstOrThrow(),
+      db
+        .selectFrom('clientes')
+        .select((eb) => eb.fn.countAll<number>().as('n'))
+        .where('emailVerificadoEn', 'is not', null)
+        .executeTakeFirstOrThrow(),
+    ]);
+    return { tiendasConClub: Number(tiendas.n), socios: Number(socios.n) };
+  },
+
+  // Lo que pagaron las tiendas eliminadas sigue contando (sus pagos se borraron).
+  eliminadas: () => db.selectFrom('tiendasEliminadas').select('pagos').execute(),
 };

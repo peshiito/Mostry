@@ -4,6 +4,7 @@ import { productosRepo } from '../repositorios/productos.repository.js';
 import { conCategoriaValida } from './categoriaValida.js';
 import type { CambiosProducto, DatosProducto } from '../schemas.js';
 import { conDisponible } from './presentarProducto.js';
+import { cambiosSegunForma, nuevoSegunForma } from './formaStock.js';
 
 const noEncontrado = () =>
   new AppError(404, 'producto_no_encontrado', 'No encontramos ese producto.');
@@ -15,8 +16,9 @@ export async function verProducto(tiendaId: TiendaId, id: number) {
 }
 
 export async function crearProducto(tiendaId: TiendaId, datos: DatosProducto) {
+  const fila = await nuevoSegunForma(tiendaId, datos);
   const id = await conCategoriaValida(tiendaId, datos.categoriaId, (tx) =>
-    productosRepo.crear(tiendaId, datos, tx),
+    productosRepo.crear(tiendaId, fila, tx),
   );
   return verProducto(tiendaId, id);
 }
@@ -27,8 +29,9 @@ export async function editarProducto(
   id: number,
   datos: CambiosProducto,
 ) {
-  await verProducto(tiendaId, id);
-  const { stockAnterior, ...cambios } = datos;
+  const actual = await verProducto(tiendaId, id);
+  const { stockAnterior, ...pedidos } = datos;
+  const cambios = cambiosSegunForma(actual.modoStock, pedidos);
   const ok = await conCategoriaValida(tiendaId, cambios.categoriaId, (tx) =>
     productosRepo.actualizar(tiendaId, id, cambios, stockAnterior, tx),
   );

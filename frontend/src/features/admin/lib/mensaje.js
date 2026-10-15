@@ -25,6 +25,9 @@ export function armarMensaje(texto, tienda, datos) {
     alias: datos?.alias ?? '',
     titular: datos?.titular ?? '',
     link: urlTienda(tienda.slug, '/'),
+    panel: urlTienda(tienda.slug, '/panel'),
+    // La clave temporal solo existe en el momento en que el admin la genera.
+    ...(datos?.clave ? { clave: datos.clave } : {}),
   };
   return texto
     .replace(/\{(\w+)\}/g, (todo, clave) => (clave in valores ? valores[clave] : todo))
@@ -36,6 +39,7 @@ export function plantillaSugerida(tienda) {
   if (tienda.estado === 'prueba') return 'vence_prueba';
   if (tienda.estado === 'activa' || tienda.estado === 'gracia')
     return tienda.planHasta ? 'vence_plan' : 'vence_prueba';
+  if (tienda.estado === 'suspendida') return 'aviso_eliminacion';
   return 'personalizado';
 }
 
@@ -48,4 +52,6 @@ export const VARIABLES = [
   ['{alias}', 'Alias de Mostry'],
   ['{titular}', 'Titular del alias'],
   ['{link}', 'Link de la tienda'],
+  ['{panel}', 'Link del panel de la tienda'],
+  ['{clave}', 'Clave temporal (solo al generarla)'],
 ];

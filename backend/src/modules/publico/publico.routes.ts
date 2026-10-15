@@ -8,6 +8,10 @@ import { tiendasRepo } from '../tiendas/tiendas.repository.js';
 import { pedidosPublicoController } from '../pedidos/controladores/pedidosPublico.controller.js';
 import { publicoController as c } from './controladores/publico.controller.js';
 import { requerirTiendaDisponible } from './middlewares/requerirTiendaDisponible.js';
+import {
+  requerirEncargos,
+  requerirVentaOnline,
+} from './middlewares/requerirVentaOnline.js';
 
 // Tienda pública (sin login). La tienda sale del Origin (subdominio).
 const { seguimiento } = pedidosPublicoController;
@@ -22,11 +26,14 @@ export function rutasPublico(): Router {
   r.get('/pedidos/:token', limite(1, 60), seguimiento);
 
   r.use(requerirTiendaDisponible);
+  // Los comprobantes de pedidos ya hechos siguen andando aunque deje de vender online.
+  r.use(rutasComprobantesPublico());
+  r.use(requerirVentaOnline);
   r.get('/categorias', c.categorias);
   r.get('/productos', c.productos);
   r.get('/productos/:id', c.producto);
   r.use(rutasPedidosPublico());
+  r.use('/encargos', requerirEncargos);
   r.use(rutasEncargosPublico());
-  r.use(rutasComprobantesPublico());
   return r;
 }

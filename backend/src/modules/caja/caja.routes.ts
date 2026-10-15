@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { cajaController as c } from './controladores/caja.controller.js';
+import { ventasController as v } from './ventas/ventas.controller.js';
 
 // Caja del panel. El acceso (sesión, tienda, suspensión) lo pone rutasPanel.
 export function rutasCaja(): Router {
@@ -10,5 +11,8 @@ export function rutasCaja(): Router {
   r.post('/caja/movimientos', c.movimiento);
   r.get('/caja/resumen', c.resumen);
   r.get('/caja/historial', c.historial);
+  // Venta rápida en el local (Mejoras 3, parte C).
+  r.post('/caja/ventas', v.cobrar);
+  r.get('/caja/ventas', v.delDia);
   return r;
 }

@@ -7,6 +7,9 @@
   --verde-claro: #e3efe9;
   --marca-verde: #0e5a4a; /* el logo de Mostry: nunca toma el color de la tienda */
   --marca-crema: #f7f3ec;
+  /* QR del Club: siempre oscuro sobre blanco (las cámaras lo leen mejor), en los dos modos. */
+  --qr-fondo: #ffffff;
+  --qr-modulo: #1b1b1b;
   /* Logo oficial (src/Logos). "Noche": como el PNG, para fondos oscuros. Sobre
      fondo claro la lona crema lleva un borde verde para que el toldo se lea. */
   --logo-noche-lona: #f4efe8;

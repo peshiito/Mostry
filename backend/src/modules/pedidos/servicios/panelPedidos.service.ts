@@ -5,6 +5,7 @@ import {
   type FiltrosPedidos,
 } from '../repositorios/pedidosLista.repository.js';
 import { pedidosRepo } from '../repositorios/pedidos.repository.js';
+import { premioUsado } from '../../club/canjes/premioUsado.js';
 import { camposPanel } from './camposPanel.js';
 import { tiendaParaPedido } from '../repositorios/tiendaParaPedido.repository.js';
 import { urlSeguimiento } from './urlSeguimiento.js';
@@ -38,14 +39,16 @@ export async function listarPedidos(
 export async function verPedido(tiendaId: TiendaId, id: number) {
   const p = await pedidosRepo.buscar(tiendaId, id);
   if (!p) throw pedidoNoEncontrado();
-  const [items, tienda] = await Promise.all([
+  const [items, tienda, premio] = await Promise.all([
     pedidosRepo.items(tiendaId, id),
     tiendaParaPedido(tiendaId),
+    premioUsado(tiendaId, 'pedido', id),
   ]);
   const seguimiento = urlSeguimiento(tienda.slug, p.tokenSeguimiento);
   return {
     ...camposPanel(p),
     items,
+    premio,
     seguimiento,
     whatsapp: linkWhatsapp(p, tienda.nombre, seguimiento),
   };

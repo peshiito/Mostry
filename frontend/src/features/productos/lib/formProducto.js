@@ -5,6 +5,7 @@ export const FORM_NUEVO = {
   descripcion: '',
   precio: '',
   categoriaId: '',
+  modoStock: 'unidades',
   stock: '0',
   stockMinimo: '0',
   aceptaEncargo: false,
@@ -18,6 +19,7 @@ export const aFormulario = (p) => ({
   descripcion: p.descripcion ?? '',
   precio: String(p.precio / 100),
   categoriaId: p.categoriaId ? String(p.categoriaId) : '',
+  modoStock: p.modoStock,
   stock: String(p.stock),
   stockMinimo: String(p.stockMinimo),
   aceptaEncargo: p.aceptaEncargo,
@@ -32,11 +34,14 @@ export function aCuerpo(f, original) {
     descripcion: f.descripcion.trim() || null,
     precio: aCentavos(f.precio),
     categoriaId: f.categoriaId ? Number(f.categoriaId) : null,
-    stockMinimo: Number(f.stockMinimo),
-    aceptaEncargo: f.aceptaEncargo,
+    modoStock: f.modoStock,
+    aceptaEncargo: f.modoStock === 'a_pedido' || f.aceptaEncargo,
     destacado: f.destacado,
     activo: f.activo,
   };
+  // Las cantidades solo viajan si el producto cuenta unidades.
+  if (f.modoStock !== 'unidades') return cuerpo;
+  cuerpo.stockMinimo = Number(f.stockMinimo);
   if (!original) return { ...cuerpo, stock: Number(f.stock) };
   if (Number(f.stock) !== original.stock)
     Object.assign(cuerpo, { stock: Number(f.stock), stockAnterior: original.stock });

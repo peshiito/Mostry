@@ -7,7 +7,10 @@ export function validarProducto(f) {
   if (f.descripcion.length > 240) e.descripcion = 'Hasta 240 caracteres.';
   const precio = aCentavos(f.precio);
   if (precio === null || precio <= 0) e.precio = 'Escribí un precio mayor a cero.';
-  if (!Number.isInteger(Number(f.stock)) || Number(f.stock) < 0)
+  if (
+    f.modoStock === 'unidades' &&
+    (!Number.isInteger(Number(f.stock)) || Number(f.stock) < 0)
+  )
     e.stock = 'Tiene que ser 0 o más.';
   return e;
 }

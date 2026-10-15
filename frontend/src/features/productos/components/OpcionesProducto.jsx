@@ -6,12 +6,15 @@ export function OpcionesProducto({ form, onCambio }) {
   const set = (k) => (v) => onCambio({ ...form, [k]: v });
   return (
     <Tarjeta>
-      <Interruptor
-        etiqueta="Acepta encargos"
-        ayuda="Se hace a pedido: no descuenta stock"
-        activo={form.aceptaEncargo}
-        onCambio={set('aceptaEncargo')}
-      />
+      {/* Lo que se hace a pedido siempre se encarga: no hace falta preguntarlo. */}
+      {form.modoStock === 'a_pedido' ? null : (
+        <Interruptor
+          etiqueta="También se puede encargar"
+          ayuda="Con fecha y hora; el encargo no descuenta stock"
+          activo={form.aceptaEncargo}
+          onCambio={set('aceptaEncargo')}
+        />
+      )}
       <Interruptor
         etiqueta="Destacado en el inicio"
         activo={form.destacado}

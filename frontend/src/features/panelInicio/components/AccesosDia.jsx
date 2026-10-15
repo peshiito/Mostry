@@ -2,10 +2,13 @@ import { Link } from 'react-router';
 import { Icono } from '../../../shared/ui/Icono.jsx';
 import css from './AccesosDia.module.css';
 import { Contador } from '../../../shared/movimiento/Contador.jsx';
+import { usePanel } from '../../panelBase/PanelContexto.jsx';
 
-// Tres accesos rápidos: por aprobar, encargos de mañana y caja.
+// Accesos rápidos: por aprobar, encargos de mañana y caja (solo lo que la tienda
+// usa, según "Qué uso de Mostry").
 export function AccesosDia({ porAprobar, encargosManana, cajaAbierta }) {
-  const items = [
+  const { tienda } = usePanel();
+  const todos = [
     {
       a: '/panel/pedidos',
       n: porAprobar,
@@ -21,6 +24,11 @@ export function AccesosDia({ porAprobar, encargosManana, cajaAbierta }) {
       icono: 'point_of_sale',
     },
   ];
+  const items = todos.filter(
+    (i) =>
+      (i.a !== '/panel/pedidos' || tienda.vendeOnline !== false || porAprobar > 0) &&
+      (i.a !== '/panel/encargos' || tienda.usaEncargos !== false),
+  );
   return (
     <ul className={css.grilla}>
       {items.map((i) => (

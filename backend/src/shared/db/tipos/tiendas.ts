@@ -1,3 +1,4 @@
+import type { ModoStock } from './catalogo.js';
 import type { Auto, ColTienda, Creado, Fecha, Timestamps } from './comunes.js';
 
 export type EstadoTienda = 'prueba' | 'activa' | 'gracia' | 'suspendida';
@@ -28,6 +29,17 @@ export type TiendasTabla = Timestamps & {
   aceptaRetiro: Auto<boolean>;
   zonaEnvio: string | null;
   ultimoNumeroPedido: Auto<number>;
+  modoStock: Auto<ModoStock>; // forma por defecto para productos nuevos
+  // Perfil del negocio (0041): qué partes de Mostry usa. Null = todavía no
+  // contestó las preguntas del inicio.
+  vendeOnline: Auto<boolean>;
+  usaEncargos: Auto<boolean>;
+  usaLibreta: Auto<boolean>;
+  usaGastos: Auto<boolean>;
+  rubro: string | null;
+  configuradaEn: Date | null;
+  ultimoNumeroVenta: Auto<number>;
+  usaClub: Auto<boolean>; // Club de clientes (0045)
 };
 
 export type MiembrosTiendaTabla = Creado & {

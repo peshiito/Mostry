@@ -4,11 +4,12 @@ import { cuentaApi } from '../api/cuenta.js';
 
 // Recuperar la clave: email → código que llega por email → clave nueva.
 // La API valida el código junto con la clave nueva (POST /auth/recuperar/confirmar).
-export function useRecuperar() {
+// `api`: la del panel (cuentaApi) o la del Club (clubApi), con los mismos métodos.
+export function useRecuperar(api = cuentaApi) {
   const [paso, setPaso] = useState(1);
   const [d, setD] = useState({ email: '', codigo: '', claveNueva: '' });
-  const pedir = useAccion(cuentaApi.pedirRecuperacion);
-  const confirmar = useAccion(cuentaApi.confirmarRecuperacion, {
+  const pedir = useAccion(api.pedirRecuperacion);
+  const confirmar = useAccion(api.confirmarRecuperacion, {
     exito: 'Listo, ya tenés tu contraseña nueva',
   });
   async function seguir(valor) {

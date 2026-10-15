@@ -1,0 +1,42 @@
+.video {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radio);
+  background: var(--carbon);
+  object-fit: cover;
+}
+.ayuda {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.codigo {
+  font-family: var(--fuente-mono);
+  font-size: var(--t-xl);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.socio {
+  display: grid;
+  gap: var(--e-3);
+  padding: var(--e-3);
+  border: 1px solid var(--verde);
+  border-radius: var(--radio);
+  background: var(--verde-claro);
+}
+.textos {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+}
+.nombre {
+  font-weight: 700;
+}
+.detalle {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.fila {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+}

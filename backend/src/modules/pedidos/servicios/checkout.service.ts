@@ -6,6 +6,8 @@ import { cargarAgenda } from '../../horarios/repositorios/agenda.repository.js';
 import { checkoutRepo as repo } from '../repositorios/checkout.repository.js';
 import { tiendaParaPedido } from '../repositorios/tiendaParaPedido.repository.js';
 import type { DatosCheckout } from '../schemas.js';
+import { registrarCanje } from '../../club/canjes/registrarCanje.js';
+import { bloquearSiHayPremio, canjeDelPedido } from './canjeDelPedido.js';
 import { armarItems } from './armarPedido.js';
 import { filaPedido } from './filaPedido.js';
 import { reservarItems } from './reservarItems.js';
@@ -19,18 +21,21 @@ export async function crearPedido(
   tiendaId: TiendaId,
   d: DatosCheckout,
   ahora = new Date(),
+  clienteId: number | null = null, // cliente del Club, si entró (Lealtad L3)
 ) {
   const t = await tiendaParaPedido(tiendaId);
   validarReglasCheckout(t, await cargarAgenda(tiendaId, ahora), d, ahora);
 
   const pedido = await db.transaction().execute(async (tx) => {
+    await bloquearSiHayPremio(tx, tiendaId, d); // antes de leer nada (prepararCanje.ts)
     const productos = await repo.productos(
       tx,
       tiendaId,
       d.items.map((i) => i.productoId),
     );
     const items = armarItems(d.tipo, d.items, productos);
-    const totales = calcularTotales(d, items, t);
+    const canje = await canjeDelPedido(tx, tiendaId, d, clienteId, items);
+    const totales = calcularTotales(d, items, t, canje?.descuento);
     if (totales.requierePago && !t.alias) {
       throw new AppError(
         409,
@@ -50,12 +55,13 @@ export async function crearPedido(
       plazoHoras,
       ahora,
     };
-    const fila = filaPedido(tiendaId, d, totales, extra);
-    await repo.insertar(
+    const fila = { ...filaPedido(tiendaId, d, totales, extra), clienteId };
+    const pedidoId = await repo.insertar(
       tx,
       fila,
       items.map((i) => ({ ...i, tiendaId })),
     );
+    if (canje) await registrarCanje(tx, tiendaId, canje, 'pedido', pedidoId);
     return fila;
   });
 

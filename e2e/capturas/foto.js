@@ -9,9 +9,13 @@ export const ESQUEMAS = [
 ];
 
 // Espera a que no se muevan las animaciones de llegada y saca la captura.
-export async function foto(page, esquema, nombre) {
+// `completa`: toda la página, no solo lo que entra en la pantalla.
+export async function foto(page, esquema, nombre, completa = false) {
   await page.waitForTimeout(450);
-  await page.screenshot({ path: join(CARPETA, esquema, `${nombre}.png`) });
+  await page.screenshot({
+    path: join(CARPETA, esquema, `${nombre}.png`),
+    fullPage: completa,
+  });
 }
 
 // Una respuesta de la API que nunca llega (para fotografiar la carga).

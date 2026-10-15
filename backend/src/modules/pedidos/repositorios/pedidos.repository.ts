@@ -39,6 +39,16 @@ export const pedidosRepo = {
       .where('pedidoId', '=', pedidoId)
       .orderBy('id')
       .execute(),
+
+  // Para mover el stock (cancelar, aprobar): incluye si cada ítem reservó. No
+  // se muestra nunca: es un dato interno.
+  itemsDeStock: (tiendaId: TiendaId, pedidoId: number, ej: Ejecutor) =>
+    ej
+      .selectFrom('pedidoItems')
+      .select(['productoId', 'cantidad', 'reservo'])
+      .where('tiendaId', '=', tiendaId)
+      .where('pedidoId', '=', pedidoId)
+      .execute(),
 };
 
 export type Pedido = NonNullable<Awaited<ReturnType<typeof pedidosRepo.buscar>>>;

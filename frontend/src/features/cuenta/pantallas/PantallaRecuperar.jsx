@@ -9,8 +9,8 @@ import { useRecuperar } from '../hooks/useRecuperar.js';
 const PASOS = ['Email', 'Código por email', 'Nueva clave'];
 
 // Recuperar contraseña con un código que llega por email (Stitch 10).
-export function PantallaRecuperar({ base = '/panel' }) {
-  const r = useRecuperar();
+export function PantallaRecuperar({ base = '/panel', api }) {
+  const r = useRecuperar(api);
   return (
     <LayoutCuenta volver={`${base}/ingresar`}>
       {r.paso <= 3 ? <Pasos pasos={PASOS} actual={r.paso} /> : null}

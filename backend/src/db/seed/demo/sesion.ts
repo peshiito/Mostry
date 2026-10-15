@@ -44,6 +44,7 @@ export async function sesion(sub: string, email?: string) {
       ok(con(request(app).post(ruta)).send(cuerpo)),
     patch: (ruta: string, cuerpo: object) =>
       ok(con(request(app).patch(ruta)).send(cuerpo)),
+    put: (ruta: string, cuerpo: object) => ok(con(request(app).put(ruta)).send(cuerpo)),
     subir: (ruta: string, campo: string, datos: Buffer) =>
       ok(
         con(request(app).post(ruta)).attach(campo, datos, {

@@ -1,12 +1,12 @@
+import type { Medio } from '../../../shared/db/tipos/caja.js';
 import { db } from '../../../shared/db/db.js';
 import type { TiendaId } from '../../../shared/db/tiendaId.js';
 import type { EstadoPedido } from '../../../shared/db/tipos/pedidos.js';
-import type { Medio } from '../../../shared/db/tipos/caja.js';
 import { AppError } from '../../../shared/errors/AppError.js';
-import { registrarMovimiento } from '../../caja/servicios/registrarMovimiento.js';
 import { pedidosRepo, type Pedido } from '../repositorios/pedidos.repository.js';
+import { stockRepo } from '../repositorios/stock.repository.js';
+import { alEntregar } from './alEntregar.js';
 import { TRANSICIONES_MANUALES, type EstadoManual } from './estados.js';
-import { restoACobrar } from './montos.js';
 import { pedidoNoEncontrado, verPedido } from './panelPedidos.service.js';
 
 const invalida = (desde: EstadoPedido, hacia: EstadoPedido) =>
@@ -28,7 +28,7 @@ function validar(p: Pedido, hacia: EstadoManual) {
 }
 
 // El comerciante avanza el pedido un paso (con el pedido bloqueado: sin carreras).
-// Al entregar un encargo, el resto se cobra y entra a la caja en ese momento (6.2).
+// Al entregar: el resto del encargo y el sello del Club (alEntregar.ts).
 export async function avanzarPedido(
   tiendaId: TiendaId,
   id: number,
@@ -39,25 +39,15 @@ export async function avanzarPedido(
     const p = await pedidosRepo.bloquear(tx, tiendaId, id);
     if (!p) throw pedidoNoEncontrado();
     validar(p, hacia);
-    const resto = restoACobrar(p);
-    if (hacia === 'entregado' && p.tipo === 'encargo' && resto > 0) {
-      if (!medioCobro)
-        throw new AppError(
-          409,
-          'falta_cobrar',
-          'Indicá cómo cobraste el resto del encargo.',
-          { resto },
-        );
-      const concepto = `Resto del encargo #${p.numero}`;
-      await registrarMovimiento(tx, tiendaId, {
-        tipo: 'ingreso',
-        medio: medioCobro,
-        monto: resto,
-        concepto,
-        origen: 'pedido',
-        origenId: p.id,
-      });
-    }
+    if (hacia === 'entregado') await alEntregar(tx, tiendaId, p, medioCobro);
+    // Un pedido inmediato gratis (premio del Club) no pasa por el pago: al
+    // confirmarlo, la reserva pasa a ser stock vendido, como al aprobar un pago.
+    if (hacia === 'confirmado' && p.tipo === 'inmediato')
+      await stockRepo.descontar(
+        tx,
+        tiendaId,
+        await pedidosRepo.itemsDeStock(tiendaId, id, tx),
+      );
     await tx
       .updateTable('pedidos')
       .set({ estado: hacia, ...(hacia === 'entregado' && { entregadoEn: new Date() }) })

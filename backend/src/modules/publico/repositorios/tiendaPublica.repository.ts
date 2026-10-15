@@ -23,6 +23,8 @@ export const tiendaPublicaRepo = {
         'pruebaHasta',
         'planHasta',
         'suspendidaManual',
+        'vendeOnline',
+        'usaClub',
       ])
       .where('id', '=', tiendaId)
       .executeTakeFirstOrThrow(),

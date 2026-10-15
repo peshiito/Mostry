@@ -1,0 +1,21 @@
+.ticket {
+  display: grid;
+  gap: var(--e-3);
+}
+.linea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+}
+.nombre {
+  font-weight: 600;
+}
+.total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: var(--e-3);
+  border-top: var(--borde);
+  font-weight: 600;
+}

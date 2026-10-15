@@ -3,6 +3,7 @@ import { db } from '../../shared/db/db.js';
 import { logger } from '../../shared/logger.js';
 import { abrirParaDemo } from '../seed/demo/abrirParaDemo.js';
 import { escenaAyuda } from '../seed/demo/escenaAyuda.js';
+import { escenaClub } from '../seed/demo/escenaClub.js';
 import { escenaCaja } from '../seed/demo/escenaCaja.js';
 import { escenaLibreta } from '../seed/demo/escenaLibreta.js';
 import { escenaPedidos } from '../seed/demo/escenaPedidos.js';
@@ -33,12 +34,13 @@ async function cargarDemo(): Promise<void> {
     await escenaCaja(rosa, tiendaId);
     await escenaPedidos({ rosa, tiendaId, producto, tienda });
     await escenaLibreta(rosa);
+    await escenaClub(rosa);
     await escenaAyuda(rosa, admin, tiendaId, producto('Docena surtida'));
   } finally {
     await tienda.restaurar();
   }
   logger.warn(
-    '✔ Demo cargada: Doña Rosa con pedidos, caja, fiados y reportes; Heladería por vencer.',
+    '✔ Demo cargada: Doña Rosa con pedidos, caja, fiados, reportes y club; Heladería por vencer.',
   );
 }
 

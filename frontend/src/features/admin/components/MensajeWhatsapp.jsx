@@ -9,14 +9,16 @@ import { armarMensaje, plantillaSugerida } from '../lib/mensaje.js';
 import css from './HojaWhatsapp.module.css';
 
 // Elegís la plantilla, el texto se completa con los datos de la tienda y lo
-// podés retocar antes de abrir WhatsApp.
-export function Mensaje({ tienda }) {
+// podés retocar antes de abrir WhatsApp. `inicial`: plantilla elegida de entrada;
+// `extra`: valores del momento (por ejemplo, la clave temporal recién generada).
+export function Mensaje({ tienda, inicial, extra }) {
   const p = usePlantillas();
-  const [clave, setClave] = useState(() => plantillaSugerida(tienda));
+  const [clave, setClave] = useState(() => inicial ?? plantillaSugerida(tienda));
   const [editado, setEditado] = useState(null);
   const plantilla = p.plantillas.find((x) => x.clave === clave);
   const texto =
-    editado ?? (plantilla ? armarMensaje(plantilla.texto, tienda, p.datos) : '');
+    editado ??
+    (plantilla ? armarMensaje(plantilla.texto, tienda, { ...p.datos, ...extra }) : '');
   const link = linkWhatsapp(tienda.whatsapp, texto);
   if (!tienda.whatsapp) {
     return (

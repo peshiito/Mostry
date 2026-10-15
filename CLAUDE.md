@@ -352,7 +352,7 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 | Base de cero + seed + demo + arrancar | `npm run local:todo` (pide confirmación: borra la base local) |
 | Solo cargar la demo | `cd backend; and npm run db:demo` |
 | Backup / restaurar | `npm run backup` · `npm run restaurar -- <archivo.sql.gz>` |
-| Tests | `cd backend; and npm test` (~11 min) · `cd frontend; and npm test` · `cd e2e; and npm test` (~4 min) |
+| Tests | `cd backend; and npm test` (~27 min) · `cd frontend; and npm test` · `cd e2e; and npm test` (~6 min) |
 | Lint (incluye el límite de 70 líneas, también en CSS) | `npm run lint` en `backend/` y `frontend/` |
 | Capturas de los estados (carga y error) | `cd e2e; and npx playwright test -c capturas.config.js` |
 | Probar la versión de producción en local | ver `docs/produccion.md` (Caddy en https) |
@@ -374,7 +374,31 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - `rosa@dona-rosa.test`: Doña Rosa, activa, con la demo completa;
 - `martin@heladeria.test`: Heladería, en prueba por vencer.
 
+**En curso (2026-10-14).** Pedro pidió trabajar en modo automático y avisarle por notificación si hace falta algo. El plan completo está en `~/.claude/plans/goofy-zooming-clarke.md`.
+- **Hecho, sin commitear:**
+  - Mejoras 3, Parte B (formas de stock);
+  - Mejoras 4 (el admin ayuda con la cuenta y elimina tiendas).
+- **Mejoras 3, Parte A (preguntas "Armá tu Mostry" y módulos):** HECHA y probada.
+  - **Backend:** migración `0041`, `PUT /panel/tienda/perfil`, `requiereModulo` y `requerirVentaOnline`, más tests.
+  - **Frontend:**
+    - `features/empezar/` (`PantallaEmpezar` si `configuradaEn` es null y `PantallaUso` en Más);
+    - Más e inicio filtrados por el perfil;
+    - `TarjetaPresentacion` sin venta online;
+    - el admin muestra rubro y venta online.
+  - **e2e:** `perfilNegocio.spec.js`; además, el registro recorre las preguntas.
+- **Mejoras 3, Parte C (venta rápida):** HECHA y probada.
+  - **Backend:** migración `0042` (`ventas`, `venta_items` y el origen `venta` en la caja), `POST/GET /panel/caja/ventas` (`modules/caja/ventas/`).
+  - **Frontend:** `features/vender/` y la pestaña "Vender" (sin venta online, salvo que haya pedidos por aprobar).
+  - **e2e:** `ventaRapida.spec.js`.
+- **Mejoras 3 COMPLETA.** Suites: backend 373/373, frontend 129/129, e2e 74/74.
+- **Etapa "Lealtad"** (club de clientes con QR y sellos), arrancada el 2026-10-13. El plan completo está en **`docs/lealtad-plan.md`**: leelo entero antes de seguir.
+  - **L1 a L5: HECHAS (2026-10-14), sin commitear.** Pedro pidió hacerlas de corrido (aprobé yo los planes de L3–L5, con su permiso). Migraciones `0043` a `0047`, `modules/club/{cuenta,qr,programa,sellos,canjes,historial}`, `features/{club,clubPanel}` y el escáner en `features/vender/`.
+- **En la base local:** el admin es `pedrotest@gmail.com` (clave `test12345`, cargada a mano). El seed sigue creando `admin@mostry.test`.
+- **Mails en local:** Resend con `onboarding@resend.dev` solo entrega a `pedrogbaez1@gmail.com`. Pasar a Mailpit está pendiente; Pedro dijo "lo vemos en el transcurso".
+
 **Pendientes abiertos (consultar con Pedro antes de tocar):**
+- **Días de cortesía (idea de Pedro, 2026-10-14):** que el admin pueda regalarle días a una tienda (7, 10, 15 o los que elija), por ejemplo si no pudo usar Mostry por un mantenimiento del servidor. Que sirva tanto en la prueba gratis como en el plan pago, con el motivo anotado en `registro_admin`. Está pendiente de plan.
+- **Duración de la prueba gratis:** Pedro habló de 7 días; el código dice 10. Por ahora no se toca.
 - Pasar el repo de GitHub a **privado**.
 - Rotar la clave de **Resend** antes de producción.
 - **Contador de pedidos en el detalle del admin:** se sacó por privacidad. ¿Lo quiere de vuelta?
@@ -416,7 +440,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - **Fechas** siempre con el selector propio (`shared/ui/SelectorFecha`), nunca `type="date"`.
   - **Carga por pantalla:** cada pantalla del panel, admin, cuenta y compra baja recién al abrirla (`cargarPantalla`); `src/shared` va en un solo chunk (`compartido`).
   - **Script del tema en línea**, autorizado en la CSP por su hash sha256 (`config/temaEnLinea.js`). El servidor de producción tiene que usar `encabezados.config.js` tal cual.
-  - **PWA:** el panel es instalable (`vite-plugin-pwa`) y el service worker se registra solo desde el panel. Guarda únicamente la app; **la API y las fotos nunca se cachean**. Cuando hay versión nueva, avisa con "Actualizar" en lugar de recargar sola. Los íconos salen de `scripts/iconos.sh`.
+  - **PWA:** el panel es instalable (`vite-plugin-pwa`) y el service worker se registra solo desde el panel (y, desde Lealtad L1, desde `/club` con su propio manifest). Guarda únicamente la app; **la API y las fotos nunca se cachean**. Cuando hay versión nueva, avisa con "Actualizar" en lugar de recargar sola. Los íconos salen de `scripts/iconos.sh`.
   - **Sin conexión:** franja fija en todas las zonas. Los GET iguales que están en vuelo se comparten, sin caché de datos.
 - **Admin y soporte (decisión de Pedro, después de la Etapa 14):**
   - **Ingreso:** desde el "Ingresar" de la landing. Si la cuenta es admin, va a `admin.mostry.com.ar` con su sesión aparte.
@@ -460,6 +484,44 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
     - un ítem hijo de `AnimatePresence` tiene que pasar su `ref` hasta el DOM;
     - el e2e corre con `reducedMotion: 'reduce'` (las animaciones se prueban en `movimiento.spec.js`).
   - **Peso:** +19 KB gz al arrancar y +32 KB gz después de mostrar la pantalla.
+- **Club Mostry (Lealtad L1, 2026-10-13):**
+  - **El cliente con cuenta es un tercer tipo de usuario,** con tablas propias (`clientes`, `sesiones_club`, `codigos_email_club` y `codigos_club`) y sin `tienda_id`.
+  - **Cookie `__Host-mostry_club`:** dura 90 días y se desliza. `requerirCliente` la lee sin mirar la zona, porque el checkout de las tiendas la va a usar en L3. Registro e ingreso solo desde el sitio (`exigirSitio`).
+  - **QR, cambio sobre el plan:** el código de 6 caracteres sale de `HMAC(clienteId, ventana de 5 min)` (`qr/codigoQr.ts`), se guarda como HMAC en `codigos_club` y sirve 1 minuto más después de rotar. `clienteDelCodigo` (para L3) lo busca. No hay `secreto_qr`. La API manda `quedanMs` para que el celular cuente con su reloj.
+  - **Alta segura:** verificar el email pide también la clave del registro, que pasa del registro a la verificación en memoria (`lib/claveDelRegistro.js`). Registrarse de nuevo sobre una cuenta sin verificar pisa la clave y los datos. Así nadie se queda con un email ajeno y el email no queda bloqueado.
+  - **Borrar la cuenta** es un borrado real (Ley 25.326) y pide la clave.
+  - **El job `limpiar-club`** (cada hora) borra los códigos y las sesiones vencidas, y los registros que pasaron más de un día sin verificar.
+  - **Frontend:** la PWA del Club tiene su propio manifest (`public/club.webmanifest`, `registrarPwa(manifest)`). El QR se dibuja con `uqr` (`encode`), con `<rect>` y sin innerHTML, en colores fijos (`--qr-fondo` y `--qr-modulo`).
+- **Club Mostry (Lealtad L2 a L5, 2026-10-14):**
+  - **Un solo interruptor:** `tiendas.usa_club` (apagado por defecto), como los otros módulos; se prende desde Más → Club de clientes o desde "Qué uso de Mostry". Prender exige un premio guardado. Apagarlo no borra nada. El modo soporte del admin no toca el club.
+  - **Programa** (`programas_lealtad`, uno por tienda, y `premios_lealtad`, de 1 a 6 escalones crecientes): `PUT /panel/club` guarda todo junto; `PATCH /panel/club/activo`. La vidriera recibe `club` en `/publico/tienda` solo si está prendido y con premios (`FranjaClub`, también en la tarjeta de presentación).
+  - **Sellos** (`sellos`, UNIQUE por compra): uno por pedido **entregado** (`alEntregar.ts`) o venta del local que llegue al mínimo, con el club prendido. Pedidos y ventas tienen `cliente_id`. El checkout reconoce la cookie del club con `clienteOpcional` (sin exigirla) y precarga los datos.
+  - **En el local:** `POST /panel/club/identificar { codigo }` (con límite) devuelve una **ficha firmada** (`sellos/fichaClub.ts`: HMAC de tienda, cliente y vencimiento, 30 min) y la venta manda `fichaClub`. Así el QR puede rotar mientras cargan los productos y el navegador nunca manda un id que el servidor no firmó. Escáner con `BarcodeDetector` (`useEscaner`) o el código tipeado; por eso `Permissions-Policy` permite `camera=(self)`.
+  - **Saldo calculado:** sellos no vencidos (`vence_meses`) con `id` mayor al `hasta_sello_id` del último canje no anulado (`sellos/saldo.ts`). Usar un premio gasta todos los sellos; la compra que lo usa suma el primero nuevo.
+  - **Canjes** (`canjes`, el premio copiado): `bloquearPrograma` (FOR UPDATE de `programas_lealtad`) va como **primera consulta** de la transacción del checkout y de la venta. Con REPEATABLE READ la foto se toma en la primera lectura común: si se bloqueara después, el segundo canje no vería el primero y gastaría los mismos sellos (`tests/revision.test.ts`). El descuento lo calcula el servidor (`calcularDescuento.ts`, igual que `club/lib/descuento.js` del frontend): porcentaje de los productos (sin envío) con tope, monto hasta el subtotal, regalo $ 0. Pedido cancelado → `anularCanje` y los sellos vuelven.
+  - **Compra gratis:** `pedidos.descuento` y `ventas.descuento`; el CHECK de pedidos pasó a `total + descuento = subtotal + costo_envio`. Un pedido inmediato que queda en $ 0 va a `pendiente_confirmacion` (sin pago) y al confirmarlo se descuenta el stock; una venta en $ 0 no mueve la caja.
+  - **Historiales:** `GET /club/historial` (cliente, todas sus tiendas), `GET /panel/club/socios` y `/socios/:id` (la tienda: solo el nombre y lo comprado ahí; 404 si nunca le compró). El admin ve solo `club: { tiendasConClub, socios }` en métricas.
+  - **Pendiente:** un pedido inmediato gratis queda en `pendiente_confirmacion` sin vencimiento (como un encargo sin seña): si el comercio no lo confirma ni lo cancela, la reserva de stock queda tomada.
+  - **Borrar la cuenta del cliente** borra sus sellos y canjes y deja sus pedidos y ventas sin `cliente_id`. `sellos`, `canjes`, `premios_lealtad` y `programas_lealtad` están en `TABLAS_DE_TIENDA`.
+- **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
+  - `unidades`: reserva y descuenta, como siempre;
+  - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;
+  - `a_pedido`: solo se encarga, y un CHECK exige `acepta_encargo`.
+  - La tienda tiene una forma por defecto.
+  - `pedido_items.reservo` anota si el ítem reservó, así liberar y descontar funciona aunque el producto cambie de forma. Es un dato interno, que se lee con `pedidosRepo.itemsDeStock` y nunca se muestra.
+- **Mejoras 4 (el admin ayuda y elimina, decisión de Pedro; pisa "nada se borra de verdad" de la sección 5):**
+  - **Ayuda con la cuenta** (`modules/admin/ayuda/`):
+    - corregir email y nombre del dueño (el email nuevo queda verificado y se cierran sus sesiones);
+    - corregir nombre, link y WhatsApp de la tienda;
+    - **clave temporal:** se muestra una sola vez y marca `usuarios.debe_cambiar_clave`; el panel queda bloqueado (403 `debe_cambiar_clave`) hasta elegir una nueva con `/auth/cambiar-clave`;
+    - reenviar el mail: el código de verificación si nunca verificó, o el de recuperación.
+    - Todo queda en `registro_admin`.
+  - **Eliminar** (`DELETE /admin/tiendas/:id`): solo tiendas suspendidas o registros sin verificar, escribiendo el link y la contraseña del admin.
+    - Borra todas las tablas de `tiendas/borrado/tablasDeTienda.ts` y la cuenta del dueño si no tiene otra tienda.
+    - Encola los archivos.
+    - Guarda un resumen sin datos personales en `tiendas_eliminadas`, que sigue sumando en las métricas.
+    - Un test compara la lista con `information_schema`: **toda tabla nueva con `tienda_id` hay que sumarla ahí** (o a `TABLAS_QUE_SOBREVIVEN`).
+  - **Registro sin verificar:** pasada media hora se libera (`registroVencido.ts`) y se puede registrar de nuevo. Antes de eso no se toca, para que nadie pueda registrarse encima de un registro ajeno.
 - **Modo oscuro en todas las zonas:** "Automático" (sigue al dispositivo), "Claro" u "Oscuro"; se guarda por navegador. Botón en cada header y selector en Panel → Más → Apariencia. Los colores de la tienda se aclaran a un tono pastel con texto oscuro. Todo color sale de `tokens.css` (sin hex sueltos) y cada par texto/fondo cumple 4.5:1 en los dos modos.
 - **Tests de punta a punta (Etapa 13):** carpeta `e2e/` con su propio `package.json` (Playwright). Levantan su propia API (puerto 3100, base `mostry_e2e`) y su propio frontend (5273); los mails van a Mailpit. Se corren con `npm test` desde `e2e/`.
 
@@ -476,9 +538,9 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - Leen al usuario miembro con `miembroDelPanel(req)` (`shared/http/miembroDelPanel.ts`), que en modo soporte da 403.
 - **Modo soporte:** `/admin/soporte/:tiendaId/*` (`modules/soporte/`). `accesoSoporte` llena `req.tienda`, `req.panel` y `req.soporte`. Solo monta catálogo, horarios y config sin alias.
 - **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
-- **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte.
+- **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte, club (cuentas de cliente, QR, programa, sellos, canjes e historiales).
 - **Base:**
-  - 37 migraciones en `db/migraciones/` (todas con `down`);
+  - 47 migraciones en `db/migraciones/` (todas con `down`);
   - seed en `db/seed/` (`npm run db:seed`);
   - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
 - **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.
@@ -512,7 +574,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 ## 15. Trampas conocidas del entorno (ya nos hicieron perder tiempo)
 
 - **Nunca correr dos suites a la vez.** El backend y el e2e comparten la base de test y los buckets `*-test`. Lo mismo vale para `db:demo` sobre `mostry_e2e` mientras corre algo. Si se pisan, fallan tests al azar.
-- **La suite del backend tarda unos 11 minutos.** Corriendo en segundo plano, vitest no muestra nada hasta el final: hay que esperar el resultado, no darla por colgada.
+- **La suite del backend tarda unos 27 minutos** (424 tests, desde Lealtad; antes eran 11): con `timeout -k 10 1500` se corta antes de terminar. Usar `timeout -k 10 2400`. Corriendo en segundo plano, vitest no muestra nada hasta el final: hay que esperar el resultado, no darla por colgada.
 - **El shell de las herramientas de Claude es zsh, no fish:**
   - no separa una variable en palabras (para repetir un comando largo, usar una función);
   - **`pkill -f` / `pgrep -f` pueden matar el propio shell** porque el patrón aparece en su línea de comandos. Matar por PID con un patrón anclado (`pgrep -f "^node servidor/servir.js"`).

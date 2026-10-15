@@ -33,6 +33,18 @@ test('registro de un comercio: alta, verificación por email y primer ingreso', 
   await page.getByLabel(/^Contraseña/).fill(clave);
   await page.getByRole('button', { name: 'Ingresar' }).click();
   await esperarAviso(page, '¡Hola de nuevo!');
+
+  // Primera vez en el panel: "Armá tu Mostry" (Mejoras 3, parte A).
+  await expect(
+    page.getByRole('heading', { name: '¿Qué querés hacer con Mostry?' }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Seguir' }).click();
+  await page.getByRole('button', { name: 'Almacén o kiosco' }).click();
+  await page.getByRole('button', { name: 'Seguir' }).click();
+  await expect(page.getByLabel('Cuento unidades')).toBeChecked();
+  await page.getByRole('button', { name: 'Seguir' }).click();
+  await page.getByRole('button', { name: 'Empezar' }).click();
+  await esperarAviso(page, '¡Listo! Tu Mostry quedó armado');
   await expect(page.getByText('Almacén Doña Tita').first()).toBeVisible();
   await expect(page.getByText('Te quedan 10 días de prueba')).toBeVisible();
 });

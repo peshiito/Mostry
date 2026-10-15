@@ -10,7 +10,15 @@ export const checkoutRepo = {
   productos: (tx: Ejecutor, tiendaId: TiendaId, ids: number[]) =>
     tx
       .selectFrom('productos')
-      .select(['id', 'nombre', 'precio', 'activo', 'agotado', 'aceptaEncargo'])
+      .select([
+        'id',
+        'nombre',
+        'precio',
+        'activo',
+        'agotado',
+        'aceptaEncargo',
+        'modoStock',
+      ])
       .where('tiendaId', '=', tiendaId)
       .where('id', 'in', ids)
       .execute(),

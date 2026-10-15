@@ -10,6 +10,7 @@ const columnas = [
   'esAdmin',
   'emailVerificadoEn',
   'activo',
+  'debeCambiarClave',
 ] as const;
 
 const seleccionar = () => db.selectFrom('usuarios').select(columnas);
@@ -36,6 +37,11 @@ export const usuariosRepo = {
       .where('id', '=', id)
       .execute(),
 
+  // Elegir una clave nueva siempre apaga la obligación de la clave temporal.
   cambiarClave: (id: number, hashClave: string) =>
-    db.updateTable('usuarios').set({ hashClave }).where('id', '=', id).execute(),
+    db
+      .updateTable('usuarios')
+      .set({ hashClave, debeCambiarClave: false })
+      .where('id', '=', id)
+      .execute(),
 };

@@ -12,9 +12,9 @@ import type { DatosCambiarClave } from '../schemas.js';
 export async function datosDeCuenta(usuarioId: number) {
   const usuario = await usuariosRepo.buscarPorId(usuarioId);
   if (!usuario) throw sinSesion();
-  const { id, email, nombre, esAdmin } = usuario;
+  const { id, email, nombre, esAdmin, debeCambiarClave } = usuario;
   return {
-    usuario: { id, email, nombre, esAdmin },
+    usuario: { id, email, nombre, esAdmin, debeCambiarClave: !!debeCambiarClave },
     tiendas: await miembrosRepo.tiendasDeUsuario(id),
   };
 }

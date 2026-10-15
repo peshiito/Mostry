@@ -2,15 +2,17 @@ import type { TiendaId } from '../../../shared/db/tiendaId.js';
 import { AppError } from '../../../shared/errors/AppError.js';
 import { pedidosRepo } from '../repositorios/pedidos.repository.js';
 import { tiendaParaPedido } from '../repositorios/tiendaParaPedido.repository.js';
+import { premioUsado } from '../../club/canjes/premioUsado.js';
 import { montoAPagar } from './montos.js';
 
 // Lo que ve el comprador con su link único: solo SU pedido.
 export async function verSeguimiento(tiendaId: TiendaId, token: string) {
   const p = await pedidosRepo.porToken(tiendaId, token);
   if (!p) throw new AppError(404, 'pedido_no_encontrado', 'No encontramos ese pedido.');
-  const [items, t] = await Promise.all([
+  const [items, t, premio] = await Promise.all([
     pedidosRepo.items(tiendaId, p.id),
     tiendaParaPedido(tiendaId),
+    premioUsado(tiendaId, 'pedido', p.id),
   ]);
   return {
     numero: p.numero,
@@ -21,6 +23,8 @@ export async function verSeguimiento(tiendaId: TiendaId, token: string) {
     fechaEncargo: p.fechaEncargo,
     items: items.map(({ productoId: _id, ...i }) => i),
     subtotal: p.subtotal,
+    descuento: p.descuento,
+    premio, // premio del Club usado, si hubo
     costoEnvio: p.costoEnvio,
     total: p.total,
     sena: p.sena,

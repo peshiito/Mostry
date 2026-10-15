@@ -1,0 +1,14 @@
+.fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+}
+.etiqueta {
+  font-weight: 600;
+}
+.doble {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--e-3);
+}

@@ -33,9 +33,12 @@ export function PantallaMetricas() {
           { etiqueta: 'En prueba', valor: e.prueba, tono: 'mostaza' },
           { etiqueta: 'En gracia', valor: e.gracia, tono: 'ladrillo' },
           { etiqueta: 'Suspendidas', valor: e.suspendida, tono: 'ladrillo' },
+          { etiqueta: 'Eliminadas', valor: m.tiendas.eliminadas ?? 0 },
           { etiqueta: 'Altas en 30 días', valor: m.tiendas.nuevas30d },
           { etiqueta: 'Pedidos en 30 días', valor: m.pedidos30d },
           { etiqueta: 'Cobrado este mes', valor: plata(m.cobradoMes.total) },
+          { etiqueta: 'Tiendas con club', valor: m.club?.tiendasConClub ?? 0 },
+          { etiqueta: 'Socios del Club', valor: m.club?.socios ?? 0 },
         ]}
       />
       <Seccion titulo="En gracia (tienen que pagar)">

@@ -11,3 +11,14 @@
   color: var(--texto-3);
   font-size: var(--t-xs);
 }
+.formas {
+  display: grid;
+  gap: var(--e-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.leyenda {
+  margin-bottom: var(--e-2);
+  font-weight: 600;
+}

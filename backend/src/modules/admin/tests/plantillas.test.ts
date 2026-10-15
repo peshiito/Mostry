@@ -21,12 +21,14 @@ describe('admin: plantillas de WhatsApp', () => {
     admin = await crearAdminLogueado(nuevaApp());
   });
 
-  it('trae las 4 plantillas con su texto de base y los datos de pago de Mostry', async () => {
+  it('trae las 6 plantillas con su texto de base y los datos de pago de Mostry', async () => {
     const { body } = await admin.get('/admin/plantillas').expect(200);
     expect(body.plantillas.map((p: { clave: string }) => p.clave)).toEqual([
       'vence_prueba',
       'vence_plan',
       'encuesta',
+      'aviso_eliminacion',
+      'clave_temporal',
       'personalizado',
     ]);
     expect(textoDe(body, 'encuesta')).toMatch(/Soy Pedro Báez, creador de Mostry/);

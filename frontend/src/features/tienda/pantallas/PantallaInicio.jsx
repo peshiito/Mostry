@@ -5,6 +5,7 @@ import { AccesosCategorias } from '../components/AccesosCategorias.jsx';
 import { BarraCarrito } from '../components/BarraCarrito.jsx';
 import { EstadoCatalogo } from '../components/EstadoCatalogo.jsx';
 import { Destacados } from '../components/Destacados.jsx';
+import { FranjaClub } from '../components/FranjaClub.jsx';
 import { FilaProducto } from '../components/FilaProducto.jsx';
 import { HeaderTienda } from '../components/HeaderTienda.jsx';
 import { PieTienda } from '../components/PieTienda.jsx';
@@ -33,6 +34,7 @@ export function PantallaInicio() {
         )}
         {cargando || error ? espera : <AccesosCategorias categorias={categorias} />}
         <Destacados productos={destacados} />
+        <FranjaClub club={tienda.club} />
         <section aria-labelledby="todo" className={css.seccion}>
           <SeccionTitulo id="todo" titulo="Todo el mostrador" bajada="Todo lo que hay" />
           <ul className={css.lista}>

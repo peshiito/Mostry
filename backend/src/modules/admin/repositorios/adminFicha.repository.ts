@@ -18,6 +18,9 @@ export const adminFichaRepo = {
         'motivoSuspension',
         'creadoEn',
         'whatsapp',
+        // Perfil del negocio (Mejoras 3 A): informativo, sin datos del negocio.
+        'rubro',
+        'vendeOnline',
       ])
       .where('id', '=', id)
       .executeTakeFirst(),

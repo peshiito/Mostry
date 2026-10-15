@@ -4,6 +4,7 @@ import { backupBase } from './jobs/backup.js';
 import { barrerHuerfanos } from './jobs/barrerHuerfanos.js';
 import { borrarComprobantesVencidos } from './jobs/borrarComprobantes.js';
 import { cancelarVencidos } from './jobs/cancelarVencidos.js';
+import { limpiarClub } from './jobs/limpiarClub.js';
 import { probarRestauracion } from './jobs/probarRestauracion.js';
 import { reintentarBorrados } from './jobs/reintentarBorrados.js';
 import { actualizarSuscripciones } from './jobs/suscripciones.js';
@@ -26,6 +27,11 @@ export function crearTareas(mailer: Mailer) {
       nombre: 'reintentar-borrados',
       cron: '*/10 * * * *',
       correr: () => conLock('reintentar-borrados', () => reintentarBorrados()),
+    },
+    {
+      nombre: 'limpiar-club',
+      cron: '17 * * * *',
+      correr: () => conLock('limpiar-club', () => limpiarClub()),
     },
     {
       nombre: 'suscripciones',

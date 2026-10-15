@@ -1,5 +1,8 @@
 import type { Auto, Creado, DeTienda, Fecha, Hora, Timestamps } from './comunes.js';
 
+// Cómo se maneja el stock de un producto (migración 0038).
+export type ModoStock = 'unidades' | 'simple' | 'a_pedido';
+
 export type CategoriasTabla = DeTienda &
   Timestamps & { nombre: string; orden: Auto<number>; activa: Auto<boolean> };
 
@@ -9,6 +12,7 @@ export type ProductosTabla = DeTienda &
     nombre: string;
     descripcion: string | null;
     precio: number;
+    modoStock: Auto<ModoStock>;
     stock: Auto<number>;
     stockReservado: Auto<number>;
     stockMinimo: Auto<number>;

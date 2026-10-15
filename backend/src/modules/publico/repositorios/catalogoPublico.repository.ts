@@ -28,6 +28,7 @@ const columnas = [
   'stockReservado',
   'agotado',
   'aceptaEncargo',
+  'modoStock',
   'destacado',
   'categoriaId',
 ] as const;

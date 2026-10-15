@@ -1,16 +1,12 @@
-import { urlTienda } from '../../../shared/lib/urls.js';
-import { ZONA_ACTUAL } from '../../../shared/lib/zonaActual.js';
 import { EsqueletoResumen } from '../../../shared/ui/esqueletos/index.js';
 import { useSesion } from '../../sesion/useSesion.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
-import { CopiarDato } from '../../../shared/ui/CopiarDato.jsx';
-import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
-import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { TarjetaPagar } from '../../suscripcion/components/TarjetaPagar.jsx';
 import { useSuscripcion } from '../../suscripcion/hooks/useSuscripcion.js';
 import { AccesosDia } from '../components/AccesosDia.jsx';
+import { SinVentasHoy } from '../components/SinVentasHoy.jsx';
 import { StockBajo } from '../components/StockBajo.jsx';
 import { TarjetaVentas } from '../components/TarjetaVentas.jsx';
 import { useResumenDia } from '../hooks/useResumenDia.js';
@@ -21,8 +17,6 @@ const hoy = () =>
     day: 'numeric',
     month: 'long',
   });
-
-const slugActual = () => ZONA_ACTUAL.slug;
 
 // Inicio del panel (Stitch 24, 50 suspendida y vacío).
 export function PantallaInicioPanel() {
@@ -35,15 +29,7 @@ export function PantallaInicioPanel() {
       {soloLectura ? <TarjetaPagar tono="ladrillo" /> : null}
       <TituloPagina titulo={`Hola, ${usuarioNombre ?? r.nombreDuena}`} bajada={hoy()} />
       {r.ventasHoy === 0 ? (
-        <Tarjeta>
-          <Estado icono="storefront" titulo="Todavía no vendiste hoy">
-            Compartí el link de tu tienda para recibir pedidos.
-          </Estado>
-          <CopiarDato
-            etiqueta="Tu tienda"
-            valor={urlTienda(slugActual()).replace(/^https?:\/\//, '')}
-          />
-        </Tarjeta>
+        <SinVentasHoy />
       ) : (
         <TarjetaVentas ventas={r.ventasHoy} pedidos={r.pedidosHoy} />
       )}

@@ -6,6 +6,7 @@ import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { aCuerpo, aFormulario, FORM_NUEVO } from '../lib/formProducto.js';
 import { validarProducto } from '../lib/validarProducto.js';
 import { useBasePanel, usePanelApi } from '../../panelBase/BasePanel.jsx';
+import { usePanel } from '../../panelBase/PanelContexto.jsx';
 
 // Crear (POST) o editar (PATCH) un producto. Si otro cambió el stock mientras tanto,
 // la API rechaza el cambio en vez de pisar una venta (decisión de la Etapa 4).
@@ -21,7 +22,10 @@ export function useEditarProducto(id) {
     recargar,
   } = useConsulta(nuevo ? null : `${base.api}/productos/${Number(id) || 0}`);
   const [editado, setForm] = useState(null);
-  const form = editado ?? (original ? aFormulario(original) : FORM_NUEVO);
+  // Un producto nuevo arranca con la forma de stock que eligió la tienda.
+  const { tienda } = usePanel();
+  const vacio = { ...FORM_NUEVO, modoStock: tienda.modoStock ?? 'unidades' };
+  const form = editado ?? (original ? aFormulario(original) : vacio);
   const [errores, setErrores] = useState({});
   const accion = useAccion(
     (cuerpo) =>

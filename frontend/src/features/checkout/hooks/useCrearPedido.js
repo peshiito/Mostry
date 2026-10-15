@@ -1,9 +1,11 @@
 import { useAccion } from '../../../shared/api/useAccion.js';
+import { calcularDescuento } from '../../club/lib/descuento.js';
 import { publicoApi } from '../../tienda/api/publico.js';
 
 // Arma el cuerpo de POST /publico/pedidos. Del navegador salen ids y cantidades;
 // el servidor recalcula precios y total (6.1) y avisa si cambió algo.
-export function armarPedido({ datos, entrega, items, costoEnvio, fechaEncargo }) {
+// `premio`: el premio del Club elegido; el descuento de acá es solo el esperado.
+export function armarPedido({ datos, entrega, items, costoEnvio, fechaEncargo, premio }) {
   const subtotal = items.reduce((s, i) => s + i.precio * i.cantidad, 0);
   return {
     tipo: fechaEncargo ? 'encargo' : 'inmediato',
@@ -14,7 +16,11 @@ export function armarPedido({ datos, entrega, items, costoEnvio, fechaEncargo })
     ...(datos.linkMaps ? { linkMaps: datos.linkMaps.trim() } : {}),
     ...(fechaEncargo ? { fechaEncargo } : {}),
     items: items.map((i) => ({ productoId: i.id, cantidad: i.cantidad })),
-    totalEsperado: subtotal + (entrega === 'envio' ? costoEnvio : 0),
+    ...(premio ? { premio: premio.compras } : {}),
+    totalEsperado:
+      subtotal -
+      calcularDescuento(premio, subtotal) +
+      (entrega === 'envio' ? costoEnvio : 0),
   };
 }
 

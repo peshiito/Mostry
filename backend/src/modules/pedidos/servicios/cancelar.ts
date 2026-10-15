@@ -3,6 +3,7 @@ import type { TiendaId } from '../../../shared/db/tiendaId.js';
 import { AppError } from '../../../shared/errors/AppError.js';
 import type { Pedido } from '../repositorios/pedidos.repository.js';
 import { pedidosRepo } from '../repositorios/pedidos.repository.js';
+import { anularCanje } from '../../club/canjes/registrarCanje.js';
 import { stockRepo } from '../repositorios/stock.repository.js';
 import { CON_RESERVA, CON_STOCK_DESCONTADO, ESTADOS_FINALES } from './estados.js';
 
@@ -22,8 +23,10 @@ export async function cancelarEnTx(
       'Ese pedido ya está entregado o cancelado.',
     );
   }
+  // Si usó un premio del Club, el canje se anula y los sellos vuelven.
+  await anularCanje(tx, tiendaId, 'pedido', p.id);
   if (p.tipo === 'inmediato') {
-    const items = await pedidosRepo.items(tiendaId, p.id, tx);
+    const items = await pedidosRepo.itemsDeStock(tiendaId, p.id, tx);
     if (CON_RESERVA.includes(p.estado))
       await stockRepo.liberarReserva(tx, tiendaId, items);
     if (CON_STOCK_DESCONTADO.includes(p.estado))
@@ -51,6 +54,7 @@ export async function cancelarEnTx(
     .execute();
   // Pagado = llegó a pago aprobado (o más adelante) y había algo que pagar.
   const habiaPago =
-    CON_STOCK_DESCONTADO.includes(p.estado) && (p.tipo === 'inmediato' || p.sena > 0);
+    CON_STOCK_DESCONTADO.includes(p.estado) &&
+    (p.tipo === 'inmediato' ? p.total > 0 : p.sena > 0);
   return { habiaPago };
 }

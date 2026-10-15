@@ -3,8 +3,8 @@ import { cargarPantalla } from '../../shared/lib/cargarPantalla.js';
 
 // Cada pantalla es su propio archivo y se descarga recién al abrirla.
 const archivos = import.meta.glob([
-  '../../features/{cuentaPanel,mas}/Pantalla*.jsx',
-  '../../features/{miTienda,suscripcion,reportes,soporte}/pantallas/Pantalla*.jsx',
+  '../../features/{cuentaPanel,mas,empezar}/Pantalla*.jsx',
+  '../../features/{miTienda,suscripcion,reportes,soporte,clubPanel}/pantallas/Pantalla*.jsx',
 ]);
 const pantalla = (archivo) => {
   const importar = archivos[`../../features/${archivo}.jsx`];
@@ -19,6 +19,10 @@ const rutas = [
   ['cobros', 'miTienda/pantallas/PantallaCobros'],
   ['suscripcion', 'suscripcion/pantallas/PantallaSuscripcion'],
   ['cuenta', 'cuentaPanel/PantallaCuenta'],
+  ['uso', 'empezar/PantallaUso'],
+  ['club', 'clubPanel/pantallas/PantallaClubPanel'],
+  ['club/socios', 'clubPanel/pantallas/PantallaSocios'],
+  ['club/socios/:id', 'clubPanel/pantallas/PantallaSocio'],
   ['reportar', 'reportes/pantallas/PantallaReportar'],
   ['reportes', 'reportes/pantallas/PantallaMisReportes'],
   ['soporte', 'soporte/pantallas/PantallaSoporte'],

@@ -11,7 +11,7 @@ export function filaPedido(
   totales: ReturnType<typeof calcularTotales>,
   extra: { numero: number; token: string; plazoHoras: number; ahora: Date },
 ) {
-  const { subtotal, costoEnvio, total, sena, requierePago } = totales;
+  const { subtotal, descuento, costoEnvio, total, sena, requierePago } = totales;
   return {
     tiendaId,
     numero: extra.numero,
@@ -27,6 +27,7 @@ export function filaPedido(
     linkMaps: d.linkMaps ?? null,
     fechaEncargo: d.fechaEncargo ?? null,
     subtotal,
+    descuento,
     costoEnvio,
     total,
     sena,

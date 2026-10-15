@@ -1,4 +1,5 @@
 import { plata } from '../../../shared/lib/plata.js';
+import { textoPremio } from '../../club/lib/textoPremio.js';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { Ticket, TicketFila } from '../../../shared/ui/Ticket.jsx';
 
@@ -14,6 +15,13 @@ export function DetallePedido({ pedido }) {
             monto={plata(i.precio * i.cantidad)}
           />
         ))}
+        {pedido.premio ? (
+          <TicketFila
+            concepto="Premio del Club"
+            detalle={textoPremio(pedido.premio)}
+            monto={pedido.descuento ? `− ${plata(pedido.descuento)}` : plata(0)}
+          />
+        ) : null}
         {pedido.costoEnvio ? (
           <TicketFila
             concepto="Envío"

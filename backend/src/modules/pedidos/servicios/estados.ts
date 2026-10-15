@@ -24,12 +24,14 @@ export const ESTADOS_FINALES: readonly EstadoPedido[] = ['entregado', 'cancelado
 // Mientras está en estos estados, un pedido inmediato tiene stock RESERVADO.
 export const CON_RESERVA: readonly EstadoPedido[] = [
   'pendiente_pago',
+  'pendiente_confirmacion', // gratis con un premio del Club: espera que lo confirmen
   'comprobante_enviado',
 ];
 
 // En estos estados el stock de un pedido inmediato ya se DESCONTÓ (pago aprobado).
 export const CON_STOCK_DESCONTADO: readonly EstadoPedido[] = [
   'pago_aprobado',
+  'confirmado',
   'en_preparacion',
   'en_camino',
   'listo_retirar',

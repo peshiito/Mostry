@@ -22,6 +22,14 @@ const columnasConfig = [
   'aceptaEnvio',
   'aceptaRetiro',
   'zonaEnvio',
+  'modoStock',
+  'vendeOnline',
+  'usaEncargos',
+  'usaLibreta',
+  'usaGastos',
+  'usaClub',
+  'rubro',
+  'configuradaEn',
 ] as const;
 
 // Toda consulta recibe el tiendaId (la tienda resuelta por el Origin).

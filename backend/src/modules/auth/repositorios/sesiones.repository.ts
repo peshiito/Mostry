@@ -17,6 +17,7 @@ export const sesionesRepo = {
         'sesiones.tipo',
         'sesiones.expiraEn',
         'usuarios.esAdmin',
+        'usuarios.debeCambiarClave',
       ])
       .where('sesiones.hashToken', '=', hashToken)
       .where('sesiones.expiraEn', '>', new Date())

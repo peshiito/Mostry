@@ -1,0 +1,21 @@
+.club {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-3);
+  text-align: center;
+}
+.sello {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border: 3px dashed var(--verde);
+  border-radius: 50%;
+  background: var(--verde-claro);
+  color: var(--verde);
+  transform: rotate(-8deg);
+}
+.texto {
+  margin: 0;
+  color: var(--texto-2);
+}

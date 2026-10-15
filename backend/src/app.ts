@@ -7,6 +7,7 @@ import { pinoHttp } from 'pino-http';
 import { config } from './config/env.js';
 import { rutasAdmin } from './modules/admin/admin.routes.js';
 import { rutasAuth } from './modules/auth/auth.routes.js';
+import { rutasClub } from './modules/club/club.routes.js';
 import { rutasHealth } from './modules/health/health.routes.js';
 import { rutasPanel } from './modules/panel.routes.js';
 import { rutasPublico } from './modules/publico/publico.routes.js';
@@ -41,8 +42,9 @@ export function crearApp(deps: Dependencias): Express {
 
   app.use('/health', rutasHealth(deps.pingDb));
   app.use('/auth', rutasAuth(deps.mailer));
+  app.use('/club', rutasClub(deps.mailer));
   app.use('/panel', rutasPanel(deps.mailer));
-  app.use('/admin', rutasAdmin());
+  app.use('/admin', rutasAdmin(deps.mailer));
   app.use('/publico', rutasPublico());
 
   app.use(rutaNoEncontrada);

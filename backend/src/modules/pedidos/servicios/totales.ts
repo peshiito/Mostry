@@ -7,10 +7,15 @@ type Config = { costoEnvio: number; senaPorcentaje: number };
 
 // Totales recalculados por el servidor. Si no coinciden con lo que vio el
 // comprador, se le devuelven los precios nuevos para que confirme (decisión 27).
-export function calcularTotales(d: DatosCheckout, lineas: Linea[], t: Config) {
+export function calcularTotales(
+  d: DatosCheckout,
+  lineas: Linea[],
+  t: Config,
+  descuento = 0, // premio del Club, ya calculado por el servidor
+) {
   const subtotal = lineas.reduce((suma, l) => suma + l.subtotal, 0);
   const costoEnvio = d.entrega === 'envio' ? t.costoEnvio : 0;
-  const total = subtotal + costoEnvio;
+  const total = subtotal - descuento + costoEnvio;
   if (total !== d.totalEsperado) {
     const precios = lineas.map(({ productoId, precioUnitario }) => ({
       productoId,
@@ -24,7 +29,8 @@ export function calcularTotales(d: DatosCheckout, lineas: Linea[], t: Config) {
   }
   const sena =
     d.tipo === 'encargo' ? calcularSena({ total, porcentaje: t.senaPorcentaje }) : 0;
-  // Inmediato: siempre se paga antes. Encargo: solo si la tienda pide seña.
-  const requierePago = d.tipo === 'inmediato' || sena > 0;
-  return { subtotal, costoEnvio, total, sena, requierePago };
+  // Inmediato: se paga antes (salvo que un premio lo deje en $ 0). Encargo:
+  // solo si la tienda pide seña.
+  const requierePago = d.tipo === 'inmediato' ? total > 0 : sena > 0;
+  return { subtotal, descuento, costoEnvio, total, sena, requierePago };
 }

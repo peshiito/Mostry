@@ -6,7 +6,14 @@ import { verSeguimiento } from '../servicios/seguimiento.service.js';
 const crear: RequestHandler = async (req, res) => {
   res
     .status(201)
-    .json(await crearPedido(req.tienda!.id, esquemaCheckout.parse(req.body)));
+    .json(
+      await crearPedido(
+        req.tienda!.id,
+        esquemaCheckout.parse(req.body),
+        new Date(),
+        req.cliente?.clienteId ?? null,
+      ),
+    );
 };
 
 const seguimiento: RequestHandler = async (req, res) => {

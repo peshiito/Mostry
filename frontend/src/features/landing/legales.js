@@ -32,6 +32,10 @@ export const LEGALES = {
       'Las contraseñas se guardan cifradas y el acceso al panel pide un segundo código.',
     ],
     [
+      'Club Mostry',
+      'Si te sumás al Club, guardamos tu email, nombre, WhatsApp y, si la cargás, tu dirección. Cada tienda ve solo tu nombre y lo que compraste en ella, nunca lo de otras tiendas. Podés borrar tu cuenta cuando quieras desde "Mis datos": se borran tus datos y tus sellos.',
+    ],
+    [
       'Tus derechos',
       'Podés pedir ver, corregir o borrar tus datos escribiendo a hola@mostry.com.ar (Ley 25.326).',
     ],

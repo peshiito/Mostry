@@ -36,6 +36,8 @@ export type PedidosTabla = DeTienda &
     motivoCancelacion: string | null;
     canceladoEn: Date | null;
     entregadoEn: Date | null;
+    clienteId: number | null; // cliente del Club (0046)
+    descuento: Auto<number>; // premio del Club usado (0047)
   };
 
 export type PedidoItemsTabla = DeTienda & {
@@ -45,6 +47,7 @@ export type PedidoItemsTabla = DeTienda & {
   precioUnitario: number;
   cantidad: number;
   subtotal: number;
+  reservo: Auto<boolean>; // si reservó stock al comprarse (0038)
 };
 
 export type ComprobantesTabla = DeTienda &

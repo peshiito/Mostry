@@ -1,0 +1,22 @@
+{
+  "id": "/club",
+  "name": "Club Mostry",
+  "short_name": "Club Mostry",
+  "description": "Tu QR para juntar sellos y premios en las tiendas de barrio.",
+  "lang": "es-AR",
+  "start_url": "/club/qr",
+  "scope": "/club/",
+  "display": "standalone",
+  "theme_color": "#0E5A4A",
+  "background_color": "#0D1411",
+  "icons": [
+    { "src": "/iconos/icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/iconos/icono-512.png", "sizes": "512x512", "type": "image/png" },
+    {
+      "src": "/iconos/icono-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

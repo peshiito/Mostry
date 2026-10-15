@@ -16,6 +16,11 @@ export function TarjetasDetalle({ tienda: t }) {
             <TicketFila concepto="Email" monto={t.email || '—'} />
             <TicketFila concepto="Alta" monto={fechaCorta(t.alta)} />
             <TicketFila concepto="Vence" monto={t.vence ? fechaCorta(t.vence) : '—'} />
+            <TicketFila concepto="Rubro" monto={t.rubro ?? 'Sin elegir'} />
+            <TicketFila
+              concepto="Vende online"
+              monto={t.vendeOnline === false ? 'No' : 'Sí'}
+            />
           </Ticket>
         </Tarjeta>
       </Seccion>

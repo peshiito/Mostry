@@ -7,6 +7,8 @@ export function conDisponible(p: Selectable<ProductosTabla>) {
   return {
     ...resto,
     stockDisponible: p.stock - p.stockReservado,
-    stockBajo: p.stockMinimo > 0 && p.stock <= p.stockMinimo,
+    // Solo lo que se cuenta por unidades puede tener stock bajo.
+    stockBajo:
+      p.modoStock === 'unidades' && p.stockMinimo > 0 && p.stock <= p.stockMinimo,
   };
 }

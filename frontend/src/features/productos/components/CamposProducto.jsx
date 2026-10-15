@@ -3,9 +3,11 @@ import { Selector } from '../../../shared/ui/Selector.jsx';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { useBasePanel } from '../../panelBase/BasePanel.jsx';
 import { CamposStock } from './CamposStock.jsx';
+import { FormaStock } from './FormaStock.jsx';
 import css from './CamposProducto.module.css';
 
-// Nombre, descripción, precio, categoría, stock y aviso de stock mínimo.
+// Nombre, descripción, precio, categoría y forma de stock (las cantidades,
+// solo si cuenta unidades).
 export function CamposProducto({ form, errores, onCambio }) {
   const set = (k) => (e) => onCambio({ ...form, [k]: e.target.value });
   const { api } = useBasePanel();
@@ -56,7 +58,13 @@ export function CamposProducto({ form, errores, onCambio }) {
           )}
         </Campo>
       </div>
-      <CamposStock form={form} errores={errores} onCambio={onCambio} />
+      <FormaStock
+        valor={form.modoStock}
+        onCambio={(modoStock) => onCambio({ ...form, modoStock })}
+      />
+      {form.modoStock === 'unidades' ? (
+        <CamposStock form={form} errores={errores} onCambio={onCambio} />
+      ) : null}
     </div>
   );
 }

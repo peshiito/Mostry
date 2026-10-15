@@ -38,7 +38,7 @@ export async function aprobarComprobante(
       await stockRepo.descontar(
         tx,
         tiendaId,
-        await pedidosRepo.items(tiendaId, pedidoId, tx),
+        await pedidosRepo.itemsDeStock(tiendaId, pedidoId, tx),
       );
     }
     await tx

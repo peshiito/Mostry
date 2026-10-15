@@ -10,10 +10,13 @@ import { slugOcupado } from '../errores.js';
 import { usuariosRepo } from '../repositorios/usuarios.repository.js';
 import type { DatosRegistro } from '../schemas.js';
 import { emitirCodigo } from './codigosEmail.service.js';
+import { liberarRegistrosVencidos } from './registroVencido.js';
 
 // Crea usuario + tienda + membresía y manda el código de verificación.
 // Si el email ya existe, responde igual y avisa por email (no revela cuentas).
 export async function registrar(datos: DatosRegistro, mailer: Mailer): Promise<void> {
+  // Un registro anterior que nunca se verificó (y ya venció) no bloquea nada.
+  await liberarRegistrosVencidos(datos.email, datos.slug);
   if (await tiendasRepo.buscarPorSlug(datos.slug)) throw slugOcupado();
   // Se hashea siempre, antes de decidir: así tarda lo mismo exista o no el email.
   const hashClave = await hashearClave(datos.clave);

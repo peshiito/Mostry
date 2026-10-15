@@ -1,3 +1,4 @@
+import type { SesionClubVigente } from '../../modules/club/cuenta/sesionesClub.repository.js';
 import type { SesionVigente } from '../../modules/auth/repositorios/sesiones.repository.js';
 import type { TiendaId } from '../db/tiendaId.js';
 import type { TiendaResuelta } from '../middlewares/resolverTienda.js';
@@ -15,6 +16,8 @@ declare global {
       panel?: { tiendaId: TiendaId; usuarioId: number };
       // La completa accesoSoporte: el admin opera con un permiso vigente del comercio.
       soporte?: { accesoId: number; adminId: number };
+      // La completa requerirCliente (cookie del Club Mostry).
+      cliente?: SesionClubVigente;
     }
   }
 }

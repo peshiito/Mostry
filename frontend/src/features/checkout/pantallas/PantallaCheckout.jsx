@@ -6,6 +6,8 @@ import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { HeaderTienda } from '../../tienda/components/HeaderTienda.jsx';
 import { useTienda } from '../../tienda/hooks/useTienda.js';
+import { AvisoClub } from '../components/AvisoClub.jsx';
+import { ElegirPremio } from '../components/ElegirPremio.jsx';
 import { DatosComprador } from '../components/DatosComprador.jsx';
 import { OpcionesEntrega } from '../components/OpcionesEntrega.jsx';
 import { ResumenCompra } from '../components/ResumenCompra.jsx';
@@ -25,6 +27,7 @@ export function PantallaCheckout() {
           bajada="Revisá tus datos y cómo lo recibís."
         />
         <AvisoError error={c.error} />
+        <AvisoClub cliente={c.club} club={tienda.club} />
         <DatosComprador datos={c.datos} errores={c.errores} onCambio={c.setDatos} />
         <OpcionesEntrega
           tienda={tienda}
@@ -34,9 +37,11 @@ export function PantallaCheckout() {
           errores={c.errores}
           onCambio={c.setDatos}
         />
+        <ElegirPremio p={c.premio} />
         <ResumenCompra
           items={c.items}
           costoEnvio={c.entrega === 'envio' ? tienda.costoEnvio : 0}
+          premio={c.premio.premio}
         />
         {c.encargo ? null : (
           <Aviso tipo="alerta" icono="schedule">

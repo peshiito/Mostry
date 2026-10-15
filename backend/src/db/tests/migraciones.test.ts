@@ -1,9 +1,15 @@
+import { readdirSync } from 'node:fs';
 import { sql } from 'kysely';
 import { NO_MIGRATIONS } from 'kysely/migration';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { db } from '../../shared/db/db.js';
 import { limpiarBase } from '../../test/limpiarBase.js';
 import { crearMigrador } from '../migrador.js';
+
+// Cuántas migraciones hay (sin número fijo: se suman con cada mejora).
+const TOTAL = readdirSync(new URL('../migraciones', import.meta.url)).filter((f) =>
+  /^\d{4}_.*\.ts$/.test(f),
+).length;
 
 async function contarTablas(): Promise<number> {
   const { rows } = await sql<{ n: number }>`
@@ -21,6 +27,7 @@ describe('migraciones', { timeout: 120_000 }, () => {
   beforeEach(limpiarBase);
 
   it('bajan todo y vuelven a subir de cero', async () => {
+    const tablas = await contarTablas(); // las que hay con todas las migraciones
     const migrador = crearMigrador(db);
     const bajada = await migrador.migrateTo(NO_MIGRATIONS);
     expect(bajada.error).toBeUndefined();
@@ -28,16 +35,17 @@ describe('migraciones', { timeout: 120_000 }, () => {
 
     const subida = await migrador.migrateToLatest();
     expect(subida.error).toBeUndefined();
-    expect(subida.results).toHaveLength(37);
-    expect(await contarTablas()).toBe(28);
+    expect(subida.results).toHaveLength(TOTAL);
+    expect(await contarTablas()).toBe(tablas);
   });
 
   it('cada migración se puede bajar y volver a subir de a una', async () => {
+    const tablas = await contarTablas();
     const migrador = crearMigrador(db);
-    for (let i = 0; i < 37; i++)
+    for (let i = 0; i < TOTAL; i++)
       expect((await migrador.migrateDown()).error).toBeUndefined();
-    for (let i = 0; i < 37; i++)
+    for (let i = 0; i < TOTAL; i++)
       expect((await migrador.migrateUp()).error).toBeUndefined();
-    expect(await contarTablas()).toBe(28);
+    expect(await contarTablas()).toBe(tablas);
   });
 });

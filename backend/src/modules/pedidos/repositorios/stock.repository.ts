@@ -2,7 +2,8 @@ import { sql } from 'kysely';
 import type { Ejecutor } from '../../../shared/db/ejecutor.js';
 import type { TiendaId } from '../../../shared/db/tiendaId.js';
 
-type Item = { productoId: number; cantidad: number };
+// `reservo`: solo los ítems que reservaron stock al comprarse lo mueven (0038).
+type Item = { productoId: number; cantidad: number; reservo: boolean };
 
 const aplicar = async (
   tx: Ejecutor,
@@ -11,7 +12,8 @@ const aplicar = async (
   cambio: (q: number) => object,
 ) => {
   // Mismo orden que la reserva del checkout (por producto): sin deadlocks.
-  for (const i of [...items].sort((a, b) => a.productoId - b.productoId)) {
+  const conStock = items.filter((i) => i.reservo);
+  for (const i of conStock.sort((a, b) => a.productoId - b.productoId)) {
     await tx
       .updateTable('productos')
       .set(cambio(i.cantidad))

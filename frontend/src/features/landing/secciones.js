@@ -28,5 +28,11 @@ export const SECCIONES = {
   },
   beneficios: { cinta: 'Pensado para vos', titulo: 'Todo resuelto como en el mostrador' },
   precio: { cinta: 'Sin letra chica', titulo: 'Un precio claro para cualquier comercio' },
+  club: {
+    cinta: '¿Sos cliente?',
+    titulo: 'Sumate al Club Mostry',
+    bajada:
+      'Con un solo QR juntás sellos en todas las tiendas con Club y cada una te da sus premios.',
+  },
   preguntas: { cinta: 'Dudas habituales', titulo: 'Preguntas frecuentes' },
 };

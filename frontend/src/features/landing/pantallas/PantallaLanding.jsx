@@ -7,13 +7,14 @@ import { PanelBolsillo } from '../components/PanelBolsillo.jsx';
 import { PasosPedido } from '../components/PasosPedido.jsx';
 import { Precio } from '../components/Precio.jsx';
 import { Preguntas } from '../components/Preguntas.jsx';
+import { SeccionClub } from '../components/SeccionClub.jsx';
 import { TarjetasIcono } from '../components/TarjetasIcono.jsx';
 import { VideoTrailer } from '../components/VideoTrailer.jsx';
 import { BENEFICIOS, PROBLEMAS } from '../contenido.js';
 import { SECCIONES as S } from '../secciones.js';
 
 // Landing de Mostry: problema → la cuadra (rubros) → un pedido paso a paso →
-// el panel → el video → beneficios, precio y preguntas.
+// el panel → el video → beneficios, precio, el Club de clientes y preguntas.
 export function PantallaLanding() {
   return (
     <>
@@ -41,7 +42,10 @@ export function PantallaLanding() {
         <BloqueLanding fondo="papel" id="precio" centrado {...S.precio}>
           <Precio />
         </BloqueLanding>
-        <BloqueLanding {...S.preguntas}>
+        <BloqueLanding id="club" centrado {...S.club}>
+          <SeccionClub />
+        </BloqueLanding>
+        <BloqueLanding fondo="papel" {...S.preguntas}>
           <Preguntas />
         </BloqueLanding>
       </main>

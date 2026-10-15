@@ -5,12 +5,13 @@ import { avisar } from '../avisos/avisos.js';
 // Si hay una versión nueva no recarga sola (cortaría una carga a medias): avisa.
 let registrado = false;
 
-export async function registrarPwa() {
+// `manifest`: el del panel o el del Club (cada uno se instala como su propia app).
+export async function registrarPwa(manifest = '/manifest.webmanifest') {
   if (registrado || !import.meta.env.PROD || !('serviceWorker' in navigator)) return;
   registrado = true;
   const enlace = Object.assign(document.createElement('link'), {
     rel: 'manifest',
-    href: '/manifest.webmanifest',
+    href: manifest,
   });
   document.head.append(enlace);
   const { registerSW } = await import('virtual:pwa-register');

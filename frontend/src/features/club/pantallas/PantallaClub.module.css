@@ -1,0 +1,47 @@
+.club {
+  display: grid;
+  gap: var(--e-3);
+  text-align: center;
+}
+.sello {
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  border: 3px dashed var(--verde);
+  border-radius: 50%;
+  background: var(--verde-claro);
+  color: var(--verde);
+  transform: rotate(-8deg);
+}
+.titulo {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-3xl);
+}
+.bajada {
+  margin: 0;
+  color: var(--texto-2);
+}
+.lista {
+  display: grid;
+  gap: var(--e-3);
+  margin: var(--e-3) 0;
+  padding: var(--e-4);
+  border: var(--borde);
+  border-radius: 12px;
+  background: var(--papel);
+  list-style: none;
+  text-align: start;
+}
+.lista li {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+}
+.lista li > svg {
+  flex: none;
+  color: var(--verde);
+}

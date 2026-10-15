@@ -1,4 +1,5 @@
 import { ayuda } from './ayuda.js';
+import { club } from './club.js';
 import { comercio } from './comercio.js';
 import { errores } from './errores.js';
 import { estados } from './estados.js';
@@ -14,4 +15,5 @@ export const ICONOS = {
   ...tema,
   ...ayuda,
   ...errores,
+  ...club,
 };

@@ -1,16 +1,17 @@
 import { Link } from 'react-router';
-import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { Interruptor } from '../../../shared/ui/Interruptor.jsx';
 import { Miniatura } from '../../../shared/ui/Miniatura.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { useBasePanel } from '../../panelBase/BasePanel.jsx';
+import { BotonHay } from './BotonHay.jsx';
 import css from './FilaProductoPanel.module.css';
+import { StockFila } from './StockFila.jsx';
 import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
 
-// Producto en la lista del panel: datos, alertas de stock y switch de visible.
-export function FilaProductoPanel({ ref, i, producto: p, onActivo }) {
+// Producto en la lista del panel: datos, su stock (según la forma) y switch de
+// visible. Los de "hay / no hay" se cambian de un toque, sin entrar al producto.
+export function FilaProductoPanel({ ref, i, producto: p, onActivo, onAgotado }) {
   const { rutas } = useBasePanel();
-  const bajo = !p.aceptaEncargo && p.stock > 0 && p.stock <= p.stockMinimo;
   return (
     <ItemAnimado ref={ref} i={i} className={css.fila}>
       <Link to={`${rutas}/productos/${p.id}`} className={css.link}>
@@ -18,19 +19,14 @@ export function FilaProductoPanel({ ref, i, producto: p, onActivo }) {
         <span className={css.textos}>
           <span className={css.nombre}>{p.nombre}</span>
           <span className={css.meta}>
-            {p.aceptaEncargo ? (
-              <Etiqueta tono="mostaza">Por encargo</Etiqueta>
-            ) : (
-              `Stock: ${p.stock}`
-            )}
-            {bajo ? <Etiqueta tono="mostaza">Stock bajo</Etiqueta> : null}
-            {p.stock === 0 && !p.aceptaEncargo ? (
-              <Etiqueta tono="ladrillo">Agotado</Etiqueta>
-            ) : null}
+            <StockFila p={p} />
           </span>
           <Monto centavos={p.precio} tamano="sm" />
         </span>
       </Link>
+      {p.modoStock === 'simple' ? (
+        <BotonHay nombre={p.nombre} agotado={p.agotado} onCambio={onAgotado} />
+      ) : null}
       <Interruptor
         etiqueta={`${p.nombre} visible en la tienda`}
         oculto

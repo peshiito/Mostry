@@ -1,0 +1,32 @@
+.lista {
+  display: grid;
+  gap: var(--e-3);
+}
+.ayuda {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.botones {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--e-3);
+}
+.resumen {
+  display: grid;
+  gap: var(--e-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+.si {
+  color: var(--verde);
+}
+.no {
+  color: var(--texto-3);
+  text-decoration: line-through;
+}

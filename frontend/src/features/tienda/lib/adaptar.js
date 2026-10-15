@@ -61,6 +61,9 @@ export function adaptarTienda(t, slug) {
       anticipacionEncargoHoras: t.encargos.anticipacionHoras,
       senaPorcentaje: t.encargos.senaPorcentaje,
       promo: promo ? { titulo: promo.titulo, descripcion: promo.descripcion } : null,
+      // Sin venta online, la tienda muestra solo su tarjeta de presentación.
+      vendeOnline: t.vendeOnline !== false,
+      club: t.club ?? null, // Lealtad: el programa, si está prendido
     },
   };
 }

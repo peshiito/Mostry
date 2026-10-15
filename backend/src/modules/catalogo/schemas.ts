@@ -19,7 +19,9 @@ const camposProducto = {
     .transform((v) => v || null)
     .optional(),
   precio: z.int().min(1).max(1_000_000_000),
-  stock: z.int().min(0).max(1_000_000),
+  // Solo cuenta con modoStock "unidades"; con las otras formas se guarda 0.
+  modoStock: z.enum(['unidades', 'simple', 'a_pedido']).optional(),
+  stock: z.int().min(0).max(1_000_000).optional(),
   stockMinimo: z.int().min(0).max(1_000_000).optional(),
   categoriaId: idBody.nullable().optional(),
   destacado: z.boolean().optional(),

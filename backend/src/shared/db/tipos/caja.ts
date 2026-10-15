@@ -19,7 +19,7 @@ export type MovimientosCajaTabla = DeTienda &
     medio: Medio;
     monto: number;
     concepto: string;
-    origen: 'pedido' | 'fiado' | 'gasto' | 'manual';
+    origen: 'pedido' | 'fiado' | 'gasto' | 'manual' | 'venta';
     origenId: number | null;
     fecha: Date;
   };
@@ -36,3 +36,22 @@ export type GastosTabla = DeTienda &
     fecha: Date;
     detalle: string | null;
   };
+
+// Venta rápida en el local (0042). Los ítems sin producto son "montos sueltos".
+export type VentasTabla = DeTienda & {
+  numero: number;
+  total: number;
+  medio: Medio;
+  creadaEn: Auto<Date>;
+  clienteId: number | null; // cliente del Club (0046)
+  descuento: Auto<number>; // premio del Club usado (0047)
+};
+
+export type VentaItemsTabla = DeTienda & {
+  ventaId: number;
+  productoId: number | null;
+  nombre: string;
+  precioUnitario: number;
+  cantidad: number;
+  subtotal: number;
+};
