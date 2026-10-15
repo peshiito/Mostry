@@ -21,7 +21,9 @@ function validar(p: Pedido, hacia: EstadoManual) {
   if (!TRANSICIONES_MANUALES[hacia].includes(p.estado)) throw invalida(p.estado, hacia);
   if (
     (hacia === 'en_camino' && p.entrega !== 'envio') ||
-    (hacia === 'listo_retirar' && p.entrega !== 'retiro')
+    (hacia === 'listo_retirar' && p.entrega !== 'retiro') ||
+    // Un encargo con seña se acepta (aceptarEncargo.ts): así se pide la seña.
+    (hacia === 'confirmado' && p.tipo === 'encargo' && p.sena > 0)
   ) {
     throw invalida(p.estado, hacia);
   }

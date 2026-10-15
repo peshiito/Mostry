@@ -10,6 +10,7 @@ export function rutasPedidosPanel(): Router {
   r.get('/pedidos', panel.listar);
   r.get('/pedidos/:id', panel.ver);
   r.post('/pedidos/:id/estado', panel.avanzar);
+  r.post('/pedidos/:id/aceptar', panel.aceptar);
   r.post('/pedidos/:id/cancelar', panel.cancelar);
   return r;
 }

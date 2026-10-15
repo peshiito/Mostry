@@ -13,19 +13,17 @@ describe('checkout: encargos', () => {
     t = await tiendaLista();
   });
 
-  it('con seña (30%): pendiente de pago por la seña, plazo de 24 h y SIN tocar stock', async () => {
+  it('con seña (30%): nace por aceptar, con la seña calculada y SIN tocar stock', async () => {
     const res = await t.comprador
       .post('/publico/pedidos', encargo({ rogel: 1 }))
       .expect(201);
     expect(res.body).toMatchObject({
-      estado: 'pendiente_pago',
+      estado: 'pendiente_confirmacion',
       total: 2800000,
       sena: 840000,
+      pago: null,
+      venceComprobanteEn: null,
     });
-    expect(res.body.pago.monto).toBe(840000);
-    expect(
-      (new Date(res.body.venceComprobanteEn).getTime() - Date.now()) / 3_600_000,
-    ).toBeCloseTo(24, 1);
     const rogel = await db
       .selectFrom('productos')
       .select(['stock', 'stockReservado'])

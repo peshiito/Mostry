@@ -13,13 +13,15 @@ type Datos = {
 
 const TEXTOS: Record<EstadoPedido, (p: Datos) => string> = {
   pendiente_pago: (p) =>
-    `recibimos tu pedido #${p.numero}. Para confirmarlo, transferí ${formatearPlata(montoAPagar(p))} y subí el comprobante`,
+    p.sena > 0
+      ? `¡aceptamos tu encargo #${p.numero}! Para reservarlo, transferí ${formatearPlata(p.sena)} de seña y subí el comprobante`
+      : `recibimos tu pedido #${p.numero}. Para confirmarlo, transferí ${formatearPlata(montoAPagar(p))} y subí el comprobante`,
   comprobante_enviado: (p) =>
     `recibimos tu comprobante del pedido #${p.numero}. En breve lo revisamos`,
   pago_aprobado: (p) =>
     `¡aprobamos tu pago del pedido #${p.numero}! Ya lo estamos por preparar`,
   pendiente_confirmacion: (p) =>
-    `recibimos tu encargo #${p.numero}. Te avisamos cuando lo confirmemos`,
+    `recibimos tu encargo #${p.numero}. Te avisamos cuando lo aceptemos`,
   confirmado: (p) => `¡confirmamos tu encargo #${p.numero}!`,
   en_preparacion: (p) => `estamos preparando tu pedido #${p.numero}`,
   en_camino: (p) => `¡tu pedido #${p.numero} va en camino!`,

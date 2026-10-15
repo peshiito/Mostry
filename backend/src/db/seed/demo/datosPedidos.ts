@@ -1,8 +1,8 @@
 import type { Linea } from './pedidos.js';
 
 // Cada pedido de la demo: qué compra, quién, cómo y por qué pasos pasa.
-// Pasos: comprobante (el cliente lo sube), aprobar (la comerciante), un estado
-// del panel, o cancelar. sinSena: encargo de una tienda que no pide seña.
+// Pasos: comprobante (el cliente lo sube), aprobar (la comerciante), aceptar
+// (un encargo), un estado del panel, o cancelar. sinSena: encargo de una tienda que no pide seña.
 export type Escena = {
   lineas: Linea[];
   nombre: string;

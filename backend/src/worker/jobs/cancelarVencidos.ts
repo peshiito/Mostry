@@ -3,34 +3,23 @@ import { comoTiendaId } from '../../shared/db/tiendaId.js';
 import { logger } from '../../shared/logger.js';
 import { pedidosRepo } from '../../modules/pedidos/repositorios/pedidos.repository.js';
 import { cancelarEnTx } from '../../modules/pedidos/servicios/cancelar.js';
+import { candidatos, motivo } from '../../modules/pedidos/servicios/vencidos.js';
 
-const LOTE = 200;
-
-// Job (cada 5 min): cancela los pedidos que no subieron el comprobante a tiempo
-// y libera su reserva de stock (sección 6.6). Idempotente: cada pedido se
-// re-chequea con lock, así que correrlo dos veces no hace nada de más.
+// Job (cada 5 min): cancela los pedidos que no pagaron a tiempo (y libera su
+// reserva de stock, sección 6.6) y los encargos que pasaron su fecha sin que
+// los aceptaran. Idempotente: cada pedido se re-chequea con lock.
 export async function cancelarVencidos(ahora = new Date()) {
-  const vencidos = await db
-    .selectFrom('pedidos')
-    .select(['id', 'tiendaId'])
-    .where('estado', '=', 'pendiente_pago')
-    .where('venceComprobanteEn', '<=', ahora)
-    .orderBy('venceComprobanteEn')
-    .limit(LOTE)
-    .execute();
+  const vencidos = await candidatos(ahora);
   let cancelados = 0;
   let fallidos = 0;
   for (const v of vencidos) {
+    const tiendaId = comoTiendaId(v.tiendaId);
     try {
       const hecho = await db.transaction().execute(async (tx) => {
-        const p = await pedidosRepo.bloquear(tx, comoTiendaId(v.tiendaId), v.id);
-        if (
-          p?.estado !== 'pendiente_pago' ||
-          !p.venceComprobanteEn ||
-          p.venceComprobanteEn > ahora
-        )
-          return false;
-        await cancelarEnTx(tx, comoTiendaId(v.tiendaId), p, 'Venció el plazo para pagar');
+        const p = await pedidosRepo.bloquear(tx, tiendaId, v.id);
+        const porque = motivo(p, ahora);
+        if (!p || !porque) return false;
+        await cancelarEnTx(tx, tiendaId, p, porque);
         return true;
       });
       if (hecho) cancelados++;

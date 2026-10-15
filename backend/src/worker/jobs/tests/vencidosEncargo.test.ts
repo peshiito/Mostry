@@ -4,6 +4,15 @@ import { stockDe } from '../../../test/flujoPedido.js';
 import { pedido, tiendaLista } from '../../../test/tiendaLista.js';
 import { cancelarVencidos } from '../cancelarVencidos.js';
 
+const idDe = async (numero: number) =>
+  (
+    await db
+      .selectFrom('pedidos')
+      .select('id')
+      .where('numero', '=', numero)
+      .executeTakeFirstOrThrow()
+  ).id;
+
 const vencer = (numero: number, msAtras = 1000) =>
   db
     .updateTable('pedidos')
@@ -27,6 +36,7 @@ describe('cancelarVencidos: encargos', () => {
     await comprar(
       pedido(t.productos, { rogel: 1 }, { tipo: 'encargo', fechaEncargo: fecha }),
     );
+    await t.panel.post(`/panel/pedidos/${await idDe(2)}/aceptar`).expect(200);
     await vencer(2);
     expect(await cancelarVencidos()).toEqual({
       revisados: 1,

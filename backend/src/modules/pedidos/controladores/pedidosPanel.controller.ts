@@ -9,6 +9,7 @@ import {
 import { listarPedidos, verPedido } from '../servicios/panelPedidos.service.js';
 import { cancelarPedido } from '../servicios/cancelarPedido.service.js';
 import { avanzarPedido } from '../servicios/transiciones.service.js';
+import { aceptarEncargo } from '../servicios/aceptarEncargo.js';
 
 const listar: RequestHandler = async (req, res) => {
   const { pagina, ...filtros } = esquemaFiltrosPedidos.parse(req.query);
@@ -43,4 +44,8 @@ const cancelar: RequestHandler = async (req, res) => {
   );
 };
 
-export const pedidosPanelController = { listar, ver, avanzar, cancelar };
+const aceptar: RequestHandler = async (req, res) => {
+  res.json(await aceptarEncargo(tiendaDelPanel(req), esquemaId.parse(req.params.id)));
+};
+
+export const pedidosPanelController = { listar, ver, avanzar, aceptar, cancelar };

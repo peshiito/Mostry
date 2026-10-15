@@ -18,22 +18,23 @@ export async function pedidoHasta(
       : pedido(t.productos, { rogel: 1 }, { tipo: 'encargo', fechaEncargo: enDias(3) });
   const creado = (await t.comprador.post('/publico/pedidos', datos).expect(201)).body;
   const numero = creado.numero as number;
+  // Un encargo nace "por aceptar": la seña se paga recién al aceptarlo (Encargos 2).
+  if (tipo === 'encargo')
+    await t.panel.post(`/panel/pedidos/${await idPedido(numero)}/aceptar`).expect(200);
+  const monto = (creado.pago?.monto ?? creado.sena) as number;
   await subirComprobante(t.app, 'dona-rosa', creado.token, await png()).expect(201);
   const id = await idPedido(numero);
   const [c] = (await t.panel.get(`/panel/pedidos/${id}/comprobantes`)).body;
   if (hasta === 'pago_aprobado') {
     await t.panel
-      .post(
-        `/panel/pedidos/${id}/comprobantes/${c.id}/aprobar`,
-        datosAprobacion(creado.pago.monto),
-      )
+      .post(`/panel/pedidos/${id}/comprobantes/${c.id}/aprobar`, datosAprobacion(monto))
       .expect(200);
   }
   return {
     id,
     token: creado.token as string,
     comprobanteId: c.id as number,
-    monto: creado.pago.monto as number,
+    monto,
     total: creado.total as number,
   };
 }

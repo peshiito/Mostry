@@ -36,6 +36,7 @@ export async function escenaPedidos({ rosa, tiendaId, producto, tienda }: Ctx) {
     for (const paso of e.pasos) {
       if (paso === 'comprobante') await subirComprobante(c, img);
       else if (paso === 'aprobar') await aprobar(rosa, tiendaId, c, e.nombre);
+      else if (paso === 'aceptar') await rosa.post(`/panel/pedidos/${id}/aceptar`, {});
       else if (paso === 'cancelar')
         await rosa.post(`/panel/pedidos/${id}/cancelar`, {
           motivo: 'El cliente avisó que no lo va a retirar',

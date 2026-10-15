@@ -26,7 +26,7 @@ export const ESPECIALES: Escena[] = [
     nombre: 'Valeria Luna',
     whatsapp: '11 1212-3434',
     encargoEnDias: [3, 11],
-    pasos: PAGADO,
+    pasos: ['aceptar', ...PAGADO],
   },
   {
     lineas: [['Rogel', 1]],
@@ -34,6 +34,6 @@ export const ESPECIALES: Escena[] = [
     whatsapp: '11 5656-7878',
     encargoEnDias: [5, 17],
     sinSena: true,
-    pasos: ['confirmado'],
+    pasos: ['aceptar'],
   },
 ];
