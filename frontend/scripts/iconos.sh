@@ -31,3 +31,13 @@ generar icono-512 512 0.8 200
 generar icono-maskable-512 512 0.6 0
 # iOS redondea solo: va cuadrado y sin transparencia.
 generar apple-touch-icon 180 0.74 0
+
+# Insignia de los avisos (Avisos 1): Android la muestra en la barra de estado y
+# la pinta de un solo color, así que va la silueta del toldo en blanco, sin fondo.
+SILUETA=$(echo "$TOLDO" | sed -E 's/fill="#[0-9A-Fa-f]{6}"/fill="#FFFFFF"/g')
+cat <<SVG | rsvg-convert -w 96 -h 96 -o "$SALIDA/insignia-96.png"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <g transform="translate(50 276) scale(1.449)">$SILUETA</g>
+</svg>
+SVG
+echo "$SALIDA/insignia-96.png"

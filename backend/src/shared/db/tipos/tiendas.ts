@@ -1,5 +1,5 @@
 import type { ModoStock } from './catalogo.js';
-import type { Auto, ColTienda, Creado, Fecha, Timestamps } from './comunes.js';
+import type { Auto, ColTienda, Creado, Fecha, Hora, Timestamps } from './comunes.js';
 
 export type EstadoTienda = 'prueba' | 'activa' | 'gracia' | 'suspendida';
 
@@ -47,6 +47,8 @@ export type MiembrosTiendaTabla = Creado & {
   tiendaId: ColTienda;
   usuarioId: number;
   rol: Auto<'dueno' | 'empleado'>;
+  silencioDesde: Auto<Hora | null>; // avisos sin sonido (Avisos 1, 0051)
+  silencioHasta: Auto<Hora | null>;
 };
 
 export type PagosSuscripcionTabla = Creado & {

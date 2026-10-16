@@ -1,5 +1,6 @@
 import { tiendaDelPanel } from '../../../shared/http/contextoPanel.js';
 import type { RequestHandler } from 'express';
+import { despacharAvisos } from '../../avisos/despachar.js';
 import { esquemaToken } from '../../pedidos/schemas.js';
 import { esquemaAprobacion, esquemaId, esquemaRechazo } from '../schemas.js';
 import { listarComprobantes, verArchivo } from '../servicios/archivo.service.js';
@@ -50,6 +51,7 @@ const rechazar: RequestHandler = async (req, res) => {
 const subir: RequestHandler = async (req, res) => {
   const token = esquemaToken.parse(req.params.token);
   res.status(201).json(await subirComprobante(req.tienda!.id, token, req.file!.buffer));
+  despacharAvisos(req.tienda!.id); // al teléfono del comercio (Avisos 1)
 };
 
 export const comprobantesController = { listar, archivo, aprobar, rechazar, subir };

@@ -394,6 +394,7 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **Mejoras 3 COMPLETA.** Suites: backend 373/373, frontend 129/129, e2e 74/74.
 - **Etapa "Lealtad"** (club de clientes con QR y sellos), arrancada el 2026-10-13. El plan completo está en **`docs/lealtad-plan.md`**: leelo entero antes de seguir.
   - **L1 a L5: HECHAS (2026-10-14), sin commitear.** Pedro pidió hacerlas de corrido (aprobé yo los planes de L3–L5, con su permiso). Migraciones `0043` a `0047`, `modules/club/{cuenta,qr,programa,sellos,canjes,historial}`, `features/{club,clubPanel}` y el escáner en `features/vender/`.
+- **Avisos 1 (2026-10-16):** notificaciones push al celular del comercio y resumen de la mañana por push y mail. Detalle en §13.
 - **Encargos 2 y 3 (2026-10-15):** aceptar antes de cobrar, personalización con foto, cupo por día, encargos cargados desde el panel y anticipación por producto. Detalle en §13.
 - **Cuentas de prueba en la base local** (cargadas a mano el 2026-10-15, clave `prueba12345`): `tienda@prueba.test` (tienda vacía `prueba`, en prueba gratis) y `cliente@prueba.test` (cliente del Club).
 - **En la base local:** el admin es `pedrotest@gmail.com` (clave `test12345`, cargada a mano). El seed sigue creando `admin@mostry.test`.
@@ -517,6 +518,33 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
     - panel: bloque "Por aceptar" en Encargos; Aceptar y Rechazar en el detalle, con la personalización y "Ver foto de referencia"; "Pide personalización" en el producto; "Máximo de encargos por día" en Mi tienda;
     - vidriera: la personalización y la foto se cargan en el paso del encargo (`checkout/components/Personalizar.jsx`) y la foto se sube después de crear el pedido (`useConfirmarEncargo`). El seguimiento avisa "Esperando que … acepte tu encargo".
   - **Las docenas son productos aparte** ("Docena surtida"): decisión de Pedro, no hay unidad de venta.
+- **Avisos 1: notificaciones push al teléfono del comercio (2026-10-16):**
+  - **Por qué:** el comerciante cierra la notebook y no se entera de un pedido de la noche. El aviso tiene que llegarle **al celular** y, además, a la mañana tiene que recibir un resumen.
+  - **Suscripciones** (`modules/avisos/`, migración `0051`):
+    - una por teléfono, tienda y usuario (`suscripciones_push`), con `endpoint`, `p256dh` y `auth`;
+    - rutas `GET /panel/avisos`, `POST /panel/avisos/suscripciones`, `POST /panel/avisos/suscripciones/baja`, `PUT /panel/avisos/silencio` y `POST /panel/avisos/probar`;
+    - el modo soporte da 403 (`miembroDelPanel`);
+    - **anti-SSRF:** solo se aceptan endpoints https de FCM, Mozilla, Apple y Windows (`endpointPermitido.ts`). `AVISOS_HOSTS_EXTRA` es solo para tests y en producción está prohibida.
+  - **Cola** (`avisos_push`):
+    - el checkout y el comprobante encolan **en su transacción**, con una clave única por tienda (`encolar.ts`);
+    - el controlador despacha al toque después de responder (`despachar.ts`, que en los tests no corre solo);
+    - el job `enviar-avisos` (cada minuto) es la red de seguridad: deja 20 s a la API y reclama cada aviso con un UPDATE atómico, así nunca se manda dos veces;
+    - el texto se arma al mandar (`textos.ts`), con el número y el nombre de pila: sin plata, dirección ni token;
+    - opciones del envío: TTL de 6 h, `urgency: high` y `topic`/`tag` por pedido;
+    - un 404/410 borra el teléfono; con otros errores se reintenta a los 5 minutos, hasta 5 veces;
+    - los encargos cargados desde el panel no avisan.
+  - **Horario de silencio** (`miembros_tienda.silencio_desde/hasta`, puede cruzar la medianoche): el aviso llega igual, pero `silencioso`, sin sonido.
+  - **Resumen de la mañana** (job `resumen-manana`, cada 15 min):
+    - **cuándo:** desde la hora de apertura de hoy y hasta 3 h después; si ese día no abre o es feriado, a las 9. No se manda si la tienda está pausada o suspendida;
+    - **qué:** push y **mail** a los dueños (`enviarAviso.ts`) con los comprobantes para revisar, los encargos por aceptar y los encargos de hoy. El mail va aunque el dueño no tenga avisos activados;
+    - una vez por día (clave `resumen:AAAA-MM-DD`).
+  - **Claves VAPID** en `.env`, generadas con `npm run avisos:claves` (en `backend/`). Son obligatorias en producción; sin claves no se manda nada y el panel lo dice. **No se cambian después**, porque los teléfonos suscriptos dejarían de recibir.
+  - **Frontend:**
+    - `public/avisos-sw.js`, sumado con `workbox.importScripts`: el push muestra el aviso con la insignia `iconos/insignia-96.png` (generada por `scripts/iconos.sh`) y el número en el ícono (`setAppBadge`); tocar el aviso abre o enfoca el panel en el pedido;
+    - Más → Avisos en el teléfono (`features/avisos/`), con el paso a paso para iPhone (tiene que estar instalado) y para cuando el permiso está bloqueado;
+    - la tarjeta del inicio invita a activarlos (se puede cerrar);
+    - `useSincronizarAvisos` renueva la suscripción al abrir el panel; al cerrar sesión se borra la de ese teléfono.
+  - **Para "Avisos 2":** el recordatorio de "encargo sin aceptar hace 2 h" y los encargos de mañana a la noche.
 - **Encargos 3 (2026-10-15):**
   - **Encargo cargado desde el panel** (`POST /panel/encargos`, `encargos/manual/`): lo que llegó por WhatsApp o en persona. Entra ya aceptado: si el dueño anota la seña cobrada (monto y medio), queda en `pago_aprobado` y la seña entra a la caja en la misma transacción (en efectivo exige la caja abierta). Sin seña, queda en `confirmado`. El dueño manda: sin anticipación, horario ni cupo, solo con fecha futura y dentro de 60 días. La personalización es opcional. `pedidos.origen = 'panel'` (migración `0050`) se muestra como "cargado por vos". Pantalla: Panel → Encargos → Cargar (`PantallaNuevoEncargo`), que lista productos con `/panel/productos?encargo=true`.
   - **Anticipación por producto** (`productos.anticipacion_horas`, nulo = la de la tienda): vale la mayor entre la tienda y los productos (`encargos/anticipacion.ts` en el backend y `checkout/lib/anticipacion.js` en el frontend). La disponibilidad recibe `&productos=1,2`.
@@ -557,7 +585,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
 - **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte, club (cuentas de cliente, QR, programa, sellos, canjes e historiales).
 - **Base:**
-  - 50 migraciones en `db/migraciones/` (todas con `down`);
+  - 51 migraciones en `db/migraciones/` (todas con `down`);
   - seed en `db/seed/` (`npm run db:seed`);
   - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
 - **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.
@@ -603,6 +631,11 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Vite se reinicia** si cambian `vite.config.js` o un `.env`: si pasa con el e2e corriendo, fallan pruebas por "connection refused".
 - **Prueba de producción en local** (Caddy con certificado propio): Chrome no registra el service worker, y las URLs firmadas de los comprobantes apuntan a la red de Docker. En producción real no pasa.
 - **gitleaks** marca como "secreto" el texto de ejemplo de `.env.example` y el token de `frontend/src/test/rutas.js`. Están permitidos en `.gitleaks.toml` y con `// gitleaks:allow`.
+- **Avisos push en local:**
+  - el service worker existe solo en el build, no con `npm run dev`;
+  - para probar en la PC: `npm run avisos:claves`, pegar las claves en el `.env`, `cd frontend; and npm run build; and npx vite preview`, y Chrome de escritorio en `localhost`;
+  - en un teléfono real hace falta https: se prueba recién en staging;
+  - el e2e (`avisos.spec.js`) no manda a Google ni a Apple: el envío lo cubren los tests del backend con el transporte falso (`transportePush`).
 - **Herramientas que ya se usaron:**
   - Lighthouse: `npx lighthouse@12` con `CHROME_PATH` apuntando al Chromium de Playwright, en `~/.cache/ms-playwright/`;
   - OWASP ZAP: por Docker, con resultados en `~/.cache/mostry-zap`;

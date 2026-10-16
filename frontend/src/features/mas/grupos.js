@@ -24,6 +24,7 @@ export const GRUPOS = [
   [
     'Cuenta',
     [
+      ['Avisos en el teléfono', 'notifications', 'avisos'],
       ['Suscripción', 'receipt_long', 'suscripcion'],
       ['Mi cuenta', 'person', 'cuenta'],
     ],

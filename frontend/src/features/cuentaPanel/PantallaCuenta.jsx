@@ -7,6 +7,7 @@ import { Pagina } from '../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../shared/ui/Seccion.jsx';
 import { TituloPagina } from '../../shared/ui/TituloPagina.jsx';
 import { cuentaApi } from '../cuenta/api/cuenta.js';
+import { apagarAvisosAlSalir } from '../avisos/lib/apagarAlSalir.js';
 import { useSesion } from '../sesion/useSesion.js';
 import { AccesoCuenta } from './AccesoCuenta.jsx';
 import { HojaCambiarClave } from './HojaCambiarClave.jsx';
@@ -19,6 +20,7 @@ export function PantallaCuenta() {
   // Solo se sale si la API cerró la sesión: si no, la cookie seguiría viva.
   const cierre = useAccion(cuentaApi.salir);
   async function salir() {
+    await apagarAvisosAlSalir();
     if ((await cierre.ejecutar()).ok) navegar('/panel/ingresar', { replace: true });
   }
   return (

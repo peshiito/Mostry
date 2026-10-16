@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { avisosEnProduccion, camposAvisos } from './esquemaAvisos.js';
 
 const texto = z.string().min(1);
 const puerto = z.coerce.number().int().positive();
@@ -47,6 +48,7 @@ export const esquemaEnv = z
     MOSTRY_ALIAS: texto,
     MOSTRY_TITULAR: texto,
     PRECIO_MENSUAL: z.coerce.number().int().positive(),
+    ...camposAvisos,
   })
   .refine((c) => c.NODE_ENV !== 'production' || c.ORIGEN_PROTOCOLO === 'https', {
     message: 'En producción ORIGEN_PROTOCOLO tiene que ser https',
@@ -57,6 +59,9 @@ export const esquemaEnv = z
   })
   .refine((c) => c.NODE_ENV !== 'production' || c.BACKUP_ENTORNO, {
     message: 'En producción falta BACKUP_ENTORNO (staging o produccion)',
+  })
+  .refine(avisosEnProduccion, {
+    message: 'En producción faltan las claves VAPID (o sobra AVISOS_HOSTS_EXTRA)',
   })
   .refine((c) => c.NODE_ENV !== 'test' || c.DB_NOMBRE_TEST, {
     message: 'Para correr tests falta DB_NOMBRE_TEST',

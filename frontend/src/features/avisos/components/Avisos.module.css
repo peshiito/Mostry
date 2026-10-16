@@ -1,0 +1,43 @@
+.estado {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-3);
+  text-align: center;
+}
+.icono,
+.iconoActivo {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--lona-oscura);
+  color: var(--texto-2);
+}
+.iconoActivo {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  text-wrap: balance;
+}
+.texto {
+  color: var(--texto-2);
+  text-wrap: pretty;
+}
+.bloque {
+  display: grid;
+  gap: var(--e-3);
+}
+.horas {
+  display: flex;
+  gap: var(--e-3);
+}
+.pasos {
+  display: grid;
+  gap: var(--e-1);
+  padding-left: var(--e-4);
+}

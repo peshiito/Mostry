@@ -9,6 +9,7 @@ import { AppError } from '../../../shared/errors/AppError.js';
 import { pedidosRepo } from '../../pedidos/repositorios/pedidos.repository.js';
 import { verSeguimiento } from '../../pedidos/servicios/seguimiento.service.js';
 import { comprobantesRepo } from '../repositorios/comprobantes.repository.js';
+import { encolarAviso } from '../../avisos/encolar.js';
 import { pedidoEsperandoPago, plazoVencido } from './pedidoEsperandoPago.js';
 
 const noSePuede = () =>
@@ -36,7 +37,7 @@ export async function subirComprobante(
       // Se re-chequea acá: procesar y subir el archivo puede tardar unos segundos.
       if (p.venceComprobanteEn && p.venceComprobanteEn <= new Date())
         throw plazoVencido();
-      await comprobantesRepo.insertar(tx, {
+      const comprobanteId = await comprobantesRepo.insertar(tx, {
         tiendaId,
         pedidoId: p.id,
         tipo: p.tipo === 'encargo' ? 'sena' : 'pago',
@@ -44,6 +45,11 @@ export async function subirComprobante(
         archivoTipo: procesado.tipoOriginal,
         // Retención máxima aunque nadie lo revise (después se fija 2 h o 48 h).
         archivoBorrarEn: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      });
+      await encolarAviso(tx, tiendaId, {
+        tipo: 'comprobante',
+        pedidoId: p.id,
+        clave: `comprobante:${comprobanteId}`,
       });
       await tx
         .updateTable('pedidos')

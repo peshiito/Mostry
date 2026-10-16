@@ -7,6 +7,7 @@ import { rutasSellosPanel } from './club/sellos/sellosPanel.routes.js';
 import { rutasComprobantesPanel } from './comprobantes/comprobantes.routes.js';
 import { rutasEncargosPanel } from './encargos/encargos.routes.js';
 import { rutasFotosPanel } from './encargos/fotos/fotos.routes.js';
+import { rutasAvisos } from './avisos/avisos.routes.js';
 import { rutasGastos } from './gastos/gastos.routes.js';
 import { rutasHorarios } from './horarios/horarios.routes.js';
 import { rutasLibreta } from './libreta/libreta.routes.js';
@@ -41,6 +42,7 @@ export function rutasPanel(mailer: Mailer): Router {
   r.use(rutasClubPanel());
   r.use(rutasSellosPanel());
   r.use(rutasReportes());
+  r.use(rutasAvisos());
   r.use(rutasSoportePanel());
   return r;
 }

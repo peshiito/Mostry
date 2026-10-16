@@ -1,5 +1,6 @@
 import type { RegistroAdminTabla, TiendasEliminadasTabla } from './admin.js';
 import type { ArchivosPorBorrarTabla, AvisosSuscripcionTabla } from './archivos.js';
+import type { AvisosPushTabla, SuscripcionesPushTabla } from './avisos.js';
 import type {
   CajasTabla,
   GastosTabla,
@@ -59,4 +60,6 @@ export interface Database {
   premiosLealtad: E.PremiosLealtadTabla;
   sellos: E.SellosTabla;
   canjes: E.CanjesTabla;
+  suscripcionesPush: SuscripcionesPushTabla;
+  avisosPush: AvisosPushTabla;
 }

@@ -14,6 +14,8 @@ export const pwa = () =>
       // Sin el video ni las fotos de la landing: el celular del comercio baja lo justo.
       globPatterns: ['**/*.{js,css,html}', 'iconos/*.png', '*.svg', '**/*-latin-*.woff2'],
       navigateFallback: '/index.html',
+      // Avisos 1: el push y el toque en el aviso (public/avisos-sw.js).
+      importScripts: ['/avisos-sw.js'],
       runtimeCaching: [],
     },
   });

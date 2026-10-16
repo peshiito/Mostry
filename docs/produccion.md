@@ -33,6 +33,7 @@ La plantilla con cada variable explicada está en [`.env.produccion.example`](..
 - `BACKUP_ENTORNO` definida: `produccion` o `staging`, así nunca comparten carpeta de backups.
 - `SECRETO_HMAC` de 32 caracteres o más. Generala con `openssl rand -base64 48`.
 - **Sin `SEED_CLAVE`**: en producción el seed no corre.
+- `VAPID_PUBLICA`, `VAPID_PRIVADA` y `VAPID_CONTACTO` (avisos push): generalas una sola vez con `cd backend; and npm run avisos:claves`. **No las cambies después**: los teléfonos ya suscriptos dejarían de recibir avisos.
 
 **Las claves reales se cargan en el panel de Railway (Variables), nunca en un archivo del repo.**
 

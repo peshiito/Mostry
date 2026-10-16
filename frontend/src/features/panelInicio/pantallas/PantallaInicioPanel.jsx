@@ -1,5 +1,6 @@
 import { EsqueletoResumen } from '../../../shared/ui/esqueletos/index.js';
 import { useSesion } from '../../sesion/useSesion.js';
+import { TarjetaActivarAvisos } from '../../avisos/components/TarjetaActivarAvisos.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -49,6 +50,7 @@ export function PantallaInicioPanel() {
           Ver pedidos por aprobar ({r.porAprobar})
         </Boton>
       ) : null}
+      <TarjetaActivarAvisos />
       <StockBajo productos={r.stockBajo} />
     </Pagina>
   );

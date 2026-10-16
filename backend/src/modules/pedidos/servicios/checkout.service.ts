@@ -6,6 +6,7 @@ import { checkoutRepo as repo } from '../repositorios/checkout.repository.js';
 import { tiendaParaPedido } from '../repositorios/tiendaParaPedido.repository.js';
 import type { DatosCheckout } from '../schemas.js';
 import { registrarCanje } from '../../club/canjes/registrarCanje.js';
+import { avisoDePedido, encolarAviso } from '../../avisos/encolar.js';
 import { bloquearSiHayPremio, canjeDelPedido } from './canjeDelPedido.js';
 import { armarItems } from './armarPedido.js';
 import { filaPedido } from './filaPedido.js';
@@ -59,6 +60,7 @@ export async function crearPedido(
       items.map((i) => ({ ...i, tiendaId })),
     );
     if (canje) await registrarCanje(tx, tiendaId, canje, 'pedido', pedidoId);
+    await encolarAviso(tx, tiendaId, avisoDePedido(d.tipo, pedidoId)); // Avisos 1
     return fila;
   });
 

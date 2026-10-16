@@ -29,6 +29,9 @@ const PRODUCCION = {
   MOSTRY_ALIAS: 'mostry.pagos',
   MOSTRY_TITULAR: 'Pedro Báez',
   PRECIO_MENSUAL: '1000000',
+  VAPID_PUBLICA: 'B'.repeat(87),
+  VAPID_PRIVADA: 'p'.repeat(43),
+  VAPID_CONTACTO: 'mailto:hola@mostry.com.ar',
 };
 const errores = (cambios: object) => {
   const r = esquemaEnv.safeParse({ ...PRODUCCION, ...cambios });
@@ -49,5 +52,14 @@ describe('config de producción', () => {
       expect.stringMatching(/BACKUP_ENTORNO/),
     ]);
     expect(errores({ BACKUP_ENTORNO: 'Producción!' }).length).toBeGreaterThan(0);
+  });
+
+  it('exige las claves de los avisos y no acepta hosts de push extra', () => {
+    expect(errores({ VAPID_PRIVADA: undefined })).toEqual([
+      expect.stringMatching(/VAPID/),
+    ]);
+    expect(errores({ AVISOS_HOSTS_EXTRA: 'evil.com' })).toEqual([
+      expect.stringMatching(/AVISOS_HOSTS_EXTRA/),
+    ]);
   });
 });

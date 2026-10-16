@@ -3,6 +3,8 @@
 // Un test compara esta lista con information_schema: si se suma una tabla con
 // tienda_id y no se agrega acá, el test falla (y la tienda no se podría borrar).
 export const TABLAS_DE_TIENDA = [
+  'avisos_push',
+  'suscripciones_push',
   'registro_soporte',
   'accesos_soporte',
   'venta_items',

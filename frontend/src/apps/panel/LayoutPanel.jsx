@@ -8,6 +8,7 @@ import { PantallaEmpezar } from '../../features/empezar/PantallaEmpezar.jsx';
 import { BannerSoporte } from '../../features/soporte/components/BannerSoporte.jsx';
 import { BannerSuscripcion } from '../../features/suscripcion/components/BannerSuscripcion.jsx';
 import { propsPaleta } from '../../shared/lib/paletas.js';
+import { useSincronizarAvisos } from '../../features/avisos/hooks/useSincronizarAvisos.js';
 import { HeaderPanel } from './HeaderPanel.jsx';
 import { NavPanel, ORDEN_PESTANAS } from './NavPanel.jsx';
 import css from './LayoutPanel.module.css';
@@ -25,6 +26,7 @@ export function LayoutPanel() {
 function MarcoPanel() {
   const { tienda, plan } = usePanel();
   const { soporte } = useBasePanel();
+  useSincronizarAvisos(!soporte); // renueva la suscripción de este teléfono (Avisos 1)
   // Todavía no contestó "Armá tu Mostry": primero las preguntas (Mejoras 3 A).
   // Suspendida no puede guardarlas: va al panel de solo lectura para pagar.
   const preguntar = !tienda.configuradaEn && !soporte && plan?.estado !== 'suspendida';

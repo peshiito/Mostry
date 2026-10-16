@@ -1,5 +1,6 @@
 import type { Mailer } from '../shared/email/mailer.js';
 import { conLock } from './conLock.js';
+import { tareasAvisos } from './tareasAvisos.js';
 import { backupBase } from './jobs/backup.js';
 import { barrerHuerfanos } from './jobs/barrerHuerfanos.js';
 import { borrarComprobantesVencidos } from './jobs/borrarComprobantes.js';
@@ -63,5 +64,6 @@ export function crearTareas(mailer: Mailer) {
       cron: '0 5 1 * *',
       correr: () => conLock('probar-restauracion', () => probarRestauracion()),
     },
+    ...tareasAvisos(mailer),
   ];
 }

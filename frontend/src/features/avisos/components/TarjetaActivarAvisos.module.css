@@ -1,0 +1,23 @@
+.tarjeta {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+}
+.icono {
+  flex: none;
+  color: var(--verde);
+}
+.textos {
+  display: grid;
+  flex: 1;
+  gap: var(--e-2);
+  justify-items: start;
+}
+.titulo {
+  font-weight: 600;
+}
+.texto {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  text-wrap: pretty;
+}
