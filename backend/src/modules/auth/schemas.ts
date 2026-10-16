@@ -16,7 +16,11 @@ export const esquemaRegistro = z.strictObject({
     .trim()
     .toLowerCase()
     .refine(esSlugValido, 'Subdominio inválido o reservado'),
+  // S2: sin aceptar los términos y la privacidad no hay registro.
+  aceptoTerminos: z.literal(true),
 });
+
+export const esquemaTerminos = z.strictObject({ version: z.string().max(10) });
 
 export const esquemaEmail = z.strictObject({ email });
 export const esquemaVerificar = z.strictObject({ email, codigo });

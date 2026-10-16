@@ -1,3 +1,4 @@
+import { VERSION_LEGAL } from '../../config/legal.js';
 import type { Kysely } from 'kysely';
 import { comoTiendaId, type TiendaId } from '../../shared/db/tiendaId.js';
 import type { Database } from '../../shared/db/tipos/index.js';
@@ -32,6 +33,8 @@ export async function insertarTienda(
           ...datos.duenio,
           hashClave,
           emailVerificadoEn: new Date(),
+          terminosVersion: VERSION_LEGAL,
+          terminosAceptadosEn: new Date(),
         })
         .executeTakeFirstOrThrow(),
     );

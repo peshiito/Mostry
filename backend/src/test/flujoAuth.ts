@@ -8,7 +8,14 @@ export const CLAVE = 'una-clave-bien-larga';
 
 export async function registrarYVerificar(app: Express, correo: Correo, slug: string) {
   const email = `${slug}@test.com`;
-  const datos = { email, clave: CLAVE, nombre: 'Rosa', nombreNegocio: 'Doña Rosa', slug };
+  const datos = {
+    email,
+    clave: CLAVE,
+    nombre: 'Rosa',
+    nombreNegocio: 'Doña Rosa',
+    slug,
+    aceptoTerminos: true,
+  };
   await request(app)
     .post('/auth/registro')
     .set('Origin', ORIGEN_SITIO)

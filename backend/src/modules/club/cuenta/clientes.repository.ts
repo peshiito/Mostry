@@ -1,3 +1,4 @@
+import { VERSION_LEGAL } from '../../../config/legal.js';
 import type { Insertable } from 'kysely';
 import { db } from '../../../shared/db/db.js';
 import type { ClientesTabla } from '../../../shared/db/tipos/club.js';
@@ -31,7 +32,7 @@ export const clientesRepo = {
   async crear(datos: PerfilNuevo & { email: string }) {
     const r = await db
       .insertInto('clientes')
-      .values({ ...datos, aceptoTerminosEn: new Date() })
+      .values({ ...datos, aceptoTerminosEn: new Date(), terminosVersion: VERSION_LEGAL })
       .executeTakeFirstOrThrow();
     return idInsertado(r);
   },
@@ -40,7 +41,7 @@ export const clientesRepo = {
   pisarSinVerificar: (id: number, datos: PerfilNuevo) =>
     db
       .updateTable('clientes')
-      .set({ ...datos, aceptoTerminosEn: new Date() })
+      .set({ ...datos, aceptoTerminosEn: new Date(), terminosVersion: VERSION_LEGAL })
       .where('id', '=', id)
       .where('emailVerificadoEn', 'is', null)
       .execute(),

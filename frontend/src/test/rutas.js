@@ -3,7 +3,15 @@
 const TOKEN = 'O1CpZ46aNa7fi_JoYNYDAZHma3vzdfsO6AzpH_RAJvE'; // gitleaks:allow (token de prueba)
 
 export const RUTAS = {
-  sitio: ['/', '/legal', '/registro', '/verificar', '/ingresar'],
+  sitio: [
+    '/',
+    '/terminos',
+    '/privacidad',
+    '/legal',
+    '/registro',
+    '/verificar',
+    '/ingresar',
+  ],
   tienda: [
     '/',
     '/catalogo',

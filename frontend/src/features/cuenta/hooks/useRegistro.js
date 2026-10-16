@@ -40,6 +40,7 @@ export function useRegistro() {
       nombre: f.nombre,
       nombreNegocio: f.negocio,
       slug: f.slug,
+      aceptoTerminos: true,
     };
     const r = await accion.ejecutar(datos);
     if (r.ok) navegar('/verificar', { state: { email: f.email, slug: f.slug } });

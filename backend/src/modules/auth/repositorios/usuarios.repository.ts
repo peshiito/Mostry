@@ -11,6 +11,7 @@ const columnas = [
   'emailVerificadoEn',
   'activo',
   'debeCambiarClave',
+  'terminosVersion',
 ] as const;
 
 const seleccionar = () => db.selectFrom('usuarios').select(columnas);
@@ -22,7 +23,13 @@ export const usuariosRepo = {
   buscarPorId: (id: number) => seleccionar().where('id', '=', id).executeTakeFirst(),
 
   async crear(
-    datos: { email: string; hashClave: string; nombre: string },
+    datos: {
+      email: string;
+      hashClave: string;
+      nombre: string;
+      terminosVersion: string;
+      terminosAceptadosEn: Date;
+    },
     ej: Ejecutor = db,
   ) {
     return idInsertado(

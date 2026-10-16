@@ -12,6 +12,7 @@ const registro = {
   clave: CLAVE,
   nombre: 'Rosa',
   nombreNegocio: 'Doña Rosa',
+  aceptoTerminos: true,
   slug: 'dona-rosa',
 };
 

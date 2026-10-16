@@ -21,7 +21,9 @@ Armado con Pedro el 2026-10-16. **Estado:** las funciones están completas para 
 - **Cancelar solos los pedidos gratis del Club que nadie confirmó** (explicado abajo).
 - **Club:** confirmar que funciona como lo pensó Pedro (explicado abajo) y que la landing lo presente como una función de cada negocio, gratis dentro de Mostry.
 
-## S2 · Legal y confianza
+## S2 · Legal y confianza · HECHA (2026-10-16), salvo la factura C
+**La facturación queda para charlarla aparte** (decisión de Pedro).
+
 - **Términos y condiciones** para el comercio: qué es Mostry, el precio, la prueba, la suspensión por falta de pago, qué pasa con los datos al darse de baja, y los límites de responsabilidad.
 - **Política de privacidad** (Ley 25.326), escrita en lenguaje claro.
   - Qué datos guardamos: del comercio, de sus compradores y de los clientes del Club.

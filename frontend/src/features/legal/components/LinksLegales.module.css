@@ -1,0 +1,13 @@
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2) var(--e-4);
+  padding-block: var(--e-4);
+  font-size: var(--t-sm);
+}
+.links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--texto-2);
+}

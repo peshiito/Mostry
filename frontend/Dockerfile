@@ -11,6 +11,12 @@ ARG VITE_DOMINIO_BASE
 ARG VITE_API_URL
 ARG VITE_ORIGEN_ARCHIVOS
 ARG VITE_WHATSAPP_MOSTRY
+# Responsable de los datos en los términos y la privacidad (S2): sin ellos no se publica.
+ARG VITE_LEGAL_NOMBRE
+ARG VITE_LEGAL_CUIT
+ARG VITE_LEGAL_EMAIL
+RUN test -n "$VITE_LEGAL_NOMBRE" && test -n "$VITE_LEGAL_CUIT" && test -n "$VITE_LEGAL_EMAIL" \
+  || (echo "Faltan VITE_LEGAL_NOMBRE, VITE_LEGAL_CUIT o VITE_LEGAL_EMAIL" && exit 1)
 RUN npm run build
 
 FROM node:24-bookworm-slim AS web

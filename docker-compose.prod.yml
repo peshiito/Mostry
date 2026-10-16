@@ -56,6 +56,9 @@ services:
         VITE_API_URL: ${VITE_API_URL}
         VITE_ORIGEN_ARCHIVOS: ${VITE_ORIGEN_ARCHIVOS}
         VITE_WHATSAPP_MOSTRY: ${VITE_WHATSAPP_MOSTRY}
+        VITE_LEGAL_NOMBRE: ${VITE_LEGAL_NOMBRE}
+        VITE_LEGAL_CUIT: ${VITE_LEGAL_CUIT}
+        VITE_LEGAL_EMAIL: ${VITE_LEGAL_EMAIL}
     restart: unless-stopped
     environment:
       # La CSP del servidor del frontend necesita saber a qué API y a qué R2 conectar.

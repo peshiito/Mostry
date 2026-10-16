@@ -12,5 +12,6 @@ export const cuentaApi = {
   pedirRecuperacion: (email) => post('/recuperar', { email }),
   confirmarRecuperacion: (d) => post('/recuperar/confirmar', d),
   cambiarClave: (d) => post('/cambiar-clave', d),
+  aceptarTerminos: (version) => post('/terminos', { version }),
   yo: () => api('/auth/yo'),
 };

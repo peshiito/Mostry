@@ -32,6 +32,7 @@ export const adaptarTiendaAdmin = (t, extra = {}) => ({
   ...(extra.duenos && {
     nombreDueno: extra.duenos[0]?.nombre ?? null,
     verificado: Boolean(extra.duenos[0]?.emailVerificadoEn),
+    terminosAceptadosEn: extra.duenos[0]?.terminosAceptadosEn ?? null,
   }),
   ...(extra.suscripcion && {
     venceEl: extra.suscripcion.venceEl,

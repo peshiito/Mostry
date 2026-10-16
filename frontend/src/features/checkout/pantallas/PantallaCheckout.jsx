@@ -28,7 +28,12 @@ export function PantallaCheckout() {
         />
         <AvisoError error={c.error} />
         <AvisoClub cliente={c.club} club={tienda.club} />
-        <DatosComprador datos={c.datos} errores={c.errores} onCambio={c.setDatos} />
+        <DatosComprador
+          tienda={tienda.nombre}
+          datos={c.datos}
+          errores={c.errores}
+          onCambio={c.setDatos}
+        />
         <OpcionesEntrega
           tienda={tienda}
           entrega={c.entrega}

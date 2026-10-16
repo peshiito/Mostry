@@ -3,6 +3,7 @@ import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import css from '../../cuenta/pantallas/Cuenta.module.css';
+import { LinksLegales } from '../../legal/components/LinksLegales.jsx';
 import { CamposCliente } from '../components/CamposCliente.jsx';
 import { HojaBorrarCuenta } from '../components/HojaBorrarCuenta.jsx';
 import { useMisDatos } from '../hooks/useMisDatos.js';
@@ -35,6 +36,7 @@ export function PantallaMisDatos() {
           Borrar mi cuenta
         </Boton>
       </div>
+      <LinksLegales />
       <HojaBorrarCuenta
         abierta={borrando}
         onCerrar={() => setBorrando(false)}

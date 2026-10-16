@@ -7,6 +7,7 @@ import { Lista } from '../../shared/ui/Lista.jsx';
 import { Pagina } from '../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../shared/ui/Seccion.jsx';
 import { TituloPagina } from '../../shared/ui/TituloPagina.jsx';
+import { LinksLegales } from '../legal/components/LinksLegales.jsx';
 import { usePanel } from '../panelBase/PanelContexto.jsx';
 import { GRUPOS } from './grupos.js';
 
@@ -38,6 +39,7 @@ export function PantallaMas() {
       <Seccion titulo="Apariencia">
         <SelectorTema />
       </Seccion>
+      <LinksLegales />
     </Pagina>
   );
 }

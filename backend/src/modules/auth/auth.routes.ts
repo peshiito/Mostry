@@ -5,6 +5,7 @@ import { loginController as login } from './controladores/login.controller.js';
 import { recuperarController } from './controladores/recuperar.controller.js';
 import { registroController } from './controladores/registro.controller.js';
 import { crearLimites } from './limites.js';
+import { aceptarTerminos } from './terminos/terminos.js';
 import { requerirSesion } from './middlewares/requerirSesion.js';
 
 export function rutasAuth(mailer: Mailer): Router {
@@ -25,6 +26,7 @@ export function rutasAuth(mailer: Mailer): Router {
   r.post('/recuperar/confirmar', l.codigosIp, l.codigosEmail, recuperar.confirmar);
 
   r.get('/yo', requerirSesion(), cuenta.yo);
+  r.post('/terminos', requerirSesion(), aceptarTerminos);
   r.post(
     '/cambiar-clave',
     l.claveSensible,

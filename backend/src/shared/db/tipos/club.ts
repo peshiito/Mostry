@@ -10,6 +10,7 @@ export type ClientesTabla = Timestamps & {
   direccion: string | null;
   emailVerificadoEn: Date | null;
   aceptoTerminosEn: Date;
+  terminosVersion: string | null; // S2 (0053)
   activo: Auto<boolean>;
 };
 

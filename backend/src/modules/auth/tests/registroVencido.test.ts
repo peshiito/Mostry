@@ -13,6 +13,7 @@ const datos = (clave = CLAVE) => ({
   clave,
   nombre: 'Tati',
   nombreNegocio: 'Tati Shop',
+  aceptoTerminos: true,
   slug: 'tatishop',
 });
 

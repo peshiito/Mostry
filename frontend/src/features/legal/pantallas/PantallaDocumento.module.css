@@ -1,0 +1,22 @@
+.indice {
+  padding: var(--e-4);
+  border-radius: var(--radio);
+  border: var(--borde);
+  line-height: 1.8;
+}
+.indice ol {
+  margin: 0;
+  padding-inline-start: var(--e-5);
+}
+.seccion {
+  display: grid;
+  gap: var(--e-2);
+  line-height: 1.6;
+  scroll-margin-top: var(--e-7);
+}
+.titulo {
+  font-size: var(--t-xl);
+}
+.otro {
+  padding-block: var(--e-6);
+}

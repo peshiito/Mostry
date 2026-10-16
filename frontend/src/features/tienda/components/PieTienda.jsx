@@ -1,3 +1,4 @@
+import { urlPrivacidad } from '../../../shared/lib/legal.js';
 import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { useTienda } from '../hooks/useTienda.js';
@@ -19,7 +20,7 @@ export function PieTienda() {
       ) : null}
       <p className={css.mostry}>
         Hecho con <a href="https://mostry.com.ar">mostry</a> · ©{' '}
-        {new Date().getFullYear()}
+        {new Date().getFullYear()} · <a href={urlPrivacidad()}>Privacidad</a>
       </p>
     </footer>
   );

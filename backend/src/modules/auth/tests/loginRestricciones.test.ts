@@ -31,6 +31,7 @@ describe('login: restricciones', () => {
       clave: CLAVE,
       nombre: 'Rosa',
       nombreNegocio: 'Rosa',
+      aceptoTerminos: true,
       slug: 'rosa',
     };
     await request(app)

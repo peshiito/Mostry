@@ -21,8 +21,8 @@ export function Cierre() {
           barrio
         </span>
         <nav aria-label="Legales" className={css.links}>
-          <Link to="/legal">Términos</Link>
-          <Link to="/legal?privacidad">Privacidad</Link>
+          <Link to="/terminos">Términos</Link>
+          <Link to="/privacidad">Privacidad</Link>
         </nav>
       </footer>
     </>

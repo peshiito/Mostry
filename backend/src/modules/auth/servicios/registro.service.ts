@@ -1,3 +1,4 @@
+import { VERSION_LEGAL } from '../../../config/legal.js';
 import { hashearClave } from '../../../shared/crypto/claves.js';
 import { db } from '../../../shared/db/db.js';
 import { esDuplicado } from '../../../shared/db/esDuplicado.js';
@@ -29,7 +30,13 @@ export async function registrar(datos: DatosRegistro, mailer: Mailer): Promise<v
   try {
     usuarioId = await db.transaction().execute(async (tx) => {
       const id = await usuariosRepo.crear(
-        { email: datos.email, hashClave, nombre: datos.nombre },
+        {
+          email: datos.email,
+          hashClave,
+          nombre: datos.nombre,
+          terminosVersion: VERSION_LEGAL,
+          terminosAceptadosEn: new Date(),
+        },
         tx,
       );
       const tiendaId = await tiendasRepo.crear(

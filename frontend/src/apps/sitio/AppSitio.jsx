@@ -4,7 +4,8 @@ import { PantallaElegirTienda } from '../../features/cuenta/pantallas/PantallaEl
 import { PantallaRegistro } from '../../features/cuenta/pantallas/PantallaRegistro.jsx';
 import { PantallaVerificarEmail } from '../../features/cuenta/pantallas/PantallaVerificarEmail.jsx';
 import { PantallaLanding } from '../../features/landing/pantallas/PantallaLanding.jsx';
-import { PantallaLegal } from '../../features/landing/pantallas/PantallaLegal.jsx';
+import { PantallaDocumento } from '../../features/legal/pantallas/PantallaDocumento.jsx';
+import { RedirigirLegal } from '../../features/legal/RedirigirLegal.jsx';
 import { rutasClub } from '../club/rutasClub.jsx';
 import { rutasCuenta } from '../cuenta/rutasCuenta.jsx';
 import { NoEncontrada } from '../../shared/ui/NoEncontrada.jsx';
@@ -18,7 +19,9 @@ export default function AppSitio() {
   return (
     <Routes>
       <Route index element={<PantallaLanding />} />
-      <Route path="legal" element={<PantallaLegal />} />
+      <Route path="terminos" element={<PantallaDocumento doc="terminos" />} />
+      <Route path="privacidad" element={<PantallaDocumento doc="privacidad" />} />
+      <Route path="legal" element={<RedirigirLegal />} />
       <Route path="registro" element={<PantallaRegistro />} />
       <Route path="verificar" element={<PantallaVerificarEmail />} />
       {rutasCuenta('', false, true)}

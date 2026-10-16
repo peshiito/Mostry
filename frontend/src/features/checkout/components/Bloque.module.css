@@ -15,3 +15,8 @@
   font-size: var(--t-lg);
   font-weight: 600;
 }
+.nota {
+  margin: 0;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

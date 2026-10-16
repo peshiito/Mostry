@@ -1,8 +1,9 @@
+import { urlPrivacidad } from '../../../shared/lib/legal.js';
 import { Campo, Entrada } from '../../../shared/ui/Campo.jsx';
 import css from './Bloque.module.css';
 
-// "Tus datos": nombre y WhatsApp para coordinar.
-export function DatosComprador({ datos, errores, onCambio }) {
+// "Tus datos": nombre y WhatsApp para coordinar, y para qué se usan (S2).
+export function DatosComprador({ tienda, datos, errores, onCambio }) {
   const set = (k) => (e) => onCambio({ ...datos, [k]: e.target.value });
   return (
     <fieldset className={css.bloque}>
@@ -34,6 +35,10 @@ export function DatosComprador({ datos, errores, onCambio }) {
           />
         )}
       </Campo>
+      <p className={css.nota}>
+        Tus datos los ve solo {tienda}, para coordinar tu pedido.{' '}
+        <a href={urlPrivacidad()}>Privacidad</a>
+      </p>
     </fieldset>
   );
 }

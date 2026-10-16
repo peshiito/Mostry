@@ -16,7 +16,8 @@ export function AceptarTerminos({ valor, onCambio, error }) {
           onChange={(e) => onCambio(e.target.checked)}
         />
         <span>
-          Acepto los <Link to="/legal">términos y la política de privacidad</Link>.
+          Acepto los <Link to="/terminos">términos</Link> y la{' '}
+          <Link to="/privacidad">política de privacidad</Link>.
         </span>
       </label>
       {error ? (

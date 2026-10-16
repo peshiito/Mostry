@@ -401,7 +401,9 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **Mails en local:** Resend con `onboarding@resend.dev` solo entrega a `pedrogbaez1@gmail.com`. Pasar a Mailpit está pendiente; Pedro dijo "lo vemos en el transcurso".
 
 **S1 · Pre-salida: HECHA (2026-10-16).** Detalle en §13. Rotar las claves de Resend y ElevenLabs y pasar el repo a privado quedaron **fuera** por decisión de Pedro: siguen pendientes antes de producción.
-- **Después de la S1:** S2 legal → S3 seguridad → S4 producción → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
+- **S2 · Legal: HECHA (2026-10-16)**, sin la factura C (Pedro la quiere charlar aparte). Detalle en §13.
+- **Pedro tiene que cargar en el `.env`:** `VITE_LEGAL_NOMBRE`, `VITE_LEGAL_CUIT` y `VITE_LEGAL_EMAIL` (también en `.env.prueba-prod` y en producción). Sin ellas los textos dicen "a completar" y el build de Docker falla.
+- **Después:** S3 seguridad → S4 producción → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
 - **Hosting de producción:** sigue sin decidir. Railway cuesta unos 5 USD por mes; Oracle Always Free es gratis, pero hay que configurarlo más.
 
 **Plan de salida (2026-10-16): leé `docs/plan-salida.md` antes de seguir.**
@@ -563,6 +565,12 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - **Pagos en Suscripción del comercio:** `GET /panel/tienda/suscripcion/pagos` (`pagosTienda.repository.ts`). Muestra pagos y cortesías ("🎁 Cortesía · +N días" con el motivo). La nota de un pago es interna y no se manda.
   - **Pedidos gratis del Club:** un pedido inmediato en `pendiente_confirmacion` que nadie confirma en `plazo_comprobante_horas` lo cancela `cancelar-vencidos` ("Nadie confirmó el pedido a tiempo"); se libera la reserva y vuelven los sellos.
   - **Landing:** el Club figura en el plan ("sin costo extra") y en las preguntas frecuentes.
+- **S2 · Legal (2026-10-16):**
+  - **Documentos:** `/terminos` y `/privacidad` en el sitio (`features/legal/`, textos en `textos/`); `/legal` redirige. Los datos del responsable salen de `VITE_LEGAL_*` (`shared/lib/legal.js`): no hay datos personales en el código.
+  - **Versión:** `VERSION_LEGAL` (la fecha del cambio) en `backend/src/config/legal.ts` y `frontend/src/shared/lib/legal.js`; el e2e `legal.spec.js` controla que sean iguales. **Si cambia un texto legal importante, cambiar las dos.**
+  - **Aceptación** (migración `0053`): el registro exige `aceptoTerminos: true` y guarda `usuarios.terminos_version` y `terminos_aceptados_en` (el Club, `clientes.terminos_version`). `/auth/yo` devuelve `terminosPendientes` y el panel muestra "Actualizamos los términos" (`PantallaAceptarTerminos`) hasta `POST /auth/terminos { version }`. Es una constancia en la interfaz, no bloquea la API.
+  - **Links:** pie de la landing y de la tienda, checkout ("Tus datos los ve solo {tienda}…"), Más del panel y Mis datos del Club. El admin ve en el detalle cuándo aceptó el dueño.
+  - **Los textos los escribió Claude con lo que hace el código de verdad (revisados contra el código), pero no son asesoramiento legal:** conviene que un abogado los lea antes de cobrarle al primer comercio.
 - **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
   - `unidades`: reserva y descuenta, como siempre;
   - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;
@@ -600,7 +608,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
 - **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte, club (cuentas de cliente, QR, programa, sellos, canjes e historiales).
 - **Base:**
-  - 52 migraciones en `db/migraciones/` (todas con `down`);
+  - 53 migraciones en `db/migraciones/` (todas con `down`);
   - seed en `db/seed/` (`npm run db:seed`);
   - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
 - **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.

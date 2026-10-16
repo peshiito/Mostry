@@ -1,3 +1,4 @@
+import { VERSION_LEGAL } from '../../../config/legal.js';
 import { hashearClave, verificarClave } from '../../../shared/crypto/claves.js';
 import { enviarSinFallar } from '../../../shared/email/enviarSinFallar.js';
 import type { Mailer } from '../../../shared/email/mailer.js';
@@ -13,8 +14,16 @@ export async function datosDeCuenta(usuarioId: number) {
   const usuario = await usuariosRepo.buscarPorId(usuarioId);
   if (!usuario) throw sinSesion();
   const { id, email, nombre, esAdmin, debeCambiarClave } = usuario;
+  const terminosPendientes = usuario.terminosVersion !== VERSION_LEGAL;
   return {
-    usuario: { id, email, nombre, esAdmin, debeCambiarClave: !!debeCambiarClave },
+    usuario: {
+      id,
+      email,
+      nombre,
+      esAdmin,
+      debeCambiarClave: !!debeCambiarClave,
+      terminosPendientes,
+    },
     tiendas: await miembrosRepo.tiendasDeUsuario(id),
   };
 }

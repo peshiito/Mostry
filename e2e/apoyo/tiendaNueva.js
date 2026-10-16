@@ -25,6 +25,7 @@ export async function tiendaNueva(prefijo) {
     nombre: 'Dueña',
     nombreNegocio,
     slug,
+    aceptoTerminos: true,
   });
   await postear('/auth/verificar-email', { email, codigo: await ultimoCodigo(email) });
   return { slug, email, nombreNegocio };

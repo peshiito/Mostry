@@ -1,3 +1,4 @@
+import { VERSION_LEGAL } from '../../../config/legal.js';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { crearApp } from '../../../app.js';
 import { db } from '../../../shared/db/db.js';
@@ -20,6 +21,7 @@ describe('Club · registro', () => {
     const cliente = await db.selectFrom('clientes').selectAll().executeTakeFirstOrThrow();
     expect(cliente).toMatchObject({ whatsapp: '5491155551234', emailVerificadoEn: null });
     expect(cliente.aceptoTerminosEn).toBeInstanceOf(Date);
+    expect(cliente.terminosVersion).toBe(VERSION_LEGAL);
     expect(cliente.hashClave).toMatch(/^\$argon2id\$/);
 
     const codigo = correo.ultimoCodigo('ana@test.com');
