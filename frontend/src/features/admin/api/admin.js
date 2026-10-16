@@ -4,6 +4,8 @@ import { api } from '../../../shared/api/cliente.js';
 export const adminApi = {
   registrarPago: (id, d) =>
     api(`/admin/tiendas/${id}/pagos`, { metodo: 'POST', cuerpo: d }),
+  regalarDias: (id, d) =>
+    api(`/admin/tiendas/${id}/cortesia`, { metodo: 'POST', cuerpo: d }),
   suspender: (id, motivo) =>
     api(`/admin/tiendas/${id}/suspender`, { metodo: 'POST', cuerpo: { motivo } }),
   reactivar: (id) => api(`/admin/tiendas/${id}/reactivar`, { metodo: 'POST' }),

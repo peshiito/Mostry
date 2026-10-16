@@ -45,7 +45,7 @@ export const tiendasRepo = {
     return comoTiendaId(idInsertado(r));
   },
 
-  // Arranca los 10 días de prueba de las tiendas del dueño (una sola vez).
+  // Arranca los días de prueba de las tiendas del dueño (una sola vez).
   iniciarPruebasDeDueno: (usuarioId: number, hasta: Date) =>
     db
       .updateTable('tiendas')

@@ -20,7 +20,7 @@ describe('suscripción: gracia y suspensión', () => {
     const res = await p.get('/panel/tienda/suscripcion').expect(200);
     expect(res.body).toMatchObject({
       estado: 'prueba',
-      diasRestantes: 10,
+      diasRestantes: 7,
       mostrarAviso: false,
     });
     expect(res.body.pago).toMatchObject({ monto: 1_000_000 });

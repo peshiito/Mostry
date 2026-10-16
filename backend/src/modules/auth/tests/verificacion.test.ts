@@ -28,7 +28,7 @@ describe('verificación de email', () => {
     await post('/auth/registro', registro).expect(201);
   });
 
-  it('con el código correcto verifica y arranca 10 días de prueba', async () => {
+  it('con el código correcto verifica y arranca 7 días de prueba', async () => {
     await post('/auth/verificar-email', {
       email,
       codigo: correo.ultimoCodigo(email),
@@ -38,8 +38,8 @@ describe('verificación de email', () => {
       .select('pruebaHasta')
       .executeTakeFirstOrThrow();
     const dias = (tienda.pruebaHasta!.getTime() - Date.now()) / 86_400_000;
-    // MySQL guarda DATETIME al segundo: puede dar 10,00001 días.
-    expect(dias).toBeCloseTo(10, 3);
+    // MySQL guarda DATETIME al segundo: puede dar 7,00001 días.
+    expect(dias).toBeCloseTo(7, 3);
   });
 
   it('el código sirve una sola vez', async () => {

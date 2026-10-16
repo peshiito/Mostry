@@ -54,6 +54,7 @@ export type MiembrosTiendaTabla = Creado & {
 export type PagosSuscripcionTabla = Creado & {
   id: Auto<number>;
   tiendaId: ColTienda;
+  tipo: Auto<'pago' | 'cortesia'>;
   monto: number;
   pagadoEn: Fecha;
   periodoDesde: Date;

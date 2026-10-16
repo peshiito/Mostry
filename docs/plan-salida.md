@@ -6,7 +6,9 @@ Armado con Pedro el 2026-10-16. **Estado:** las funciones están completas para 
 
 ---
 
-## S1 · Pre-salida: higiene y decisiones pendientes
+## S1 · Pre-salida: higiene y decisiones pendientes · HECHA (2026-10-16)
+**Quedó afuera, por decisión de Pedro:** rotar las claves y pasar el repo a privado. Se hacen antes de la S4.
+
 - **Rotar las claves que quedaron expuestas:** Resend (antes de producción) y ElevenLabs (quedó escrita en el chat).
 - **Repo privado:** pasar `peshiito/mostry` a privado en GitHub (lo hace Pedro).
 - **Prueba gratis de 7 días.** Decisión de Pedro: 10 días es mucho. Se cambia en el código, los avisos de los días 7 y 9, los textos de la landing y `CLAUDE.md` §6.5.

@@ -5,8 +5,12 @@ export const PREGUNTAS = [
     'Te transfieren directo a tu alias de Mercado Pago o de tu banco y suben el comprobante. Mostry nunca toca tu plata.',
   ],
   [
-    '¿Qué pasa cuando terminan los 10 días?',
+    '¿Qué pasa cuando terminan los 7 días?',
     'Si te sirve, pagás $ 10.000 por mes. Si no, la tienda se pausa sin cargo y tus datos quedan guardados.',
+  ],
+  [
+    '¿El Club de clientes tiene costo?',
+    'No. Viene incluido en Mostry: vos decidís si lo usás, cuántas compras hacen falta y qué premio das. Para tus clientes también es gratis.',
   ],
   [
     '¿Tengo que saber de computación?',

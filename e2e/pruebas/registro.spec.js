@@ -4,7 +4,7 @@ import { URL_SITIO, urlTienda } from '../apoyo/entorno.js';
 import { ultimoCodigo } from '../apoyo/mailpit.js';
 
 // Un comercio nuevo se da de alta solo (CLAUDE.md 6.5): registro en el sitio,
-// código por email, ingreso a su panel y 10 días de prueba.
+// código por email, ingreso a su panel y 7 días de prueba.
 test('registro de un comercio: alta, verificación por email y primer ingreso', async ({
   page,
 }) => {
@@ -46,5 +46,5 @@ test('registro de un comercio: alta, verificación por email y primer ingreso', 
   await page.getByRole('button', { name: 'Empezar' }).click();
   await esperarAviso(page, '¡Listo! Tu Mostry quedó armado');
   await expect(page.getByText('Almacén Doña Tita').first()).toBeVisible();
-  await expect(page.getByText('Te quedan 10 días de prueba')).toBeVisible();
+  await expect(page.getByText('Te quedan 7 días de prueba')).toBeVisible();
 });

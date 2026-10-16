@@ -1,13 +1,13 @@
 import { fechaCorta } from '../../../shared/lib/fechas.js';
-import { plata } from '../../../shared/lib/plata.js';
+import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
-import { Fila } from '../../../shared/ui/Fila.jsx';
 import { Lista } from '../../../shared/ui/Lista.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Seccion } from '../../../shared/ui/Seccion.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
+import { FilaPago } from '../components/FilaPago.jsx';
 import { TarjetaPagar } from '../components/TarjetaPagar.jsx';
 import { useSuscripcion } from '../hooks/useSuscripcion.js';
 
@@ -35,14 +35,16 @@ export function PantallaSuscripcion() {
       </Tarjeta>
       {s.estado === 'activa' ? null : <TarjetaPagar />}
       <Seccion titulo="Pagos registrados">
-        {s.pagos.length ? (
+        {s.errorPagos ? (
+          <ErrorCarga
+            error={s.errorPagos}
+            que="tus pagos"
+            onReintentar={s.recargarPagos}
+          />
+        ) : s.pagos.length ? (
           <Lista>
             {s.pagos.map((p) => (
-              <Fila
-                key={p.id}
-                titulo={plata(p.monto)}
-                detalle={`Pagado el ${fechaCorta(p.fecha)} · cubre hasta el ${fechaCorta(p.hasta)}`}
-              />
+              <FilaPago key={p.id} pago={p} />
             ))}
           </Lista>
         ) : (

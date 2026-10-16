@@ -7,7 +7,7 @@ export const LEGALES = {
     ],
     [
       'Prueba y suscripción',
-      'Los primeros 10 días son gratis. Después el plan cuesta $ 10.000 por mes. Si no se paga, hay 3 días de gracia y luego la tienda se suspende sin borrar datos.',
+      'Los primeros 7 días son gratis. Después el plan cuesta $ 10.000 por mes. Si no se paga, hay 3 días de gracia y luego la tienda se suspende sin borrar datos.',
     ],
     [
       'Pagos de los compradores',

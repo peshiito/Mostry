@@ -54,6 +54,8 @@ export function useTiendaAdmin(id) {
         () => adminApi.registrarPago(id, d),
         'Pago registrado: plan extendido',
       ),
+    regalarDias: (d) =>
+      accion.ejecutar(() => adminApi.regalarDias(id, d), 'Días de cortesía regalados'),
     suspender: (motivo) =>
       accion.ejecutar(() => adminApi.suspender(id, motivo), 'Tienda suspendida'),
     reactivar: () => accion.ejecutar(() => adminApi.reactivar(id), 'Tienda reactivada'),

@@ -49,7 +49,8 @@ export const PLAN = [
   ['0 % de comisión', 'cobrás directo a tu alias'],
   ['Caja, gastos y libreta', 'de fiados en el mismo panel'],
   ['Encargos con seña', 'y calendario'],
-  ['10 días gratis', 'sin tarjeta y sin permanencia'],
+  ['Club de clientes', 'con sellos y premios, sin costo extra'],
+  ['7 días gratis', 'sin tarjeta y sin permanencia'],
 ];
 
 export const TRADICIONAL = [

@@ -18,6 +18,7 @@ export function rutasTienda(mailer: Mailer): Router {
   // Pide la contraseña: límite por IP y por cuenta (sección 7).
   r.put('/cobro', limite(10, 10), limite(15, 5, porUsuario), cobroController(mailer));
   r.get('/suscripcion', tienda.suscripcion);
+  r.get('/suscripcion/pagos', tienda.pagos);
   r.put('/logo', limite(10, 20), recibirArchivo('logo'), logo.subir);
   r.delete('/logo', logo.quitar);
   return r;

@@ -6,8 +6,9 @@ import { cancelarEnTx } from '../../modules/pedidos/servicios/cancelar.js';
 import { candidatos, motivo } from '../../modules/pedidos/servicios/vencidos.js';
 
 // Job (cada 5 min): cancela los pedidos que no pagaron a tiempo (y libera su
-// reserva de stock, sección 6.6) y los encargos que pasaron su fecha sin que
-// los aceptaran. Idempotente: cada pedido se re-chequea con lock.
+// reserva de stock, sección 6.6), los encargos que pasaron su fecha sin que
+// los aceptaran y los pedidos gratis del Club que nadie confirmó.
+// Idempotente: cada pedido se re-chequea con lock.
 export async function cancelarVencidos(ahora = new Date()) {
   const vencidos = await candidatos(ahora);
   let cancelados = 0;
@@ -17,7 +18,7 @@ export async function cancelarVencidos(ahora = new Date()) {
     try {
       const hecho = await db.transaction().execute(async (tx) => {
         const p = await pedidosRepo.bloquear(tx, tiendaId, v.id);
-        const porque = motivo(p, ahora);
+        const porque = motivo(p, ahora, v.plazoComprobanteHoras);
         if (!p || !porque) return false;
         await cancelarEnTx(tx, tiendaId, p, porque);
         return true;

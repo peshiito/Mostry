@@ -12,7 +12,7 @@ export function PantallaRegistro() {
   const r = useRegistro();
   return (
     <LayoutCuenta volver="/">
-      <TituloPagina titulo="Creá tu tienda" bajada="10 días gratis, sin tarjeta." />
+      <TituloPagina titulo="Creá tu tienda" bajada="7 días gratis, sin tarjeta." />
       <form className={css.form} onSubmit={r.enviar} noValidate>
         <AvisoError error={r.accion.error} />
         <CamposRegistro

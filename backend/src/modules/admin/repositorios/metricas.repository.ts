@@ -26,6 +26,7 @@ export const metricasRepo = {
         eb.fn.countAll<number>().as('pagos'),
       ])
       .where('pagadoEn', '>=', desde)
+      .where('tipo', '=', 'pago') // las cortesías no son plata cobrada
       .executeTakeFirstOrThrow();
     return { total: Number(fila.total ?? 0), pagos: Number(fila.pagos) };
   },

@@ -73,7 +73,7 @@ SaaS argentino **multi-tenant** para comercios de barrio (facturerías, pasteler
 
 **Problema que resuelve:** hoy venden con mensajes largos de WhatsApp y llevan la caja en papel; una web a medida cuesta unos $200.000.
 
-**Modelo de negocio:** 10 días de prueba gratis con todo incluido; después $10.000 por mes. El comercio paga por transferencia al alias de Mostry y yo activo el plan a mano desde el panel de admin.
+**Modelo de negocio:** 7 días de prueba gratis con todo incluido; después $10.000 por mes. El comercio paga por transferencia al alias de Mostry y yo activo el plan a mano desde el panel de admin.
 
 ### 3.1 Tres zonas (una sola app de frontend que decide por el subdominio)
 
@@ -223,7 +223,7 @@ mostry/
 ### 6.5 Registro y suscripción
 
 - Registro propio: email, nombre del negocio y subdominio. **Subdominios reservados:** `admin`, `www`, `api`, `app`, `panel`, `mail`, `static` y similares. El email se verifica antes de activar.
-- **Prueba:** 10 días, con avisos por banner y email los días 7 y 9.
+- **Prueba:** 7 días, con avisos por banner y email 3 días y 1 día antes del vencimiento (funcionan por horas restantes).
 - **Al vencer:** 3 días de **gracia** con la tienda funcionando y un banner para pagar.
 - **Suspendida:** la tienda pública muestra "Cerrada temporalmente" y el panel queda en solo lectura con los datos de pago. **No se borran datos.** La API también bloquea las escrituras, no solo el frontend.
 - **Pago registrado por el admin:** el plan se extiende 30 días desde `max(plan_hasta, hoy)`.
@@ -400,13 +400,15 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **En la base local:** el admin es `pedrotest@gmail.com` (clave `test12345`, cargada a mano). El seed sigue creando `admin@mostry.test`.
 - **Mails en local:** Resend con `onboarding@resend.dev` solo entrega a `pedrogbaez1@gmail.com`. Pasar a Mailpit está pendiente; Pedro dijo "lo vemos en el transcurso".
 
+**S1 · Pre-salida: HECHA (2026-10-16).** Detalle en §13. Rotar las claves de Resend y ElevenLabs y pasar el repo a privado quedaron **fuera** por decisión de Pedro: siguen pendientes antes de producción.
+- **Después de la S1:** S2 legal → S3 seguridad → S4 producción → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
+- **Hosting de producción:** sigue sin decidir. Railway cuesta unos 5 USD por mes; Oracle Always Free es gratis, pero hay que configurarlo más.
+
 **Plan de salida (2026-10-16): leé `docs/plan-salida.md` antes de seguir.**
 - **Etapas:** S1 pre-salida (claves, repo privado, prueba de 7 días, días de cortesía, pedidos gratis del Club) → S2 legal (términos, privacidad, cookies, factura C por cada pago) → S3 seguridad de salida (HTTPS forzado, HSTS, repaso) → S4 producción (staging y producción, Resend con dominio, hosting gratis o casi) → S5 piloto (el negocio de bebidas de la familia de Pedro y 2 o 3 más) → S6 lanzamiento (video y guía corta).
 - **No se suman funciones nuevas** hasta el piloto, salvo las de S1 y S2.
 
 **Pendientes abiertos (consultar con Pedro antes de tocar):**
-- **Días de cortesía (idea de Pedro, 2026-10-14):** que el admin pueda regalarle días a una tienda (7, 10, 15 o los que elija), por ejemplo si no pudo usar Mostry por un mantenimiento del servidor. Que sirva tanto en la prueba gratis como en el plan pago, con el motivo anotado en `registro_admin`. Está pendiente de plan.
-- **Duración de la prueba gratis:** Pedro decidió 7 días (2026-10-16). Se cambia en la S1 del plan de salida.
 - Pasar el repo de GitHub a **privado**.
 - Rotar la clave de **Resend** antes de producción.
 - **Contador de pedidos en el detalle del admin:** se sacó por privacidad. ¿Lo quiere de vuelta?
@@ -509,7 +511,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - **Canjes** (`canjes`, el premio copiado): `bloquearPrograma` (FOR UPDATE de `programas_lealtad`) va como **primera consulta** de la transacción del checkout y de la venta. Con REPEATABLE READ la foto se toma en la primera lectura común: si se bloqueara después, el segundo canje no vería el primero y gastaría los mismos sellos (`tests/revision.test.ts`). El descuento lo calcula el servidor (`calcularDescuento.ts`, igual que `club/lib/descuento.js` del frontend): porcentaje de los productos (sin envío) con tope, monto hasta el subtotal, regalo $ 0. Pedido cancelado → `anularCanje` y los sellos vuelven.
   - **Compra gratis:** `pedidos.descuento` y `ventas.descuento`; el CHECK de pedidos pasó a `total + descuento = subtotal + costo_envio`. Un pedido inmediato que queda en $ 0 va a `pendiente_confirmacion` (sin pago) y al confirmarlo se descuenta el stock; una venta en $ 0 no mueve la caja.
   - **Historiales:** `GET /club/historial` (cliente, todas sus tiendas), `GET /panel/club/socios` y `/socios/:id` (la tienda: solo el nombre y lo comprado ahí; 404 si nunca le compró). El admin ve solo `club: { tiendasConClub, socios }` en métricas.
-  - **Pendiente:** un pedido inmediato gratis queda en `pendiente_confirmacion` sin vencimiento (como un encargo sin seña): si el comercio no lo confirma ni lo cancela, la reserva de stock queda tomada.
+  - **Resuelto en la S1:** un pedido inmediato gratis que nadie confirma se cancela solo pasado el plazo del comprobante.
   - **Borrar la cuenta del cliente** borra sus sellos y canjes y deja sus pedidos y ventas sin `cliente_id`. `sellos`, `canjes`, `premios_lealtad` y `programas_lealtad` están en `TABLAS_DE_TIENDA`.
 - **Encargos 2 (2026-10-15):**
   - **Aceptar antes de cobrar:** el checkout deja todo encargo en `pendiente_confirmacion`, sin plazo. `POST /panel/pedidos/:id/aceptar` (`pedidos/servicios/aceptarEncargo.ts`) lo pasa a `pendiente_pago`, con el plazo de seña, o a `confirmado` si no hay seña. Un encargo con seña no se puede pasar a `confirmado` a mano. `cancelar-vencidos` también cancela los encargos que nadie aceptó cuando pasa su fecha (`pedidos/servicios/vencidos.ts`).
@@ -552,6 +554,15 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Encargos 3 (2026-10-15):**
   - **Encargo cargado desde el panel** (`POST /panel/encargos`, `encargos/manual/`): lo que llegó por WhatsApp o en persona. Entra ya aceptado: si el dueño anota la seña cobrada (monto y medio), queda en `pago_aprobado` y la seña entra a la caja en la misma transacción (en efectivo exige la caja abierta). Sin seña, queda en `confirmado`. El dueño manda: sin anticipación, horario ni cupo, solo con fecha futura y dentro de 60 días. La personalización es opcional. `pedidos.origen = 'panel'` (migración `0050`) se muestra como "cargado por vos". Pantalla: Panel → Encargos → Cargar (`PantallaNuevoEncargo`), que lista productos con `/panel/productos?encargo=true`.
   - **Anticipación por producto** (`productos.anticipacion_horas`, nulo = la de la tienda): vale la mayor entre la tienda y los productos (`encargos/anticipacion.ts` en el backend y `checkout/lib/anticipacion.js` en el frontend). La disponibilidad recibe `&productos=1,2`.
+- **S1 · Pre-salida (2026-10-16):**
+  - **Prueba gratis de 7 días** (`DIAS_PRUEBA` en `auth/servicios/verificacion.service.ts`). Las tiendas que ya estaban en prueba conservan su fecha.
+  - **Días de cortesía** (migración `0052`): `POST /admin/tiendas/:id/cortesia { dias 1..60, motivo }` (`admin/servicios/cortesia.service.ts`).
+    - Sin plan pago todavía, corre `prueba_hasta`; si no, `plan_hasta` desde max(fechas, ahora) y vuelve a `activa`. Una suspensión manual se respeta: suma los días pero sigue suspendida.
+    - Es una fila de `pagos_suscripcion` con `tipo = 'cortesia'`, monto 0 y el motivo en `nota`, más la constancia en `registro_admin`. Las métricas y el resumen de tiendas eliminadas cuentan solo `tipo = 'pago'`.
+    - Admin: botón "Regalar días" en el detalle (`HojaCortesia.jsx`: 7, 10, 15 u "Otro").
+  - **Pagos en Suscripción del comercio:** `GET /panel/tienda/suscripcion/pagos` (`pagosTienda.repository.ts`). Muestra pagos y cortesías ("🎁 Cortesía · +N días" con el motivo). La nota de un pago es interna y no se manda.
+  - **Pedidos gratis del Club:** un pedido inmediato en `pendiente_confirmacion` que nadie confirma en `plazo_comprobante_horas` lo cancela `cancelar-vencidos` ("Nadie confirmó el pedido a tiempo"); se libera la reserva y vuelven los sellos.
+  - **Landing:** el Club figura en el plan ("sin costo extra") y en las preguntas frecuentes.
 - **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
   - `unidades`: reserva y descuenta, como siempre;
   - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;
@@ -589,7 +600,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
 - **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte, club (cuentas de cliente, QR, programa, sellos, canjes e historiales).
 - **Base:**
-  - 51 migraciones en `db/migraciones/` (todas con `down`);
+  - 52 migraciones en `db/migraciones/` (todas con `down`);
   - seed en `db/seed/` (`npm run db:seed`);
   - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
 - **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.

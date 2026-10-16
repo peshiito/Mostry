@@ -4,9 +4,9 @@ import { codigoInvalido } from '../errores.js';
 import { usuariosRepo } from '../repositorios/usuarios.repository.js';
 import { emitirCodigo, verificarCodigo } from './codigosEmail.service.js';
 
-const DIAS_PRUEBA = 10;
+const DIAS_PRUEBA = 7; // decisión de Pedro (2026-10-16): 10 era mucho
 
-// Verifica el email y arranca los 10 días de prueba de su tienda.
+// Verifica el email y arranca los 7 días de prueba de su tienda.
 export async function verificarEmail(email: string, codigo: string): Promise<void> {
   const usuario = await usuariosRepo.buscarPorEmail(email);
   if (!usuario || usuario.emailVerificadoEn) throw codigoInvalido();

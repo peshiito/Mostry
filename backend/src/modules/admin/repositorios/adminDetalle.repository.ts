@@ -33,6 +33,7 @@ export const adminDetalleRepo = {
       .innerJoin('usuarios', 'usuarios.id', 'pagosSuscripcion.registradoPor')
       .select([
         'pagosSuscripcion.id',
+        'pagosSuscripcion.tipo',
         'pagosSuscripcion.monto',
         'pagosSuscripcion.pagadoEn',
         'pagosSuscripcion.periodoDesde',

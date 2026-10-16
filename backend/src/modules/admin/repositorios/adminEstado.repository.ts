@@ -12,7 +12,7 @@ export const adminEstadoRepo = {
   fechasBloqueando: (tx: Ejecutor, tiendaId: number) =>
     tx
       .selectFrom('tiendas')
-      .select(['estado', 'pruebaHasta', 'planHasta', 'suspendidaManual'])
+      .select(['slug', 'estado', 'pruebaHasta', 'planHasta', 'suspendidaManual'])
       .where('id', '=', tiendaId)
       .forUpdate()
       .executeTakeFirst(),
@@ -24,6 +24,19 @@ export const adminEstadoRepo = {
     tx
       .updateTable('tiendas')
       .set({ planHasta, estado })
+      .where('id', '=', tiendaId)
+      .execute(),
+
+  // Cortesía en la prueba: corre `prueba_hasta` (sin plan pago todavía).
+  extenderPrueba: (
+    tx: Ejecutor,
+    tiendaId: number,
+    pruebaHasta: Date,
+    estado: EstadoTienda,
+  ) =>
+    tx
+      .updateTable('tiendas')
+      .set({ pruebaHasta, estado })
       .where('id', '=', tiendaId)
       .execute(),
 

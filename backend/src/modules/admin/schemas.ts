@@ -28,5 +28,12 @@ export const esquemaSuspender = z.strictObject({
   motivo: z.string().trim().min(3).max(200),
 });
 
+// S1: días de cortesía (botones 7, 10 y 15, u "Otro" de 1 a 60).
+export const esquemaCortesia = z.strictObject({
+  dias: z.int().min(1).max(60),
+  motivo: z.string().trim().min(3).max(200),
+});
+
 export type FiltrosListado = z.infer<typeof esquemaListado>;
 export type DatosPago = z.infer<typeof esquemaPago>;
+export type DatosCortesia = z.infer<typeof esquemaCortesia>;

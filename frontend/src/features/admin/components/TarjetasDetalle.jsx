@@ -40,7 +40,7 @@ export function TarjetasDetalle({ tienda: t }) {
                   key={p.id}
                   concepto={fechaCorta(`${p.pagadoEn}T15:00:00Z`)}
                   detalle={`Cubre hasta el ${fechaCorta(p.periodoHasta)}`}
-                  monto={plata(p.monto)}
+                  monto={p.tipo === 'cortesia' ? '🎁 Cortesía' : plata(p.monto)}
                 />
               ))}
             </Ticket>

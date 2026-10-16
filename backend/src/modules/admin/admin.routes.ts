@@ -18,6 +18,7 @@ export function rutasAdmin(mailer: Mailer): Router {
   r.get('/tiendas', tiendas.listar);
   r.get('/tiendas/:id', tiendas.detalle);
   r.post('/tiendas/:id/pagos', pagos.registrar);
+  r.post('/tiendas/:id/cortesia', pagos.cortesia);
   r.post('/tiendas/:id/suspender', tiendas.suspender);
   r.post('/tiendas/:id/reactivar', tiendas.reactivar);
   r.patch('/tiendas/:id/dueno', ayuda.dueno);

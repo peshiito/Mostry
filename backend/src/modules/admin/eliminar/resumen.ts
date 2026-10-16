@@ -13,6 +13,7 @@ export async function guardarResumen(
     .selectFrom('pagosSuscripcion')
     .select(['monto', 'pagadoEn', 'periodoDesde', 'periodoHasta'])
     .where('tiendaId', '=', tienda.id)
+    .where('tipo', '=', 'pago') // las cortesías no suman a lo pagado
     .orderBy('pagadoEn')
     .execute();
   const resumidos = pagos.map((p) => ({

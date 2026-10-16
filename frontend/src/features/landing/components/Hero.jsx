@@ -28,7 +28,7 @@ export function Hero() {
         </p>
         <div className={css.cta}>
           <Boton variante="principal" tamano="lg" iconoFin="arrow_forward" to="/registro">
-            Probalo 10 días gratis
+            Probalo 7 días gratis
           </Boton>
           <span className={css.nota}>Sin tarjeta de crédito.</span>
         </div>

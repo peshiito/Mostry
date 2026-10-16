@@ -8,8 +8,7 @@ import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { NoEncontrada } from '../../../shared/ui/NoEncontrada.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
-import { ModalPago } from '../components/ModalPago.jsx';
-import { ModalSuspender } from '../components/ModalSuspender.jsx';
+import { ModalesTienda } from '../components/ModalesTienda.jsx';
 import { TarjetaAyuda } from '../ayuda/TarjetaAyuda.jsx';
 import { TarjetaSoporte } from '../components/TarjetaSoporte.jsx';
 import { TarjetasDetalle } from '../components/TarjetasDetalle.jsx';
@@ -17,7 +16,7 @@ import { ESTADOS_TIENDA } from '../estados.js';
 import { useTiendaAdmin } from '../hooks/useTiendasAdmin.js';
 import css from './PantallaTiendaAdmin.module.css';
 
-// Detalle de una tienda: registrar pago, suspender o reactivar (Stitch 55 a 57).
+// Detalle de una tienda: registrar pago, regalar días, suspender o reactivar (Stitch 55 a 57).
 export function PantallaTiendaAdmin() {
   const { id } = useParams();
   const a = useTiendaAdmin(id);
@@ -27,11 +26,13 @@ export function PantallaTiendaAdmin() {
   const t = a.tienda;
   const est = ESTADOS_TIENDA[t.estado];
   const cerrar = () => setModal(null);
-  const hecho = async (r) => (await r).ok && cerrar();
   const acciones = (
     <div className={css.acciones}>
       <Boton onClick={() => setModal('suspender')}>
         {t.estado === 'suspendida' ? 'Reactivar' : 'Suspender'}
+      </Boton>
+      <Boton icono="redeem" onClick={() => setModal('cortesia')}>
+        Regalar días
       </Boton>
       <Boton variante="principal" icono="payments" onClick={() => setModal('pago')}>
         Registrar pago
@@ -50,20 +51,7 @@ export function PantallaTiendaAdmin() {
       <TarjetasDetalle tienda={t} />
       <TarjetaSoporte tienda={t} />
       <TarjetaAyuda tienda={t} recargar={a.recargar} />
-      <ModalPago
-        abierta={modal === 'pago'}
-        tienda={t}
-        onCerrar={cerrar}
-        onRegistrar={(d) => hecho(a.registrarPago(d))}
-      />
-      <ModalSuspender
-        abierta={modal === 'suspender'}
-        tienda={t}
-        onCerrar={cerrar}
-        onConfirmar={(motivo) =>
-          hecho(t.estado === 'suspendida' ? a.reactivar() : a.suspender(motivo))
-        }
-      />
+      <ModalesTienda modal={modal} onCerrar={cerrar} tienda={t} acciones={a} />
     </Pagina>
   );
 }

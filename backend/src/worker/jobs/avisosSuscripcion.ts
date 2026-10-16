@@ -4,7 +4,7 @@ import { formatearPlata } from '../../shared/utils/plata.js';
 
 export type TipoAviso = AvisosSuscripcionTabla['tipo'];
 
-// Qué aviso le toca a una tienda (sección 6.5: días 7 y 9 de la prueba, y al
+// Qué aviso le toca a una tienda (sección 6.5: 3 días y 1 día antes de que termine la prueba, y al
 // entrar en gracia o quedar suspendida). Por rangos de horas y no por días
 // exactos: si un día el job no corrió, el aviso sale igual al siguiente (la
 // tabla avisos_suscripcion evita duplicados).
