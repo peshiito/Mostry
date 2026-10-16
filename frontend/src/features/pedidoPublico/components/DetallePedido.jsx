@@ -32,10 +32,13 @@ export function DetallePedido({ pedido }) {
         ) : null}
         <TicketFila concepto="Total" monto={plata(pedido.total)} total />
         {pedido.sena ? (
-          <TicketFila
-            concepto="Resta pagar al retirar"
-            monto={plata(pedido.total - pedido.sena)}
-          />
+          <>
+            <TicketFila concepto="Seña" monto={plata(pedido.sena)} />
+            <TicketFila
+              concepto="Resta pagar al retirar"
+              monto={plata(pedido.total - pedido.sena)}
+            />
+          </>
         ) : null}
       </Ticket>
     </Tarjeta>
