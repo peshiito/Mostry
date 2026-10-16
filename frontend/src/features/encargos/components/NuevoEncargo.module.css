@@ -1,0 +1,34 @@
+.bloque {
+  display: grid;
+  gap: var(--e-3);
+}
+.producto {
+  display: grid;
+  gap: var(--e-2);
+  padding-block: var(--e-2);
+  border-top: var(--borde);
+}
+.producto:first-of-type {
+  border-top: 0;
+}
+.fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2);
+}
+.nombre {
+  font-weight: 600;
+}
+.precio {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

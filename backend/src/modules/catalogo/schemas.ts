@@ -35,6 +35,8 @@ const camposProducto = {
     .nullable()
     .transform((v) => v || null)
     .optional(),
+  // Encargos 3: horas de anticipación de este producto (null = la de la tienda).
+  anticipacionHoras: z.int().min(0).max(720).nullable().optional(),
   agotado: z.boolean().optional(),
   activo: z.boolean().optional(),
 };
@@ -58,6 +60,7 @@ export const esquemaFiltros = z.strictObject({
   categoriaId: z.union([z.literal('sin'), esquemaId]).optional(),
   estado: z.enum(['activos', 'inactivos', 'todos']).default('activos'),
   stockBajo: booleano.optional(),
+  encargo: booleano.optional(), // solo lo que se encarga (Encargos 3)
   pagina: z.coerce.number().int().min(1).max(1000).default(1),
 });
 

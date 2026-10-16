@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { anticipacionDe } from '../../checkout/lib/anticipacion.js';
 import { Aviso } from '../../../shared/ui/Aviso.jsx';
 import { EsqueletoDetalle } from '../../../shared/ui/esqueletos/index.js';
 import { Monto } from '../../../shared/ui/Monto.jsx';
@@ -36,7 +37,7 @@ export function PantallaProducto() {
       <Pagina espacio="sm" className={css.cuerpo}>
         {producto.aceptaEncargo ? (
           <Aviso tipo="alerta" titulo="Por encargo" icono="schedule">
-            Pedila con {tienda.anticipacionEncargoHoras} h de anticipación.
+            Pedila con {anticipacionDe(tienda, [producto])} h de anticipación.
           </Aviso>
         ) : null}
         <Tarjeta>

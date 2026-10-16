@@ -11,6 +11,7 @@ export const FORM_NUEVO = {
   aceptaEncargo: false,
   pidePersonalizacion: false,
   indicacionPersonalizacion: '',
+  anticipacionHoras: '',
   destacado: false,
   activo: true,
 };
@@ -27,6 +28,7 @@ export const aFormulario = (p) => ({
   aceptaEncargo: p.aceptaEncargo,
   pidePersonalizacion: p.pidePersonalizacion,
   indicacionPersonalizacion: p.indicacionPersonalizacion ?? '',
+  anticipacionHoras: p.anticipacionHoras == null ? '' : String(p.anticipacionHoras),
   destacado: p.destacado,
   activo: p.activo,
 });
@@ -44,6 +46,9 @@ export function aCuerpo(f, original) {
     pidePersonalizacion:
       (f.modoStock === 'a_pedido' || f.aceptaEncargo) && f.pidePersonalizacion,
     indicacionPersonalizacion: f.indicacionPersonalizacion.trim() || null,
+    // Encargos 3: vacío = la anticipación de la tienda.
+    anticipacionHoras:
+      f.anticipacionHoras === '' ? null : Math.round(Number(f.anticipacionHoras)),
     destacado: f.destacado,
     activo: f.activo,
   };

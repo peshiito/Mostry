@@ -11,8 +11,32 @@ describe('leerCarrito', () => {
   it('devuelve el carrito guardado si está bien', () => {
     guardar([bueno]);
     expect(leerCarrito('c')).toEqual([
-      { ...bueno, descripcion: '', aceptaEncargo: false },
+      {
+        ...bueno,
+        descripcion: '',
+        aceptaEncargo: false,
+        pidePersonalizacion: false,
+        indicacionPersonalizacion: null,
+        anticipacionHoras: null,
+      },
     ]);
+  });
+
+  it('conserva la personalización y la anticipación al recargar (Encargos 2 y 3)', () => {
+    const torta = {
+      ...bueno,
+      pidePersonalizacion: true,
+      indicacionPersonalizacion: 'El texto y el sabor',
+      anticipacionHoras: 48,
+    };
+    guardar([torta, { ...torta, id: 4, anticipacionHoras: -5 }]);
+    const [a, b] = leerCarrito('c');
+    expect(a).toMatchObject({
+      pidePersonalizacion: true,
+      indicacionPersonalizacion: 'El texto y el sabor',
+      anticipacionHoras: 48,
+    });
+    expect(b.anticipacionHoras).toBeNull();
   });
 
   it('sin carrito, JSON roto o algo que no es lista → vacío', () => {

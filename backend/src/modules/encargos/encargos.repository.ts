@@ -9,6 +9,7 @@ export async function encargosEntre(tiendaId: TiendaId, desde: Date, hasta: Date
       'id',
       'numero',
       'tipo', // el panel decide "aceptar" con el tipo (Encargos 2)
+      'origen', // 'panel': lo cargó el comerciante (Encargos 3)
       'estado',
       'clienteNombre',
       'clienteWhatsapp',

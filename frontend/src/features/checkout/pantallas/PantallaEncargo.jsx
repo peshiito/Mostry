@@ -12,7 +12,8 @@ import { ElegirTurno } from '../components/ElegirTurno.jsx';
 import { SenaEncargo } from '../components/SenaEncargo.jsx';
 import { faltaPersonalizar, Personalizar } from '../components/Personalizar.jsx';
 import { useConfirmarEncargo } from '../hooks/useConfirmarEncargo.js';
-import { armarPedido } from '../hooks/useCrearPedido.js';
+import { cuerpoEncargo } from '../lib/cuerpoEncargo.js';
+import { anticipacionDe } from '../lib/anticipacion.js';
 
 // Día y hora del encargo + seña (Stitch 17, sección 6.2).
 export function PantallaEncargo() {
@@ -23,20 +24,10 @@ export function PantallaEncargo() {
   const [turno, setTurno] = useState(null);
   const [personal, setPersonal] = useState({});
   if (!state || !items.length) return <Navigate to="/checkout" replace />;
+  const horas = anticipacionDe(tienda, items);
   const sena = Math.round((subtotal * tienda.senaPorcentaje) / 100);
   const confirmar = () =>
-    pedido.confirmar(
-      armarPedido({
-        ...state,
-        items,
-        costoEnvio: tienda.costoEnvio,
-        fechaEncargo: turno.toISOString(),
-        personalizar: Object.fromEntries(
-          Object.entries(personal).map(([id, v]) => [id, v.texto ?? '']),
-        ),
-      }),
-      personal,
-    );
+    pedido.confirmar(cuerpoEncargo({ state, items, tienda, turno, personal }), personal);
   return (
     <>
       <HeaderTienda volver="/checkout" titulo="Encargo" />
@@ -44,10 +35,16 @@ export function PantallaEncargo() {
         <Pasos pasos={['Datos', 'Día y hora', 'Seña']} actual={2} />
         <TituloPagina
           titulo="¿Para cuándo lo querés?"
-          bajada={`Con ${tienda.anticipacionEncargoHoras} h de anticipación como mínimo.`}
+          bajada={`Con ${horas} h de anticipación como mínimo.`}
         />
         <AvisoError error={pedido.error} />
-        <ElegirTurno tienda={tienda} turno={turno} onTurno={setTurno} />
+        <ElegirTurno
+          tienda={tienda}
+          anticipacion={horas}
+          productos={items.map((i) => i.id)}
+          turno={turno}
+          onTurno={setTurno}
+        />
         <Personalizar items={items} valores={personal} onCambio={setPersonal} />
         <SenaEncargo sena={sena} total={subtotal} porcentaje={tienda.senaPorcentaje} />
         <Boton

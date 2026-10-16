@@ -1,7 +1,6 @@
 import { tokenAleatorio } from '../../../shared/crypto/tokens.js';
 import { db } from '../../../shared/db/db.js';
 import type { TiendaId } from '../../../shared/db/tiendaId.js';
-import { AppError } from '../../../shared/errors/AppError.js';
 import { cargarAgenda } from '../../horarios/repositorios/agenda.repository.js';
 import { checkoutRepo as repo } from '../repositorios/checkout.repository.js';
 import { tiendaParaPedido } from '../repositorios/tiendaParaPedido.repository.js';
@@ -12,7 +11,9 @@ import { armarItems } from './armarPedido.js';
 import { filaPedido } from './filaPedido.js';
 import { reservarItems } from './reservarItems.js';
 import { validarReglasCheckout } from './reglasCheckout.js';
+import { exigirAlias } from './exigirAlias.js';
 import { numerarPedido } from './numerarPedido.js';
+import { conAnticipacion } from '../../encargos/anticipacion.js';
 import { calcularTotales } from './totales.js';
 import { respuestaCheckout } from './respuestaCheckout.js';
 
@@ -24,7 +25,8 @@ export async function crearPedido(
   ahora = new Date(),
   clienteId: number | null = null, // cliente del Club, si entró (Lealtad L3)
 ) {
-  const t = await tiendaParaPedido(tiendaId);
+  // Un encargo usa la mayor anticipación entre la tienda y sus productos.
+  const t = await conAnticipacion(await tiendaParaPedido(tiendaId), tiendaId, d);
   validarReglasCheckout(t, await cargarAgenda(tiendaId, ahora), d, ahora);
   const pedido = await db.transaction().execute(async (tx) => {
     await bloquearSiHayPremio(tx, tiendaId, d); // antes de leer nada (prepararCanje.ts)
@@ -39,13 +41,7 @@ export async function crearPedido(
     const items = armarItems(d.tipo, d.items, productos);
     const canje = await canjeDelPedido(tx, tiendaId, d, clienteId, items);
     const totales = calcularTotales(d, items, t, canje?.descuento);
-    if (totales.requierePago && !t.alias) {
-      throw new AppError(
-        409,
-        'tienda_sin_alias',
-        'La tienda todavía no cargó dónde recibir pagos.',
-      );
-    }
+    exigirAlias(t, totales.requierePago);
     // Los encargos no tocan el stock (se fabrican a pedido, sección 6.2).
     if (d.tipo === 'inmediato') await reservarItems(tx, tiendaId, items);
     const plazoHoras =

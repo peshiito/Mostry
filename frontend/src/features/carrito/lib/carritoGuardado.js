@@ -22,6 +22,12 @@ const limpiar = (i) => ({
   foto: fotoSegura(i.foto) ? i.foto : '/sin-foto.svg',
   descripcion: texto(i.descripcion) ? i.descripcion : '',
   aceptaEncargo: i.aceptaEncargo === true,
+  // Encargos 2 y 3: si se personaliza y cuánta anticipación pide.
+  pidePersonalizacion: i.pidePersonalizacion === true,
+  indicacionPersonalizacion: texto(i.indicacionPersonalizacion)
+    ? i.indicacionPersonalizacion
+    : null,
+  anticipacionHoras: entero(i.anticipacionHoras, 0, 720) ? i.anticipacionHoras : null,
 });
 
 export function leerCarrito(clave) {

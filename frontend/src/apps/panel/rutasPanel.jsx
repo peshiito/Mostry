@@ -27,6 +27,7 @@ const rutas = [
   ['gastos/nuevo', 'gastos', 'PantallaGastoNuevo'],
   ['proveedores', 'gastos', 'PantallaProveedores'],
   ['encargos', 'encargos', 'PantallaEncargos'],
+  ['encargos/nuevo', 'encargos', 'PantallaNuevoEncargo'],
   ['libreta', 'libreta', 'PantallaLibreta'],
   ['libreta/notas', 'libreta', 'PantallaNotas'],
   ['libreta/:id', 'libreta', 'PantallaClienteFiado'],

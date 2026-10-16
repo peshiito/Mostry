@@ -3,10 +3,12 @@ import { turnosDelDia } from '../lib/agenda.js';
 
 // Turnos reales de un día: los tramos vienen de la API (que ya descarta feriados
 // y días cerrados); acá se parten en turnos de 30 min respetando la anticipación.
-export function useTurnosDia(dia, anticipacionHoras) {
+// `productos`: ids del carrito, para que la API use su anticipación (Encargos 3).
+export function useTurnosDia(dia, anticipacionHoras, productos = []) {
   const fecha = dia ? dia.toLocaleDateString('sv-SE') : null;
+  const ids = productos.length ? `&productos=${productos.join(',')}` : '';
   const { datos, cargando, error, recargar } = useConsulta(
-    fecha ? `/publico/encargos/disponibilidad?fecha=${fecha}` : null,
+    fecha ? `/publico/encargos/disponibilidad?fecha=${fecha}${ids}` : null,
   );
   // Un error no es "sin turnos": el comprador ve que falló y puede reintentar.
   const base = { turnos: [], cargando, error, recargar };

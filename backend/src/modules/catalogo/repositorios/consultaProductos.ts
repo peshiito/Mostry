@@ -7,6 +7,7 @@ export type FiltrosRepo = {
   categoriaId?: number | null;
   activos?: boolean;
   stockBajo?: boolean;
+  encargo?: boolean;
 };
 
 // Base filtrada de productos de UNA tienda (para listar y contar).
@@ -14,6 +15,7 @@ function consultaProductos(tiendaId: TiendaId, f: FiltrosRepo) {
   let q = db.selectFrom('productos').where('tiendaId', '=', tiendaId);
   if (f.activos !== undefined) q = q.where('activo', '=', f.activos);
   if (f.buscar) q = q.where('nombre', 'like', patronContiene(f.buscar));
+  if (f.encargo) q = q.where('aceptaEncargo', '=', true);
   if (f.categoriaId === null) q = q.where('categoriaId', 'is', null);
   else if (f.categoriaId !== undefined) q = q.where('categoriaId', '=', f.categoriaId);
   // Stock bajo: stock físico en o por debajo del mínimo (si hay mínimo cargado).

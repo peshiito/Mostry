@@ -2,11 +2,10 @@ import { tiendaDelPanel } from '../../shared/http/contextoPanel.js';
 import { Router, type RequestHandler } from 'express';
 import { z } from 'zod';
 import { enArgentina, inicioDiaAr } from '../../shared/utils/horaArgentina.js';
-import { cargarAgenda } from '../horarios/repositorios/agenda.repository.js';
-import { tiendaParaPedido } from '../pedidos/repositorios/tiendaParaPedido.repository.js';
-import { disponibilidadEncargo } from './disponibilidad.js';
 import { encargosEntre } from './encargos.repository.js';
-import { encargosDelDia } from './cupo.js';
+import { disponibilidad } from './disponibilidad.controller.js';
+import { crearEncargoManual } from './manual/crearEncargoManual.js';
+import { esquemaEncargoManual } from './manual/esquema.js';
 
 const DIA_MS = 24 * 60 * 60 * 1000;
 const enDias = (d: number) => enArgentina(new Date(Date.now() + d * DIA_MS)).fecha;
@@ -33,23 +32,14 @@ const calendario: RequestHandler = async (req, res) => {
   );
 };
 
-// Público: horarios elegibles para un encargo en una fecha.
-const disponibilidad: RequestHandler = async (req, res) => {
-  const { fecha } = z.strictObject({ fecha: z.iso.date() }).parse(req.query);
-  const [agenda, t] = await Promise.all([
-    cargarAgenda(req.tienda!.id),
-    tiendaParaPedido(req.tienda!.id),
-  ]);
-  const d = disponibilidadEncargo(agenda, fecha, t.anticipacionEncargoHoras);
-  const lleno =
-    d.disponible &&
-    t.cupoEncargosDia !== null &&
-    (await encargosDelDia(req.tienda!.id, fecha)) >= t.cupoEncargosDia;
-  res.json(lleno ? { fecha, disponible: false, motivo: 'sin_cupo', tramos: [] } : d);
+// Encargos 3: un encargo que llegó por WhatsApp, cargado por el comerciante.
+const cargarEncargo: RequestHandler = async (req, res) => {
+  const d = esquemaEncargoManual.parse(req.body);
+  res.status(201).json(await crearEncargoManual(tiendaDelPanel(req), d));
 };
 
 export function rutasEncargosPanel(): Router {
-  return Router().get('/encargos', calendario);
+  return Router().get('/encargos', calendario).post('/encargos', cargarEncargo);
 }
 
 export function rutasEncargosPublico(): Router {

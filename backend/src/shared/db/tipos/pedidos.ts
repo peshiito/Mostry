@@ -20,6 +20,7 @@ export type PedidosTabla = DeTienda &
     numero: number;
     tokenSeguimiento: string;
     tipo: 'inmediato' | 'encargo';
+    origen: Auto<'web' | 'panel'>; // cargado desde el panel (Encargos 3, 0050)
     estado: EstadoPedido;
     clienteNombre: string;
     clienteWhatsapp: string;

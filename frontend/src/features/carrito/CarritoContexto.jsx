@@ -29,9 +29,10 @@ export function CarritoProveedor({ slug, children }) {
         // Encargos 2: si se personaliza, el comprador lo cuenta al encargar.
         const { pidePersonalizacion = false, indicacionPersonalizacion = null } =
           producto;
+        const { anticipacionHoras = null } = producto; // Encargos 3
         const item = {
           ...{ id, nombre, precio, foto, descripcion, aceptaEncargo, cantidad },
-          ...{ pidePersonalizacion, indicacionPersonalizacion },
+          ...{ pidePersonalizacion, indicacionPersonalizacion, anticipacionHoras },
         };
         return actual ? prev.map((i) => (i.id === id ? item : i)) : [...prev, item];
       });

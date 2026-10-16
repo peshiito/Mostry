@@ -1,5 +1,6 @@
 import { Interruptor } from '../../../shared/ui/Interruptor.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
+import { OpcionAnticipacion } from './OpcionAnticipacion.jsx';
 import { OpcionPersonalizar } from './OpcionPersonalizar.jsx';
 
 // Switches del producto: encargo, personalización, destacado y visible.
@@ -17,6 +18,7 @@ export function OpcionesProducto({ form, onCambio }) {
         />
       )}
       <OpcionPersonalizar form={form} onCambio={onCambio} />
+      <OpcionAnticipacion form={form} onCambio={onCambio} />
       <Interruptor
         etiqueta="Destacado en el inicio"
         activo={form.destacado}

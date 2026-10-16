@@ -6,6 +6,7 @@ export const camposPanel = (p: Pedido) => ({
   numero: p.numero,
   estado: p.estado,
   tipo: p.tipo,
+  origen: p.origen, // 'panel': lo cargó el comerciante (Encargos 3)
   clienteNombre: p.clienteNombre,
   clienteWhatsapp: p.clienteWhatsapp,
   entrega: p.entrega,

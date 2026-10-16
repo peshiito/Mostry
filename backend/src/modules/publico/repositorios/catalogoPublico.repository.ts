@@ -30,6 +30,7 @@ const columnas = [
   'aceptaEncargo',
   'pidePersonalizacion',
   'indicacionPersonalizacion',
+  'anticipacionHoras',
   'modoStock',
   'destacado',
   'categoriaId',

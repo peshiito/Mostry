@@ -3,7 +3,7 @@ import { esLinkMapsValido } from '../../shared/utils/linkMaps.js';
 import { normalizarWhatsapp } from '../../shared/utils/whatsapp.js';
 import { esquemaItem } from './schemaItem.js';
 
-const whatsapp = z
+export const whatsapp = z
   .string()
   .max(30)
   .transform((v, ctx) => {

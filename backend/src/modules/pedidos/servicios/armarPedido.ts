@@ -24,6 +24,7 @@ export function armarItems(
   tipo: 'inmediato' | 'encargo',
   pedidos: ItemPedido[],
   productos: ProductoParaPedido[],
+  manual = false, // encargo cargado desde el panel (Encargos 3)
 ) {
   const porId = new Map(productos.map((p) => [p.id, p]));
   return pedidos.map(({ productoId, cantidad, personalizacion }) => {
@@ -60,7 +61,7 @@ export function armarItems(
       precioUnitario: p.precio,
       cantidad,
       subtotal: p.precio * cantidad,
-      personalizacion: personalizacionDelItem(tipo, p, personalizacion),
+      personalizacion: personalizacionDelItem(tipo, p, personalizacion, manual),
       // Solo lo que se cuenta por unidades reserva stock (y solo al comprar al toque).
       reservo: tipo === 'inmediato' && p.modoStock === 'unidades',
     };

@@ -12,6 +12,7 @@ export async function listarProductos(tiendaId: TiendaId, f: FiltrosProductos) {
     categoriaId: f.categoriaId === 'sin' ? null : f.categoriaId,
     activos: ESTADO_A_ACTIVO[f.estado],
     stockBajo: f.stockBajo,
+    encargo: f.encargo,
   };
   const desde = (f.pagina - 1) * POR_PAGINA;
   const { filas, total } = await listarProductosRepo(

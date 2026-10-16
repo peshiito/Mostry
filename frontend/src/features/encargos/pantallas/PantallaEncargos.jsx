@@ -1,6 +1,7 @@
 import { ErrorCarga } from '../../../shared/ui/ErrorCarga.jsx';
 import { useState } from 'react';
 import { AvisoError } from '../../../shared/ui/AvisoError.jsx';
+import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Estado } from '../../../shared/ui/Estado.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
@@ -22,6 +23,11 @@ export function PantallaEncargos() {
         migas="Negocio"
         titulo="Encargos"
         bajada="Pedidos programados con fecha y seña"
+        accion={
+          <Boton tamano="sm" icono="add" to="/panel/encargos/nuevo">
+            Cargar
+          </Boton>
+        }
       />
       <AvisoError error={error} />
       <PorAceptar />

@@ -12,7 +12,9 @@ export function DatosCliente({ pedido: p }) {
     <Tarjeta className={css.datos}>
       <div className={css.fila}>
         <div>
-          <p className={css.etiqueta}>Cliente</p>
+          <p className={css.etiqueta}>
+            {p.origen === 'panel' ? 'Cliente · cargado por vos' : 'Cliente'}
+          </p>
           <p className={css.nombre}>{p.cliente}</p>
         </div>
         <Boton

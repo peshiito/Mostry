@@ -6,7 +6,9 @@ export function personalizacionDelItem(
   tipo: 'inmediato' | 'encargo',
   p: { id: number; nombre: string; pidePersonalizacion: boolean },
   texto: string | undefined,
+  manual = false, // cargado por el comerciante: anota lo que quiera, sin exigir
 ): string | null {
+  if (manual) return texto ?? null;
   const admite = tipo === 'encargo' && p.pidePersonalizacion;
   if (texto && !admite)
     throw new AppError(

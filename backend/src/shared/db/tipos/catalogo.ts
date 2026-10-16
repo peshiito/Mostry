@@ -22,6 +22,7 @@ export type ProductosTabla = DeTienda &
     aceptaEncargo: Auto<boolean>;
     pidePersonalizacion: Auto<boolean>; // Encargos 2 (0048)
     indicacionPersonalizacion: string | null;
+    anticipacionHoras: number | null; // Encargos 3 (0050): NULL = la de la tienda
   };
 
 export type ProductoFotosTabla = DeTienda &

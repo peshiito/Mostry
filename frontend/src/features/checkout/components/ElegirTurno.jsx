@@ -8,16 +8,17 @@ import { Turnos } from './Turnos.jsx';
 
 // Calendario + horarios. Los días se estiman con los horarios de la tienda
 // y los turnos del día elegido se confirman con la API.
-export function ElegirTurno({ tienda, turno, onTurno }) {
+// `anticipacion`: la mayor del carrito; `productos`: sus ids (Encargos 3).
+export function ElegirTurno({ tienda, anticipacion, productos, turno, onTurno }) {
   const [dia, setDia] = useState(null);
-  const { tramos, anticipacionEncargoHoras } = tienda;
+  const { tramos } = tienda;
   const {
     turnos,
     motivo,
     cargando,
     error: errorCarga,
     recargar,
-  } = useTurnosDia(dia, anticipacionEncargoHoras);
+  } = useTurnosDia(dia, anticipacion, productos);
   if (errorCarga)
     return (
       <ErrorCarga
@@ -36,9 +37,7 @@ export function ElegirTurno({ tienda, turno, onTurno }) {
             setDia(f);
             onTurno(null);
           }}
-          disponible={(f) =>
-            turnosDelDia(f, tramos, [], anticipacionEncargoHoras).length > 0
-          }
+          disponible={(f) => turnosDelDia(f, tramos, [], anticipacion).length > 0}
         />
       </Tarjeta>
       <Tarjeta>

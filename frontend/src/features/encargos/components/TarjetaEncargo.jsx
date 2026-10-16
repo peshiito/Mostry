@@ -33,6 +33,7 @@ export function TarjetaEncargo({ encargo: e, principal, onCambiar }) {
       <p className={css.detalle}>{e.detalle}</p>
       <p className={css.cliente}>
         {e.cliente} · Pedido #{e.numero}
+        {e.origen === 'panel' ? ' · Cargado por vos' : ''}
       </p>
       <p className={css.plata}>{textoPlata(e)}</p>
       {accion ? (

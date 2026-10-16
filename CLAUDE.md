@@ -394,7 +394,7 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **Mejoras 3 COMPLETA.** Suites: backend 373/373, frontend 129/129, e2e 74/74.
 - **Etapa "Lealtad"** (club de clientes con QR y sellos), arrancada el 2026-10-13. El plan completo está en **`docs/lealtad-plan.md`**: leelo entero antes de seguir.
   - **L1 a L5: HECHAS (2026-10-14), sin commitear.** Pedro pidió hacerlas de corrido (aprobé yo los planes de L3–L5, con su permiso). Migraciones `0043` a `0047`, `modules/club/{cuenta,qr,programa,sellos,canjes,historial}`, `features/{club,clubPanel}` y el escáner en `features/vender/`.
-- **Encargos 2 (2026-10-15):** aceptar antes de cobrar, personalización con foto y cupo por día. Detalle en §13.
+- **Encargos 2 y 3 (2026-10-15):** aceptar antes de cobrar, personalización con foto, cupo por día, encargos cargados desde el panel y anticipación por producto. Detalle en §13.
 - **Cuentas de prueba en la base local** (cargadas a mano el 2026-10-15, clave `prueba12345`): `tienda@prueba.test` (tienda vacía `prueba`, en prueba gratis) y `cliente@prueba.test` (cliente del Club).
 - **En la base local:** el admin es `pedrotest@gmail.com` (clave `test12345`, cargada a mano). El seed sigue creando `admin@mostry.test`.
 - **Mails en local:** Resend con `onboarding@resend.dev` solo entrega a `pedrogbaez1@gmail.com`. Pasar a Mailpit está pendiente; Pedro dijo "lo vemos en el transcurso".
@@ -517,7 +517,9 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
     - panel: bloque "Por aceptar" en Encargos; Aceptar y Rechazar en el detalle, con la personalización y "Ver foto de referencia"; "Pide personalización" en el producto; "Máximo de encargos por día" en Mi tienda;
     - vidriera: la personalización y la foto se cargan en el paso del encargo (`checkout/components/Personalizar.jsx`) y la foto se sube después de crear el pedido (`useConfirmarEncargo`). El seguimiento avisa "Esperando que … acepte tu encargo".
   - **Las docenas son productos aparte** ("Docena surtida"): decisión de Pedro, no hay unidad de venta.
-  - **Quedaron afuera** (ideas de Pedro para más adelante): cargar desde el panel un encargo que llegó por WhatsApp y una anticipación distinta por producto.
+- **Encargos 3 (2026-10-15):**
+  - **Encargo cargado desde el panel** (`POST /panel/encargos`, `encargos/manual/`): lo que llegó por WhatsApp o en persona. Entra ya aceptado: si el dueño anota la seña cobrada (monto y medio), queda en `pago_aprobado` y la seña entra a la caja en la misma transacción (en efectivo exige la caja abierta). Sin seña, queda en `confirmado`. El dueño manda: sin anticipación, horario ni cupo, solo con fecha futura y dentro de 60 días. La personalización es opcional. `pedidos.origen = 'panel'` (migración `0050`) se muestra como "cargado por vos". Pantalla: Panel → Encargos → Cargar (`PantallaNuevoEncargo`), que lista productos con `/panel/productos?encargo=true`.
+  - **Anticipación por producto** (`productos.anticipacion_horas`, nulo = la de la tienda): vale la mayor entre la tienda y los productos (`encargos/anticipacion.ts` en el backend y `checkout/lib/anticipacion.js` en el frontend). La disponibilidad recibe `&productos=1,2`.
 - **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
   - `unidades`: reserva y descuenta, como siempre;
   - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;
@@ -555,7 +557,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
 - **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte, club (cuentas de cliente, QR, programa, sellos, canjes e historiales).
 - **Base:**
-  - 49 migraciones en `db/migraciones/` (todas con `down`);
+  - 50 migraciones en `db/migraciones/` (todas con `down`);
   - seed en `db/seed/` (`npm run db:seed`);
   - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
 - **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.
