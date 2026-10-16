@@ -400,9 +400,13 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **En la base local:** el admin es `pedrotest@gmail.com` (clave `test12345`, cargada a mano). El seed sigue creando `admin@mostry.test`.
 - **Mails en local:** Resend con `onboarding@resend.dev` solo entrega a `pedrogbaez1@gmail.com`. Pasar a Mailpit está pendiente; Pedro dijo "lo vemos en el transcurso".
 
+**Plan de salida (2026-10-16): leé `docs/plan-salida.md` antes de seguir.**
+- **Etapas:** S1 pre-salida (claves, repo privado, prueba de 7 días, días de cortesía, pedidos gratis del Club) → S2 legal (términos, privacidad, cookies, factura C por cada pago) → S3 seguridad de salida (HTTPS forzado, HSTS, repaso) → S4 producción (staging y producción, Resend con dominio, hosting gratis o casi) → S5 piloto (el negocio de bebidas de la familia de Pedro y 2 o 3 más) → S6 lanzamiento (video y guía corta).
+- **No se suman funciones nuevas** hasta el piloto, salvo las de S1 y S2.
+
 **Pendientes abiertos (consultar con Pedro antes de tocar):**
 - **Días de cortesía (idea de Pedro, 2026-10-14):** que el admin pueda regalarle días a una tienda (7, 10, 15 o los que elija), por ejemplo si no pudo usar Mostry por un mantenimiento del servidor. Que sirva tanto en la prueba gratis como en el plan pago, con el motivo anotado en `registro_admin`. Está pendiente de plan.
-- **Duración de la prueba gratis:** Pedro habló de 7 días; el código dice 10. Por ahora no se toca.
+- **Duración de la prueba gratis:** Pedro decidió 7 días (2026-10-16). Se cambia en la S1 del plan de salida.
 - Pasar el repo de GitHub a **privado**.
 - Rotar la clave de **Resend** antes de producción.
 - **Contador de pedidos en el detalle del admin:** se sacó por privacidad. ¿Lo quiere de vuelta?
