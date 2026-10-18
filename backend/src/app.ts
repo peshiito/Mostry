@@ -14,6 +14,7 @@ import { rutasPublico } from './modules/publico/publico.routes.js';
 import type { Mailer } from './shared/email/mailer.js';
 import { logger } from './shared/logger.js';
 import { manejarErrores } from './shared/middlewares/manejarErrores.js';
+import { opcionesHsts } from './shared/http/hsts.js';
 import { opcionesCors } from './shared/middlewares/opcionesCors.js';
 import { rutaNoEncontrada } from './shared/middlewares/rutaNoEncontrada.js';
 import { verificarOrigen } from './shared/middlewares/verificarOrigen.js';
@@ -27,14 +28,27 @@ export function crearApp(deps: Dependencias): Express {
   // Cuántos proxies hay delante: sin esto, req.ip sería la IP del proxy.
   app.set('trust proxy', config.TRUST_PROXY);
 
-  app.use(pinoHttp({ logger, genReqId: () => randomUUID() }));
+  // `ip`: la IP real según TRUST_PROXY (en staging se compara con la propia).
+  app.use(
+    pinoHttp({
+      logger,
+      genReqId: () => randomUUID(),
+      customProps: (req) => ({ ip: (req as express.Request).ip }),
+    }),
+  );
   app.use(
     helmet({
       contentSecurityPolicy: {
         directives: { defaultSrc: ["'none'"], frameAncestors: ["'none'"] },
       },
+      strictTransportSecurity: opcionesHsts(config),
     }),
   );
+  // S3: ninguna respuesta de la API se guarda en cachés (hay datos personales).
+  app.use((_req, res, next) => {
+    res.set('Cache-Control', 'no-store');
+    next();
+  });
   app.use(cors(opcionesCors));
   app.use(verificarOrigen);
   app.use(express.json({ limit: '100kb' }));

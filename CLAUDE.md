@@ -17,7 +17,7 @@ Sos el desarrollador principal de **Mostry**. Yo soy Pedro, el dueño del proyec
 4. **Nada de decisiones fuera de este documento sin preguntarme.** Si algo falta o se contradice, me lo planteás con tu propuesta y esperás.
 5. **Cuando me pases código para revisar, mandame archivos completos**, nunca fragmentos sueltos.
 6. **Cero secretos en el código.** Todo va en `.env`, con un `.env.example` documentado. `.env` va en `.gitignore`.
-7. **Git lo maneja Pedro** (init, commits, push). Claude no corre git: cada 1–2 etapas (o tras una pesada) sugiere que es hora de un commit y propone el mensaje en español. **Excepción:** si Pedro pide explícitamente "hacelo vos", Claude lo hace, pero antes verifica que no haya ningún `.env` en lo agregado ni en el historial (`git log --all --oneline -- .env frontend/.env`).
+7. **Commits y push al terminar cada etapa** (pedido de Pedro, 2026-10-18): con las suites en verde, Claude hace el commit en español y el push a `desarrollo`. Antes verifica que no vaya ningún `.env` ni datos personales (`git diff --cached --name-only | grep .env`). A `main` y los tags, solo si Pedro lo pide.
 8. **Hablame en español rioplatense (voseo)**, corto y concreto.
 9. **Todo trabajo nuevo arranca en modo plan.** Cuando acordamos algo para hacer (una etapa, una mejora), Claude entra al modo plan, arma el plan y lo corregimos juntos. Recién cuando Pedro lo aprueba se pasa al modo automático para hacerlo.
 
@@ -403,7 +403,9 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 **S1 · Pre-salida: HECHA (2026-10-16).** Detalle en §13. Rotar las claves de Resend y ElevenLabs y pasar el repo a privado quedaron **fuera** por decisión de Pedro: siguen pendientes antes de producción.
 - **S2 · Legal: HECHA (2026-10-16)**, sin la factura C (Pedro la quiere charlar aparte). Detalle en §13.
 - **Pedro tiene que cargar en el `.env`:** `VITE_LEGAL_NOMBRE`, `VITE_LEGAL_CUIT` y `VITE_LEGAL_EMAIL` (también en `.env.prueba-prod` y en producción). Sin ellas los textos dicen "a completar" y el build de Docker falla.
-- **Después:** S3 seguridad → S4 producción → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
+- **S3 · Seguridad de salida: HECHA (2026-10-18).** Detalle en §13 y en `docs/ataqueE12.md` (sección S3).
+- **A Pedro le falta en `.env.prueba-prod`:** las claves VAPID (obligatorias desde Avisos 1) y las `VITE_LEGAL_*`. Sin eso la prueba de producción en local no arranca.
+- **Después:** S4 producción (antes: rotar claves, repo privado y elegir hosting) → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
 - **Hosting de producción:** sigue sin decidir. Railway cuesta unos 5 USD por mes; Oracle Always Free es gratis, pero hay que configurarlo más.
 
 **Plan de salida (2026-10-16): leé `docs/plan-salida.md` antes de seguir.**
@@ -571,6 +573,13 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - **Aceptación** (migración `0053`): el registro exige `aceptoTerminos: true` y guarda `usuarios.terminos_version` y `terminos_aceptados_en` (el Club, `clientes.terminos_version`). `/auth/yo` devuelve `terminosPendientes` y el panel muestra "Actualizamos los términos" (`PantallaAceptarTerminos`) hasta `POST /auth/terminos { version }`. Es una constancia en la interfaz, no bloquea la API.
   - **Links:** pie de la landing y de la tienda, checkout ("Tus datos los ve solo {tienda}…"), Más del panel y Mis datos del Club. El admin ve en el detalle cuándo aceptó el dueño.
   - **Los textos los escribió Claude con lo que hace el código de verdad (revisados contra el código), pero no son asesoramiento legal:** conviene que un abogado los lea antes de cobrarle al primer comercio.
+- **S3 · Seguridad de salida (2026-10-18):**
+  - **HSTS** (1 año, con subdominios, sin preload) en la API (`shared/http/hsts.ts`) y en el servidor del frontend (`servidor/seguridad.js`), **solo con https y un dominio real**: nunca en `*.localhost`, porque la prueba con Caddy fijaría https para todo `mostry.localhost` en el navegador.
+  - **Redirección a https** en el servidor del frontend si el proxy avisa `X-Forwarded-Proto: http` (segunda capa detrás de "Always Use HTTPS" de Cloudflare). Solo al propio dominio y con una ruta que empiece con una sola `/`. El servicio `web` necesita `DOMINIO_BASE`.
+  - **IP real:** el log de cada request lleva `ip`. Con `TRUST_PROXY=2` (Cloudflare + el proxy del hosting) el límite cuenta por el cliente (`shared/http/ipReal.test.ts`). En staging hay que confirmarlo (`docs/produccion.md`).
+  - **CI liviano** (`.github/workflows/ci.yml`): lint, tipos, build, tests del frontend, `npm audit --audit-level=high` y gitleaks. La suite del backend y el e2e siguen en local.
+  - **Avisos:** el upsert de una suscripción no toca la fila si el endpoint es de otra tienda.
+  - **Backups:** simulacro hecho (script local y worker). El procedimiento del primer backup real está en `docs/produccion.md`.
 - **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
   - `unidades`: reserva y descuenta, como siempre;
   - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;
@@ -652,6 +661,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Prettier alarga los archivos.** El límite de 70 líneas se controla **después** de correr Prettier.
 - **Vitest:** `beforeEach(() => mock.mockReset())` devuelve una función y Vitest la toma como limpieza. Usar llaves: `beforeEach(() => { mock.mockReset(); })`.
 - **Vite se reinicia** si cambian `vite.config.js` o un `.env`: si pasa con el e2e corriendo, fallan pruebas por "connection refused".
+- **La prueba de producción en local** necesita en su env las claves VAPID y las `VITE_LEGAL_*`; si no, la API y el build del frontend no arrancan.
 - **Prueba de producción en local** (Caddy con certificado propio): Chrome no registra el service worker, y las URLs firmadas de los comprobantes apuntan a la red de Docker. En producción real no pasa.
 - **gitleaks** marca como "secreto" el texto de ejemplo de `.env.example` y el token de `frontend/src/test/rutas.js`. Están permitidos en `.gitleaks.toml` y con `// gitleaks:allow`.
 - **Avisos push en local:**

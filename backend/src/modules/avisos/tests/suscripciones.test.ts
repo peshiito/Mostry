@@ -57,6 +57,9 @@ describe('avisos: suscripciones', () => {
     const martin = await crearCuentaCompleta(t.app, t.correo, 'heladeria');
     const ajeno = panel(t.app, 'heladeria', martin.cookie);
     expect((await ajeno.get('/panel/avisos')).body.telefonos).toBe(0);
+    // Mandar el endpoint de un teléfono ajeno no se lo lleva (S3).
+    await ajeno.post('/panel/avisos/suscripciones', suscripcion(1));
+    expect((await ajeno.get('/panel/avisos')).body.telefonos).toBe(0);
     await ajeno.post('/panel/avisos/suscripciones/baja', {
       endpoint: suscripcion(1).endpoint,
     });

@@ -63,6 +63,8 @@ services:
     environment:
       # La CSP del servidor del frontend necesita saber a qué API y a qué R2 conectar.
       VITE_API_URL: ${VITE_API_URL}
+      # Con un dominio real: HSTS y redirección de http a https (S3).
+      DOMINIO_BASE: ${DOMINIO_BASE}
       VITE_ORIGEN_ARCHIVOS: ${VITE_ORIGEN_ARCHIVOS}
 
 volumes:

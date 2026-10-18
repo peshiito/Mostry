@@ -1,0 +1,73 @@
+# CI liviano (S3): lint, tipos, tests del frontend, build, npm audit y gitleaks.
+# Tarda unos minutos y no usa ninguna clave real. La suite del backend (~28 min,
+# con MySQL y RustFS) y el e2e se siguen corriendo en local antes de cada commit.
+name: CI
+
+on:
+  push:
+    branches: [desarrollo, main]
+  pull_request:
+    branches: [desarrollo, main]
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm audit --audit-level=high
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+        env:
+          VITE_DOMINIO_BASE: mostry.com.ar
+          VITE_API_URL: https://api.mostry.com.ar
+          VITE_ORIGEN_ARCHIVOS: https://archivos.mostry.com.ar
+      - run: npm audit --audit-level=high
+
+  e2e-dependencias:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: e2e
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm audit --audit-level=high
+
+  secretos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

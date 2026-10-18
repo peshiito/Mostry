@@ -89,3 +89,29 @@ cd ~/Escritorio/Programacion/Proyectos/Mostry/backend
 npx vitest run src/modules/pedidos/tests/cargaCompradores.test.ts src/shared/archivos/urlVencida.test.ts
 npx vitest run   # suite completa (~11 min)
 ```
+
+## S3 · Seguridad de salida (2026-10-18)
+
+Repaso antes de publicar, sobre todo lo que cambió desde `v1.0.0` (Club, Encargos 2 y 3, Avisos 1, S1 y S2).
+
+| Herramienta | Resultado |
+|---|---|
+| `npm audit` (backend, frontend, e2e) | 0 vulnerabilidades |
+| gitleaks sobre todo el historial | limpio: solo el token falso de los tests (permitido) y ningún `.env` commiteado |
+| Semgrep (JS, TS, React, secretos, nodejsscan) | 1 real (redirección abierta, corregida); 2 regex marcadas como ReDoS que son falsos positivos (ancladas, sin cuantificadores anidados) |
+| hadolint | solo avisos informativos (usuario `node` por nombre) |
+| Revisión de seguridad del código (desde `v1.0.0`) | nada alto ni medio; 1 bajo corregido |
+| OWASP ZAP baseline contra la versión de producción en local (Caddy https) | sitio: 0 fallas · 7 avisos; API: 0 fallas · 3 avisos |
+
+**Corregido en esta etapa:**
+- **HSTS** en la API y en el frontend (1 año, subdominios, sin preload), solo con un dominio real.
+- **Redirección a https** en el servidor del frontend, sin poder redirigir a otro sitio (`@otro.com` o `//otro.com` caen en `/`).
+- **Suscripciones push:** mandar el endpoint de un teléfono de otra tienda ya no cambia esa fila.
+- **`Cache-Control: no-store`** en todas las respuestas de la API (aviso de ZAP: había datos personales cacheables).
+
+**Avisos de ZAP que quedan, y por qué:**
+- **HSTS ausente:** a propósito en `*.localhost`; en producción se manda (tests en `shared/http/hsts.test.ts` y `servidor/seguridad.test.js`).
+- **COEP, `style-src 'unsafe-inline'`, comentarios en el bundle y "aplicación moderna":** los mismos de la Etapa 12, aceptados.
+- **Contenido cacheable en el frontend:** son los archivos estáticos del build; los que tienen hash se cachean un año a propósito.
+
+**Pendiente para la S4:** confirmar `TRUST_PROXY` en staging con la IP real (el log trae `ip`) y aplicar el checklist de Cloudflare de `docs/produccion.md`.

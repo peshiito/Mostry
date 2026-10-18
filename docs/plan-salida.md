@@ -39,7 +39,9 @@ Armado con Pedro el 2026-10-16. **Estado:** las funciones están completas para 
   - en un check "Acepto los términos" al registrarse (quedan guardados la fecha y la versión aceptada);
   - en links desde el pie y desde el Club.
 
-## S3 · Seguridad de salida
+## S3 · Seguridad de salida · HECHA (2026-10-18)
+Detalle en `docs/ataqueE12.md` (sección S3). En Cloudflare y en staging quedan pasos para la S4 (`docs/produccion.md`).
+
 - **HTTPS forzado:**
   - en Cloudflare, "Always Use HTTPS" y SSL "Full (strict)";
   - **HSTS**, con helmet y Cloudflare.

@@ -29,7 +29,16 @@ Esta guía es para la **Etapa 16**. Acá está todo lo necesario para publicar M
 La plantilla con cada variable explicada está en [`.env.produccion.example`](../.env.produccion.example). Las reglas que exige la API (si no se cumplen, no arranca):
 
 - `ORIGEN_PROTOCOLO=https`.
-- `TRUST_PROXY` mayor a 0: Cloudflare + Railway = `2`.
+- `TRUST_PROXY` mayor a 0. Es la **cantidad de proxies** entre internet y la API; si está mal, el límite de intentos por IP o bloquea a todos juntos o se puede esquivar:
+
+  | Armado | `TRUST_PROXY` |
+  |---|---|
+  | Cloudflare → Railway → API | `2` |
+  | Cloudflare → Caddy o nginx (VM de Oracle o VPS) → API | `2` |
+  | Solo Caddy, sin Cloudflare (la prueba en local) | `1` |
+
+  **Cómo confirmarlo en staging:** cada request queda en el log con `ip` (la IP real que ve la API). Entrá desde tu celular con datos móviles y fijate que el `ip` del log sea la de tu celular (buscá "cuál es mi IP"), no una de Cloudflare (`104.x`, `172.64–71.x`) ni una interna. Si ves la de Cloudflare, subí `TRUST_PROXY` en 1; si ves una inventada, bajalo.
+  No usamos el encabezado `CF-Connecting-IP`: solo sería confiable si el servidor aceptara tráfico exclusivamente de Cloudflare.
 - `BACKUP_ENTORNO` definida: `produccion` o `staging`, así nunca comparten carpeta de backups.
 - `SECRETO_HMAC` de 32 caracteres o más. Generala con `openssl rand -base64 48`.
 - **Sin `SEED_CLAVE`**: en producción el seed no corre.
@@ -40,9 +49,12 @@ La plantilla con cada variable explicada está en [`.env.produccion.example`](..
 ## Pasos para publicar
 
 1. 👤 **Dominio:** registrar `mostry.com.ar` en NIC.ar y delegar los DNS a Cloudflare.
-2. 👤 **Cloudflare:**
-   - SSL/TLS en **Full (strict)** y **HSTS** activado;
-   - registros `mostry.com.ar`, `*.mostry.com.ar`, `admin` y `api` apuntando a Railway.
+2. 👤 **Cloudflare** (S3):
+   - **SSL/TLS → Overview:** modo **Full (strict)** (nunca "Flexible": entre Cloudflare y el servidor viajaría sin cifrar);
+   - **SSL/TLS → Edge Certificates:** **Always Use HTTPS** activado, **Minimum TLS Version 1.2** y **Automatic HTTPS Rewrites** activado;
+   - **HSTS de Cloudflare: apagado.** Lo mandan la API y el frontend (1 año con subdominios, sin preload); así no se duplica. El preload se pide después del piloto;
+   - registros `mostry.com.ar`, `*.mostry.com.ar`, `admin` y `api` apuntando al hosting, con la nube naranja (proxy) prendida.
+   - El frontend además redirige solo a https si algo llega por http (`frontend/servidor/seguridad.js`). Para eso el servicio `web` necesita `DOMINIO_BASE`.
 3. 👤 **R2:**
    - crear los buckets `mostry-publico` (con dominio público `archivos.mostry.com.ar`), `mostry-privado` (**sin** acceso público) y `mostry-backups` (privado);
    - crear un token de API con permiso de lectura y escritura sobre los tres.
@@ -60,6 +72,8 @@ La plantilla con cada variable explicada está en [`.env.produccion.example`](..
 ## Checklist antes de abrir
 
 - [ ] `https://api.mostry.com.ar/health` responde 200.
+- [ ] `http://mostry.com.ar` redirige a `https://` y las respuestas traen `Strict-Transport-Security: max-age=31536000; includeSubDomains` (API y frontend).
+- [ ] El `ip` del log de la API es tu IP real (ver `TRUST_PROXY` arriba).
 - [ ] Las respuestas del frontend traen la **CSP** con `script-src 'self' 'sha256-…'`, `X-Frame-Options: DENY` y `nosniff`. Lo hace `frontend/servidor/servir.js` con `encabezados.config.js`.
 - [ ] `VITE_ORIGEN_ARCHIVOS` es el dominio público de R2. Si no, la CSP bloquea las fotos.
 - [ ] El registro con verificación por mail anda (llega el código desde Resend).
@@ -78,6 +92,15 @@ La plantilla con cada variable explicada está en [`.env.produccion.example`](..
   1. descargalo de R2 a `Mostry-Backup/base/`;
   2. restauralo con `npm run restaurar -- <archivo>`, que lo deja en `mostry_restaurada` sin tocar tu base de trabajo.
 - **Local:** `npm run backup` deja la base y los archivos en `../Mostry-Backup`.
+- **Primer backup real (S4), antes de abrir:**
+  1. correr el backup a mano en la consola del `worker`: `node dist/worker/cli/correrTarea.js backup` (o esperar a las 04:00);
+  2. verificar que esté el `.sql.gz` del día en `mostry-backups/backups/<entorno>/`;
+  3. correr la prueba de restauración a mano: `node dist/worker/cli/correrTarea.js probar-restauracion` (restaura en `mostry_restore_prueba` y compara);
+  4. bajarlo una vez a tu máquina y restaurarlo con `npm run restaurar`, para saber hacerlo antes de necesitarlo.
+- **Seguridad de los backups:** tienen datos personales de todas las tiendas.
+  - el bucket `mostry-backups` **sin acceso público** y sin dominio;
+  - el token de R2 solo lo tienen el worker y vos (en Railway y en tu gestor de contraseñas);
+  - las copias que bajes a tu máquina quedan en `Mostry-Backup/`, nunca en el repo ni en la nube personal.
 
 ## Volver atrás (si algo sale mal)
 
