@@ -4,7 +4,7 @@ import css from './FotoProducto.module.css';
 const iniciales = (nombre = '') =>
   nombre
     .split(/\s+/)
-    .filter((p) => p.length > 2)
+    .filter((p) => p.length > 2 && /^\p{L}/u.test(p))
     .slice(0, 2)
     .map((p) => p[0].toUpperCase())
     .join('') || nombre.slice(0, 1).toUpperCase();

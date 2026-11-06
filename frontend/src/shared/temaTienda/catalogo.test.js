@@ -7,13 +7,12 @@ import { TEMAS } from './temas.js';
 
 // El backend valida el tema con su propia lista (catalogoTema.ts): tiene que ser
 // la misma que la del frontend, o el comercio podría elegir algo que no se guarda.
-const catalogo = readFileSync(
-  new URL(
-    '../../../../backend/src/modules/tiendas/tema/catalogoTema.ts',
-    import.meta.url,
-  ),
-  'utf8',
-);
+const leer = (archivo) =>
+  readFileSync(
+    new URL(`../../../../backend/src/modules/tiendas/tema/${archivo}`, import.meta.url),
+    'utf8',
+  );
+const catalogo = leer('catalogoTema.ts') + leer('fuentesTema.ts');
 const lista = (nombre) =>
   [
     ...catalogo

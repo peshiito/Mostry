@@ -1,0 +1,50 @@
+/* Marco de celular: el borde y la sombra salen del panel; adentro, la tienda. */
+.telefono {
+  width: 290px;
+  margin-inline: auto;
+  border: 6px solid var(--carbon);
+  border-radius: 34px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: var(--sombra-flotante);
+  background: var(--carbon);
+}
+
+.pantalla {
+  height: min(580px, 70svh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 28px;
+  background-color: var(--lona);
+  background-image: var(--patron, none);
+  color: var(--carbon);
+  font-family: var(--fuente-texto, inherit);
+  scrollbar-width: none;
+}
+
+.vidriera {
+  /* Se dibuja a ancho de celular (390 px) y se achica para que entre entera. */
+  width: 390px;
+  zoom: 0.713;
+  min-height: 100%;
+  user-select: none;
+}
+
+.cuerpo {
+  padding-block-end: var(--e-6);
+}
+
+.vista {
+  display: grid;
+  gap: var(--e-3);
+  max-width: 380px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.nota {
+  margin: 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--texto-2);
+}

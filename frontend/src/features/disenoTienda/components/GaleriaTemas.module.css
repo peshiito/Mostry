@@ -33,6 +33,36 @@
 .opcion:has(input:focus-visible) {
   box-shadow: var(--foco);
 }
+.carta {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--e-2);
+  aspect-ratio: 4 / 3;
+  padding: var(--e-3);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+}
+.nombre {
+  font-size: 1.6rem;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+.colores {
+  display: flex;
+}
+.punto {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--papel);
+  border-radius: 50%;
+}
+.punto + .punto {
+  margin-left: -6px;
+}
+.titulo {
+  font-weight: 600;
+}
 .para {
   color: var(--texto-2);
   font-size: var(--t-xs);

@@ -1,5 +1,7 @@
 .header {
-  background: var(--verde);
+  --sobre-verde: var(--sobre-portada);
+  --sobre-verde-2: var(--sobre-portada-2);
+  background: var(--portada-fondo);
   color: var(--sobre-verde);
   padding: var(--e-2) var(--e-4) var(--e-4);
 }

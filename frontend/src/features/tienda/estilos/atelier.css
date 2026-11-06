@@ -1,0 +1,51 @@
+/* ATELIER: la marca chica que recién arranca (tejido, ropa de autor). Cálido y
+   personal: el nombre en serif itálica, fotos con esquinas suaves y una franja
+   de color pastel debajo de cada título, como una etiqueta cosida. */
+[data-estilo='atelier'] [data-v='nombre'],
+[data-estilo='atelier'] [data-v='titulo'] {
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+[data-estilo='atelier'] [data-v='nombre'] {
+  font-size: clamp(3rem, 15vw, 4.8rem);
+}
+[data-estilo='atelier'] [data-v='titulo'] {
+  font-size: var(--t-3xl);
+  text-decoration: underline;
+  text-decoration-color: var(--coral);
+  text-decoration-thickness: 0.32em;
+  text-underline-offset: -0.12em;
+  text-decoration-skip-ink: none;
+}
+[data-estilo='atelier'] [data-v='tarjeta'] {
+  background: transparent;
+}
+[data-estilo='atelier'] [data-v='foto'] > * {
+  border-radius: 14px;
+}
+[data-estilo='atelier'] [data-v='nombre-producto'],
+[data-estilo='atelier'] [data-v='tarjeta'] > div {
+  padding: 0 var(--e-1);
+}
+[data-estilo='atelier'] [data-v='nombre-producto'] {
+  font-family: var(--fuente-texto);
+  font-size: var(--t-md);
+  font-weight: 500;
+}
+[data-estilo='atelier'] [data-v='sticker'] {
+  border-radius: 999px;
+  background: var(--lona);
+  color: var(--verde);
+  text-transform: none;
+  letter-spacing: 0;
+}
+[data-estilo='atelier'] [data-v='promo'] {
+  border-radius: 18px;
+  background: var(--coral-claro);
+  color: var(--carbon);
+  --sobre-verde-2: var(--texto-2);
+}
+[data-estilo='atelier'] [data-v='cta'] {
+  border-radius: 999px;
+}

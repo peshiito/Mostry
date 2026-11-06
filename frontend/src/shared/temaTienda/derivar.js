@@ -1,6 +1,7 @@
 import { ajustar, mezclar, textoSobre } from './color.js';
 import { familiaCss } from './fuentes.js';
 import { imagenFondo } from './patrones.js';
+import { tokensPortada } from './portada.js';
 import { RADIOS, rellenoLegible } from './rellenos.js';
 import { ESTADOS, fondoEfectivo, superficies } from './superficies.js';
 
@@ -24,8 +25,13 @@ export function derivarTokens(tema, modo = 'claro') {
   return {
     '--patron': imagenFondo(tema, base),
     // El mismo dibujo, pero sobre el color principal (para la portada).
-    '--patron-portada': imagenFondo(tema, { '--lona': verde, '--carbon': sobreVerde, '--coral': coral }),
+    '--patron-portada': imagenFondo(tema, {
+      '--lona': tokensPortada(colores, modo)['--portada-fondo'],
+      '--carbon': sobreVerde,
+      '--coral': coral,
+    }),
     ...superficiesCss,
+    ...tokensPortada(colores, modo),
     ...ESTADOS[oscuro ? 'oscuro' : 'claro'],
     '--verde': verde,
     '--verde-oscuro': mezclar(verde, oscuro ? '#ffffff' : '#000000', 0.2),

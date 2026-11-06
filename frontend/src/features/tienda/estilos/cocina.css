@@ -1,0 +1,57 @@
+/* COCINA: la rotisería y las viandas. El catálogo se lee como una carta: cada
+   plato en un renglón con su foto chica, el nombre en serif y el precio a la
+   derecha. Toldo rojo tomate y una línea de puntos entre platos. */
+[data-estilo='cocina'] [data-v='nombre'],
+[data-estilo='cocina'] [data-v='titulo'] {
+  font-weight: 400;
+}
+[data-estilo='cocina'] [data-v='titulo'] {
+  font-size: var(--t-3xl);
+}
+[data-estilo='cocina'] [data-v='grilla'] {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+[data-estilo='cocina'] [data-v='grilla'] > li + li {
+  border-top: 2px dotted var(--linea);
+}
+[data-estilo='cocina'] [data-v='grilla'] [data-v='tarjeta'] {
+  grid-template-columns: 84px 1fr auto;
+  grid-template-rows: auto;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) 0;
+  border-radius: 0;
+  background: transparent;
+}
+[data-estilo='cocina'] [data-v='grilla'] [data-v='tarjeta'] > a {
+  display: contents;
+}
+[data-estilo='cocina'] [data-v='grilla'] [data-v='foto'] > * {
+  aspect-ratio: 1;
+  border-radius: var(--radio);
+}
+[data-estilo='cocina'] [data-v='grilla'] [data-v='nombre-producto'] {
+  padding: 0;
+  font-size: var(--t-md);
+}
+[data-estilo='cocina'] [data-v='grilla'] [data-v='tarjeta'] > div {
+  flex-direction: column;
+  align-items: end;
+  padding: 0;
+}
+[data-estilo='cocina'] [data-v='precio'] {
+  color: var(--verde);
+}
+[data-estilo='cocina'] [data-v='grilla'] [data-v='sticker'] {
+  display: none;
+}
+[data-estilo='cocina'] [data-v='sticker'] {
+  background: var(--mostaza);
+  color: var(--sobre-mostaza);
+}
+[data-estilo='cocina'] [data-v='promo'] {
+  background: var(--mostaza);
+  color: var(--sobre-mostaza);
+  --sobre-verde-2: var(--sobre-mostaza);
+}

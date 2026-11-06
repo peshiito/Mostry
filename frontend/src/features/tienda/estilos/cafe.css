@@ -1,0 +1,44 @@
+/* CAFÉ: tostadores y cafeterías. Papel madera, letra de máquina de escribir
+   para todo lo chico y una serif cálida para el nombre. Tarjetas planas
+   separadas por una línea, como un menú de pizarra impreso. */
+[data-estilo='cafe'] [data-v='nombre'] {
+  font-weight: 500;
+  font-style: italic;
+}
+[data-estilo='cafe'] [data-v='titulo'] {
+  font-size: var(--t-2xl);
+  font-weight: 500;
+}
+[data-estilo='cafe'] [data-v='cta'],
+[data-estilo='cafe'] [data-v='cta2'],
+[data-estilo='cafe'] [data-v='ver'],
+[data-estilo='cafe'] [data-v='sticker'] {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+[data-estilo='cafe'] [data-v='tarjeta'] {
+  background: transparent;
+  border-top: 1px solid var(--carbon);
+  border-radius: 0;
+  padding-top: var(--e-2);
+}
+[data-estilo='cafe'] [data-v='foto'] > * {
+  border-radius: 2px;
+}
+[data-estilo='cafe'] [data-v='nombre-producto'],
+[data-estilo='cafe'] [data-v='tarjeta'] > div {
+  padding: 0;
+}
+[data-estilo='cafe'] [data-v='nombre-producto'] {
+  font-family: var(--fuente-texto);
+  font-size: var(--t-sm);
+  font-weight: 500;
+}
+[data-estilo='cafe'] [data-v='promo'] {
+  border-radius: 2px;
+  background: var(--carbon);
+  color: var(--lona);
+  --sobre-verde-2: var(--lona);
+}

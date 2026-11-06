@@ -1,42 +1,51 @@
-/* BOUTIQUE: editorial. Mucho aire, fotos verticales, sin cajas. */
-[data-estilo='boutique'] [data-v='nombre'] {
-  font-weight: 400;
+/* BOUTIQUE: editorial, como una revista de moda. Serif fina y grande, mucho
+   aire, fotos sin marco y todo lo demás en mayúscula chiquita y espaciada. */
+[data-estilo='boutique'] [data-v='nombre'],
+[data-estilo='boutique'] [data-v='titulo'] {
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
-[data-estilo='boutique'] [data-v='cta'] {
-  border-radius: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: var(--t-sm);
-}
-[data-estilo='boutique'] [data-v='tarjeta'] {
-  background: transparent;
-  border-radius: 0;
-}
-[data-estilo='boutique'] [data-v='nombre-producto'] {
-  padding: 0;
-  font-family: var(--fuente-texto);
-  font-weight: 400;
-  font-size: var(--t-md);
-}
-[data-estilo='boutique'] [data-v='tarjeta'] > div {
-  padding: 0;
-}
 [data-estilo='boutique'] [data-v='titulo'] {
-  font-weight: 400;
   font-size: var(--t-3xl);
+}
+[data-estilo='boutique'] [data-v='cta'],
+[data-estilo='boutique'] [data-v='cta2'],
+[data-estilo='boutique'] [data-v='ver'],
+[data-estilo='boutique'] [data-v='sticker'],
+[data-estilo='boutique'] [data-v='categoria-nombre'] {
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+[data-estilo='boutique'] [data-v='cta2'] {
+  border-width: 1px;
 }
 [data-estilo='boutique'] [data-v='ver'] {
   color: var(--carbon);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: var(--t-xs);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+[data-estilo='boutique'] [data-v='tarjeta'] {
+  background: transparent;
+}
+[data-estilo='boutique'] [data-v='nombre-producto'],
+[data-estilo='boutique'] [data-v='tarjeta'] > div {
+  padding: 0;
+}
+[data-estilo='boutique'] [data-v='nombre-producto'] {
+  font-family: var(--fuente-texto);
+  font-size: var(--t-sm);
+  font-weight: 400;
+}
+[data-estilo='boutique'] [data-v='sticker'] {
+  background: var(--lona);
+  color: var(--carbon);
 }
 [data-estilo='boutique'] [data-v='promo'] {
-  margin: 0;
-  padding: var(--e-3) var(--e-4);
   border-radius: 0;
-  background: var(--coral-claro);
+  background: transparent;
+  border-block: 1px solid var(--carbon);
   color: var(--carbon);
   text-align: center;
   --sobre-verde-2: var(--texto-2);
@@ -44,18 +53,11 @@
 [data-estilo='boutique'] [data-v='promo-sello'] {
   display: none;
 }
-[data-estilo='boutique'] [data-v='promo-titulo'] {
-  font-family: var(--fuente-texto);
-  font-size: var(--t-sm);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
 [data-estilo='boutique'] [data-v='categorias'] ul {
   display: flex;
   gap: var(--e-5);
   overflow-x: auto;
-  border-bottom: var(--borde);
+  border-bottom: 1px solid var(--linea);
 }
 [data-estilo='boutique'] [data-v='categoria'] {
   background: transparent;

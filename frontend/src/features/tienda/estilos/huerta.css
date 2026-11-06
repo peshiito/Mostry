@@ -1,31 +1,38 @@
-/* HUERTA: verdulería. Cajones de madera y precios en pizarrón. */
-[data-estilo='huerta'] [data-v='tarjeta'],
-[data-estilo='huerta'] [data-v='categoria'] {
-  border: 2px solid var(--linea-fuerte);
-  border-bottom-width: 6px;
+/* HUERTA: verdulería y dietética con criterio (Natoora). Grotesca en mayúscula,
+   verde profundo, fotos grandes de producto y nada de adornos: la mercadería
+   es la que tiene que lucir. */
+[data-estilo='huerta'] [data-v='nombre'],
+[data-estilo='huerta'] [data-v='titulo'] {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
 }
-[data-estilo='huerta'] [data-v='precio'] {
-  padding: 2px var(--e-2);
-  border-radius: var(--radio-chico);
-  background: var(--carbon);
-  color: var(--lona);
-  font-family: var(--fuente-titulo);
-  transform: rotate(-1.5deg);
+[data-estilo='huerta'] [data-v='titulo'] {
+  font-size: var(--t-2xl);
 }
-[data-estilo='huerta'] [data-v='promo'] {
-  border: 6px solid var(--linea-fuerte);
-  border-radius: var(--radio-chico);
-  background: var(--carbon);
-  color: var(--lona);
-  --sobre-verde-2: color-mix(in srgb, var(--lona) 85%, transparent);
+[data-estilo='huerta'] [data-v='cta'],
+[data-estilo='huerta'] [data-v='cta2'],
+[data-estilo='huerta'] [data-v='ver'] {
+  font-size: var(--t-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
-[data-estilo='huerta'] [data-v='promo-titulo'] {
+[data-estilo='huerta'] [data-v='tarjeta'] {
+  background: transparent;
+}
+[data-estilo='huerta'] [data-v='foto'] > * {
+  border-radius: var(--radio);
+}
+[data-estilo='huerta'] [data-v='nombre-producto'],
+[data-estilo='huerta'] [data-v='tarjeta'] > div {
+  padding: 0;
+}
+[data-estilo='huerta'] [data-v='nombre-producto'] {
+  font-size: var(--t-md);
   font-weight: 600;
 }
-[data-estilo='huerta'] [data-v='titulo']::before {
-  content: '🌿 ';
-}
-[data-estilo='huerta'] [data-v='categoria-nombre'] {
+[data-estilo='huerta'] [data-v='promo'] {
   background: var(--verde);
   color: var(--sobre-verde);
 }

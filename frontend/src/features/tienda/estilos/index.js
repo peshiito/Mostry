@@ -3,7 +3,10 @@
 // componentes marcan sus partes con data-v). Solo cambian forma y adornos: los
 // colores siempre salen de los tokens del tema, que ya garantizan el contraste.
 import './portadas.css';
-import './calle.css';
+import './street.css';
+import './atelier.css';
+import './cocina.css';
+import './cafe.css';
 import './horno.css';
 import './cuaderno.css';
 import './boutique.css';

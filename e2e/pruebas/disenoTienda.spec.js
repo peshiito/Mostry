@@ -13,7 +13,7 @@ const tokenDeLaPagina = (page, nombre) =>
   );
 
 // Vidriera 2.0 (V1): el comercio elige un estilo en el panel y la vidriera cambia.
-test('elegir el estilo "Calle" cambia los colores y la letra de la vidriera', async ({
+test('elegir el estilo "Street" cambia los colores y la letra de la vidriera', async ({
   page,
 }) => {
   await page.goto(urlTienda('dona-rosa', '/panel/diseno'));
@@ -24,8 +24,8 @@ test('elegir el estilo "Calle" cambia los colores y la letra de la vidriera', as
 
   await page.goto(urlTienda('dona-rosa', '/'));
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  expect(await tokenDeLaPagina(page, '--lona')).toBe('#141414');
-  expect(await tokenDeLaPagina(page, '--fuente-titulo')).toContain('Permanent Marker');
+  expect(await tokenDeLaPagina(page, '--lona')).toBe('#f3f3f0');
+  expect(await tokenDeLaPagina(page, '--fuente-titulo')).toContain('Big Shoulders');
 
   // Vuelve al diseño de siempre para no cambiarle la cara a los otros recorridos.
   const st = await page.evaluate(

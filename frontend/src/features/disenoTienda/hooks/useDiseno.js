@@ -27,5 +27,14 @@ export function useDiseno() {
     if (r.ok) setTienda({ ...tienda, tema: r.datos.tema });
   }
   const cambios = JSON.stringify(tema) !== JSON.stringify(temaEfectivo(tienda));
-  return { tema, setTema, cambiar, guardar, accion, cambios, slug: tienda.slug };
+  return {
+    tema,
+    setTema,
+    cambiar,
+    guardar,
+    accion,
+    cambios,
+    slug: tienda.slug,
+    nombre: tienda.nombre,
+  };
 }

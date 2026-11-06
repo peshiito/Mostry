@@ -1,42 +1,38 @@
-/* BODEGA: bebidas. Noche, marcos dorados finos y títulos altos. */
+/* BODEGA: vinoteca de noche. Fondo casi negro, Bodoni para el nombre, filetes
+   finos color pergamino y el acento vino solo en lo que se toca. */
 [data-estilo='bodega'] [data-v='nombre'],
-[data-estilo='bodega'] [data-v='titulo'],
-[data-estilo='bodega'] [data-v='nombre-producto'],
-[data-estilo='bodega'] [data-v='promo-titulo'] {
+[data-estilo='bodega'] [data-v='titulo'] {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+[data-estilo='bodega'] [data-v='titulo'] {
+  font-size: var(--t-3xl);
+}
+[data-estilo='bodega'] [data-v='cta'],
+[data-estilo='bodega'] [data-v='cta2'],
+[data-estilo='bodega'] [data-v='ver'],
+[data-estilo='bodega'] [data-v='sticker'] {
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
 }
-[data-estilo='bodega'] [data-foto='si'][data-v='portada'] {
-  background-image:
-    linear-gradient(transparent 40%, rgb(0 0 0 / 0.5)), var(--patron-portada);
+[data-estilo='bodega'] [data-v='seccion'] {
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--linea);
 }
-[data-estilo='bodega'] [data-v='tarjeta'],
-[data-estilo='bodega'] [data-v='categoria'] {
-  border: 1px solid var(--mostaza-borde);
+[data-estilo='bodega'] [data-v='tarjeta'] {
+  background: transparent;
+  border: 1px solid var(--linea);
+}
+[data-estilo='bodega'] [data-v='nombre-producto'] {
+  font-weight: 500;
 }
 [data-estilo='bodega'] [data-v='precio'] {
-  color: var(--mostaza-texto);
-  font-family: var(--fuente-titulo);
-  font-size: var(--t-xl);
+  color: var(--verde);
 }
 [data-estilo='bodega'] [data-v='promo'] {
-  border: 1px solid var(--mostaza);
-  background: var(--papel);
+  border: 1px solid var(--verde);
+  background: transparent;
   color: var(--carbon);
   --sobre-verde-2: var(--texto-2);
-  outline: 1px solid var(--mostaza-borde);
-  outline-offset: -8px;
-}
-[data-estilo='bodega'] [data-v='titulo']::after {
-  content: '';
-  display: block;
-  width: 40px;
-  height: 2px;
-  margin-top: var(--e-2);
-  background: var(--mostaza);
-}
-[data-estilo='bodega'] [data-v='cinta'] {
-  display: block;
-  background: var(--verde);
-  color: var(--sobre-verde);
 }

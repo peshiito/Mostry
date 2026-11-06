@@ -1,0 +1,69 @@
+/* STREET: como las marcas urbanas de verdad (Stüssy, Noah, Carhartt). Foto
+   protagonista, nombre gigante en letra angosta, todo lo demás chico y en
+   mayúscula. Sin sombras, sin stickers: el único color fuerte es el acento. */
+[data-estilo='street'] [data-v='nombre'] {
+  font-size: clamp(3.4rem, 19vw, 6rem);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+[data-estilo='street'] [data-v='portada'] [data-v='estado'],
+[data-estilo='street'] [data-v='cta'],
+[data-estilo='street'] [data-v='cta2'],
+[data-estilo='street'] [data-v='ver'],
+[data-estilo='street'] [data-v='categoria-nombre'],
+[data-estilo='street'] [data-v='sticker'] {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-estilo='street'] [data-v='cta2'] {
+  border-width: 1px;
+}
+[data-estilo='street'] [data-v='titulo'] {
+  font-size: var(--t-3xl);
+  font-weight: 800;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+[data-estilo='street'] [data-v='tarjeta'] {
+  gap: var(--e-1);
+  background: transparent;
+}
+[data-estilo='street'] [data-v='foto'] {
+  background: var(--papel);
+}
+[data-estilo='street'] [data-v='nombre-producto'] {
+  padding: 0;
+  font-family: var(--fuente-texto);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+[data-estilo='street'] [data-v='tarjeta'] > div {
+  padding: 0;
+}
+[data-estilo='street'] [data-v='precio'] {
+  font-weight: 500;
+}
+[data-estilo='street'] [data-v='sticker'] {
+  border-radius: 0;
+  background: var(--coral);
+  color: var(--sobre-coral);
+}
+[data-estilo='street'] [data-v='promo'] {
+  border-radius: 0;
+  background: var(--carbon);
+  color: var(--lona);
+  --sobre-verde-2: var(--lona);
+}
+[data-estilo='street'] [data-v='categorias'] ul {
+  gap: var(--e-2);
+}
+[data-estilo='street'] [data-v='categoria'] {
+  border: 1px solid var(--linea);
+  background: transparent;
+}

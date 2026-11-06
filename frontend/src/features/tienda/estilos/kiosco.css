@@ -1,59 +1,41 @@
-/* KIOSCO: cartel de almacén, toldo a rayas y precios de góndola. */
-[data-estilo='kiosco'] [data-v='portada']::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: 22px;
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--papel) 0 12px,
-    var(--verde) 12px 24px
-  );
-}
-[data-estilo='kiosco'] [data-v='portada'] {
-  padding-top: calc(var(--e-3) + 22px);
-  text-align: center;
-}
-[data-estilo='kiosco'] [data-v='portada'] > div:last-child {
-  justify-items: center;
-}
+/* DESPENSA: el almacén de la esquina, con alegría (Pop Up Grocer). Toldo azul
+   cobalto, nombre en letra de cartel angosta y en mayúscula, el precio en un
+   cartelito amarillo y tarjetas blancas con borde azul, como las góndolas. */
 [data-estilo='kiosco'] [data-v='nombre'],
-[data-estilo='kiosco'] [data-v='titulo'],
-[data-estilo='kiosco'] [data-v='promo-titulo'] {
+[data-estilo='kiosco'] [data-v='titulo'] {
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
-[data-estilo='kiosco'] [data-v='tarjeta'],
-[data-estilo='kiosco'] [data-v='categoria'] {
-  border: 2px solid var(--carbon);
-  box-shadow: 4px 4px 0 var(--carbon);
+[data-estilo='kiosco'] [data-v='nombre'] {
+  font-size: clamp(3rem, 16vw, 5rem);
+  line-height: 0.88;
+}
+[data-estilo='kiosco'] [data-v='titulo'] {
+  font-size: var(--t-3xl);
+  color: var(--verde);
+}
+[data-estilo='kiosco'] [data-v='tarjeta'] {
+  border: 2px solid var(--verde);
+}
+[data-estilo='kiosco'] [data-v='nombre-producto'] {
+  font-family: var(--fuente-texto);
+  font-size: var(--t-md);
+  font-weight: 600;
 }
 [data-estilo='kiosco'] [data-v='precio'] {
   padding: 0 var(--e-2);
-  border: 2px solid var(--carbon);
-  border-radius: var(--radio-chico);
   background: var(--mostaza);
   color: var(--sobre-mostaza);
   font-family: var(--fuente-titulo);
-  font-size: var(--t-xl);
+  font-size: var(--t-lg);
 }
 [data-estilo='kiosco'] [data-v='promo'] {
-  border: 3px solid var(--carbon);
-  box-shadow: 6px 6px 0 var(--carbon);
-}
-[data-estilo='kiosco'] [data-v='promo']::after {
-  content: '¡OFERTÓN!';
-  position: absolute;
-  top: 22px;
-  right: -44px;
-  width: 170px;
-  padding: 4px 0;
+  border: 2px solid var(--verde);
   background: var(--mostaza);
   color: var(--sobre-mostaza);
-  font-family: var(--fuente-titulo);
-  text-align: center;
-  transform: rotate(40deg);
+  --sobre-verde-2: var(--sobre-mostaza);
 }
-[data-estilo='kiosco'] [data-v='cinta'] {
-  display: block;
+[data-estilo='kiosco'] [data-v='categoria'] {
+  border: 2px solid var(--verde);
 }

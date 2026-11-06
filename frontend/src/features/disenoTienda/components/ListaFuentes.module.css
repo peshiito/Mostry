@@ -1,0 +1,55 @@
+.caja {
+  border: var(--borde);
+  border-radius: var(--radio);
+}
+.resumen {
+  display: grid;
+  gap: 2px;
+  min-height: var(--toque);
+  padding: var(--e-3);
+  cursor: pointer;
+}
+.etiqueta {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.actual {
+  font-size: var(--t-xl);
+  line-height: 1.1;
+}
+.lista {
+  display: grid;
+  max-height: 340px;
+  overflow-y: auto;
+  border-top: var(--borde);
+}
+.opcion {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  padding: var(--e-3);
+  cursor: pointer;
+}
+.opcion + .opcion {
+  border-top: 1px solid var(--linea);
+}
+.opcion input {
+  position: absolute;
+  opacity: 0;
+}
+.opcion:has(input:checked) {
+  background: var(--verde-claro);
+  box-shadow: inset 4px 0 0 var(--verde);
+}
+.opcion:has(input:focus-visible) {
+  outline: 2px solid var(--verde);
+  outline-offset: -2px;
+}
+.muestra {
+  font-size: 1.6rem;
+  line-height: 1.15;
+}
+.dato {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}

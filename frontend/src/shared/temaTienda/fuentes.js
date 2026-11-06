@@ -28,7 +28,17 @@ nunito-sans|Nunito Sans|Nunito Sans Variable|moderna|1
 nunito|Nunito|Nunito Variable|dulce|1
 inter|Inter|Inter Variable|moderna|1
 archivo|Archivo|Archivo Variable|moderna|1
-dm-sans|DM Sans|DM Sans Variable|moderna|1`;
+dm-sans|DM Sans|DM Sans Variable|moderna|1
+instrument-serif|Instrument Serif|Instrument Serif|elegante|0
+cormorant|Cormorant Garamond|Cormorant Garamond Variable|elegante|0
+dm-serif|DM Serif Display|DM Serif Display|clásica|0
+inter-tight|Inter Tight|Inter Tight Variable|moderna|1
+familjen|Familjen Grotesk|Familjen Grotesk Variable|moderna|1
+instrument-sans|Instrument Sans|Instrument Sans Variable|moderna|1
+plex-mono|IBM Plex Mono|IBM Plex Mono|máquina de escribir|1
+big-shoulders|Big Shoulders|Big Shoulders Display Variable|cartel|0
+barlow-condensed|Barlow Condensed|Barlow Condensed|cartel|0
+shrikhand|Shrikhand|Shrikhand|retro|0`;
 
 export const FUENTES = TABLA.trim()
   .split('\n')
