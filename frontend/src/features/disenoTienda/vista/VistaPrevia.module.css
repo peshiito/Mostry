@@ -31,6 +31,8 @@
 }
 
 .cuerpo {
+  display: grid;
+  gap: var(--e-7);
   padding-block-end: var(--e-6);
 }
 

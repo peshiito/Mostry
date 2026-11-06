@@ -4,22 +4,20 @@ import { derivarTokens } from '../../../shared/temaTienda/derivar.js';
 import { CarritoProveedor } from '../../carrito/CarritoContexto.jsx';
 import { Tienda } from '../../tienda/TiendaContexto.jsx';
 import { useCatalogo } from '../../tienda/hooks/useCatalogo.js';
-import { fotoEstrella } from '../../tienda/lib/fotoEstrella.js';
 import { BarraSitio } from '../../tienda/sitio/BarraSitio.jsx';
-import { Beneficios } from '../../tienda/sitio/Beneficios.jsx';
-import { Portada } from '../../tienda/vitrina/Portada.jsx';
-import { SeccionesInicio } from '../../tienda/vitrina/SeccionesInicio.jsx';
+import { RenderPagina } from '../../pagina/RenderPagina.jsx';
+import { plantillaDesdeTienda } from '../../pagina/lib/plantilla.js';
 import css from './VistaPrevia.module.css';
 
-function Inicio({ tienda }) {
+// La página que se está armando (o la publicada, o la de siempre).
+function Inicio({ tienda, pagina }) {
   const c = useCatalogo();
+  const doc = pagina ?? tienda.pagina ?? plantillaDesdeTienda(tienda);
   return (
     <>
       <BarraSitio />
-      <Portada imagen={fotoEstrella(c)} />
-      <Beneficios tienda={tienda} productos={c.productos} />
       <div className={css.cuerpo}>
-        <SeccionesInicio tienda={tienda} c={c} />
+        <RenderPagina pagina={doc} tienda={tienda} c={c} />
       </div>
     </>
   );
@@ -27,7 +25,7 @@ function Inicio({ tienda }) {
 
 // La vidriera de verdad (mismos componentes y datos) con el diseño que se está
 // eligiendo, dentro de un celular. Es solo para mirar: no se puede tocar.
-export function VistaPrevia({ valor, tema, modo }) {
+export function VistaPrevia({ valor, tema, modo, pagina }) {
   const { 'color-scheme': colorScheme, ...tokens } = useMemo(
     () => derivarTokens(tema, modo),
     [tema, modo],
@@ -47,7 +45,7 @@ export function VistaPrevia({ valor, tema, modo }) {
               data-forma={tema.forma}
               inert
             >
-              <Inicio tienda={valor.tienda} />
+              <Inicio tienda={valor.tienda} pagina={pagina} />
             </div>
           </Tienda.Provider>
         </CarritoProveedor>

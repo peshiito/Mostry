@@ -1,21 +1,25 @@
-import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
+import { Link } from 'react-router';
 import { Icono } from '../../../shared/ui/Icono.jsx';
 import { EstadoApertura } from '../components/EstadoApertura.jsx';
-import { useTienda } from '../hooks/useTienda.js';
 import css from './Portada.module.css';
 
-// El hero de la tienda: nombre grande, frase, estado y cómo comprar, con una
-// imagen. Si el comercio subió foto de portada va a lo ancho detrás del texto;
-// si no, se muestra su producto estrella al lado (estilos/portadas.css).
-export function Portada({ imagen }) {
-  const { tienda } = useTienda();
-  const foto = tienda.portadaUrl ?? imagen;
-  const wa = linkWhatsapp(tienda.whatsapp);
+// Link interno (sin recargar), externo (pestaña nueva) o ancla.
+function Boton({ b, ...resto }) {
+  if (b.interno) return <Link to={b.href} {...resto} />;
+  const fuera = b.externo ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+  return <a href={b.href} {...fuera} {...resto} />;
+}
+
+// El hero de la tienda: nombre grande, frase, estado y sus botones, con una
+// imagen. `aLoAncho` pone la foto detrás del texto (la portada que subió el
+// comercio); si no, va al lado (estilos/portadas.css). Los datos los arma el
+// bloque Hero (features/pagina).
+export function Portada({ titulo, frase, foto, aLoAncho, botones = [] }) {
   return (
     <section
       className={css.hero}
       data-v="portada"
-      data-foto={tienda.portadaUrl ? 'si' : 'no'}
+      data-foto={aLoAncho ? 'si' : 'no'}
       aria-labelledby="nombre-tienda"
     >
       <div className={css.texto} data-v="texto">
@@ -23,23 +27,29 @@ export function Portada({ imagen }) {
           <EstadoApertura />
         </span>
         <h1 id="nombre-tienda" className={css.nombre} data-v="nombre">
-          {tienda.nombre}
+          {titulo}
         </h1>
-        {tienda.frase ? (
+        {frase ? (
           <p className={css.frase} data-v="frase">
-            {tienda.frase}
+            {frase}
           </p>
         ) : null}
-        <div className={css.acciones} data-v="acciones">
-          <a href="#productos" className={css.cta} data-v="cta">
-            Ver productos <Icono nombre="arrow_forward" tamano={18} />
-          </a>
-          {wa ? (
-            <a href={wa} className={css.cta2} data-v="cta2" rel="noopener noreferrer">
-              <Icono nombre="chat" tamano={18} /> Escribinos
-            </a>
-          ) : null}
-        </div>
+        {botones.length ? (
+          <div className={css.acciones} data-v="acciones">
+            {botones.map((b, i) => (
+              <Boton
+                key={i}
+                b={b}
+                className={i === 0 ? css.cta : css.cta2}
+                data-v={i === 0 ? 'cta' : 'cta2'}
+              >
+                {i > 0 && b.icono ? <Icono nombre={b.icono} tamano={18} /> : null}
+                {b.texto}
+                {i === 0 ? <Icono nombre="arrow_forward" tamano={18} /> : null}
+              </Boton>
+            ))}
+          </div>
+        ) : null}
       </div>
       {foto ? (
         <div className={css.imagen} data-v="imagen">

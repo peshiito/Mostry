@@ -1,0 +1,10 @@
+/* Cada bloque de la página. La barra de arriba queda fija: el ancla deja lugar. */
+.bloque {
+  display: grid;
+  gap: var(--e-5);
+  scroll-margin-top: 112px;
+}
+/* Un bloque sin nada que mostrar (por ejemplo, la promo cuando no hay) no deja hueco. */
+.bloque:empty {
+  display: none;
+}

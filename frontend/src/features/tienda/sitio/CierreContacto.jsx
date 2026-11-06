@@ -4,16 +4,17 @@ import css from './CierreContacto.module.css';
 
 // Bloque oscuro antes del pie: la invitación a escribir (como el "Ready to get
 // our new stuff?" de las tiendas grandes, pero con WhatsApp).
-export function CierreContacto({ tienda }) {
+export function CierreContacto({ tienda, titulo, texto }) {
   const wa = linkWhatsapp(tienda.whatsapp);
   if (!wa) return null;
   return (
     <section className={css.cierre} data-v="cierre" aria-labelledby="cierre-titulo">
       <h2 id="cierre-titulo" className={css.titulo}>
-        ¿Buscás algo que no está?
+        {titulo ?? '¿Buscás algo que no está?'}
       </h2>
       <p className={css.texto}>
-        Escribile a {tienda.nombre} y te lo preparan o te avisan cuando llega.
+        {texto ??
+          `Escribile a ${tienda.nombre} y te lo preparan o te avisan cuando llega.`}
       </p>
       <a href={wa} className={css.boton} rel="noopener noreferrer">
         <Icono nombre="chat" tamano={20} /> Escribir por WhatsApp

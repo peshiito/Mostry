@@ -13,6 +13,7 @@ import type * as C from './catalogo.js';
 import type * as K from './club.js';
 import type * as E from './lealtad.js';
 import type * as L from './libreta.js';
+import type * as G from './pagina.js';
 import type * as P from './pedidos.js';
 import type * as X from './plataforma.js';
 import type * as T from './tiendas.js';
@@ -30,6 +31,8 @@ export interface Database {
   productos: C.ProductosTabla;
   productoFotos: C.ProductoFotosTabla;
   galeriaTienda: C.GaleriaTiendaTabla;
+  paginasTienda: G.PaginasTiendaTabla;
+  versionesPagina: G.VersionesPaginaTabla;
   horarios: C.HorariosTabla;
   feriados: C.FeriadosTabla;
   promociones: C.PromocionesTabla;

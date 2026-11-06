@@ -4,7 +4,7 @@
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: var(--e-6) 0 calc(var(--e-7) + 64px);
+  padding: 0 0 calc(var(--e-7) + 64px);
 }
 .margen {
   padding: 0 var(--e-4);
