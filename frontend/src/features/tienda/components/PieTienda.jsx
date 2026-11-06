@@ -1,41 +1,54 @@
+import { Link } from 'react-router';
 import { linkWhatsapp } from '../../../shared/lib/linkSeguro.js';
 import { urlPrivacidad } from '../../../shared/lib/legal.js';
-import { Boton } from '../../../shared/ui/Boton.jsx';
+import { LogoTienda } from '../../../shared/ui/LogoTienda.jsx';
 import { useTienda } from '../hooks/useTienda.js';
 import { Horarios } from '../vitrina/Horarios.jsx';
 import { Redes } from '../vitrina/Redes.jsx';
 import css from './PieTienda.module.css';
 
-// Pie: dónde estamos, horarios, cómo escribirnos y "Hecho con mostry".
+const mapaDe = (d) =>
+  d ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d)}` : null;
+
+// Pie de página en columnas, como el de cualquier tienda online: la marca, dónde
+// estamos y los horarios, y cómo comprar. Abajo, "Hecho con mostry".
 export function PieTienda() {
   const { tienda } = useTienda();
   const wa = linkWhatsapp(tienda.whatsapp);
-  const mapa = tienda.direccion
-    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(tienda.direccion)}`
-    : null;
+  const mapa = mapaDe(tienda.direccion);
   return (
     <footer className={css.pie} data-v="pie">
-      <p className={css.nombre}>{tienda.nombre}</p>
-      {mapa ? (
-        <a
-          href={mapa}
-          className={css.direccion}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {tienda.direccion} · Cómo llegar
-        </a>
-      ) : null}
-      <Redes redes={tienda.contenido?.redes} />
-      {tienda.tramos ? <Horarios tramos={tienda.tramos} /> : null}
-      {wa ? (
-        <Boton icono="chat" href={wa} anchoCompleto>
-          Escribile a {tienda.nombre} por WhatsApp
-        </Boton>
-      ) : null}
+      <div className={css.columnas}>
+        <div className={css.marca}>
+          <LogoTienda url={tienda.logoUrl} tamano={48} borde="ninguno" />
+          <p className={css.nombre}>{tienda.nombre}</p>
+          {tienda.frase ? <p className={css.frase}>{tienda.frase}</p> : null}
+          <Redes redes={tienda.contenido?.redes} />
+        </div>
+        <div className={css.columna}>
+          <h2 className={css.titulo}>Visitanos</h2>
+          {mapa ? (
+            <a href={mapa} rel="noopener noreferrer" target="_blank">
+              {tienda.direccion} · Cómo llegar
+            </a>
+          ) : null}
+          {tienda.tramos ? <Horarios tramos={tienda.tramos} /> : null}
+        </div>
+        <div className={css.columna}>
+          <h2 className={css.titulo}>Comprar</h2>
+          <Link to="/catalogo">Todos los productos</Link>
+          <Link to="/carrito">Tu carrito</Link>
+          {wa ? (
+            <a href={wa} rel="noopener noreferrer">
+              WhatsApp
+            </a>
+          ) : null}
+        </div>
+      </div>
       <p className={css.mostry}>
-        Hecho con <a href="https://mostry.com.ar">mostry</a> · ©{' '}
-        {new Date().getFullYear()} · <a href={urlPrivacidad()}>Privacidad</a>
+        © {new Date().getFullYear()} {tienda.nombre} · Hecho con{' '}
+        <a href="https://mostry.com.ar">mostry</a> ·{' '}
+        <a href={urlPrivacidad()}>Privacidad</a>
       </p>
     </footer>
   );

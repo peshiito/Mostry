@@ -4,10 +4,20 @@ import { Monto } from '../../../shared/ui/Monto.jsx';
 import { BotonAgregar } from '../components/BotonAgregar.jsx';
 import css from './TarjetaVitrina.module.css';
 
-// Tarjeta de producto de la vidriera: foto grande, precio en su "etiqueta"
-// (cada estilo la dibuja a su manera) y el botón para sumar.
+const etiqueta = (p, agotado) =>
+  agotado
+    ? 'Agotado'
+    : p.aceptaEncargo
+      ? 'Por encargo'
+      : p.destacado
+        ? 'Más pedido'
+        : null;
+
+// Tarjeta de producto como la de una tienda online grande: foto sobre un fondo
+// suave, etiqueta, nombre, categoría, precio y el botón para sumar.
 export function TarjetaVitrina({ producto, ancha }) {
   const agotado = producto.agotado && !producto.aceptaEncargo;
+  const sello = etiqueta(producto, agotado);
   return (
     <article
       className={`${css.tarjeta} ${ancha ? css.ancha : ''} ${agotado ? css.agotado : ''}`}
@@ -22,17 +32,24 @@ export function TarjetaVitrina({ producto, ancha }) {
             loading="lazy"
             decoding="async"
           />
-          {producto.aceptaEncargo || agotado ? (
+          {sello ? (
             <span className={css.sticker} data-v="sticker">
-              {agotado ? 'Agotado' : 'Por encargo'}
+              {sello}
             </span>
           ) : null}
         </span>
-        <span className={css.nombre} data-v="nombre-producto">
-          {producto.nombre}
+        <span className={css.textos}>
+          <span className={css.nombre} data-v="nombre-producto">
+            {producto.nombre}
+          </span>
+          {producto.categoriaNombre ? (
+            <span className={css.categoria} data-v="categoria-producto">
+              {producto.categoriaNombre}
+            </span>
+          ) : null}
         </span>
       </Link>
-      <div className={css.pie}>
+      <div className={css.pie} data-v="pie-tarjeta">
         <span className={css.precio} data-v="precio">
           <Monto centavos={producto.precio} tamano="md" />
         </span>

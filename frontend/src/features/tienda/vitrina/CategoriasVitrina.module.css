@@ -1,34 +1,52 @@
+/* Categorías en círculos con la foto de un producto (como las tiendas
+   grandes). En el celular se deslizan; en la compu quedan en una fila. */
 .nav {
   padding: 0 var(--e-4);
 }
 .lista {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--e-2);
+  display: flex;
+  gap: var(--e-4);
   margin: 0;
-  padding: 0;
+  padding: var(--e-1) 0;
+  overflow-x: auto;
+  scrollbar-width: none;
   list-style: none;
 }
+.lista > li {
+  flex-shrink: 0;
+}
 .ficha {
-  position: relative;
   display: grid;
-  overflow: hidden;
-  border-radius: var(--radio);
-  background: var(--papel);
+  justify-items: center;
+  gap: var(--e-2);
+  width: 88px;
   color: inherit;
   text-decoration: none;
 }
 .foto {
   display: block;
-  width: 100%;
+  width: 84px;
   aspect-ratio: 1;
   object-fit: cover;
+  border: 1px solid var(--linea);
+  border-radius: 50%;
+  background: var(--lona-oscura);
 }
 .nombre {
-  padding: var(--e-2);
-  font-family: var(--fuente-titulo);
   font-size: var(--t-sm);
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
-  line-height: 1.1;
+  line-height: 1.2;
+}
+@media (min-width: 900px) {
+  .lista {
+    justify-content: center;
+    gap: var(--e-6);
+  }
+  .ficha {
+    width: 120px;
+  }
+  .foto {
+    width: 112px;
+  }
 }

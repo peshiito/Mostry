@@ -36,6 +36,6 @@
   color: var(--sobre-mostaza);
   --sobre-verde-2: var(--sobre-mostaza);
 }
-[data-estilo='kiosco'] [data-v='categoria'] {
+[data-estilo='kiosco'] [data-v='categoria'] > :first-child {
   border: 2px solid var(--verde);
 }

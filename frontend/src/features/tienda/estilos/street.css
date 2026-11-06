@@ -60,10 +60,6 @@
   color: var(--lona);
   --sobre-verde-2: var(--lona);
 }
-[data-estilo='street'] [data-v='categorias'] ul {
-  gap: var(--e-2);
-}
-[data-estilo='street'] [data-v='categoria'] {
-  border: 1px solid var(--linea);
-  background: transparent;
+[data-estilo='street'] [data-v='categoria'] > :first-child {
+  border-radius: 0;
 }

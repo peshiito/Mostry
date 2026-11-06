@@ -5,7 +5,11 @@ import { adaptarCategoria, adaptarProducto } from '../lib/catalogo.js';
 export function useCatalogo() {
   const prod = useConsulta('/publico/productos');
   const cats = useConsulta('/publico/categorias');
-  const productos = (prod.datos?.productos ?? []).map(adaptarProducto);
+  const nombres = Object.fromEntries((cats.datos ?? []).map((c) => [c.id, c.nombre]));
+  const productos = (prod.datos?.productos ?? []).map((p) => ({
+    ...adaptarProducto(p),
+    categoriaNombre: nombres[p.categoriaId] ?? null,
+  }));
   return {
     productos,
     destacados: productos.filter((p) => p.destacado),

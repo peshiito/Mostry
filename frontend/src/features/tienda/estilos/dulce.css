@@ -48,7 +48,6 @@
   color: var(--carbon);
   --sobre-verde-2: var(--texto-2);
 }
-[data-estilo='dulce'] [data-v='categoria'] {
+[data-estilo='dulce'] [data-v='categoria'] > :first-child {
   border: 2px solid var(--verde);
-  border-radius: 22px;
 }

@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
+import { Buscador } from '../../../shared/ui/Buscador.jsx';
 import { Chips } from '../../../shared/ui/Chips.jsx';
 import { Estado } from '../../../shared/ui/Estado.jsx';
-import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { BarraCarrito } from '../components/BarraCarrito.jsx';
-import { Buscador } from '../../../shared/ui/Buscador.jsx';
-import { FilaProducto } from '../components/FilaProducto.jsx';
 import { EstadoCatalogo } from '../components/EstadoCatalogo.jsx';
-import { HeaderTienda } from '../components/HeaderTienda.jsx';
+import { PieTienda } from '../components/PieTienda.jsx';
 import { useCatalogo } from '../hooks/useCatalogo.js';
+import { BarraSitio } from '../sitio/BarraSitio.jsx';
+import { ProductosVitrina } from '../vitrina/ProductosVitrina.jsx';
 import css from './Listado.module.css';
-import { ListaAnimada } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 const normal = (t) =>
   t
@@ -18,7 +17,8 @@ const normal = (t) =>
     .replace(/\p{Diacritic}/gu, '')
     .toLowerCase();
 
-// Catálogo con buscador y categorías (Stitch 13).
+// Catálogo como la página "Tienda" de una web: título, buscador, categorías y
+// la grilla de productos (2 columnas en el celu, hasta 4 en la compu).
 export function PantallaCatalogo() {
   const { productos, categorias, cargando, error, recargar } = useCatalogo();
   const [params, setParams] = useSearchParams();
@@ -35,23 +35,26 @@ export function PantallaCatalogo() {
   );
   return (
     <>
-      <HeaderTienda volver="/" titulo="Catálogo" />
-      <Pagina espacio="sm">
-        <h1 className="soloLector">Catálogo</h1>
-        <Buscador valor={texto} onCambio={setTexto} />
-        <Chips
-          etiqueta="Categorías"
-          opciones={opciones}
-          valor={categoria}
-          onCambio={(v) => setParams(v === 'todo' ? {} : { categoria: v })}
-        />
+      <BarraSitio />
+      <main id="contenido" tabIndex={-1} className={css.pagina}>
+        <div className={css.cabeza}>
+          <h1 className={css.titulo} data-v="titulo">
+            Productos
+          </h1>
+          <p className={css.cuenta}>{visibles.length} productos</p>
+        </div>
+        <div className={css.filtros}>
+          <Buscador valor={texto} onCambio={setTexto} />
+          <Chips
+            etiqueta="Categorías"
+            opciones={opciones}
+            valor={categoria}
+            onCambio={(v) => setParams(v === 'todo' ? {} : { categoria: v })}
+          />
+        </div>
         <EstadoCatalogo cargando={cargando} error={error} onReintentar={recargar} />
         {cargando || error ? null : visibles.length ? (
-          <ListaAnimada className={css.lista} key={categoria}>
-            {visibles.map((p, i) => (
-              <FilaProducto key={p.id} i={i} producto={p} />
-            ))}
-          </ListaAnimada>
+          <ProductosVitrina key={categoria} productos={visibles} />
         ) : (
           <div className={css.vacio}>
             <Estado icono="search" titulo={`No encontramos "${texto}"`}>
@@ -59,7 +62,8 @@ export function PantallaCatalogo() {
             </Estado>
           </div>
         )}
-      </Pagina>
+      </main>
+      <PieTienda />
       <BarraCarrito />
     </>
   );

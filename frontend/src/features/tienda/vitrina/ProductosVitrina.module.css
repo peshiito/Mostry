@@ -6,6 +6,26 @@
   padding: 0 var(--e-4);
   list-style: none;
 }
+@media (min-width: 700px) {
+  .grilla {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1000px) {
+  .grilla {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--e-5) var(--e-4);
+  }
+  .carrusel {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+  }
+  .carrusel :global(article) {
+    width: auto;
+    max-width: none;
+  }
+}
 .carrusel {
   display: flex;
   gap: var(--e-3);

@@ -1,35 +1,28 @@
-.portada {
+/* Base: panel dividido (texto y producto estrella). Las variantes por
+   encabezado y foto están en estilos/portadas.css. */
+.hero {
   position: relative;
   display: grid;
-  align-content: space-between;
-  min-height: min(78svh, 560px);
-  padding: var(--e-3) var(--e-4) var(--e-6);
-  --sobre-verde: var(--sobre-portada);
-  --sobre-verde-2: var(--sobre-portada-2);
-  background: var(--portada-fondo) var(--patron-portada, none) center / cover;
-  color: var(--sobre-verde);
-  isolation: isolate;
-  overflow: hidden;
+  gap: var(--e-5);
+  width: min(100% - 2 * var(--e-4), 1180px);
+  margin: var(--e-4) auto 0;
+  padding: var(--e-5);
+  border-radius: calc(var(--radio) * 2);
+  background: var(--lona-oscura);
+  color: var(--carbon);
+  --sobre-verde: var(--carbon);
+  --tinte-sobre-verde: color-mix(in srgb, var(--carbon) 8%, transparent);
+  overflow: clip;
 }
-.logoGrande {
-  display: none;
-}
-.barra {
-  display: flex;
-  align-items: center;
-  gap: var(--e-2);
-}
-.logo {
-  margin-right: auto;
-}
-.centro {
+.texto {
   display: grid;
   justify-items: start;
+  align-content: center;
   gap: var(--e-3);
 }
 .nombre {
   font-family: var(--fuente-titulo);
-  font-size: clamp(2.6rem, 13vw, 4.4rem);
+  font-size: clamp(2.6rem, 11vw, 5.2rem);
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -37,8 +30,8 @@
   overflow-wrap: anywhere;
 }
 .frase {
-  max-width: 34ch;
-  color: var(--sobre-verde-2);
+  max-width: 38ch;
+  color: var(--texto-2);
   font-size: var(--t-lg);
   line-height: 1.45;
 }
@@ -46,6 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--e-2);
+  margin-top: var(--e-2);
 }
 .cta,
 .cta2 {
@@ -53,7 +47,7 @@
   align-items: center;
   gap: var(--e-2);
   min-height: var(--toque);
-  padding: 0 var(--e-4);
+  padding: 0 var(--e-5);
   border-radius: var(--radio);
   font-weight: 700;
   text-decoration: none;
@@ -63,6 +57,13 @@
   color: var(--sobre-coral);
 }
 .cta2 {
-  border: 2px solid currentColor;
-  color: var(--sobre-verde);
+  border: 1.5px solid currentColor;
+  color: inherit;
+}
+.imagen img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radio);
 }

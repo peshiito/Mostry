@@ -1,0 +1,11 @@
+/* Mínimo: sin panel, todo centrado, con la imagen debajo. */
+[data-encabezado='minimo'] [data-foto='no'][data-v='portada'] {
+  background: transparent;
+  text-align: center;
+}
+[data-encabezado='minimo'] [data-foto='no'] [data-v='texto'] {
+  justify-items: center;
+}
+[data-encabezado='minimo'] [data-foto='no'] [data-v='acciones'] {
+  justify-content: center;
+}

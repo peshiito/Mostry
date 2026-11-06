@@ -35,8 +35,8 @@ test('el pan (hay / no hay) se compra sin cantidad y la torta solo se encarga', 
 }) => {
   await page.goto(urlTienda('dona-rosa', '/catalogo'));
   const pan = page.getByRole('listitem').filter({ hasText: 'Pan francés' });
-  await expect(pan.getByRole('button', { name: /Sumar/ })).toBeVisible();
+  await expect(pan.getByRole('button', { name: /Agregar Pan francés/ })).toBeVisible();
   const rogel = page.getByRole('listitem').filter({ hasText: 'Rogel' });
   await expect(rogel.getByRole('link', { name: 'Encargar' })).toBeVisible();
-  await expect(rogel.getByRole('button', { name: /Sumar/ })).toHaveCount(0);
+  await expect(rogel.getByRole('button', { name: /Agregar/ })).toHaveCount(0);
 });

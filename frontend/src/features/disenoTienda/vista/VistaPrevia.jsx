@@ -4,7 +4,9 @@ import { derivarTokens } from '../../../shared/temaTienda/derivar.js';
 import { CarritoProveedor } from '../../carrito/CarritoContexto.jsx';
 import { Tienda } from '../../tienda/TiendaContexto.jsx';
 import { useCatalogo } from '../../tienda/hooks/useCatalogo.js';
-import { Cinta } from '../../tienda/vitrina/Cinta.jsx';
+import { fotoEstrella } from '../../tienda/lib/fotoEstrella.js';
+import { BarraSitio } from '../../tienda/sitio/BarraSitio.jsx';
+import { Beneficios } from '../../tienda/sitio/Beneficios.jsx';
 import { Portada } from '../../tienda/vitrina/Portada.jsx';
 import { SeccionesInicio } from '../../tienda/vitrina/SeccionesInicio.jsx';
 import css from './VistaPrevia.module.css';
@@ -13,8 +15,9 @@ function Inicio({ tienda }) {
   const c = useCatalogo();
   return (
     <>
-      <Portada />
-      <Cinta />
+      <BarraSitio />
+      <Portada imagen={fotoEstrella(c)} />
+      <Beneficios tienda={tienda} productos={c.productos} />
       <div className={css.cuerpo}>
         <SeccionesInicio tienda={tienda} c={c} />
       </div>

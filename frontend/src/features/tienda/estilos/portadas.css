@@ -1,66 +1,66 @@
-/* Cartel sin foto: el fondo de la tienda y el nombre en su color (un bloque
-   de color a pantalla completa queda pesado). */
-[data-encabezado='portada'] [data-foto='no'][data-v='portada'] {
-  min-height: auto;
-  gap: var(--e-6);
-  background-color: var(--lona);
-  background-image: var(--patron, none);
-  color: var(--carbon);
-  --sobre-verde: var(--carbon);
-  --sobre-verde-2: var(--texto-2);
-  --tinte-sobre-verde: var(--tinte-boton);
-}
-[data-encabezado='portada'] [data-foto='no'] [data-v='nombre'],
-[data-encabezado='portada'] [data-foto='no'] [data-v='cta2'] {
-  color: var(--verde);
+/* Variantes del hero (vitrina/Portada.jsx). Base: panel dividido. */
+@media (min-width: 900px) {
+  [data-v='portada'] {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    min-height: 460px;
+    padding: var(--e-7);
+  }
+  [data-v='portada'] [data-v='imagen'] img {
+    aspect-ratio: 1;
+  }
 }
 
-/* Tres portadas: cartel (foto a lo ancho), toldo (cabecera de color) y
-   centrado (logo grande y nombre al medio, sobre el fondo de la tienda). */
-[data-encabezado='toldo'] [data-v='portada'] {
-  min-height: auto;
-  padding-bottom: calc(var(--e-6) + 14px);
+/* Con foto de portada propia: a lo ancho, detrás del texto. */
+[data-foto='si'][data-v='portada'] {
+  grid-template-columns: 1fr;
+  align-content: end;
+  min-height: min(74svh, 640px);
+  isolation: isolate;
+  color: white;
+  --sobre-verde: white;
+  --tinte-sobre-verde: rgb(255 255 255 / 0.16);
 }
-[data-encabezado='toldo'] [data-v='portada']::after {
+[data-foto='si'] [data-v='imagen'] {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+[data-foto='si'] [data-v='imagen'] img {
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+  object-position: center 30%;
+}
+[data-foto='si'] [data-v='imagen']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgb(0 0 0 / 0.05) 30%, rgb(0 0 0 / 0.68));
+}
+[data-foto='si'][data-v='portada'] [data-v='nombre'] {
+  color: white;
+}
+[data-foto='si'] [data-v='frase'] {
+  color: rgb(255 255 255 / 0.88);
+}
+
+/* Toldo: panel del color de la marca con el festón abajo. */
+[data-encabezado='toldo'] [data-foto='no'][data-v='portada'] {
+  padding-bottom: calc(var(--e-5) + 14px);
+  background: var(--portada-fondo);
+  color: var(--sobre-portada);
+  --sobre-verde: var(--sobre-portada);
+  --tinte-sobre-verde: color-mix(in srgb, var(--sobre-portada) 14%, transparent);
+}
+[data-encabezado='toldo'] [data-foto='no'] [data-v='frase'] {
+  color: var(--sobre-portada-2);
+}
+[data-encabezado='toldo'] [data-foto='no'][data-v='portada']::after {
   content: '';
   position: absolute;
   inset: auto 0 0;
   height: 14px;
   background: radial-gradient(circle at 14px 14px, var(--lona) 13px, transparent 14px) 0
     0 / 28px 14px repeat-x;
-}
-[data-encabezado='toldo'] [data-v='nombre'] {
-  margin-top: var(--e-5);
-}
-
-[data-encabezado='minimo'] [data-v='portada'] {
-  min-height: auto;
-  padding-bottom: var(--e-5);
-  background-color: var(--lona);
-  background-image: var(--patron, none);
-  color: var(--carbon);
-  --sobre-verde: var(--carbon);
-  --sobre-verde-2: var(--texto-2);
-  --tinte-sobre-verde: var(--tinte-boton);
-}
-[data-encabezado='minimo'] [data-v='portada'] > div:last-child {
-  justify-items: center;
-  text-align: center;
-}
-[data-encabezado='minimo'] [data-v='logo-grande'] {
-  display: block;
-  margin-top: var(--e-2);
-}
-[data-encabezado='minimo'] [data-v='logo-chico'] {
-  visibility: hidden;
-}
-[data-encabezado='minimo'] [data-v='nombre'] {
-  color: var(--verde);
-}
-[data-encabezado='minimo'] [data-v='cta2'] {
-  color: var(--verde);
-}
-[data-encabezado='minimo'] [data-v='banda'] ~ div:first-of-type {
-  position: absolute;
-  inset: var(--e-3) var(--e-4) auto;
 }
