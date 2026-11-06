@@ -29,6 +29,7 @@ export interface Database {
   categorias: C.CategoriasTabla;
   productos: C.ProductosTabla;
   productoFotos: C.ProductoFotosTabla;
+  galeriaTienda: C.GaleriaTiendaTabla;
   horarios: C.HorariosTabla;
   feriados: C.FeriadosTabla;
   promociones: C.PromocionesTabla;

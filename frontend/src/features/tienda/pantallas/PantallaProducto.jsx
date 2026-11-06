@@ -12,7 +12,7 @@ import { ProductoAusente } from '../components/ProductoAusente.jsx';
 import { useProducto } from '../hooks/useCatalogo.js';
 import { useTienda } from '../hooks/useTienda.js';
 import css from './PantallaProducto.module.css';
-import { ImagenSuave } from '../../../shared/ui/ImagenSuave.jsx';
+import { FotoProducto } from '../../../shared/ui/FotoProducto.jsx';
 
 // Detalle de producto (Stitch 14).
 export function PantallaProducto() {
@@ -26,8 +26,9 @@ export function PantallaProducto() {
   return (
     <>
       <HeaderTienda volver="/catalogo" titulo={producto.nombre} />
-      <ImagenSuave
+      <FotoProducto
         src={producto.fotoGrande}
+        nombre={producto.nombre}
         srcSet={producto.fotoSrcset}
         sizes="(max-width: 480px) 100vw, 480px"
         alt={producto.nombre}

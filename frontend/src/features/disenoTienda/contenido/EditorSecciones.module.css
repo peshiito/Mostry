@@ -1,0 +1,45 @@
+.secciones {
+  display: grid;
+  gap: var(--e-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.secciones li {
+  display: flex;
+  align-items: center;
+  gap: var(--e-1);
+  border-bottom: var(--borde);
+}
+.oculta {
+  color: var(--texto-3);
+}
+.ver {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--toque);
+}
+.ver input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--verde);
+}
+.flecha {
+  display: grid;
+  place-items: center;
+  width: var(--toque);
+  height: var(--toque);
+  border: 0;
+  border-radius: var(--radio-chico);
+  background: none;
+  color: inherit;
+  transform: rotate(90deg);
+}
+.abajo {
+  transform: rotate(-90deg);
+}
+.flecha:disabled {
+  opacity: 0.3;
+}

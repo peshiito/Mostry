@@ -8,7 +8,7 @@ import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { Tarjeta } from '../../../shared/ui/Tarjeta.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
 import { DatosTienda } from '../components/DatosTienda.jsx';
-import { SelectorPaleta } from '../components/SelectorPaleta.jsx';
+import { LinkDiseno } from '../components/LinkDiseno.jsx';
 import { useBasePanel } from '../../panelBase/BasePanel.jsx';
 import { useAjustesRapidos } from '../hooks/useAjustesRapidos.js';
 import { useMiTienda } from '../hooks/useMiTienda.js';
@@ -32,12 +32,7 @@ export function PantallaMiTienda() {
           errores={m.errores}
         />
       </Tarjeta>
-      <Tarjeta>
-        <SelectorPaleta
-          valor={m.t.paleta}
-          onCambio={(paleta) => m.setT({ ...m.t, paleta })}
-        />
-      </Tarjeta>
+      {soporte ? null : <LinkDiseno />}
       {/* Pausar es una decisión del comercio: en el modo soporte no aparece. */}
       {soporte ? null : (
         <Tarjeta tono={tienda.pausada ? 'mostaza' : undefined}>

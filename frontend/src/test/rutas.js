@@ -23,6 +23,8 @@ export const RUTAS = {
   ],
   panel: [
     '/panel',
+    '/panel/diseno',
+    '/panel/vidriera',
     '/panel/pedidos',
     '/panel/pedidos/8',
     '/panel/pedidos/7/comprobante',

@@ -4,7 +4,7 @@ import { Monto } from '../../../shared/ui/Monto.jsx';
 import { BotonAgregar } from './BotonAgregar.jsx';
 import css from './FilaProducto.module.css';
 import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
-import { ImagenSuave } from '../../../shared/ui/ImagenSuave.jsx';
+import { FotoProducto } from '../../../shared/ui/FotoProducto.jsx';
 
 // Fila del catálogo: foto cuadrada, nombre, etiqueta, precio y acción.
 export function FilaProducto({ ref, i, producto }) {
@@ -12,8 +12,9 @@ export function FilaProducto({ ref, i, producto }) {
   return (
     <ItemAnimado ref={ref} i={i} className={`${css.fila} ${agotado ? css.agotado : ''}`}>
       <Link to={`/producto/${producto.id}`} className={css.link}>
-        <ImagenSuave
+        <FotoProducto
           src={producto.foto}
+          nombre={producto.nombre}
           alt=""
           className={css.foto}
           loading="lazy"

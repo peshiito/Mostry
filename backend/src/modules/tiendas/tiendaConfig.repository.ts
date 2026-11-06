@@ -1,37 +1,7 @@
 import type { TiendaId } from '../../shared/db/tiendaId.js';
 import { db } from '../../shared/db/db.js';
 import type { DatosConfig } from './schemas.js';
-
-const columnasConfig = [
-  'id',
-  'slug',
-  'nombre',
-  'frase',
-  'logoClave',
-  'paleta',
-  'alias',
-  'titularAlias',
-  'whatsapp',
-  'direccion',
-  'pausada',
-  'plazoComprobanteHoras',
-  'plazoSenaHoras',
-  'anticipacionEncargoHoras',
-  'cupoEncargosDia',
-  'senaPorcentaje',
-  'costoEnvio',
-  'aceptaEnvio',
-  'aceptaRetiro',
-  'zonaEnvio',
-  'modoStock',
-  'vendeOnline',
-  'usaEncargos',
-  'usaLibreta',
-  'usaGastos',
-  'usaClub',
-  'rubro',
-  'configuradaEn',
-] as const;
+import { columnasConfig } from './columnasConfig.js';
 
 // Toda consulta recibe el tiendaId (la tienda resuelta por el Origin).
 export const tiendaConfigRepo = {

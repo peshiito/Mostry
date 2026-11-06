@@ -7,7 +7,7 @@ import { useBasePanel } from '../../features/panelBase/BasePanel.jsx';
 import { PantallaEmpezar } from '../../features/empezar/PantallaEmpezar.jsx';
 import { BannerSoporte } from '../../features/soporte/components/BannerSoporte.jsx';
 import { BannerSuscripcion } from '../../features/suscripcion/components/BannerSuscripcion.jsx';
-import { propsPaleta } from '../../shared/lib/paletas.js';
+import { propsPanelTienda } from '../../shared/temaTienda/colorPanel.js';
 import { useSincronizarAvisos } from '../../features/avisos/hooks/useSincronizarAvisos.js';
 import { HeaderPanel } from './HeaderPanel.jsx';
 import { NavPanel, ORDEN_PESTANAS } from './NavPanel.jsx';
@@ -32,7 +32,7 @@ function MarcoPanel() {
   const preguntar = !tienda.configuradaEn && !soporte && plan?.estado !== 'suspendida';
   if (preguntar) return <PantallaEmpezar />;
   return (
-    <div className={css.panel} {...propsPaleta(tienda.paleta)}>
+    <div className={css.panel} {...propsPanelTienda(tienda)}>
       <HeaderPanel />
       <BannerSuscripcion />
       <BannerSoporte />

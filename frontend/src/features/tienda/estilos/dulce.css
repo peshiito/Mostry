@@ -1,0 +1,53 @@
+/* DULCE: heladería y pastelería. Todo redondo, burbujas y una ola de crema. */
+[data-estilo='dulce'] [data-v='portada']::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 22px;
+  background: radial-gradient(circle at 22px 0, transparent 21px, var(--lona) 22px) 0 0 /
+    44px 22px repeat-x;
+}
+[data-estilo='dulce'] [data-v='tarjeta'] {
+  border-radius: 24px;
+  box-shadow: 0 10px 24px -14px color-mix(in srgb, var(--verde) 55%, transparent);
+}
+[data-estilo='dulce'] [data-v='foto'] {
+  padding: var(--e-2) var(--e-2) 0;
+}
+[data-estilo='dulce'] [data-v='foto'] > * {
+  border-radius: 18px;
+}
+[data-estilo='dulce'] [data-v='categorias'] ul {
+  display: flex;
+  gap: var(--e-3);
+  overflow-x: auto;
+}
+[data-estilo='dulce'] [data-v='categoria'] {
+  width: 84px;
+  background: transparent;
+}
+[data-estilo='dulce'] [data-v='categoria'] > :first-child {
+  width: 76px;
+  margin: 0 auto;
+  border: 3px solid var(--papel);
+  border-radius: 50%;
+  box-shadow: 0 6px 14px -8px rgb(0 0 0 / 0.4);
+}
+[data-estilo='dulce'] [data-v='promo'] {
+  border-radius: 28px;
+  background: var(--coral-claro);
+  color: var(--carbon);
+  --sobre-verde-2: var(--texto-2);
+}
+[data-estilo='dulce'] [data-v='promo-sello'],
+[data-estilo='dulce'] [data-v='sticker'] {
+  border-radius: 999px;
+}
+[data-estilo='dulce'] [data-v='precio'] {
+  color: var(--verde);
+  font-size: var(--t-lg);
+}
+[data-estilo='dulce'] [data-v='cta'],
+[data-estilo='dulce'] [data-v='cta2'] {
+  border-radius: 999px;
+}

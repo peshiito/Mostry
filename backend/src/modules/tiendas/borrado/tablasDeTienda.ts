@@ -13,6 +13,7 @@ export const TABLAS_DE_TIENDA = [
   'comprobantes',
   'pedidos',
   'producto_fotos',
+  'galeria_tienda',
   'productos',
   'categorias',
   'movimientos_caja',

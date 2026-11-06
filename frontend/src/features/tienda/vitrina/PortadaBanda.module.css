@@ -1,0 +1,7 @@
+.banda {
+  display: block;
+  height: 200px;
+  margin: calc(var(--e-3) * -1) calc(var(--e-4) * -1) -64px;
+  background-size: cover;
+  background-position: center;
+}

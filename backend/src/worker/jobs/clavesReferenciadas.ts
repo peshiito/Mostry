@@ -1,6 +1,4 @@
-import { ListObjectsV2Command } from '@aws-sdk/client-s3';
-import { nombreBucket, type TipoBucket } from '../../shared/archivos/buckets.js';
-import { s3 } from '../../shared/archivos/clienteS3.js';
+import type { TipoBucket } from '../../shared/archivos/buckets.js';
 import { db } from '../../shared/db/db.js';
 
 // "tiendas/1/productos/7/uuid-1200.webp" → "tiendas/1/productos/7/uuid".
@@ -34,35 +32,21 @@ export async function clavesReferenciadas(bucket: TipoBucket) {
   const fotos = await db.selectFrom('productoFotos').select('clave').execute();
   const logos = await db
     .selectFrom('tiendas')
-    .select('logoClave')
-    .where('logoClave', 'is not', null)
+    .select(['logoClave', 'portadaClave'])
     .execute();
+  const galeria = await db.selectFrom('galeriaTienda').select('clave').execute();
   const bases = new Set(fotos.map((f) => f.clave));
-  const logosUsados = new Set(logos.map((l) => l.logoClave!));
+  // Logos, portadas y fotos del local (Vidriera 2.0): una sola clave cada uno.
+  const logosUsados = new Set(
+    [
+      ...logos.flatMap((l) => [l.logoClave, l.portadaClave]),
+      ...galeria.map((g) => g.clave),
+    ].filter((c): c is string => c !== null),
+  );
   return {
     total: bases.size + logosUsados.size,
     enUso: (c: string) => logosUsados.has(c) || bases.has(baseDeClave(c)),
   };
 }
 
-// Claves bajo tiendas/ subidas antes de `limite` (recorre todas las páginas).
-export async function clavesAnterioresA(
-  bucket: TipoBucket,
-  limite: Date,
-): Promise<string[]> {
-  const claves: string[] = [];
-  let token: string | undefined;
-  do {
-    const r = await s3.send(
-      new ListObjectsV2Command({
-        Bucket: nombreBucket(bucket),
-        Prefix: 'tiendas/',
-        ContinuationToken: token,
-      }),
-    );
-    for (const o of r.Contents ?? [])
-      if (o.Key && o.LastModified && o.LastModified < limite) claves.push(o.Key);
-    token = r.IsTruncated ? r.NextContinuationToken : undefined;
-  } while (token);
-  return claves;
-}
+export { clavesAnterioresA } from './clavesAnteriores.js';

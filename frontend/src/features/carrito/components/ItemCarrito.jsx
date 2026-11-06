@@ -3,13 +3,19 @@ import { Cantidad } from '../../../shared/ui/Cantidad.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { useCarrito } from '../useCarrito.js';
 import css from './ItemCarrito.module.css';
+import { FotoProducto } from '../../../shared/ui/FotoProducto.jsx';
 import { ItemAnimado } from '../../../shared/movimiento/ListaAnimada.jsx';
 
 export function ItemCarrito({ ref, i, item }) {
   const { cambiar } = useCarrito();
   return (
     <ItemAnimado ref={ref} i={i} className={css.item}>
-      <img src={item.foto} alt="" className={css.foto} decoding="async" />
+      <FotoProducto
+        src={item.foto}
+        nombre={item.nombre}
+        className={css.foto}
+        decoding="async"
+      />
       <div className={css.cuerpo}>
         <div className={css.cabeza}>
           <h2 className={css.nombre}>{item.nombre}</h2>

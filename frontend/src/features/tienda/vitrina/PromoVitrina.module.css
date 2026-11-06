@@ -1,0 +1,30 @@
+.promo {
+  position: relative;
+  display: grid;
+  gap: var(--e-2);
+  margin: 0 var(--e-4);
+  padding: var(--e-5) var(--e-4);
+  border-radius: calc(var(--radio) * 1.5);
+  background: var(--verde);
+  color: var(--sobre-verde);
+  overflow: hidden;
+}
+.sello {
+  justify-self: start;
+  padding: 2px var(--e-2);
+  border-radius: var(--radio-chico);
+  background: var(--mostaza);
+  color: var(--sobre-mostaza);
+  font-size: var(--t-xs);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-3xl);
+  line-height: 1;
+}
+.texto {
+  color: var(--sobre-verde-2);
+}

@@ -1,0 +1,68 @@
+.muestra {
+  display: grid;
+  overflow: hidden;
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--lona);
+  background-image: var(--patron);
+  color: var(--carbon);
+  font-family: var(--fuente-texto);
+}
+.cabeza {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-3);
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+.logo {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--fondo-logo);
+  color: var(--carbon);
+  font-weight: 700;
+}
+.nombre,
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  line-height: 1.1;
+}
+.cuerpo {
+  display: grid;
+  gap: var(--e-2);
+  padding: var(--e-3);
+}
+.etiqueta {
+  justify-self: start;
+  padding: 0 var(--e-2);
+  border-radius: var(--radio-chico);
+  background: var(--mostaza);
+  color: var(--sobre-mostaza);
+  font-size: var(--t-xs);
+  font-weight: 700;
+}
+.tarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-2);
+  padding: var(--e-2);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.texto {
+  font-size: var(--t-sm);
+}
+.boton {
+  padding: var(--e-1) var(--e-2);
+  border-radius: var(--radio-chico);
+  background: var(--coral);
+  color: var(--sobre-coral);
+  font-size: var(--t-xs);
+  font-weight: 700;
+}

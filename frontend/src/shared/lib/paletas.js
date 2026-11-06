@@ -22,3 +22,10 @@ export const propsPaleta = (clave) => {
     style: { '--paleta': p.principal, '--paleta-acento': p.acento },
   };
 };
+
+// Panel con los colores del TEMA de la tienda (Vidriera 2.0): el panel lleva
+// texto blanco sobre el color principal, así que se oscurece hasta que se lea.
+export const propsColoresPanel = (colores, oscurecer) => ({
+  'data-paleta': 'tema',
+  style: { '--paleta': oscurecer(colores.principal), '--paleta-acento': colores.acento },
+});

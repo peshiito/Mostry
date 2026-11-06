@@ -1,0 +1,31 @@
+/* HUERTA: verdulería. Cajones de madera y precios en pizarrón. */
+[data-estilo='huerta'] [data-v='tarjeta'],
+[data-estilo='huerta'] [data-v='categoria'] {
+  border: 2px solid var(--linea-fuerte);
+  border-bottom-width: 6px;
+}
+[data-estilo='huerta'] [data-v='precio'] {
+  padding: 2px var(--e-2);
+  border-radius: var(--radio-chico);
+  background: var(--carbon);
+  color: var(--lona);
+  font-family: var(--fuente-titulo);
+  transform: rotate(-1.5deg);
+}
+[data-estilo='huerta'] [data-v='promo'] {
+  border: 6px solid var(--linea-fuerte);
+  border-radius: var(--radio-chico);
+  background: var(--carbon);
+  color: var(--lona);
+  --sobre-verde-2: color-mix(in srgb, var(--lona) 85%, transparent);
+}
+[data-estilo='huerta'] [data-v='promo-titulo'] {
+  font-weight: 600;
+}
+[data-estilo='huerta'] [data-v='titulo']::before {
+  content: '🌿 ';
+}
+[data-estilo='huerta'] [data-v='categoria-nombre'] {
+  background: var(--verde);
+  color: var(--sobre-verde);
+}

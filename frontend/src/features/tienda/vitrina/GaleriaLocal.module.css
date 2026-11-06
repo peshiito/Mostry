@@ -1,0 +1,21 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-2);
+  margin: 0;
+  padding: 0 var(--e-4);
+  list-style: none;
+}
+.grilla li:first-child {
+  grid-column: 1 / -1;
+}
+.foto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radio);
+}
+.grilla li:first-child .foto {
+  aspect-ratio: 16 / 10;
+}

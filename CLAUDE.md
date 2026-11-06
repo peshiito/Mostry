@@ -405,7 +405,19 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **Pedro tiene que cargar en el `.env`:** `VITE_LEGAL_NOMBRE`, `VITE_LEGAL_CUIT` y `VITE_LEGAL_EMAIL` (también en `.env.prueba-prod` y en producción). Sin ellas los textos dicen "a completar" y el build de Docker falla.
 - **S3 · Seguridad de salida: HECHA (2026-10-18).** Detalle en §13 y en `docs/ataqueE12.md` (sección S3).
 - **A Pedro le falta en `.env.prueba-prod`:** las claves VAPID (obligatorias desde Avisos 1) y las `VITE_LEGAL_*`. Sin eso la prueba de producción en local no arranca.
-- **Después:** S4 producción (antes: rotar claves, repo privado y elegir hosting) → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
+- **EN CURSO (2026-11-05): Vidriera 2.0 y Finanzas 2.0, ANTES de la S4** (decisión de Pedro, "camino A": se termina de armar todo y después se sale al piloto). Plan completo en **`docs/vidriera-finanzas-plan.md`**: leelo entero antes de seguir. Orden: D0 (diseño con Stitch) → V1–V6 (temas, tipografías propias, fondos y portada, plantillas y secciones, editor, fotos y variantes) → F1–F6 (costos y margen, reportes, gastos, cuentas por pagar y cobrar, planificación, medios de pago y exportar).
+- **RETOMAR ACÁ (2026-11-06, commiteado; suites: backend 507, frontend 210, e2e 87):** V1 (motor de temas) hecha y documentada en §13. En curso: rediseño de la vidriera, porque Pedro pidió diseño de verdad, no un re-skin ([[vidriera-diseno-y-autonomia]] en la memoria).
+  - **Ya hecho, en el frontend:**
+    - `features/tienda/vitrina/`: Portada (cartel, toldo y centrado, con banda de foto), Cinta, SeccionVitrina, TarjetaVitrina, CategoriasVitrina, PromoVitrina, ProductosVitrina, SobreNosotros, GaleriaLocal, Redes, Horarios y SeccionesInicio (orden elegido por el comercio, `lib/secciones.js`);
+    - `features/tienda/estilos/*.css`: la firma de cada estilo por `data-estilo` y `data-encabezado`;
+    - los fondos dibujados (`shared/temaTienda/patrones*.js`), `FotoProducto` con iniciales y el pie con la tabla de horarios;
+    - el panel: "Diseño de tu tienda" (`/panel/diseno`) y "Tu vidriera" (`/panel/vidriera`).
+  - **Ya hecho, en el backend:** migración `0055` (portada, contenido y `galeria_tienda`), `modules/tiendas/vidriera/` con sus tests (`vidrieraFotos` y `vidrieraContenido`), y la respuesta pública con portada, contenido y galería.
+  - **Las referencias de Stitch** están en `docs/stitch/temas/*.png`. Se generan con el modelo `GEMINI_3_5_FLASH_LITE`, porque el normal corta por tiempo. Falta Horno.
+  - **Faltan:**
+    - la V2 de la fuente propia (opentype.js + wawoff2) y el modo soporte del admin en el diseño;
+    - después, V6 (fotos y variantes) y F1–F6.
+- **Después:** S4 producción (antes: rotar claves, repo privado y elegir hosting; Pedro se inclina por un VPS con Docker Compose, sin Kubernetes) → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
 - **Hosting de producción:** sigue sin decidir. Railway cuesta unos 5 USD por mes; Oracle Always Free es gratis, pero hay que configurarlo más.
 
 **Plan de salida (2026-10-16): leé `docs/plan-salida.md` antes de seguir.**
@@ -580,6 +592,16 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - **CI liviano** (`.github/workflows/ci.yml`): lint, tipos, build, tests del frontend, `npm audit --audit-level=high` y gitleaks. La suite del backend y el e2e siguen en local.
   - **Avisos:** el upsert de una suscripción no toca la fila si el endpoint es de otra tienda.
   - **Backups:** simulacro hecho (script local y worker). El procedimiento del primer backup real está en `docs/produccion.md`.
+- **Vidriera 2.0 · V1, motor de temas (2026-11-06):**
+  - **Tema de la tienda:** `tiendas.tema JSON` (migración `0054`), validado con un Zod estricto en `modules/tiendas/tema/` (`catalogoTema.ts` con fuentes, patrones, formas, encabezados y plantillas). `PUT /panel/tienda/tema` guarda el tema completo. Con `null`, la vidriera usa la paleta vieja (`temaDePaleta`).
+  - **Motor** (`frontend/src/shared/temaTienda/`):
+    - `derivarTokens(tema, modo)` traduce el tema a los tokens que ya usa la vidriera (`--verde`, `--lona`, `--papel`, `--carbon`, `--coral`, `--mostaza`, fuentes y radios), así los componentes no cambian;
+    - **contraste garantizado:** `color.js` (`ajustar`) y `rellenos.js` (`rellenoLegible`) corren los tonos hasta 4.5:1. `derivar.test.js` lo prueba con todos los temas, las 10 paletas viejas y colores "difíciles", en claro y en oscuro;
+    - un tema claro con el comprador en modo oscuro arma un fondo oscuro teñido; un tema oscuro (Calle, Bodega) se ve igual en los dos modos;
+    - `useTemaTienda` pone los tokens en `<html>` (también llegan a las hojas y los avisos que van en portal) y los saca al salir.
+  - **Temas armados** (`temas.js`, diseñados con Stitch en proyectos "Mostry tema · …"): Horno, Calle, Cuaderno, Boutique, Kiosco, Dulce, Huerta y Bodega.
+  - **Tipografías:** 27 fuentes OFL o Apache por `@fontsource` (`fuentes.js`, `cargas.js`). Se baja solo la que usa la tienda. Las de texto largo son una lista aparte (`FUENTES_TEXTO`). El precache de la PWA trae solo Rubik y Work Sans. `catalogo.test.js` controla que las listas del frontend y del backend sean iguales.
+  - **Panel:** Más → **Diseño de tu tienda** (`features/disenoTienda/`): estilos, colores libres, tipografías, forma y encabezado, con una muestra en vivo (`MuestraTema`). "Datos y apariencia" pasó a ser "Datos de la tienda" y ya no tiene el selector de paleta. El panel toma el color principal del tema, oscurecido hasta que el texto blanco se lea (`colorPanel.js`).
 - **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
   - `unidades`: reserva y descuenta, como siempre;
   - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;
@@ -617,7 +639,7 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
 - **Cookies:** `__Host-mostry_sesion` (panel) y `__Host-mostry_admin`. El tipo de sesión depende de la zona del `Origin` (`modules/auth/cookies.ts`).
 - **Módulos (`modules/`):** auth, tiendas, admin (más plantillas y la cuenta del admin), catalogo, horarios, publico, pedidos, comprobantes, caja, gastos, encargos, libreta, promociones, reportes, soporte, club (cuentas de cliente, QR, programa, sellos, canjes e historiales).
 - **Base:**
-  - 53 migraciones en `db/migraciones/` (todas con `down`);
+  - 54 migraciones en `db/migraciones/` (todas con `down`);
   - seed en `db/seed/` (`npm run db:seed`);
   - demo en `db/seed/demo/` (`npm run db:demo`): pasa por la API real dentro del mismo proceso y no entra en el build.
 - **Worker:** `worker/tareas.ts`, con una tarea por archivo en `worker/jobs/`. Para correr una sola: `npm run worker:correr -- <tarea>`.

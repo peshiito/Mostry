@@ -7,14 +7,19 @@ import { useCarrito } from '../../carrito/useCarrito.js';
 import { useTienda } from '../hooks/useTienda.js';
 import { EstadoApertura } from './EstadoApertura.jsx';
 import css from './HeaderTienda.module.css';
+import { fondoPortada } from './fondoPortada.js';
 
-// Toldo verde de la tienda. Completo en inicio/catálogo; compacto con "Volver".
+// Encabezado de la tienda según su tema (V3): toldo, portada (con foto si la
+// subió) o mínimo. Completo en inicio/catálogo; compacto con "Volver".
 export function HeaderTienda({ volver, titulo }) {
-  const { tienda } = useTienda();
+  const { tienda, tema } = useTienda();
   const { unidades } = useCarrito();
+  const estilo = tema?.encabezado ?? 'toldo';
+  const foto =
+    estilo === 'portada' && !volver ? fondoPortada(tienda.portadaUrl) : undefined;
   return (
     <>
-      <header className={css.header}>
+      <header className={`${css.header} ${css[estilo]}`} style={foto}>
         <div className={css.barra}>
           {volver ? (
             <BotonIcono
@@ -51,7 +56,7 @@ export function HeaderTienda({ volver, titulo }) {
           </div>
         )}
       </header>
-      <Toldo />
+      {estilo === 'toldo' ? <Toldo /> : null}
     </>
   );
 }

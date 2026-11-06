@@ -6,8 +6,12 @@ import { tiendaConfigRepo } from '../tiendaConfig.repository.js';
 
 // El panel recibe la URL del logo, no la clave interna del bucket.
 export async function verConfig(tiendaId: TiendaId) {
-  const { logoClave, ...config } = await tiendaConfigRepo.buscar(tiendaId);
-  return { ...config, logoUrl: logoClave ? urlPublica(logoClave) : null };
+  const { logoClave, portadaClave, ...config } = await tiendaConfigRepo.buscar(tiendaId);
+  return {
+    ...config,
+    logoUrl: logoClave ? urlPublica(logoClave) : null,
+    portadaUrl: portadaClave ? urlPublica(portadaClave) : null,
+  };
 }
 
 // Edita "Mi tienda". Tiene que quedar al menos una forma de entrega.

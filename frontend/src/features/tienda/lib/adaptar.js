@@ -1,5 +1,5 @@
 // Traduce GET /publico/tienda al formato que usan las pantallas.
-const DIAS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+import { proxima, textoHorario } from './textosApertura.js';
 
 export function tramosPorDia(horarios) {
   const t = {};
@@ -7,33 +7,14 @@ export function tramosPorDia(horarios) {
   return t;
 }
 
-const textoHorario = (tramos) =>
-  [1, 2, 3, 4, 5, 6, 0]
-    .map(
-      (d) =>
-        `${DIAS[d]} ${tramos[d] ? tramos[d].map((x) => x.join('–')).join(' y ') : 'cerrado'}`,
-    )
-    .join(' · ');
-
-// "mañana a las 7:00" / "el 12/10 a las 7:00".
-function proxima(p) {
-  if (!p) return 'pronto';
-  const manana = new Date(Date.now() + 864e5).toLocaleDateString('sv-SE');
-  const hoy = new Date().toLocaleDateString('sv-SE');
-  const dia =
-    p.fecha === hoy
-      ? 'hoy'
-      : p.fecha === manana
-        ? 'mañana'
-        : `el ${p.fecha.slice(8)}/${p.fecha.slice(5, 7)}`;
-  return `${dia} a las ${p.hora}`;
-}
-
 export function adaptarTienda(t, slug) {
   // Suspendida: la API manda solo lo mínimo para "Cerrada temporalmente".
   if (!t.disponible) {
-    const { nombre, frase, logoUrl, paleta } = t;
-    return { estado: 'suspendida', tienda: { slug, nombre, frase, logoUrl, paleta } };
+    const { nombre, frase, logoUrl, paleta, tema = null } = t;
+    return {
+      estado: 'suspendida',
+      tienda: { slug, nombre, frase, logoUrl, paleta, tema },
+    };
   }
   const tramos = tramosPorDia(t.horarios);
   const a = t.apertura;
@@ -47,6 +28,10 @@ export function adaptarTienda(t, slug) {
       frase: t.frase,
       logoUrl: t.logoUrl,
       paleta: t.paleta,
+      tema: t.tema ?? null,
+      portadaUrl: t.portadaUrl ?? null,
+      contenido: t.contenido ?? null,
+      galeria: t.galeria ?? [],
       whatsapp: t.whatsapp,
       direccion: t.direccion,
       cierraA: a.cierraA,

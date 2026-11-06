@@ -1,0 +1,17 @@
+.sinFoto {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--lona-oscura);
+  background-image: var(--patron, none);
+  color: var(--verde);
+}
+.letras {
+  width: 46%;
+  height: 46%;
+  font-family: var(--fuente-titulo);
+  font-size: 40px;
+  font-weight: 700;
+  fill: currentColor;
+  opacity: 0.85;
+}

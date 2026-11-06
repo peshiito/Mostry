@@ -1,0 +1,69 @@
+.portada {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  min-height: min(78svh, 560px);
+  padding: var(--e-3) var(--e-4) var(--e-6);
+  background-color: var(--verde);
+  background-image: var(--patron-portada, none);
+  background-size: cover;
+  background-position: center;
+  color: var(--sobre-verde);
+  isolation: isolate;
+  overflow: hidden;
+}
+.logoGrande {
+  display: none;
+}
+.barra {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+.logo {
+  margin-right: auto;
+}
+.centro {
+  display: grid;
+  justify-items: start;
+  gap: var(--e-3);
+}
+.nombre {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2.6rem, 13vw, 4.4rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.frase {
+  max-width: 34ch;
+  color: var(--sobre-verde-2);
+  font-size: var(--t-lg);
+  line-height: 1.45;
+}
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+.cta,
+.cta2 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--toque);
+  padding: 0 var(--e-4);
+  border-radius: var(--radio);
+  font-weight: 700;
+  text-decoration: none;
+}
+.cta {
+  background: var(--coral);
+  color: var(--sobre-coral);
+}
+.cta2 {
+  border: 2px solid currentColor;
+  color: var(--sobre-verde);
+}

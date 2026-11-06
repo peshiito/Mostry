@@ -1,0 +1,29 @@
+.seccion {
+  display: grid;
+  gap: var(--e-4);
+  scroll-margin-top: var(--e-4);
+}
+.cabeza {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--e-3);
+  padding: 0 var(--e-4);
+}
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-2xl);
+  line-height: 1.05;
+}
+.bajada {
+  margin-top: 2px;
+  color: var(--texto-2);
+}
+.ver {
+  flex-shrink: 0;
+  min-height: var(--toque);
+  display: inline-flex;
+  align-items: center;
+  color: var(--verde);
+  font-weight: 700;
+}

@@ -1,0 +1,15 @@
+.vista {
+  position: sticky;
+  top: var(--e-2);
+  z-index: 2;
+  display: grid;
+  gap: var(--e-2);
+  padding: var(--e-2);
+  border-radius: calc(var(--radio) + 4px);
+  background: var(--lona);
+  box-shadow: var(--sombra-flotante);
+}
+.acciones {
+  display: grid;
+  gap: var(--e-3);
+}

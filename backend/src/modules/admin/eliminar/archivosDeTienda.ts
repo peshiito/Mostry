@@ -13,7 +13,11 @@ const conMotivo = (claves: (string | null)[]): FalloBorrado[] =>
 // los borre; lo que se escape lo levanta el barrido de huérfanos.
 export async function archivosDeTienda(tx: Ejecutor, tiendaId: TiendaId) {
   const [tienda, fotos, comprobantes, reportes, referencias] = await Promise.all([
-    tx.selectFrom('tiendas').select('logoClave').where('id', '=', tiendaId).execute(),
+    tx
+      .selectFrom('tiendas')
+      .select(['logoClave', 'portadaClave'])
+      .where('id', '=', tiendaId)
+      .execute(),
     tx
       .selectFrom('productoFotos')
       .select('clave')
@@ -36,8 +40,17 @@ export async function archivosDeTienda(tx: Ejecutor, tiendaId: TiendaId) {
       .execute(),
   ]);
   const deFotos = fotos.flatMap((f) => Object.values(clavesDeFoto(f.clave)));
+  const galeria = await tx
+    .selectFrom('galeriaTienda')
+    .select('clave')
+    .where('tiendaId', '=', tiendaId)
+    .execute();
   return {
-    publico: conMotivo([...tienda.map((t) => t.logoClave), ...deFotos]),
+    publico: conMotivo([
+      ...tienda.flatMap((t) => [t.logoClave, t.portadaClave]),
+      ...deFotos,
+      ...galeria.map((g) => g.clave),
+    ]),
     privado: conMotivo([
       ...comprobantes.map((c) => c.archivoClave),
       ...reportes.map((r) => r.claveCaptura),

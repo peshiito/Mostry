@@ -1,0 +1,52 @@
+/* CUADERNO: útiles escolares. Notitas pegadas con cinta, marcador y renglones. */
+[data-estilo='cuaderno'] [data-v='tarjeta'] {
+  overflow: visible;
+  box-shadow: 0 8px 16px -10px rgb(0 0 0 / 0.35);
+}
+[data-estilo='cuaderno'] li:nth-child(odd) > [data-v='tarjeta'] {
+  transform: rotate(-1.2deg);
+}
+[data-estilo='cuaderno'] li:nth-child(even) > [data-v='tarjeta'] {
+  transform: rotate(1deg);
+}
+[data-estilo='cuaderno'] [data-v='tarjeta']::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: -9px;
+  left: 50%;
+  width: 64px;
+  height: 18px;
+  margin-left: -32px;
+  background: color-mix(in srgb, var(--mostaza) 75%, transparent);
+  transform: rotate(-4deg);
+}
+[data-estilo='cuaderno'] [data-v='foto'] {
+  border-radius: var(--radio) var(--radio) 0 0;
+  overflow: hidden;
+}
+[data-estilo='cuaderno'] [data-v='titulo'] {
+  justify-self: start;
+  background: linear-gradient(transparent 58%, var(--mostaza-claro) 58%);
+}
+[data-estilo='cuaderno'] [data-v='promo'] {
+  background: var(--mostaza);
+  color: var(--sobre-mostaza);
+  --sobre-verde-2: var(--sobre-mostaza);
+  border-radius: 2px;
+  box-shadow: 0 12px 20px -12px rgb(0 0 0 / 0.45);
+  transform: rotate(-1.5deg);
+}
+[data-estilo='cuaderno'] [data-v='promo-sello'] {
+  background: var(--verde);
+  color: var(--sobre-verde);
+}
+[data-estilo='cuaderno'] [data-v='categoria'] {
+  border: 2px solid var(--verde);
+  border-radius: 999px 999px var(--radio) var(--radio);
+}
+[data-estilo='cuaderno'] [data-v='precio'] {
+  color: var(--verde);
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-xl);
+}

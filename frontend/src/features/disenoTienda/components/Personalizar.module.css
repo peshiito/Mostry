@@ -1,0 +1,48 @@
+.grupo {
+  display: grid;
+  gap: var(--e-3);
+  margin: 0;
+  padding: var(--e-4);
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+}
+.leyenda {
+  float: left;
+  width: 100%;
+  font-family: var(--fuente-titulo);
+  font-size: var(--t-lg);
+  font-weight: 600;
+}
+.color {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  min-height: var(--toque);
+  cursor: pointer;
+}
+.color input {
+  width: 48px;
+  height: 40px;
+  padding: 0;
+  border: var(--borde);
+  border-radius: var(--radio-chico);
+  background: none;
+  cursor: pointer;
+}
+.color span {
+  display: grid;
+}
+.color small,
+.nota {
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.nota {
+  margin: 0;
+}
+.etiqueta {
+  margin: 0;
+  font-size: var(--t-sm);
+  font-weight: 600;
+}

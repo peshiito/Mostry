@@ -57,6 +57,7 @@ describe('tienda pública: inicio', () => {
       frase: null,
       logoUrl: null,
       paleta: 'toldo',
+      tema: null,
       disponible: false,
     });
     expect(

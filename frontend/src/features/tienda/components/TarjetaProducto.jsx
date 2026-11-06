@@ -3,15 +3,16 @@ import { Etiqueta } from '../../../shared/ui/Etiqueta.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { BotonAgregar } from './BotonAgregar.jsx';
 import css from './TarjetaProducto.module.css';
-import { ImagenSuave } from '../../../shared/ui/ImagenSuave.jsx';
+import { FotoProducto } from '../../../shared/ui/FotoProducto.jsx';
 
 // Tarjeta vertical (carrusel de destacados).
 export function TarjetaProducto({ producto }) {
   return (
     <article className={css.tarjeta}>
       <Link to={`/producto/${producto.id}`} className={css.link}>
-        <ImagenSuave
+        <FotoProducto
           src={producto.foto}
+          nombre={producto.nombre}
           alt=""
           className={css.foto}
           loading="lazy"

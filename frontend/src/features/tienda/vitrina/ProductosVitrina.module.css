@@ -1,0 +1,22 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-4) var(--e-3);
+  margin: 0;
+  padding: 0 var(--e-4);
+  list-style: none;
+}
+.carrusel {
+  display: flex;
+  gap: var(--e-3);
+  margin: 0;
+  padding: var(--e-1) var(--e-4) var(--e-3);
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 var(--e-4);
+  scrollbar-width: none;
+}
+.carrusel > li {
+  scroll-snap-align: start;
+}

@@ -20,6 +20,7 @@ describe('adaptarTienda', () => {
         frase: null,
         logoUrl: null,
         paleta: 'toldo',
+        tema: null,
       },
     });
   });

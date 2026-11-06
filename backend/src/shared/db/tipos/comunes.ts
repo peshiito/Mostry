@@ -15,3 +15,6 @@ export type Timestamps = Creado & { actualizadoEn: ColumnType<Date, never, never
 export type ColTienda = ColumnType<TiendaId, TiendaId, never>;
 // Filas que son de una tienda.
 export type DeTienda = { id: Auto<number>; tiendaId: ColTienda };
+
+// Columna JSON: se lee como objeto y se escribe como texto (JSON.stringify).
+export type Json<T> = ColumnType<T | null, string | null, string | null>;

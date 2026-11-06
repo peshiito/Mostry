@@ -1,54 +1,26 @@
-import { Aviso } from '../../../shared/ui/Aviso.jsx';
-import { Pagina } from '../../../shared/ui/Pagina.jsx';
-import { SeccionTitulo } from '../../../shared/ui/SeccionTitulo.jsx';
-import { AccesosCategorias } from '../components/AccesosCategorias.jsx';
 import { BarraCarrito } from '../components/BarraCarrito.jsx';
-import { EstadoCatalogo } from '../components/EstadoCatalogo.jsx';
-import { Destacados } from '../components/Destacados.jsx';
-import { FranjaClub } from '../components/FranjaClub.jsx';
-import { FilaProducto } from '../components/FilaProducto.jsx';
-import { HeaderTienda } from '../components/HeaderTienda.jsx';
 import { PieTienda } from '../components/PieTienda.jsx';
-import { PromoGondola } from '../components/PromoGondola.jsx';
 import { useCatalogo } from '../hooks/useCatalogo.js';
 import { useTienda } from '../hooks/useTienda.js';
-import css from './Listado.module.css';
+import { AvisoCerrada } from '../vitrina/AvisosVitrina.jsx';
+import { Cinta } from '../vitrina/Cinta.jsx';
+import { Portada } from '../vitrina/Portada.jsx';
+import { SeccionesInicio } from '../vitrina/SeccionesInicio.jsx';
+import css from './PantallaInicio.module.css';
 
-// Inicio de la tienda pública (Stitch 11 y 12).
+// Inicio de la tienda (Vidriera 2.0): portada, promo, categorías, lo más
+// pedido, catálogo y lo que el comercio sume, en su orden. Cada estilo le pone su firma (estilos/*.css).
 export function PantallaInicio() {
   const { tienda, estado } = useTienda();
-  const { productos, destacados, categorias, cargando, error, recargar } = useCatalogo();
-  const espera = (
-    <EstadoCatalogo cargando={cargando} error={error} onReintentar={recargar} />
-  );
+  const c = useCatalogo();
   return (
     <>
-      <HeaderTienda />
-      <Pagina>
-        {estado === 'cerrada' ? (
-          <Aviso tipo="alerta" titulo="Ahora solo tomamos encargos" icono="schedule">
-            El local está cerrado. Podés hacer un encargo para otro día.
-          </Aviso>
-        ) : (
-          <PromoGondola promo={tienda.promo} />
-        )}
-        {cargando || error ? espera : <AccesosCategorias categorias={categorias} />}
-        <Destacados productos={destacados} />
-        <FranjaClub club={tienda.club} />
-        <section aria-labelledby="todo" className={css.seccion}>
-          <SeccionTitulo id="todo" titulo="Todo el mostrador" bajada="Todo lo que hay" />
-          <ul className={css.lista}>
-            {productos.map((p) => (
-              <FilaProducto key={p.id} producto={p} />
-            ))}
-          </ul>
-        </section>
-        {tienda.aceptaEnvio ? (
-          <Aviso icono="local_shipping">
-            Envíos {tienda.zonaEnvio.toLowerCase()} o retiro en el local.
-          </Aviso>
-        ) : null}
-      </Pagina>
+      <Portada />
+      <Cinta />
+      <main id="contenido" tabIndex={-1} className={css.vitrina}>
+        <AvisoCerrada estado={estado} />
+        <SeccionesInicio tienda={tienda} c={c} />
+      </main>
       <PieTienda />
       <BarraCarrito />
     </>

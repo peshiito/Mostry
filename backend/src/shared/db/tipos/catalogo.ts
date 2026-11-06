@@ -41,3 +41,7 @@ export type PromocionesTabla = DeTienda &
     hasta: Date;
     activa: Auto<boolean>;
   };
+
+// Fotos del local para la vidriera (Vidriera 2.0, 0055).
+export type GaleriaTiendaTabla = DeTienda &
+  Creado & { clave: string; orden: Auto<number> };

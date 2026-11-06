@@ -33,7 +33,10 @@ describe('admin: constancia de los días de cortesía', () => {
   });
 
   it('no suma a lo cobrado y el comercio no ve la nota de un pago', async () => {
-    const pago = { monto: 1_000_000, pagadoEn: '2026-10-01', nota: 'Nota interna' };
+    const hoy = new Date().toLocaleDateString('en-CA', {
+      timeZone: 'America/Argentina/Buenos_Aires',
+    });
+    const pago = { monto: 1_000_000, pagadoEn: hoy, nota: 'Nota interna' };
     await admin.post(`/admin/tiendas/${id}/pagos`, pago).expect(201);
     const m = (await admin.get('/admin/metricas').expect(200)).body;
     expect(m.cobradoMes).toEqual({ total: 1_000_000, pagos: 1 });

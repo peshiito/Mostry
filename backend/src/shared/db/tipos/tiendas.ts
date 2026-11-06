@@ -1,5 +1,7 @@
+import type { TemaTienda } from '../../../modules/tiendas/tema/esquemaTema.js';
+import type { ContenidoTienda } from '../../../modules/tiendas/vidriera/esquemaContenido.js';
 import type { ModoStock } from './catalogo.js';
-import type { Auto, ColTienda, Creado, Fecha, Hora, Timestamps } from './comunes.js';
+import type { Auto, ColTienda, Creado, Hora, Json, Timestamps } from './comunes.js';
 
 export type EstadoTienda = 'prueba' | 'activa' | 'gracia' | 'suspendida';
 
@@ -10,6 +12,10 @@ export type TiendasTabla = Timestamps & {
   frase: string | null;
   logoClave: string | null;
   paleta: Auto<string>;
+  // Vidriera 2.0: tema (0054; null = su paleta), portada y contenido (0055).
+  tema: Json<TemaTienda>;
+  portadaClave: string | null;
+  contenido: Json<ContenidoTienda>;
   alias: string | null;
   titularAlias: string | null;
   whatsapp: string | null;
@@ -51,14 +57,4 @@ export type MiembrosTiendaTabla = Creado & {
   silencioHasta: Auto<Hora | null>;
 };
 
-export type PagosSuscripcionTabla = Creado & {
-  id: Auto<number>;
-  tiendaId: ColTienda;
-  tipo: Auto<'pago' | 'cortesia'>;
-  monto: number;
-  pagadoEn: Fecha;
-  periodoDesde: Date;
-  periodoHasta: Date;
-  registradoPor: number;
-  nota: string | null;
-};
+export type { PagosSuscripcionTabla } from './pagosSuscripcion.js';

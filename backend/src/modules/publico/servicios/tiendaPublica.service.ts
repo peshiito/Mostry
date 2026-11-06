@@ -4,6 +4,7 @@ import { AppError } from '../../../shared/errors/AppError.js';
 import { programaPublico } from '../../club/programa/programa.service.js';
 import { cargarAgenda } from '../../horarios/repositorios/agenda.repository.js';
 import { estadoApertura } from '../../horarios/servicios/apertura.js';
+import { fotosGaleria } from '../../tiendas/vidriera/galeriaLectura.js';
 import { tiendaPublicaRepo } from '../repositorios/tiendaPublica.repository.js';
 import { disponibilidad } from './disponibilidad.js';
 
@@ -19,6 +20,7 @@ export async function verTiendaPublica(tiendaId: TiendaId) {
     frase: t.frase,
     logoUrl: t.logoClave ? urlPublica(t.logoClave) : null,
     paleta: t.paleta,
+    tema: t.tema,
   };
   // Suspendida: solo lo mínimo para mostrar "Cerrada temporalmente".
   if (estado === 'suspendida') return { ...datos, disponible: false as const };
@@ -46,5 +48,9 @@ export async function verTiendaPublica(tiendaId: TiendaId) {
     promociones: await tiendaPublicaRepo.promocionesVigentes(tiendaId, ahora),
     // El club sirve también en el local: va aunque no venda online.
     club: await programaPublico(tiendaId, t.usaClub),
+    // Vidriera 2.0 (V3 y V4): portada, contenido y fotos del local.
+    portadaUrl: t.portadaClave ? urlPublica(t.portadaClave) : null,
+    contenido: t.contenido,
+    galeria: await fotosGaleria(tiendaId),
   };
 }
