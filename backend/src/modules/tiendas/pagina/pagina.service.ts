@@ -55,12 +55,8 @@ export async function publicar(tiendaId: TiendaId) {
   });
 }
 
-// Lo que ve el comprador (null: la tienda no armó su página y se usa la de siempre).
-export async function paginaPublicada(tiendaId: TiendaId) {
-  const fila = await db
-    .selectFrom('paginasTienda')
-    .select('publicado')
-    .where('tiendaId', '=', tiendaId)
-    .executeTakeFirst();
-  return fila?.publicado ?? null;
+// "Volver a la página de siempre": borra el borrador y lo publicado (las
+// versiones quedan, por si quiere recuperar alguna).
+export async function volverALaDeSiempre(tiendaId: TiendaId) {
+  await db.deleteFrom('paginasTienda').where('tiendaId', '=', tiendaId).execute();
 }

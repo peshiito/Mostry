@@ -25,6 +25,7 @@ export const RUTAS = {
     '/panel',
     '/panel/diseno',
     '/panel/vidriera',
+    '/panel/pagina',
     '/panel/pedidos',
     '/panel/pedidos/8',
     '/panel/pedidos/7/comprobante',

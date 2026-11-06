@@ -13,6 +13,7 @@ const RESPUESTAS = [
   ['GET', /^\/auth\/yo$/, 'yo'],
   ['GET', /^\/panel\/tienda\/config$/, 'config'],
   ['GET', /^\/panel\/tienda\/vidriera\/galeria$/, []],
+  ['GET', /^\/panel\/tienda\/pagina$/, { borrador: null, publicado: null, version: 0 }],
   ['GET', /^\/panel\/tienda\/suscripcion$/, 'suscripcion'],
   ['GET', /^\/panel\/caja\/resumen/, 'caja-resumen'],
   ['GET', /^\/panel\/caja\/historial$/, 'caja-historial'],

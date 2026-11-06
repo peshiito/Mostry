@@ -1,3 +1,4 @@
+import { archivosDeMedio } from '../../tiendas/medios/procesarMedio.js';
 import type { FalloBorrado } from '../../../shared/archivos/borrarClaves.js';
 import { clavesDeFoto } from '../../../shared/archivos/claves.js';
 import type { Ejecutor } from '../../../shared/db/ejecutor.js';
@@ -45,8 +46,14 @@ export async function archivosDeTienda(tx: Ejecutor, tiendaId: TiendaId) {
     .select('clave')
     .where('tiendaId', '=', tiendaId)
     .execute();
+  const medios = await tx
+    .selectFrom('mediosTienda')
+    .select(['clave', 'tipo'])
+    .where('tiendaId', '=', tiendaId)
+    .execute();
   return {
     publico: conMotivo([
+      ...medios.flatMap((m) => archivosDeMedio(m.clave, m.tipo)),
       ...tienda.flatMap((t) => [t.logoClave, t.portadaClave]),
       ...deFotos,
       ...galeria.map((g) => g.clave),

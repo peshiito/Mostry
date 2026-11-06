@@ -15,6 +15,7 @@ export const TABLAS_DE_TIENDA = [
   'producto_fotos',
   'galeria_tienda',
   'versiones_pagina',
+  'medios_tienda',
   'paginas_tienda',
   'productos',
   'categorias',

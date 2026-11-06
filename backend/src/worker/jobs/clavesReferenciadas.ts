@@ -35,7 +35,9 @@ export async function clavesReferenciadas(bucket: TipoBucket) {
     .select(['logoClave', 'portadaClave'])
     .execute();
   const galeria = await db.selectFrom('galeriaTienda').select('clave').execute();
-  const bases = new Set(fotos.map((f) => f.clave));
+  // Fotos de productos y medios de "Armá tu página": se guardan por base.
+  const medios = await db.selectFrom('mediosTienda').select('clave').execute();
+  const bases = new Set([...fotos, ...medios].map((f) => f.clave));
   // Logos, portadas y fotos del local (Vidriera 2.0): una sola clave cada uno.
   const logosUsados = new Set(
     [

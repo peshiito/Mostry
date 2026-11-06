@@ -1,6 +1,7 @@
 import { fotoEstrella } from '../../tienda/lib/fotoEstrella.js';
 import { PromoVitrina } from '../../tienda/vitrina/PromoVitrina.jsx';
 import { botonesListos } from '../lib/destino.js';
+import { urlsDeMedios } from '../lib/medios.js';
 
 const VER = { texto: 'Aprovechar', destino: { tipo: 'catalogo' } };
 
@@ -15,7 +16,13 @@ export function BloqueBanner({ datos, tienda, c }) {
       titulo={datos.titulo ?? promo?.titulo}
       texto={datos.texto ?? promo?.descripcion}
       boton={boton}
-      imagen={datos.imagen === 'producto' ? fotoEstrella(c, 1) : null}
+      imagen={
+        datos.imagen === 'propia'
+          ? (urlsDeMedios(tienda, [datos.medio], true)[0] ?? null)
+          : datos.imagen === 'producto'
+            ? fotoEstrella(c, 1)
+            : null
+      }
     />
   );
 }

@@ -1,0 +1,11 @@
+.columna {
+  display: grid;
+  align-content: start;
+  gap: var(--e-3);
+  min-width: 0;
+}
+.controles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--e-2);
+}

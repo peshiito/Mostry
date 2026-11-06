@@ -33,6 +33,7 @@ export interface Database {
   galeriaTienda: C.GaleriaTiendaTabla;
   paginasTienda: G.PaginasTiendaTabla;
   versionesPagina: G.VersionesPaginaTabla;
+  mediosTienda: G.MediosTiendaTabla;
   horarios: C.HorariosTabla;
   feriados: C.FeriadosTabla;
   promociones: C.PromocionesTabla;

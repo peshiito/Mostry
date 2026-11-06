@@ -16,3 +16,13 @@ export type VersionesPaginaTabla = DeTienda & {
   documento: ColumnType<DocumentoPagina, string, never>;
   creadaEn: ColumnType<Date, never, never>;
 };
+
+// Biblioteca de imágenes de la tienda (0057). `clave` es la base de los archivos.
+export type MediosTiendaTabla = DeTienda & {
+  clave: string;
+  tipo: 'foto' | 'animado';
+  ancho: number;
+  alto: number;
+  bytes: number;
+  creadoEn: ColumnType<Date, never, never>;
+};

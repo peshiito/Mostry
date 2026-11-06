@@ -28,7 +28,12 @@ describe('página de la tienda: validación', () => {
       con(boton({ tipo: 'inventado' })),
       con(boton({ tipo: 'producto', id: -1 })),
       con((p) => {
-        (p.bloques as unknown[]).push({ id: 'x12345', tipo: 'html', visible: true, datos: {} });
+        (p.bloques as unknown[]).push({
+          id: 'x12345',
+          tipo: 'html',
+          visible: true,
+          datos: {},
+        });
       }),
       con((p) => {
         hero(p).datos.html = '<script>alert(1)</script>';
@@ -58,6 +63,7 @@ describe('página de la tienda: validación', () => {
         p.ajustes.tarjeta.botones = ['agregar', 'agregar'] as never;
       }),
     ];
-    for (const m of malas) await t.panel.put('/panel/tienda/pagina/borrador', m).expect(400);
+    for (const m of malas)
+      await t.panel.put('/panel/tienda/pagina/borrador', m).expect(400);
   });
 });

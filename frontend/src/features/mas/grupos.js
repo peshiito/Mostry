@@ -16,6 +16,7 @@ export const GRUPOS = [
     'Mi tienda',
     [
       ['Qué uso de Mostry', 'tune', 'uso'],
+      ['Armá tu página', 'dashboard_customize', 'pagina', 'vendeOnline'],
       ['Diseño de tu tienda', 'stars', 'diseno'],
       ['Tu vidriera: fotos e historia', 'image', 'vidriera'],
       ['Datos de la tienda', 'storefront', 'tienda'],

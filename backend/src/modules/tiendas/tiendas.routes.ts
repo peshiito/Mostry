@@ -7,6 +7,7 @@ import { logoController as logo } from './controladores/logo.controller.js';
 import { tiendaController as tienda } from './controladores/tienda.controller.js';
 import { perfilController } from './perfil/perfil.js';
 import { guardarTema } from './tema/tema.controller.js';
+import { rutasMedios } from './medios/medios.routes.js';
 import { rutasPagina } from './pagina/pagina.routes.js';
 import { rutasVidriera } from './vidriera/vidriera.routes.js';
 
@@ -21,6 +22,7 @@ export function rutasTienda(mailer: Mailer): Router {
   r.put('/tema', guardarTema);
   r.use('/vidriera', rutasVidriera());
   r.use('/pagina', rutasPagina());
+  r.use('/medios', rutasMedios());
   // Pide la contraseña: límite por IP y por cuenta (sección 7).
   r.put('/cobro', limite(10, 10), limite(15, 5, porUsuario), cobroController(mailer));
   r.get('/suscripcion', tienda.suscripcion);

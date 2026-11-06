@@ -2,6 +2,7 @@ import { avisos } from './avisos.js';
 import { ayuda } from './ayuda.js';
 import { club } from './club.js';
 import { comercio } from './comercio.js';
+import { editor } from './editor.js';
 import { errores } from './errores.js';
 import { estados } from './estados.js';
 import { navegacion } from './navegacion.js';
@@ -18,4 +19,5 @@ export const ICONOS = {
   ...errores,
   ...club,
   ...avisos,
+  ...editor,
 };

@@ -22,6 +22,14 @@ describe('página de la tienda', () => {
     expect(publica).toEqual(paginaDePrueba());
   });
 
+  it('volver a la de siempre saca lo publicado y deja las versiones', async () => {
+    await borrador(paginaDePrueba()).expect(200);
+    await t.panel.post('/panel/tienda/pagina/publicar').expect(200);
+    await t.panel.delete('/panel/tienda/pagina').expect(204);
+    expect((await t.comprador.get('/publico/tienda')).body.pagina).toBeNull();
+    expect((await t.panel.get('/panel/tienda/pagina/versiones')).body).toHaveLength(1);
+  });
+
   it('publicar sin borrador avisa', async () => {
     await t.panel.post('/panel/tienda/pagina/publicar').expect(409);
   });

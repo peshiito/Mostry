@@ -1,0 +1,50 @@
+.manija {
+  display: grid;
+  place-items: center;
+  min-width: var(--toque);
+  min-height: var(--toque);
+  border: 0;
+  border-radius: var(--radio-chico);
+  background: none;
+  color: var(--texto-2);
+  cursor: grab;
+  touch-action: none;
+}
+.cuerpo {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--e-2);
+  min-width: 0;
+  min-height: var(--toque);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.icono {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radio-chico);
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.textos {
+  display: grid;
+  min-width: 0;
+}
+.nombre {
+  font-weight: 600;
+}
+.resumen {
+  overflow: hidden;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

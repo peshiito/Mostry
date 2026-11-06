@@ -1,10 +1,6 @@
 import { z } from 'zod';
-import {
-  esquemaBoton,
-  esquemaFuente,
-  idBloque,
-  textoOpcional as opc,
-} from './esquemaDestino.js';
+import { datosBanner, datosHero } from './esquemaPortada.js';
+import { esquemaFuente, idBloque, textoOpcional as opc } from './esquemaDestino.js';
 
 // Cada bloque: id, tipo, si se ve y sus datos (objetos estrictos). Los títulos en
 // null usan el texto de siempre ("Lo más pedido", el nombre de la tienda...).
@@ -13,15 +9,7 @@ const bloque = <T extends string, D extends z.ZodType>(tipo: T, datos: D) =>
 const vacio = z.strictObject({});
 
 export const BLOQUES = [
-  bloque(
-    'hero',
-    z.strictObject({
-      titulo: opc(80),
-      frase: opc(160),
-      imagen: z.enum(['portada', 'producto', 'ninguna']),
-      botones: z.array(esquemaBoton).max(2),
-    }),
-  ),
+  bloque('hero', datosHero),
   bloque('beneficios', vacio),
   bloque(
     'categorias',
@@ -37,16 +25,7 @@ export const BLOQUES = [
       cantidad: z.number().int().min(1).max(48),
     }),
   ),
-  bloque(
-    'banner',
-    z.strictObject({
-      origen: z.enum(['promo', 'propio']),
-      titulo: opc(80),
-      texto: opc(240),
-      boton: esquemaBoton.nullable(),
-      imagen: z.enum(['producto', 'ninguna']),
-    }),
-  ),
+  bloque('banner', datosBanner),
   bloque(
     'texto',
     z.strictObject({

@@ -30,6 +30,21 @@
   user-select: none;
 }
 
+/* Vista "compu": un monitor que ocupa todo el ancho; la página se dibuja a
+   1280 px y se achica (useZoom). */
+.monitor {
+  width: 100%;
+  border-width: 4px;
+  border-radius: 12px;
+}
+.monitor .pantalla {
+  height: min(640px, 72svh);
+  border-radius: 8px;
+}
+.monitor .vidriera {
+  width: 1280px;
+}
+
 .cuerpo {
   display: grid;
   gap: var(--e-7);

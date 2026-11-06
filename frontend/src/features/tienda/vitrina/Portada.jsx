@@ -1,20 +1,22 @@
-import { Link } from 'react-router';
 import { Icono } from '../../../shared/ui/Icono.jsx';
 import { EstadoApertura } from '../components/EstadoApertura.jsx';
+import { BotonPortada as Boton } from './BotonPortada.jsx';
+import { CarruselFotos } from './CarruselFotos.jsx';
 import css from './Portada.module.css';
-
-// Link interno (sin recargar), externo (pestaña nueva) o ancla.
-function Boton({ b, ...resto }) {
-  if (b.interno) return <Link to={b.href} {...resto} />;
-  const fuera = b.externo ? { target: '_blank', rel: 'noopener noreferrer' } : {};
-  return <a href={b.href} {...fuera} {...resto} />;
-}
 
 // El hero de la tienda: nombre grande, frase, estado y sus botones, con una
 // imagen. `aLoAncho` pone la foto detrás del texto (la portada que subió el
 // comercio); si no, va al lado (estilos/portadas.css). Los datos los arma el
 // bloque Hero (features/pagina).
-export function Portada({ titulo, frase, foto, aLoAncho, botones = [] }) {
+export function Portada({
+  titulo,
+  frase,
+  foto,
+  fotos,
+  carrusel,
+  aLoAncho,
+  botones = [],
+}) {
   return (
     <section
       className={css.hero}
@@ -51,7 +53,11 @@ export function Portada({ titulo, frase, foto, aLoAncho, botones = [] }) {
           </div>
         ) : null}
       </div>
-      {foto ? (
+      {fotos?.length > 1 ? (
+        <div className={css.imagen} data-v="imagen">
+          <CarruselFotos fotos={fotos} {...carrusel} />
+        </div>
+      ) : foto ? (
         <div className={css.imagen} data-v="imagen">
           <img src={foto} alt="" decoding="async" fetchPriority="high" />
         </div>

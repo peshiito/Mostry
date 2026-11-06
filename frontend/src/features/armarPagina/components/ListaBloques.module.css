@@ -1,0 +1,29 @@
+.lista {
+  display: grid;
+  gap: var(--e-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--e-1);
+  padding: var(--e-1);
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--papel);
+  touch-action: manipulation;
+}
+.item[data-elegido] {
+  border-color: var(--verde);
+  box-shadow: inset 4px 0 0 var(--verde);
+}
+.item[data-arrastrando] {
+  z-index: 2;
+  box-shadow: var(--sombra-flotante);
+}
+.item[data-oculto] > :nth-child(2) {
+  opacity: 0.55;
+}

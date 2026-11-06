@@ -12,7 +12,10 @@ export async function guardarVersion(
   tiendaId: TiendaId,
   texto: string,
 ) {
-  await trx.insertInto('versionesPagina').values({ tiendaId, documento: texto }).execute();
+  await trx
+    .insertInto('versionesPagina')
+    .values({ tiendaId, documento: texto })
+    .execute();
   const viejas = await trx
     .selectFrom('versionesPagina')
     .select('id')

@@ -9,3 +9,13 @@
 [data-encabezado='minimo'] [data-foto='no'] [data-v='acciones'] {
   justify-content: center;
 }
+
+/* Carrusel de fotos propias a lo ancho: ocupa todo y los puntitos van arriba. */
+[data-foto='si'] [data-v='carrusel'] {
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+[data-foto='si'] [data-v='carrusel'] > div {
+  inset: var(--e-3) var(--e-3) auto auto;
+}

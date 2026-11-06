@@ -5,7 +5,7 @@ import { z } from 'zod';
 // sitio raro por la ventana.
 export const idBloque = z.string().regex(/^[a-z0-9]{6,16}$/);
 export const textoOpcional = (max: number) => z.string().trim().max(max).nullable();
-const idPositivo = z.number().int().positive().max(2_147_483_647);
+export const idPositivo = z.number().int().positive().max(2_147_483_647);
 
 export const esquemaDestino = z.discriminatedUnion('tipo', [
   z.strictObject({ tipo: z.literal('catalogo') }),
@@ -13,7 +13,10 @@ export const esquemaDestino = z.discriminatedUnion('tipo', [
   z.strictObject({ tipo: z.literal('producto'), id: idPositivo }),
   z.strictObject({ tipo: z.literal('whatsapp') }),
   z.strictObject({ tipo: z.literal('seccion'), id: idBloque }),
-  z.strictObject({ tipo: z.literal('web'), url: z.url({ protocol: /^https$/ }).max(200) }),
+  z.strictObject({
+    tipo: z.literal('web'),
+    url: z.url({ protocol: /^https$/ }).max(200),
+  }),
 ]);
 
 export const esquemaBoton = z.strictObject({
@@ -26,5 +29,8 @@ export const esquemaFuente = z.discriminatedUnion('tipo', [
   z.strictObject({ tipo: z.literal('destacados') }),
   z.strictObject({ tipo: z.literal('todos') }),
   z.strictObject({ tipo: z.literal('categoria'), id: idPositivo }),
-  z.strictObject({ tipo: z.literal('elegidos'), ids: z.array(idPositivo).min(1).max(24) }),
+  z.strictObject({
+    tipo: z.literal('elegidos'),
+    ids: z.array(idPositivo).min(1).max(24),
+  }),
 ]);

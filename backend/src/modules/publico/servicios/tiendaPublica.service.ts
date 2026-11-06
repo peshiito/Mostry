@@ -4,7 +4,7 @@ import { AppError } from '../../../shared/errors/AppError.js';
 import { programaPublico } from '../../club/programa/programa.service.js';
 import { cargarAgenda } from '../../horarios/repositorios/agenda.repository.js';
 import { estadoApertura } from '../../horarios/servicios/apertura.js';
-import { paginaPublicada } from '../../tiendas/pagina/pagina.service.js';
+import { paginaConMedios } from '../../tiendas/pagina/paginaPublicada.js';
 import { fotosGaleria } from '../../tiendas/vidriera/galeriaLectura.js';
 import { tiendaPublicaRepo } from '../repositorios/tiendaPublica.repository.js';
 import { disponibilidad } from './disponibilidad.js';
@@ -53,7 +53,7 @@ export async function verTiendaPublica(tiendaId: TiendaId) {
     portadaUrl: t.portadaClave ? urlPublica(t.portadaClave) : null,
     contenido: t.contenido,
     galeria: await fotosGaleria(tiendaId),
-    // "Armá tu página": la página publicada (null = la de siempre).
-    pagina: await paginaPublicada(tiendaId),
+    // "Armá tu página": la página publicada (null = la de siempre) y sus imágenes.
+    ...(await paginaConMedios(tiendaId)),
   };
 }

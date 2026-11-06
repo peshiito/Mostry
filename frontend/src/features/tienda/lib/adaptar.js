@@ -32,7 +32,8 @@ export function adaptarTienda(t, slug) {
       portadaUrl: t.portadaUrl ?? null,
       contenido: t.contenido ?? null,
       galeria: t.galeria ?? [],
-      pagina: t.pagina ?? null, // "Armá tu página": la publicada, si armó una
+      pagina: t.pagina ?? null,
+      medios: t.medios ?? [], // las imágenes que usa la página // "Armá tu página": la publicada, si armó una
       whatsapp: t.whatsapp,
       direccion: t.direccion,
       cierraA: a.cierraA,

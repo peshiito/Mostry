@@ -15,6 +15,8 @@ export const paginaDePrueba = () => ({
         titulo: null,
         frase: 'Facturas de verdad',
         imagen: 'portada',
+        medios: [],
+        carrusel: { segundos: 5, transicion: 'fundido' },
         botones: [{ texto: 'Ver todo', destino: { tipo: 'catalogo' } }],
       },
     },
