@@ -10,7 +10,7 @@
   background: var(--papel);
 }
 .ancha {
-  width: min(62vw, 260px);
+  width: min(62cqi, 260px);
 }
 .link {
   display: grid;

@@ -38,7 +38,7 @@
   text-align: center;
   line-height: 1.2;
 }
-@media (min-width: 900px) {
+@container (min-width: 900px) {
   .lista {
     justify-content: center;
     gap: var(--e-6);

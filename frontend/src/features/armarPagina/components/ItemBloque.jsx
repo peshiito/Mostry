@@ -7,9 +7,9 @@ import { resumenBloque } from '../lib/resumen.js';
 import css from './ItemBloque.module.css';
 import lista from './ListaBloques.module.css';
 
-// Un bloque en la lista: se arrastra por la manija, se toca para editarlo y se
-// puede ocultar sin borrarlo.
-export function ItemBloque({ bloque, elegido, onEditar, onAlternar }) {
+// Un bloque en la lista: se arrastra por la manija, se toca para editarlo, se
+// puede ocultar sin borrarlo o sacar (con "Deshacer" en el aviso).
+export function ItemBloque({ bloque, elegido, onEditar, onAlternar, onQuitar }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: bloque.id });
   const info = REGISTRO[bloque.tipo];
@@ -48,6 +48,11 @@ export function ItemBloque({ bloque, elegido, onEditar, onAlternar }) {
         icono={bloque.visible ? 'visibility' : 'visibility_off'}
         etiqueta={bloque.visible ? `Ocultar ${info.nombre}` : `Mostrar ${info.nombre}`}
         onClick={() => onAlternar(bloque.id)}
+      />
+      <BotonIcono
+        icono="delete"
+        etiqueta={`Sacar ${info.nombre}`}
+        onClick={() => onQuitar(bloque.id)}
       />
     </li>
   );

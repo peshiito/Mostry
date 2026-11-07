@@ -1,0 +1,7 @@
+/* La tienda se mide por el lugar donde está dibujada y no por la pantalla:
+   así, en la vista previa del editor, el celular muestra exactamente lo que
+   vería un teléfono (aunque el editor esté abierto en la compu). Las piezas
+   usan @container y unidades cqi en vez de @media y vw. */
+[data-estilo] :is(main, footer, [data-v='barra'], [data-contenedor]) {
+  container-type: inline-size;
+}

@@ -17,7 +17,7 @@ function Inicio({ tienda, pagina }) {
   return (
     <>
       <BarraSitio />
-      <div className={css.cuerpo}>
+      <div className={css.cuerpo} data-contenedor>
         <RenderPagina pagina={doc} tienda={tienda} c={c} />
       </div>
     </>

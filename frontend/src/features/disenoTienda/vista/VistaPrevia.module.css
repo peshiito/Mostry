@@ -1,6 +1,6 @@
 /* Marco de celular: el borde y la sombra salen del panel; adentro, la tienda. */
 .telefono {
-  width: 290px;
+  width: 332px;
   margin-inline: auto;
   border: 6px solid var(--carbon);
   border-radius: 34px;
@@ -11,7 +11,7 @@
 }
 
 .pantalla {
-  height: min(580px, 70svh);
+  height: min(660px, 74svh);
   overflow-y: auto;
   overscroll-behavior: contain;
   border-radius: 28px;
@@ -25,7 +25,7 @@
 .vidriera {
   /* Se dibuja a ancho de celular (390 px) y se achica para que entre entera. */
   width: 390px;
-  zoom: 0.713;
+  zoom: 0.82;
   min-height: 100%;
   user-select: none;
 }

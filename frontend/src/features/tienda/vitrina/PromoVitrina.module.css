@@ -24,7 +24,7 @@
 }
 .titulo {
   font-family: var(--fuente-titulo);
-  font-size: clamp(1.6rem, 7vw, 2.6rem);
+  font-size: clamp(1.6rem, 7cqi, 2.6rem);
   line-height: 1.05;
 }
 .texto {
@@ -44,12 +44,12 @@
   text-decoration: none;
 }
 .imagen {
-  width: clamp(96px, 30vw, 280px);
+  width: clamp(96px, 30cqi, 280px);
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: calc(var(--radio) * 1.5);
 }
-@media (min-width: 900px) {
+@container (min-width: 900px) {
   .promo {
     padding: var(--e-7);
   }

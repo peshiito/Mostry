@@ -22,7 +22,7 @@
 }
 .nombre {
   font-family: var(--fuente-titulo);
-  font-size: clamp(2.6rem, 11vw, 5.2rem);
+  font-size: clamp(2.6rem, 11cqi, 5.2rem);
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.02em;

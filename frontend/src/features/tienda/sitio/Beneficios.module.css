@@ -37,7 +37,7 @@
   line-height: 1.35;
   overflow-wrap: anywhere;
 }
-@media (min-width: 900px) {
+@container (min-width: 900px) {
   .franja {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     padding: var(--e-5);

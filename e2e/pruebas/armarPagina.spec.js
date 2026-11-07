@@ -46,5 +46,12 @@ test('reordenar con el teclado y deshacer', async ({ page }) => {
   await expect(lista.getByRole('listitem').first()).toContainText('Beneficios');
   await page.getByRole('button', { name: 'Deshacer' }).click();
   await expect(lista.getByRole('listitem').first()).toContainText('Portada');
+
+  // Sacar un bloque desde la lista, y recuperarlo con el "Deshacer" del aviso.
+  await page.getByRole('button', { name: 'Sacar Beneficios' }).click();
+  await expect(page.getByRole('button', { name: 'Mover Beneficios' })).toHaveCount(0);
+  await esperarAviso(page, 'Sacaste Beneficios');
+  await page.getByRole('button', { name: 'Deshacer' }).last().click();
+  await expect(page.getByRole('button', { name: 'Mover Beneficios' })).toBeVisible();
   await volverALaDeSiempre(page);
 });

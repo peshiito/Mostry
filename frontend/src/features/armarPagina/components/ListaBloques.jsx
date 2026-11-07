@@ -13,6 +13,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { accesibilidadArrastre } from '../lib/anuncios.js';
+import { quitar } from '../lib/quitar.js';
 import { ItemBloque } from './ItemBloque.jsx';
 import css from './ListaBloques.module.css';
 
@@ -48,6 +49,7 @@ export function ListaBloques({ bloques, elegido, despachar, onEditar }) {
               elegido={b.id === elegido}
               onEditar={onEditar}
               onAlternar={(id) => despachar({ tipo: 'alternar', id })}
+              onQuitar={(id) => quitar(id, despachar, bloques)}
             />
           ))}
         </ol>

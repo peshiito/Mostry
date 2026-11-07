@@ -1,5 +1,5 @@
 /* Variantes del hero (vitrina/Portada.jsx). Base: panel dividido. */
-@media (min-width: 900px) {
+@container (min-width: 900px) {
   [data-v='portada'] {
     grid-template-columns: 1.1fr 1fr;
     align-items: center;

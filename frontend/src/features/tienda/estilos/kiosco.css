@@ -8,7 +8,7 @@
   letter-spacing: 0.01em;
 }
 [data-estilo='kiosco'] [data-v='nombre'] {
-  font-size: clamp(3rem, 16vw, 5rem);
+  font-size: clamp(3rem, 16cqi, 5rem);
   line-height: 0.88;
 }
 [data-estilo='kiosco'] [data-v='titulo'] {

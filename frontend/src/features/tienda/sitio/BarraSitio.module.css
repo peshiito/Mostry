@@ -56,7 +56,7 @@
   border-color: var(--verde);
   color: var(--carbon);
 }
-@media (min-width: 900px) {
+@container (min-width: 900px) {
   .fila {
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'marca menu acciones';

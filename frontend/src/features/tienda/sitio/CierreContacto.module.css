@@ -10,7 +10,7 @@
 }
 .titulo {
   font-family: var(--fuente-titulo);
-  font-size: clamp(1.8rem, 8vw, 3rem);
+  font-size: clamp(1.8rem, 8cqi, 3rem);
   line-height: 1;
 }
 .texto {
@@ -30,7 +30,7 @@
   font-weight: 700;
   text-decoration: none;
 }
-@media (min-width: 900px) {
+@container (min-width: 900px) {
   .cierre {
     padding: var(--e-7);
   }
