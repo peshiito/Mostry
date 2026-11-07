@@ -35,4 +35,14 @@ describe('editor de la página', () => {
     e = editor(e, { tipo: 'rehacer' });
     expect(e.doc.bloques[0].datos.titulo).toBe('Hola');
   });
+
+  it('poner una plantilla reemplaza la página y se puede deshacer', () => {
+    let e = inicio();
+    const original = e.doc;
+    const doc = { ...original, bloques: [] };
+    e = editor(e, { tipo: 'reemplazar', doc });
+    expect(e.doc).toBe(doc);
+    e = editor(e, { tipo: 'deshacer' });
+    expect(e.doc).toBe(original);
+  });
 });

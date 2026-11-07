@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 import { useAccion } from '../../../shared/api/useAccion.js';
 import { useConsulta } from '../../../shared/api/useConsulta.js';
 import { useBasePanel, usePanelApi } from '../../panelBase/BasePanel.jsx';
@@ -17,6 +17,10 @@ export function usePaginaEditor() {
   const vista = useVistaTienda(tienda.slug);
   const remota = useConsulta(`${api}/tienda/pagina`);
   const [estado, despachar] = useReducer(editor, null);
+  // Sin borrador ni publicado es la primera vez: se ofrecen las plantillas.
+  const [vista1, setVista1] = useState(false);
+  const r = remota.datos;
+  const bienvenida = Boolean(r && !r.borrador && !r.publicado && !vista1);
   useEffect(() => {
     if (estado || !remota.datos || !vista.valor) return;
     const { borrador, publicado } = remota.datos;
@@ -44,5 +48,10 @@ export function usePaginaEditor() {
     error: remota.error ?? vista.error,
     guardado: guardado.estado,
     publicar,
+    bienvenida,
+    cerrarBienvenida: () => setVista1(true),
+    guardarYa: guardado.ya,
+    volverALaDeSiempre: () =>
+      despachar({ tipo: 'cargar', doc: plantillaDesdeTienda(vista.valor.tienda) }),
   };
 }

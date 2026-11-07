@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { abrirEditor } from '../apoyo/editor.js';
 import { esperarAviso } from '../apoyo/avisos.js';
 import { API } from '../apoyo/forzar.js';
 import { urlTienda } from '../apoyo/entorno.js';
@@ -8,7 +9,7 @@ test.use({ storageState: SESION_ROSA });
 
 // "Armá tu página" (P3): subir una imagen propia, ponerla en la portada y publicar.
 test('una imagen propia en la portada llega a la vidriera', async ({ page }) => {
-  await page.goto(urlTienda('dona-rosa', '/panel/pagina'));
+  await abrirEditor(page, 'dona-rosa');
   await page.getByRole('button', { name: /^Portada/ }).click();
   await page.getByLabel('Imagen', { exact: true }).selectOption('propia');
   await page.getByRole('button', { name: 'Elegir imágenes' }).click();

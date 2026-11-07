@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { abrirEditor } from '../apoyo/editor.js';
 import { esperarAviso } from '../apoyo/avisos.js';
 import { API } from '../apoyo/forzar.js';
 import { urlTienda } from '../apoyo/entorno.js';
@@ -9,18 +10,21 @@ test.use({ storageState: SESION_ROSA });
 // Deja la página de siempre, para no cambiarle el inicio a los otros recorridos.
 const volverALaDeSiempre = (page) =>
   page.evaluate(
-    (api) => fetch(`${api}/panel/tienda/pagina`, { method: 'DELETE', credentials: 'include' }),
+    (api) =>
+      fetch(`${api}/panel/tienda/pagina`, { method: 'DELETE', credentials: 'include' }),
     API,
   );
 
 // "Armá tu página" (P2): sumar un bloque, escribirlo, publicarlo y verlo en la tienda.
 test('agregar un texto, publicarlo y verlo en la vidriera', async ({ page }) => {
-  await page.goto(urlTienda('dona-rosa', '/panel/pagina'));
+  await abrirEditor(page, 'dona-rosa');
   await expect(page.getByRole('heading', { name: 'Armá tu página' })).toBeVisible();
   await page.getByRole('button', { name: 'Agregar bloque' }).click();
   await page.getByRole('button', { name: /^Texto Un título y un texto libre/ }).click();
   await page.getByRole('button', { name: /^Texto Contá algo de tu negocio/ }).click();
-  await page.getByRole('textbox', { name: 'Texto', exact: true }).fill('Amasamos todo acá, desde 1987.');
+  await page
+    .getByRole('textbox', { name: 'Texto', exact: true })
+    .fill('Amasamos todo acá, desde 1987.');
   await expect(page.getByText('Cambios guardados')).toBeVisible({ timeout: 10000 });
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Publicar' }).click();
@@ -34,7 +38,7 @@ test('agregar un texto, publicarlo y verlo en la vidriera', async ({ page }) => 
 });
 
 test('reordenar con el teclado y deshacer', async ({ page }) => {
-  await page.goto(urlTienda('dona-rosa', '/panel/pagina'));
+  await abrirEditor(page, 'dona-rosa');
   const lista = page.getByRole('list', { name: 'Bloques de tu página' });
   await expect(lista.getByRole('listitem').first()).toContainText('Portada');
   await page.getByRole('button', { name: 'Mover Beneficios' }).focus();

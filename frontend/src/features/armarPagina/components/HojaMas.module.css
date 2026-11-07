@@ -1,0 +1,33 @@
+.cuerpo {
+  display: grid;
+  gap: var(--e-5);
+}
+.seccion {
+  display: grid;
+  gap: var(--e-2);
+}
+.titulo {
+  color: var(--texto-2);
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nota {
+  margin: 0;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+}
+.lista {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.version {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+  min-height: 48px;
+  border-bottom: var(--borde);
+}

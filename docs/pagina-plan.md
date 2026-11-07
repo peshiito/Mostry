@@ -156,7 +156,13 @@ P1 a P3 están hechas (`dbcbc73`, `f48fbe2` y `4eebfa7`). Lo que sigue:
    - bloque Producto destacado;
    - categorías en tarjetas;
    - carrusel automático.
-2. **P5 · Plantillas por rubro e inicio guiado:** cada estilo trae su página armada; la primera vez el editor ofrece la plantilla del rubro; se puede volver a la plantilla.
+2. **P5 · Plantillas por rubro e inicio guiado (HECHA, 2026-11-07):**
+   - **Plantillas:** cada uno de los 11 estilos trae su página, más "Empezar de cero" (`features/pagina/plantillas/`).
+     - `armarPlantilla` completa el producto destacado y la categoría con lo que tiene la tienda y conserva los ajustes.
+     - `plantillaSugerida` sale del estilo o, si no hay, del rubro.
+   - **Bienvenida:** aparece la primera vez, sin borrador ni publicado.
+   - **Menú "Más":** cambiar de plantilla (con deshacer), las versiones publicadas antes y volver a la de siempre.
+   - **Test del backend `plantillas.test.ts`:** pasa las 12 plantillas por el esquema del backend.
 3. **P6 · Editar tocando la vista previa:** el bloque tocado queda elegido y marcado. Además, **"Mirala en tu celu"**: un QR con un link de borrador firmado que vence en 24 h.
 4. **P7 · Reseñas reales:** las deja el comprador desde su seguimiento y las modera el comercio. Suma el bloque de reseñas y las estrellas en los productos.
 5. **P8 · Grilla libre y estilo por bloque:** fondo, alineación y espaciado propios de cada bloque.

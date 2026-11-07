@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { abrirEditor } from '../apoyo/editor.js';
 import { esperarAviso } from '../apoyo/avisos.js';
 import { API } from '../apoyo/forzar.js';
 import { urlTienda } from '../apoyo/entorno.js';
@@ -10,7 +11,7 @@ test.use({ storageState: SESION_ROSA });
 test('sin carrito: se consulta por WhatsApp y el carrito vuelve al inicio', async ({
   page,
 }) => {
-  await page.goto(urlTienda('dona-rosa', '/panel/pagina'));
+  await abrirEditor(page, 'dona-rosa');
   await page.getByRole('button', { name: 'Agregar bloque' }).click();
   await page.getByRole('button', { name: /^Producto destacado/ }).click();
   await page.getByRole('button', { name: 'Ajustes' }).click();

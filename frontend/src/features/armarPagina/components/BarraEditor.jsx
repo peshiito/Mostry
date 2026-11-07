@@ -11,7 +11,7 @@ const ESTADO = {
 
 // Arriba del editor: si está guardado, deshacer y rehacer, y "Publicar".
 // Lo publicado es lo que ve el cliente; el borrador queda guardado igual.
-export function BarraEditor({ e, onAjustes }) {
+export function BarraEditor({ e, onAjustes, onMas }) {
   return (
     <div className={css.barra}>
       <p
@@ -23,6 +23,9 @@ export function BarraEditor({ e, onAjustes }) {
       </p>
       <Boton icono="tune" onClick={onAjustes}>
         Ajustes
+      </Boton>
+      <Boton icono="more_horiz" onClick={onMas}>
+        Más
       </Boton>
       <BotonIcono
         icono="undo"

@@ -42,6 +42,8 @@ export function aplicar(doc, a) {
       return conBloque(doc, a.id, (x) => ({ ...x, visible: !x.visible }));
     case 'datos':
       return conBloque(doc, a.id, (x) => ({ ...x, datos: { ...x.datos, ...a.datos } }));
+    case 'reemplazar':
+      return a.doc;
     case 'ajustes':
       return { ...doc, ajustes: { ...doc.ajustes, ...a.ajustes } };
     default:

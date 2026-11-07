@@ -18,3 +18,15 @@
 .estado[data-error] {
   color: var(--ladrillo-texto);
 }
+/* En el celu, el estado va arriba y los botones en su propia fila. */
+@media (max-width: 600px) {
+  .barra {
+    flex-wrap: wrap;
+  }
+  .estado {
+    flex-basis: 100%;
+  }
+  .barra > :last-child {
+    margin-left: auto;
+  }
+}
