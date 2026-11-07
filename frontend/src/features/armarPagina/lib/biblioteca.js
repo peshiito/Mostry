@@ -11,7 +11,8 @@ export const BIBLIOTECA = [
     'Productos',
     [
       ['productos', 'Carrusel o grilla: destacados, una categoría o los que elijas'],
-      ['categorias', 'Tus categorías con foto'],
+      ['destacado', 'Un producto en grande, con foto, precio y botón'],
+      ['categorias', 'Tus categorías en tarjetas o círculos'],
     ],
   ],
   [

@@ -13,3 +13,7 @@ export const fuenteNueva = (tipo, ctx) =>
     : tipo === 'elegidos'
       ? { tipo, ids: ctx.c.productos.slice(0, 4).map((p) => p.id) }
       : { tipo };
+export const VISTAS = [
+  ['carrusel', 'Carrusel'],
+  ['grilla', 'Grilla'],
+];

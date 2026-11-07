@@ -406,17 +406,15 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
 - **S3 · Seguridad de salida: HECHA (2026-10-18).** Detalle en §13 y en `docs/ataqueE12.md` (sección S3).
 - **A Pedro le falta en `.env.prueba-prod`:** las claves VAPID (obligatorias desde Avisos 1) y las `VITE_LEGAL_*`. Sin eso la prueba de producción en local no arranca.
 - **EN CURSO (2026-11-05): Vidriera 2.0 y Finanzas 2.0, ANTES de la S4** (decisión de Pedro, "camino A": se termina de armar todo y después se sale al piloto). Plan completo en **`docs/vidriera-finanzas-plan.md`**: leelo entero antes de seguir. Orden: D0 (diseño con Stitch) → V1–V6 (temas, tipografías propias, fondos y portada, plantillas y secciones, editor, fotos y variantes) → F1–F6 (costos y margen, reportes, gastos, cuentas por pagar y cobrar, planificación, medios de pago y exportar).
-- **RETOMAR ACÁ (2026-11-06, commiteado; suites: backend 507, frontend 210, e2e 87):** V1 (motor de temas) hecha y documentada en §13. En curso: rediseño de la vidriera, porque Pedro pidió diseño de verdad, no un re-skin ([[vidriera-diseno-y-autonomia]] en la memoria).
-  - **Ya hecho, en el frontend:**
-    - `features/tienda/vitrina/`: Portada (cartel, toldo y centrado, con banda de foto), Cinta, SeccionVitrina, TarjetaVitrina, CategoriasVitrina, PromoVitrina, ProductosVitrina, SobreNosotros, GaleriaLocal, Redes, Horarios y SeccionesInicio (orden elegido por el comercio, `lib/secciones.js`);
-    - `features/tienda/estilos/*.css`: la firma de cada estilo por `data-estilo` y `data-encabezado`;
-    - los fondos dibujados (`shared/temaTienda/patrones*.js`), `FotoProducto` con iniciales y el pie con la tabla de horarios;
-    - el panel: "Diseño de tu tienda" (`/panel/diseno`) y "Tu vidriera" (`/panel/vidriera`).
-  - **Ya hecho, en el backend:** migración `0055` (portada, contenido y `galeria_tienda`), `modules/tiendas/vidriera/` con sus tests (`vidrieraFotos` y `vidrieraContenido`), y la respuesta pública con portada, contenido y galería.
-  - **Las referencias de Stitch** están en `docs/stitch/temas/*.png`. Se generan con el modelo `GEMINI_3_5_FLASH_LITE`, porque el normal corta por tiempo. Falta Horno.
-  - **Faltan:**
-    - la V2 de la fuente propia (opentype.js + wawoff2) y el modo soporte del admin en el diseño;
-    - después, V6 (fotos y variantes) y F1–F6.
+- **RETOMAR ACÁ (2026-11-07): "Armá tu página"** (editor libre de bloques de la vidriera). El plan está en **`docs/pagina-plan.md`**; leelo entero, sobre todo la sección "Nuevo orden".
+  - **Hechas:**
+    - **la vidriera como web de verdad** (`e44eb59`);
+    - **P1, el documento de bloques** (`dbcbc73`);
+    - **P2 y P3, el editor e imágenes propias con carrusel y GIF** (`f48fbe2`);
+    - **la vista previa fiel al teléfono** (`4eebfa7`);
+    - **P4, productos y ajustes:** sin carrito con "Consultar por WhatsApp", buscador, botones de la tarjeta, Producto destacado, categorías en tarjetas y carrusel automático. **Al 2026-11-07, SIN COMMIT:** falta que pase la suite del backend; después, commit y push.
+  - **Sigue P5:** plantillas por rubro e inicio guiado. Después: P6 (tocar en la vista previa y el QR del borrador), P7 (reseñas), P8 (grilla libre y estilo por bloque), P9 (bloques nuevos y avisos) y P10 (pulido).
+  - **Después de "Armá tu página":** V2 (fuente propia), V6 (fotos y variantes de producto) y F1–F6 (`docs/vidriera-finanzas-plan.md`).
 - **Después:** S4 producción (antes: rotar claves, repo privado y elegir hosting; Pedro se inclina por un VPS con Docker Compose, sin Kubernetes) → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
 - **Hosting de producción:** sigue sin decidir. Railway cuesta unos 5 USD por mes; Oracle Always Free es gratis, pero hay que configurarlo más.
 
@@ -602,6 +600,23 @@ Las decisiones de la Etapa 1 están detalladas en `docs/etapa-1-refinamiento.md`
   - **Temas armados** (`temas.js`, diseñados con Stitch en proyectos "Mostry tema · …"): Horno, Calle, Cuaderno, Boutique, Kiosco, Dulce, Huerta y Bodega.
   - **Tipografías:** 27 fuentes OFL o Apache por `@fontsource` (`fuentes.js`, `cargas.js`). Se baja solo la que usa la tienda. Las de texto largo son una lista aparte (`FUENTES_TEXTO`). El precache de la PWA trae solo Rubik y Work Sans. `catalogo.test.js` controla que las listas del frontend y del backend sean iguales.
   - **Panel:** Más → **Diseño de tu tienda** (`features/disenoTienda/`): estilos, colores libres, tipografías, forma y encabezado, con una muestra en vivo (`MuestraTema`). "Datos y apariencia" pasó a ser "Datos de la tienda" y ya no tiene el selector de paleta. El panel toma el color principal del tema, oscurecido hasta que el texto blanco se lea (`colorPanel.js`).
+- **"Armá tu página" (2026-11-06 y 07):**
+  - **La página de inicio es un documento JSON de bloques:**
+    - tablas `paginas_tienda` (borrador y publicado) y `versiones_pagina` (las últimas 10, migración `0056`);
+    - validado con Zod estricto en `modules/tiendas/pagina/`;
+    - los botones guardan destinos con forma (`esquemaDestino.ts`), nunca un href suelto.
+  - **Sin página propia,** `plantillaDesdeTienda` traduce el inicio de siempre a bloques.
+  - **Registro de bloques único** (`features/pagina/bloques/registro.js`), compartido por la vidriera (`RenderPagina`) y el editor (`features/armarPagina/`). El editor tiene:
+    - arrastrar con dnd-kit, también con teclado y anuncios en castellano;
+    - deshacer y rehacer (`lib/historial.js`);
+    - guardado automático del borrador, Publicar y versiones;
+    - "volver a la de siempre" (`DELETE /panel/tienda/pagina`).
+  - **Imágenes propias** (`medios_tienda`, migración `0057`, `modules/tiendas/medios/`):
+    - JPG, PNG o GIF de hasta 8 MB, validados por magic bytes; se convierten a WebP y el GIF sigue animado;
+    - topes de 60 imágenes y 150 MB;
+    - la página solo puede usar imágenes de su tienda (`exigirMediosPropios`).
+  - **Ajustes** (`doc.ajustes`, `features/pagina/AjustesPagina.jsx`): sin carrito todo se consulta por WhatsApp, `/carrito` y `/checkout` vuelven al inicio, y la API rechaza el checkout con 409 `sin_carrito` (`pedidos/servicios/exigirCarrito.ts`).
+  - **La vidriera se mide con `@container` y `cqi`, no con `@media` ni `vw`** (`estilos/contenedores.css`). Así la vista previa del celu se ve como un teléfono aunque el editor esté en la compu. **En CSS nuevo de la tienda, usar siempre `@container` y `cqi`.**
 - **Formas de stock (Mejoras 3, Parte B):** cada producto tiene `modo_stock`:
   - `unidades`: reserva y descuenta, como siempre;
   - `simple` ("hay / no hay"): no cuenta ni reserva; se corta con `agotado`;

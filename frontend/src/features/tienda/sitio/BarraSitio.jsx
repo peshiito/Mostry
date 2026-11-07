@@ -4,6 +4,7 @@ import { BotonTema } from '../../../shared/tema/BotonTema.jsx';
 import { BotonIcono } from '../../../shared/ui/BotonIcono.jsx';
 import { LogoTienda } from '../../../shared/ui/LogoTienda.jsx';
 import { useCarrito } from '../../carrito/useCarrito.js';
+import { useAjustes } from '../../pagina/AjustesPagina.jsx';
 import { useTienda } from '../hooks/useTienda.js';
 import css from './BarraSitio.module.css';
 
@@ -13,6 +14,7 @@ import css from './BarraSitio.module.css';
 export function BarraSitio() {
   const { tienda } = useTienda();
   const { unidades } = useCarrito();
+  const { carrito, buscador } = useAjustes();
   const { datos } = useConsulta('/publico/categorias');
   const categorias = (datos ?? []).filter((c) => c.productos > 0).slice(0, 6);
   return (
@@ -38,14 +40,18 @@ export function BarraSitio() {
           ))}
         </nav>
         <div className={css.acciones}>
-          <BotonIcono icono="search" etiqueta="Buscar productos" to="/catalogo" />
+          {buscador ? (
+            <BotonIcono icono="search" etiqueta="Buscar productos" to="/catalogo" />
+          ) : null}
           <BotonTema />
-          <BotonIcono
-            icono="shopping_bag"
-            etiqueta={`Ver carrito (${unidades} ${unidades === 1 ? 'producto' : 'productos'})`}
-            to="/carrito"
-            insignia={unidades || null}
-          />
+          {carrito ? (
+            <BotonIcono
+              icono="shopping_bag"
+              etiqueta={`Ver carrito (${unidades} ${unidades === 1 ? 'producto' : 'productos'})`}
+              to="/carrito"
+              insignia={unidades || null}
+            />
+          ) : null}
         </div>
       </div>
     </header>

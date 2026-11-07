@@ -1,7 +1,8 @@
 import { Link } from 'react-router';
 import { FotoProducto } from '../../../shared/ui/FotoProducto.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
-import { BotonAgregar } from '../components/BotonAgregar.jsx';
+import { useAjustes } from '../../pagina/AjustesPagina.jsx';
+import { BotonesTarjeta } from './BotonesTarjeta.jsx';
 import css from './TarjetaVitrina.module.css';
 
 const etiqueta = (p, agotado) =>
@@ -18,6 +19,7 @@ const etiqueta = (p, agotado) =>
 export function TarjetaVitrina({ producto, ancha }) {
   const agotado = producto.agotado && !producto.aceptaEncargo;
   const sello = etiqueta(producto, agotado);
+  const conCategoria = useAjustes().tarjeta.categoria;
   return (
     <article
       className={`${css.tarjeta} ${ancha ? css.ancha : ''} ${agotado ? css.agotado : ''}`}
@@ -42,7 +44,7 @@ export function TarjetaVitrina({ producto, ancha }) {
           <span className={css.nombre} data-v="nombre-producto">
             {producto.nombre}
           </span>
-          {producto.categoriaNombre ? (
+          {conCategoria && producto.categoriaNombre ? (
             <span className={css.categoria} data-v="categoria-producto">
               {producto.categoriaNombre}
             </span>
@@ -53,7 +55,7 @@ export function TarjetaVitrina({ producto, ancha }) {
         <span className={css.precio} data-v="precio">
           <Monto centavos={producto.precio} tamano="md" />
         </span>
-        <BotonAgregar producto={producto} />
+        <BotonesTarjeta producto={producto} />
       </div>
     </article>
   );

@@ -1,7 +1,8 @@
+import { Interruptor } from '../../../shared/ui/Interruptor.jsx';
 import { CampoElegidos } from './CampoElegidos.jsx';
 import { Opcion, TextoOpcional } from './campos.jsx';
 import css from './Formularios.module.css';
-import { CANTIDAD, FUENTES, fuenteNueva } from './fuentesProductos.js';
+import { CANTIDAD, FUENTES, fuenteNueva, VISTAS } from './fuentesProductos.js';
 
 export function FormProductos({ datos, cambiar, ctx }) {
   const f = datos.fuente;
@@ -23,10 +24,7 @@ export function FormProductos({ datos, cambiar, ctx }) {
       />
       <Opcion
         etiqueta="Cómo se muestran"
-        opciones={[
-          ['carrusel', 'Carrusel'],
-          ['grilla', 'Grilla'],
-        ]}
+        opciones={VISTAS}
         valor={datos.vista}
         onCambio={(vista) => cambiar({ vista })}
       />
@@ -57,6 +55,14 @@ export function FormProductos({ datos, cambiar, ctx }) {
         valor={datos.cantidad}
         onCambio={(n) => cambiar({ cantidad: Number(n) })}
       />
+      {datos.vista === 'carrusel' ? (
+        <Interruptor
+          etiqueta="Que avance solo"
+          ayuda="Pasa de a un producto cada 4 segundos"
+          activo={Boolean(datos.automatico)}
+          onCambio={(automatico) => cambiar({ automatico })}
+        />
+      ) : null}
     </div>
   );
 }

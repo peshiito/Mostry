@@ -13,6 +13,7 @@ import { filaPedido } from './filaPedido.js';
 import { reservarItems } from './reservarItems.js';
 import { validarReglasCheckout } from './reglasCheckout.js';
 import { exigirAlias } from './exigirAlias.js';
+import { exigirCarrito } from './exigirCarrito.js';
 import { numerarPedido } from './numerarPedido.js';
 import { conAnticipacion } from '../../encargos/anticipacion.js';
 import { calcularTotales } from './totales.js';
@@ -26,6 +27,7 @@ export async function crearPedido(
   ahora = new Date(),
   clienteId: number | null = null, // cliente del Club, si entró (Lealtad L3)
 ) {
+  await exigirCarrito(tiendaId);
   // Un encargo usa la mayor anticipación entre la tienda y sus productos.
   const t = await conAnticipacion(await tiendaParaPedido(tiendaId), tiendaId, d);
   validarReglasCheckout(t, await cargarAgenda(tiendaId, ahora), d, ahora);

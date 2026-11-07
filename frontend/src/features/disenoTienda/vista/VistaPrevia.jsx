@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { cargarFuentes } from '../../../shared/temaTienda/cargarFuentes.js';
 import { derivarTokens } from '../../../shared/temaTienda/derivar.js';
 import { CarritoProveedor } from '../../carrito/CarritoContexto.jsx';
+import { AjustesProveedor } from '../../pagina/AjustesPagina.jsx';
 import { Tienda } from '../../tienda/TiendaContexto.jsx';
 import { useCatalogo } from '../../tienda/hooks/useCatalogo.js';
 import { BarraSitio } from '../../tienda/sitio/BarraSitio.jsx';
@@ -49,7 +50,9 @@ export function VistaPrevia({ valor, tema, modo, pagina, compu }) {
               data-forma={tema.forma}
               inert
             >
-              <Inicio tienda={valor.tienda} pagina={pagina} />
+              <AjustesProveedor ajustes={(pagina ?? valor.tienda.pagina)?.ajustes}>
+                <Inicio tienda={valor.tienda} pagina={pagina} />
+              </AjustesProveedor>
             </div>
           </Tienda.Provider>
         </CarritoProveedor>

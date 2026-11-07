@@ -2,12 +2,14 @@ import { Link } from 'react-router';
 import { Icono } from '../../../shared/ui/Icono.jsx';
 import { Monto } from '../../../shared/ui/Monto.jsx';
 import { useCarrito } from '../../carrito/useCarrito.js';
+import { useAjustes } from '../../pagina/AjustesPagina.jsx';
 import css from './BarraCarrito.module.css';
 
 // Botón coral fijo abajo: el único coral de las pantallas de compra.
 export function BarraCarrito() {
   const { unidades, subtotal } = useCarrito();
-  if (!unidades) return null;
+  const { carrito } = useAjustes();
+  if (!unidades || !carrito) return null;
   return (
     <div className={css.barra}>
       <Link to="/carrito" className={css.boton}>

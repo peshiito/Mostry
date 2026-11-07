@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
+import { useAjustes } from '../../features/pagina/AjustesPagina.jsx';
 import { PantallaCarrito } from '../../features/carrito/PantallaCarrito.jsx';
 import { useTienda } from '../../features/tienda/hooks/useTienda.js';
 import { PantallaCatalogo } from '../../features/tienda/pantallas/PantallaCatalogo.jsx';
@@ -14,11 +15,12 @@ import { RutasCompra } from './RutasCompra.jsx';
 // sigue andando (decisión 19 y sección 6.5).
 export function RutasPublicas() {
   const { estado, tienda } = useTienda();
+  const { carrito } = useAjustes();
   const cerrada = estado === 'suspendida' || estado === 'pausada';
   return (
     <Routes>
       <Route element={<TransicionRuta soloFundido />}>
-        {RutasCompra({ cerrada })}
+        {RutasCompra({ cerrada, sinCarrito: !carrito })}
         {cerrada ? (
           <Route path="*" element={<TiendaCerrada />} />
         ) : tienda.vendeOnline === false ? (
@@ -28,7 +30,10 @@ export function RutasPublicas() {
             <Route index element={<PantallaInicio />} />
             <Route path="catalogo" element={<PantallaCatalogo />} />
             <Route path="producto/:id" element={<PantallaProducto />} />
-            <Route path="carrito" element={<PantallaCarrito />} />
+            <Route
+              path="carrito"
+              element={carrito ? <PantallaCarrito /> : <Navigate to="/" replace />}
+            />
             <Route path="*" element={<NoEncontrada zona="tienda" />} />
           </>
         )}

@@ -9,7 +9,7 @@ import { useCatalogo } from '../../tienda/hooks/useCatalogo.js';
 import { BarraEditor } from '../components/BarraEditor.jsx';
 import { ColumnaBloques } from '../components/ColumnaBloques.jsx';
 import { ColumnaVista } from '../components/ColumnaVista.jsx';
-import { PanelBloque } from '../components/PanelBloque.jsx';
+import { PanelLateral } from '../components/PanelLateral.jsx';
 import { useMedios } from '../hooks/useMedios.js';
 import { usePaginaEditor } from '../hooks/usePaginaEditor.js';
 import { usePantallaGrande } from '../hooks/usePantallaGrande.js';
@@ -26,15 +26,13 @@ export function PantallaArmarPagina() {
   if (e.error) return <ErrorCarga error={e.error} que="tu página" />;
   if (!e.doc || !e.valor) return <EsqueletoFormulario />;
   const ctx = { c, medios, bloques: e.doc.bloques, tienda: e.valor.tienda };
-  const bloque = e.doc.bloques.find((b) => b.id === elegido);
-  const panel = bloque ? (
-    <PanelBloque
-      bloque={bloque}
-      despachar={e.despachar}
-      ctx={ctx}
-      onListo={() => setElegido(null)}
-    />
+  const panel = elegido ? (
+    <PanelLateral elegido={elegido} e={e} ctx={ctx} onListo={() => setElegido(null)} />
   ) : null;
+  const titulo =
+    elegido === 'ajustes'
+      ? 'Ajustes de la página'
+      : (REGISTRO[e.doc.bloques.find((x) => x.id === elegido)?.tipo]?.nombre ?? '');
   return (
     <Pagina ancho="completo">
       <TituloPagina
@@ -42,19 +40,19 @@ export function PantallaArmarPagina() {
         titulo="Armá tu página"
         bajada="Sumá, mové y editá los bloques de tu inicio. Cuando te guste, publicalo."
       />
-      <BarraEditor e={e} />
+      <BarraEditor e={e} onAjustes={() => setElegido('ajustes')} />
       <div className={css.editor}>
-        <ColumnaBloques e={e} elegido={elegido} onEditar={setElegido} />
+        <ColumnaBloques e={e} c={c} elegido={elegido} onEditar={setElegido} />
         <ColumnaVista valor={e.valor} doc={e.doc} medios={medios.lista} />
         {grande ? (
-          <aside className={css.ajustes} aria-label="Editar bloque">
+          <aside className={css.ajustes} aria-label={titulo || 'Editar bloque'}>
             {panel ?? <p className={css.vacio}>Tocá un bloque para editarlo.</p>}
           </aside>
         ) : (
           <Hoja
-            abierta={Boolean(bloque)}
+            abierta={Boolean(panel)}
             onCerrar={() => setElegido(null)}
-            titulo={bloque ? REGISTRO[bloque.tipo].nombre : ''}
+            titulo={titulo}
           >
             {panel}
           </Hoja>

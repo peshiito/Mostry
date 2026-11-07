@@ -5,6 +5,7 @@ import { LogoTienda } from '../../../shared/ui/LogoTienda.jsx';
 import { useTienda } from '../hooks/useTienda.js';
 import { Horarios } from '../vitrina/Horarios.jsx';
 import { Redes } from '../vitrina/Redes.jsx';
+import { useAjustes } from '../../pagina/AjustesPagina.jsx';
 import css from './PieTienda.module.css';
 
 const mapaDe = (d) =>
@@ -14,6 +15,7 @@ const mapaDe = (d) =>
 // estamos y los horarios, y cómo comprar. Abajo, "Hecho con mostry".
 export function PieTienda() {
   const { tienda } = useTienda();
+  const { carrito } = useAjustes();
   const wa = linkWhatsapp(tienda.whatsapp);
   const mapa = mapaDe(tienda.direccion);
   return (
@@ -37,7 +39,7 @@ export function PieTienda() {
         <div className={css.columna}>
           <h2 className={css.titulo}>Comprar</h2>
           <Link to="/catalogo">Todos los productos</Link>
-          <Link to="/carrito">Tu carrito</Link>
+          {carrito ? <Link to="/carrito">Tu carrito</Link> : null}
           {wa ? (
             <a href={wa} rel="noopener noreferrer">
               WhatsApp

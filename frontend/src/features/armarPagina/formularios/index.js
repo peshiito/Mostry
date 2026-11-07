@@ -1,4 +1,6 @@
 import { FormBanner } from './FormBanner.jsx';
+import { FormCategorias } from './FormCategorias.jsx';
+import { FormDestacado } from './FormDestacado.jsx';
 import { FormHero } from './FormHero.jsx';
 import { FormProductos } from './FormProductos.jsx';
 import * as O from './FormsOtros.jsx';
@@ -10,7 +12,8 @@ export const FORMULARIOS = {
   productos: FormProductos,
   banner: FormBanner,
   texto: F.FormTexto,
-  categorias: F.FormTitulo,
+  categorias: FormCategorias,
+  destacado: FormDestacado,
   nosotros: F.FormTitulo,
   galeria: F.FormTitulo,
   cierre: F.FormCierre,

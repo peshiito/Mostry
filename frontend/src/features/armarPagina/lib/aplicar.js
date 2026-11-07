@@ -23,7 +23,7 @@ export function aplicar(doc, a) {
         id: nuevoId(),
         tipo: a.bloque,
         visible: true,
-        datos: DEFECTOS[a.bloque](),
+        datos: { ...DEFECTOS[a.bloque](), ...a.datos },
       };
       const lista = [...b];
       lista.splice(a.pos ?? lista.length, 0, nuevo);

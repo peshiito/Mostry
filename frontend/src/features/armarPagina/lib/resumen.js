@@ -17,6 +17,10 @@ export function resumenBloque(b) {
       return d.origen === 'promo' ? 'Tu promo vigente' : (d.titulo ?? 'Banner');
     case 'texto':
       return d.titulo ?? d.cuerpo.slice(0, 40);
+    case 'destacado':
+      return d.titulo ?? 'Un producto en grande';
+    case 'categorias':
+      return `${d.forma === 'tarjetas' ? 'Tarjetas' : 'Círculos'} · ${d.ids?.length ? `${d.ids.length} elegidas` : 'todas'}`;
     case 'separador':
       return `Espacio ${d.tamano}${d.linea ? ' con línea' : ''}`;
     default:

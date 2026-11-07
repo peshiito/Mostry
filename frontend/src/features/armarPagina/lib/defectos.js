@@ -4,13 +4,15 @@ import { HERO_BASE } from '../../pagina/lib/bases.js';
 export const DEFECTOS = {
   hero: () => structuredClone(HERO_BASE),
   beneficios: () => ({}),
-  categorias: () => ({ titulo: null, forma: 'circulos' }),
+  categorias: () => ({ titulo: null, forma: 'tarjetas', ids: [] }),
+  destacado: () => ({ productoId: null, titulo: null, texto: null, lado: 'izquierda' }),
   productos: () => ({
     titulo: null,
     bajada: null,
     vista: 'carrusel',
     fuente: { tipo: 'destacados' },
     cantidad: 8,
+    automatico: false,
   }),
   banner: () => ({
     origen: 'propio',

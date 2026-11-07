@@ -33,8 +33,9 @@ test('club: sumar sellos en el local y usar el premio online', async ({ browser 
   }
 
   await ana.goto(urlTienda('dona-rosa', '/catalogo'));
-  await ana.getByText('Medialuna de manteca').first().click();
-  await ana.getByRole('button', { name: 'Agregar' }).click();
+  await ana.getByRole('link', { name: /Medialuna de manteca/ }).first().click();
+  await expect(ana).toHaveURL(/\/producto\/\d+$/);
+  await ana.getByRole('button', { name: 'Agregar', exact: true }).click();
   await ana.getByRole('link', { name: /Continuar/ }).click();
   await expect(ana.getByText(/Comprás como Ana Club/)).toBeVisible();
   await expect(ana.getByLabel('Nombre y apellido')).toHaveValue('Ana Club');

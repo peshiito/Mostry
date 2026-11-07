@@ -15,7 +15,11 @@ export function BloqueProductos({ bloque, datos, c }) {
       bajada={datos.bajada ?? bajada}
       ver={carrusel ? '/catalogo' : undefined}
     >
-      <ProductosVitrina productos={lista} carrusel={carrusel} />
+      <ProductosVitrina
+        productos={lista}
+        carrusel={carrusel}
+        automatico={datos.automatico}
+      />
     </SeccionVitrina>
   );
 }

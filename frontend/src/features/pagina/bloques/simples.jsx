@@ -2,8 +2,10 @@ import { FranjaClub } from '../../tienda/components/FranjaClub.jsx';
 import { Beneficios } from '../../tienda/sitio/Beneficios.jsx';
 import { CierreContacto } from '../../tienda/sitio/CierreContacto.jsx';
 import { Margen } from '../../tienda/vitrina/AvisosVitrina.jsx';
+import { CategoriasTarjetas } from '../../tienda/vitrina/CategoriasTarjetas.jsx';
 import { CategoriasVitrina } from '../../tienda/vitrina/CategoriasVitrina.jsx';
 import { GaleriaLocal } from '../../tienda/vitrina/GaleriaLocal.jsx';
+import { SeccionVitrina } from '../../tienda/vitrina/SeccionVitrina.jsx';
 import { SobreNosotros } from '../../tienda/vitrina/SobreNosotros.jsx';
 import css from './Bloques.module.css';
 

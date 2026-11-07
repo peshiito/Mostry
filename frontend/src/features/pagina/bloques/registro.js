@@ -1,4 +1,5 @@
 import { BloqueBanner } from './BloqueBanner.jsx';
+import { BloqueDestacado } from './BloqueDestacado.jsx';
 import { BloqueHero } from './BloqueHero.jsx';
 import { BloqueProductos } from './BloqueProductos.jsx';
 import * as S from './simples.jsx';
@@ -14,6 +15,11 @@ export const REGISTRO = {
   },
   categorias: { nombre: 'Categorías', icono: 'category', Componente: S.BloqueCategorias },
   productos: { nombre: 'Productos', icono: 'local_mall', Componente: BloqueProductos },
+  destacado: {
+    nombre: 'Producto destacado',
+    icono: 'stars',
+    Componente: BloqueDestacado,
+  },
   banner: { nombre: 'Banner', icono: 'sell', Componente: BloqueBanner },
   texto: { nombre: 'Texto', icono: 'description', Componente: S.BloqueTexto },
   nosotros: { nombre: 'Sobre nosotros', icono: 'store', Componente: S.BloqueNosotros },

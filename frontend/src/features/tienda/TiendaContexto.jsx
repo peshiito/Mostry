@@ -6,6 +6,7 @@ import { useTemaTienda } from '../../shared/temaTienda/useTemaTienda.js';
 import { EsqueletoPantalla } from '../../shared/ui/esqueletos/index.js';
 import { ErrorCarga } from '../../shared/ui/ErrorCarga.jsx';
 import { adaptarTienda } from './lib/adaptar.js';
+import { AjustesProveedor } from '../pagina/AjustesPagina.jsx';
 import './estilos/index.js';
 
 export const Tienda = createContext(null);
@@ -21,7 +22,9 @@ function ConTema({ valor, children }) {
         data-encabezado={tema.encabezado}
         data-forma={tema.forma}
       >
-        {children}
+        <AjustesProveedor ajustes={valor.tienda.pagina?.ajustes}>
+          {children}
+        </AjustesProveedor>
       </div>
     </Tienda.Provider>
   );

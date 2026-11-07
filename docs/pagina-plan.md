@@ -143,3 +143,25 @@ Tiene que ser **producto final y escalable**, no un boceto, y verse siempre lind
 - **Calidad:** axe en claro y oscuro, y Lighthouse en la vidriera.
 - **Suites de a una:** backend (~30 min), frontend y e2e.
 - **Capturas por el chat** al cerrar cada etapa.
+
+---
+
+## Nuevo orden (aprobado por Pedro el 2026-11-07)
+P1 a P3 están hechas (`dbcbc73`, `f48fbe2` y `4eebfa7`). Lo que sigue:
+
+1. **P4 · Productos y ajustes:**
+   - sin carrito, con "Consultar por WhatsApp";
+   - buscador sí o no;
+   - botones de la tarjeta de producto;
+   - bloque Producto destacado;
+   - categorías en tarjetas;
+   - carrusel automático.
+2. **P5 · Plantillas por rubro e inicio guiado:** cada estilo trae su página armada; la primera vez el editor ofrece la plantilla del rubro; se puede volver a la plantilla.
+3. **P6 · Editar tocando la vista previa:** el bloque tocado queda elegido y marcado. Además, **"Mirala en tu celu"**: un QR con un link de borrador firmado que vence en 24 h.
+4. **P7 · Reseñas reales:** las deja el comprador desde su seguimiento y las modera el comercio. Suma el bloque de reseñas y las estrellas en los productos.
+5. **P8 · Grilla libre y estilo por bloque:** fondo, alineación y espaciado propios de cada bloque.
+6. **P9 · Bloques nuevos y avisos:**
+   - bloques: cuenta regresiva, preguntas frecuentes, cómo llegar y WhatsApp flotante;
+   - avisos de "a tu página le falta algo".
+7. **P10 · Pulido:** accesibilidad, rendimiento, modo soporte del admin y docs.
+8. **Más adelante:** portadas programadas y estadísticas de clics.

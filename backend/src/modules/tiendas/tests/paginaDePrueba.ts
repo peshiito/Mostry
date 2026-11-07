@@ -31,6 +31,7 @@ export const paginaDePrueba = () => ({
         vista: 'carrusel',
         fuente: { tipo: 'destacados' },
         cantidad: 8,
+        automatico: false,
       },
     },
     {

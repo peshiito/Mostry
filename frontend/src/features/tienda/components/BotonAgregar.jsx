@@ -1,6 +1,8 @@
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { BotonIcono } from '../../../shared/ui/BotonIcono.jsx';
 import { useCarrito } from '../../carrito/useCarrito.js';
+import { useAjustes } from '../../pagina/AjustesPagina.jsx';
+import { BotonConsultar } from '../../pagina/BotonConsultar.jsx';
 import { useTienda } from '../hooks/useTienda.js';
 
 // Acción de un producto según stock y horario (6.2 y 6.3):
@@ -8,6 +10,9 @@ import { useTienda } from '../hooks/useTienda.js';
 export function BotonAgregar({ producto, conTexto }) {
   const { estado } = useTienda();
   const { cambiar } = useCarrito();
+  // Tienda que vende por WhatsApp ("Armá tu página", P4).
+  const { carrito } = useAjustes();
+  if (!carrito) return <BotonConsultar producto={producto} />;
   const soloEncargo =
     estado === 'cerrada' || (producto.aceptaEncargo && producto.stock === 0);
   if (soloEncargo && !producto.aceptaEncargo) return null;
