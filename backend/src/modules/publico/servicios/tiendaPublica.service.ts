@@ -10,7 +10,7 @@ import { tiendaPublicaRepo } from '../repositorios/tiendaPublica.repository.js';
 import { disponibilidad } from './disponibilidad.js';
 
 // Pantalla de inicio de la tienda: datos, abierto/cerrado, horarios y promociones.
-export async function verTiendaPublica(tiendaId: TiendaId) {
+export async function verTiendaPublica(tiendaId: TiendaId, borrador = false) {
   const ahora = new Date();
   const t = await tiendaPublicaRepo.buscar(tiendaId);
   const estado = disponibilidad(t, ahora);
@@ -54,6 +54,6 @@ export async function verTiendaPublica(tiendaId: TiendaId) {
     contenido: t.contenido,
     galeria: await fotosGaleria(tiendaId),
     // "Armá tu página": la página publicada (null = la de siempre) y sus imágenes.
-    ...(await paginaConMedios(tiendaId)),
+    ...(await paginaConMedios(tiendaId, borrador)),
   };
 }

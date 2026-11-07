@@ -11,6 +11,8 @@ import {
   volverALaDeSiempre,
 } from './pagina.service.js';
 import { listarVersiones, restaurarVersion } from './versiones.js';
+import { firmarVistaBorrador } from './vistaBorrador.js';
+import { miembroDelPanel } from '../../../shared/http/miembroDelPanel.js';
 
 // "Armá tu página", bajo /panel/tienda/pagina.
 export function rutasPagina(): Router {
@@ -37,6 +39,11 @@ export function rutasPagina(): Router {
   r.post('/versiones/:id/restaurar', async (req, res) => {
     const id = esquemaId.parse(req.params.id);
     res.json({ borrador: await restaurarVersion(tiendaDelPanel(req), id) });
+  });
+  // El link al borrador es para el dueño: el modo soporte no lo pide.
+  r.post('/vista-previa', (req, res) => {
+    miembroDelPanel(req);
+    res.json(firmarVistaBorrador(tiendaDelPanel(req)));
   });
   return r;
 }

@@ -163,7 +163,11 @@ P1 a P3 están hechas (`dbcbc73`, `f48fbe2` y `4eebfa7`). Lo que sigue:
    - **Bienvenida:** aparece la primera vez, sin borrador ni publicado.
    - **Menú "Más":** cambiar de plantilla (con deshacer), las versiones publicadas antes y volver a la de siempre.
    - **Test del backend `plantillas.test.ts`:** pasa las 12 plantillas por el esquema del backend.
-3. **P6 · Editar tocando la vista previa:** el bloque tocado queda elegido y marcado. Además, **"Mirala en tu celu"**: un QR con un link de borrador firmado que vence en 24 h.
+3. **P6 · Editar tocando la vista previa (HECHA, 2026-11-07):**
+   - **Tocar en la vista previa:** la tienda sigue `inert`. El editor mide los rects de `[data-id-bloque]` (`armarPagina/lib/marcas.js` y `useBloqueBajo`) y dibuja encima la marca y el bloque elegido (`CapaElegir`). Si elegís desde la lista, la vista previa baja hasta el bloque.
+   - **"Mirala en tu celu":** `POST /panel/tienda/pagina/vista-previa` firma un token HMAC para esa tienda que dura 24 h (`vistaBorrador.ts`).
+     - `GET /publico/tienda?borrador=…` muestra el borrador solo si el token vale para esa tienda. Si no, muestra lo publicado, sin dar error.
+     - La vidriera guarda el token en `sessionStorage` (`tokenBorrador.js`) y muestra `FranjaBorrador`, con noindex.
 4. **P7 · Reseñas reales:** las deja el comprador desde su seguimiento y las modera el comercio. Suma el bloque de reseñas y las estrellas en los productos.
 5. **P8 · Grilla libre y estilo por bloque:** fondo, alineación y espaciado propios de cada bloque.
 6. **P9 · Bloques nuevos y avisos:**

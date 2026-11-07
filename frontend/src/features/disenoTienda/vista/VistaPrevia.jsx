@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cargarFuentes } from '../../../shared/temaTienda/cargarFuentes.js';
 import { derivarTokens } from '../../../shared/temaTienda/derivar.js';
 import { CarritoProveedor } from '../../carrito/CarritoContexto.jsx';
@@ -26,9 +26,15 @@ function Inicio({ tienda, pagina }) {
 }
 
 // La vidriera de verdad (mismos componentes y datos) con el diseño que se está
-// eligiendo, dentro de un celular. Es solo para mirar: no se puede tocar.
-export function VistaPrevia({ valor, tema, modo, pagina, compu }) {
+// eligiendo, dentro de un celular. La tienda no se puede tocar; `capa` (opcional)
+// dibuja encima, con la pantalla, lo que haga falta (el editor marca los bloques).
+export function VistaPrevia({ valor, tema, modo, pagina, compu, capa }) {
   const pantalla = useRef(null);
+  const [nodo, setNodo] = useState(null);
+  const conPantalla = useCallback((n) => {
+    pantalla.current = n;
+    setNodo(n);
+  }, []);
   const zoom = useZoom(pantalla, 1280, compu);
   const { 'color-scheme': colorScheme, ...tokens } = useMemo(
     () => derivarTokens(tema, modo),
@@ -39,7 +45,7 @@ export function VistaPrevia({ valor, tema, modo, pagina, compu }) {
   }, [tema.fuentes.titulos, tema.fuentes.texto]);
   return (
     <div className={`${css.telefono} ${compu ? css.monitor : ''}`}>
-      <div ref={pantalla} className={css.pantalla} style={{ ...tokens, colorScheme }}>
+      <div ref={conPantalla} className={css.pantalla} style={{ ...tokens, colorScheme }}>
         <CarritoProveedor slug={`vista-previa:${valor.tienda.slug}`}>
           <Tienda.Provider value={{ ...valor, tema }}>
             <div
@@ -57,6 +63,7 @@ export function VistaPrevia({ valor, tema, modo, pagina, compu }) {
           </Tienda.Provider>
         </CarritoProveedor>
       </div>
+      {nodo ? capa?.(nodo) : null}
     </div>
   );
 }

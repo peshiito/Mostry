@@ -9,7 +9,13 @@ export function RenderPagina({ pagina, tienda, c, despues }) {
   return visibles.map((b, i) => {
     const { Componente } = REGISTRO[b.tipo];
     return (
-      <div key={b.id} id={`b-${b.id}`} data-bloque={b.tipo} className={css.bloque}>
+      <div
+        key={b.id}
+        id={`b-${b.id}`}
+        data-bloque={b.tipo}
+        data-id-bloque={b.id}
+        className={css.bloque}
+      >
         <Componente bloque={b} datos={b.datos} tienda={tienda} c={c} />
         {i === 0 ? despues : null}
       </div>

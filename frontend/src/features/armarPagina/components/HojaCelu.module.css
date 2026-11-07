@@ -1,0 +1,35 @@
+.cuerpo {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-3);
+}
+.qr {
+  padding: var(--e-3);
+  border-radius: 20px;
+  background: var(--qr-fondo);
+  color: var(--qr-modulo);
+}
+.qr svg {
+  width: min(64vw, 240px);
+}
+.esperando {
+  display: grid;
+  place-items: center;
+  width: min(64vw, 264px);
+  aspect-ratio: 1;
+  border-radius: 20px;
+  outline: 2px dashed var(--texto-3);
+  color: var(--texto-2);
+}
+.error {
+  display: grid;
+  justify-items: center;
+  gap: var(--e-2);
+  text-align: center;
+}
+.nota {
+  margin: 0;
+  color: var(--texto-2);
+  font-size: var(--t-sm);
+  text-align: center;
+}

@@ -4,13 +4,12 @@ import { EsqueletoFormulario } from '../../../shared/ui/esqueletos/index.js';
 import { Hoja } from '../../../shared/ui/Hoja.jsx';
 import { Pagina } from '../../../shared/ui/Pagina.jsx';
 import { TituloPagina } from '../../../shared/ui/TituloPagina.jsx';
-import { REGISTRO } from '../../pagina/bloques/registro.js';
 import { useCatalogo } from '../../tienda/hooks/useCatalogo.js';
 import { BarraEditor } from '../components/BarraEditor.jsx';
 import { ColumnaBloques } from '../components/ColumnaBloques.jsx';
 import { ColumnaVista } from '../components/ColumnaVista.jsx';
 import { HojasEditor } from '../components/HojasEditor.jsx';
-import { PanelLateral } from '../components/PanelLateral.jsx';
+import { PanelLateral, tituloPanel } from '../components/PanelLateral.jsx';
 import { useMedios } from '../hooks/useMedios.js';
 import { usePaginaEditor } from '../hooks/usePaginaEditor.js';
 import { usePantallaGrande } from '../hooks/usePantallaGrande.js';
@@ -31,10 +30,7 @@ export function PantallaArmarPagina() {
   const panel = elegido ? (
     <PanelLateral elegido={elegido} e={e} ctx={ctx} onListo={() => setElegido(null)} />
   ) : null;
-  const titulo =
-    elegido === 'ajustes'
-      ? 'Ajustes de la página'
-      : (REGISTRO[e.doc.bloques.find((x) => x.id === elegido)?.tipo]?.nombre ?? '');
+  const titulo = tituloPanel(elegido, e.doc.bloques);
   return (
     <Pagina ancho="completo">
       <TituloPagina
@@ -42,15 +38,17 @@ export function PantallaArmarPagina() {
         titulo="Armá tu página"
         bajada="Sumá, mové y editá los bloques de tu inicio. Cuando te guste, publicalo."
       />
-      <BarraEditor
-        e={e}
-        onAjustes={() => setElegido('ajustes')}
-        onMas={() => setHoja('mas')}
-      />
+      <BarraEditor e={e} setElegido={setElegido} setHoja={setHoja} />
       <HojasEditor e={e} ctx={ctx} hoja={hoja} setHoja={setHoja} />
       <div className={css.editor}>
         <ColumnaBloques e={e} c={c} elegido={elegido} onEditar={setElegido} />
-        <ColumnaVista valor={e.valor} doc={e.doc} medios={medios.lista} />
+        <ColumnaVista
+          valor={e.valor}
+          doc={e.doc}
+          medios={medios.lista}
+          elegido={elegido}
+          onElegir={setElegido}
+        />
         {grande ? (
           <aside className={css.ajustes} aria-label={titulo || 'Editar bloque'}>
             {panel ?? <p className={css.vacio}>Tocá un bloque para editarlo.</p>}

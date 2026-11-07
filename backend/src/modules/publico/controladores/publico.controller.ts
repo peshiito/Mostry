@@ -5,10 +5,14 @@ import {
   listarCategoriasPublicas,
   verProductoPublico,
 } from '../servicios/catalogoPublico.service.js';
+import { leerVistaBorrador } from '../../tiendas/pagina/vistaBorrador.js';
 import { verTiendaPublica } from '../servicios/tiendaPublica.service.js';
 
+// Con ?borrador=<token válido para esta tienda> muestra el borrador; un token
+// malo o vencido no da error: se ve lo publicado, como cualquier comprador.
 const tienda: RequestHandler = async (req, res) => {
-  res.json(await verTiendaPublica(req.tienda!.id));
+  const id = req.tienda!.id;
+  res.json(await verTiendaPublica(id, leerVistaBorrador(id, req.query.borrador)));
 };
 
 const categorias: RequestHandler = async (req, res) => {

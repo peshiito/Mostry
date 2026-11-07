@@ -413,8 +413,11 @@ Cada etapa arranca con su **X.0 – Preparación** (sección 2) y termina con el
     - **P2 y P3, el editor e imágenes propias con carrusel y GIF** (`f48fbe2`);
     - **la vista previa fiel al teléfono** (`4eebfa7`);
     - **P4, productos y ajustes:** sin carrito con "Consultar por WhatsApp", buscador, botones de la tarjeta, Producto destacado, categorías en tarjetas y carrusel automático (`0ad63ae`);
-    - **P5, plantillas por rubro e inicio guiado:** una página armada por estilo, la bienvenida la primera vez y el menú "Más" (plantillas, versiones y volver a la de siempre). El e2e abre el editor con `apoyo/editor.js` (`abrirEditor`), que resuelve la bienvenida.
-  - **Sigue P6** (tocar en la vista previa y el QR del borrador). Después: P7 (reseñas), P8 (grilla libre y estilo por bloque), P9 (bloques nuevos y avisos) y P10 (pulido).
+    - **P5, plantillas por rubro e inicio guiado:** una página armada por estilo, la bienvenida la primera vez y el menú "Más" (plantillas, versiones y volver a la de siempre). El e2e abre el editor con `apoyo/editor.js` (`abrirEditor`), que resuelve la bienvenida;
+    - **P6, tocar en la vista previa y "Mirala en tu celu":**
+      - tocar un bloque de la vista previa lo elige; la tienda sigue `inert` y se miden los rects de `[data-id-bloque]`;
+      - el QR lleva a `?borrador=<token HMAC de 24 h>`: solo vale en su tienda y, si no vale, se ve lo publicado.
+  - **Sigue P7** (reseñas reales). Después: P8 (grilla libre y estilo por bloque), P9 (bloques nuevos y avisos) y P10 (pulido).
   - **Después de "Armá tu página":** V2 (fuente propia), V6 (fotos y variantes de producto) y F1–F6 (`docs/vidriera-finanzas-plan.md`).
 - **Después:** S4 producción (antes: rotar claves, repo privado y elegir hosting; Pedro se inclina por un VPS con Docker Compose, sin Kubernetes) → S5 piloto → S6 lanzamiento (`docs/plan-salida.md`).
 - **Hosting de producción:** sigue sin decidir. Railway cuesta unos 5 USD por mes; Oracle Always Free es gratis, pero hay que configurarlo más.

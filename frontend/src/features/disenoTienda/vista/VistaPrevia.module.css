@@ -1,10 +1,10 @@
 /* Marco de celular: el borde y la sombra salen del panel; adentro, la tienda. */
 .telefono {
+  position: relative;
   width: 332px;
   margin-inline: auto;
   border: 6px solid var(--carbon);
   border-radius: 34px;
-  padding: 0;
   overflow: hidden;
   box-shadow: var(--sombra-flotante);
   background: var(--carbon);
@@ -20,6 +20,9 @@
   color: var(--carbon);
   font-family: var(--fuente-texto, inherit);
   scrollbar-width: none;
+}
+.pantalla[data-elegible] {
+  cursor: pointer;
 }
 
 .vidriera {

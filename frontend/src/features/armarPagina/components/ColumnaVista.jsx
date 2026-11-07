@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { temaEfectivo } from '../../../shared/temaTienda/temas.js';
 import { Segmentado } from '../../../shared/ui/Segmentado.jsx';
 import { VistaPrevia } from '../../disenoTienda/vista/VistaPrevia.jsx';
+import { CapaElegir } from './CapaElegir.jsx';
 import css from './ColumnaVista.module.css';
 
 const DISPOSITIVO = [
@@ -14,7 +15,8 @@ const MODO = [
 ];
 
 // La página tal como va a quedar, con los cambios al instante, en celu o compu.
-export function ColumnaVista({ valor, doc, medios }) {
+// Tocar un bloque de la vista previa lo elige (`onElegir`), como en la lista.
+export function ColumnaVista({ valor, doc, medios, elegido, onElegir }) {
   const [dispositivo, setDispositivo] = useState('celu');
   const [modo, setModo] = useState('claro');
   return (
@@ -34,6 +36,9 @@ export function ColumnaVista({ valor, doc, medios }) {
         modo={modo}
         pagina={doc}
         compu={dispositivo === 'compu'}
+        capa={(pantalla) => (
+          <CapaElegir pantalla={pantalla} elegido={elegido} onElegir={onElegir} />
+        )}
       />
     </section>
   );

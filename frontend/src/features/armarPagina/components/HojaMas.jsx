@@ -1,12 +1,19 @@
 import { useState } from 'react';
-import { fechaHora } from '../../../shared/lib/fechas.js';
 import { Boton } from '../../../shared/ui/Boton.jsx';
 import { Hoja } from '../../../shared/ui/Hoja.jsx';
 import { useVersiones } from '../hooks/useVersiones.js';
 import css from './HojaMas.module.css';
+import { ListaVersiones } from './ListaVersiones.jsx';
 
-// "Más": cambiar de plantilla, volver a una versión publicada o a la página de siempre.
-export function HojaMas({ abierta, onCerrar, onPlantillas, alRestaurar, alVolver }) {
+// "Más": cambiar de plantilla, ver el borrador en el celu, volver a una versión publicada o a la página de siempre.
+export function HojaMas({
+  abierta,
+  onCerrar,
+  onPlantillas,
+  onCelu,
+  alRestaurar,
+  alVolver,
+}) {
   const v = useVersiones(abierta, { alRestaurar, alVolver });
   const [seguro, setSeguro] = useState(false);
   const cerrar = () => {
@@ -17,35 +24,16 @@ export function HojaMas({ abierta, onCerrar, onPlantillas, alRestaurar, alVolver
     (accion) =>
     async (...args) =>
       (await accion.ejecutar(...args)).ok && cerrar();
-  const versiones = v.lista.datos ?? [];
   return (
     <Hoja abierta={abierta} onCerrar={cerrar} titulo="Más opciones">
       <div className={css.cuerpo}>
         <Boton icono="dashboard_customize" anchoCompleto onClick={onPlantillas}>
           Cambiar de plantilla
         </Boton>
-        <section className={css.seccion} aria-labelledby="mas-versiones">
-          <h3 id="mas-versiones" className={css.titulo}>
-            Lo que publicaste antes
-          </h3>
-          {v.lista.cargando ? <p className={css.nota}>Buscando…</p> : null}
-          {!v.lista.cargando && !versiones.length ? (
-            <p className={css.nota}>Todavía no publicaste tu página.</p>
-          ) : null}
-          <ul className={css.lista}>
-            {versiones.map((x, i) => (
-              <li key={x.id} className={css.version}>
-                <span>
-                  {fechaHora(x.creadaEn)}
-                  {i === 0 ? <span className={css.nota}> · la que se ve hoy</span> : null}
-                </span>
-                <Boton variante="texto" onClick={() => hacer(v.restaurar)(x.id)}>
-                  Volver a esta
-                </Boton>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <Boton icono="smartphone" anchoCompleto onClick={onCelu}>
+          Mirala en tu celu
+        </Boton>
+        <ListaVersiones lista={v.lista} onVolver={(id) => hacer(v.restaurar)(id)} />
         <section className={css.seccion}>
           <p className={css.nota}>
             La página de siempre es la que tu tienda tenía antes de armar la tuya.
